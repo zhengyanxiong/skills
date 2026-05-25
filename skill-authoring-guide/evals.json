@@ -1,0 +1,23 @@
+{
+  "skill_name": "skill-authoring-guide",
+  "evals": [
+    {
+      "id": 1,
+      "name": "从 Prompt 沉淀为 Skill",
+      "prompt": "我有一段用于生成接口文档的 Prompt，想把它做成可复用的 Skill。请帮我设计完整的 Skill 结构，包括 SKILL.md、references、scripts。",
+      "expected_output": "生成完整的 Skill 目录结构，包含 YAML frontmatter、三层渐进加载设计、量化断言、测试用例"
+    },
+    {
+      "id": 2,
+      "name": "评估现有 Skill 质量",
+      "prompt": "我现有的 Skill 总是不被触发，输出质量也不稳定。请帮我分析原因并给出优化方案。",
+      "expected_output": "诊断出 description 问题、上下文溢出问题、边界处理问题，并给出具体修复建议"
+    },
+    {
+      "id": 3,
+      "name": "设计复杂工作流 Skill",
+      "prompt": "我要把团队内部的 7 步开发流程（关务系统页面开发）做成 Skill。请帮我选择合适的设计模式并设计文件结构。",
+      "expected_output": "选择 Pipeline 模式，设计 7 步流程指令，拆分 references 降低 L2 层 Token，提供检查清单"
+    }
+  ]
+}

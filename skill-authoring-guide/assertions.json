@@ -1,0 +1,65 @@
+{
+  "skill_name": "skill-authoring-guide",
+  "assertions": [
+    {
+      "id": "A1",
+      "description": "生成的 Skill 包含正确的 YAML frontmatter（name、description 必填）",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A2",
+      "description": "description 包含触发关键词，覆盖多种用户表述，适当强势",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A3",
+      "description": "使用了三层渐进式加载（L1/L2/L3）",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A4",
+      "description": "解释了设计原则（为什么这样设计），而非堆砌必须",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A5",
+      "description": "包含边界情况处理（至少 5 种场景）",
+      "type": "completeness",
+      "weight": 0.8
+    },
+    {
+      "id": "A6",
+      "description": "提供了输入输出示例",
+      "type": "completeness",
+      "weight": 0.8
+    },
+    {
+      "id": "A7",
+      "description": "包含量化断言和测试用例",
+      "type": "completeness",
+      "weight": 0.8
+    },
+    {
+      "id": "A8",
+      "description": "name 符合命名规范（小写+数字+连字符）",
+      "type": "format",
+      "weight": 1.0
+    },
+    {
+      "id": "A9",
+      "description": "SKILL.md 正文控制在 500 行以内",
+      "type": "format",
+      "weight": 0.6
+    },
+    {
+      "id": "A10",
+      "description": "references 文件保持聚焦，按需加载",
+      "type": "format",
+      "weight": 0.6
+    }
+  ]
+}

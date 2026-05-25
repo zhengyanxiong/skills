@@ -1,0 +1,23 @@
+{
+  "skill_name": "coross-platform-vim-nvim-deploy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just got a new Windows laptop and need to set up Neovim. I've been using Vim on my old Mac for years and have a ~/.vimrc with my custom keybindings and plugins (nerdtree, fzf, vim-airline). Can you help me deploy a modern setup that keeps my old config working on both machines?",
+      "expected_output": "Agent detects the user is on Windows, proposes Neovim installation via Scoop (or detects it), backs up existing vimrc, creates unified ~/.vim/ with shared init.vim that uses has('nvim') guards, creates Neovim symlink on Windows, preserves user's existing keybindings and plugin preferences, and provides verification steps.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have Neovim on my Ubuntu server but the config is broken after I tried to add LSP support. I get 'module not found' errors. I also want to be able to use the same config when I SSH in and only have plain Vim. Can you fix this and set up a shared config?",
+      "expected_output": "Agent diagnoses the broken LSP config, explains the issue, proposes rollback if needed, then deploys the shared config architecture: ~/.vim/ as unified root, ~/.config/nvim -> ~/.vim symlink, init.vim with has('nvim') branching so Vim works with same config when Neovim isn't available, verifies both editors load correctly.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Set up my vim/nvim development environment on macOS. I want ripgrep, fd, lazy.nvim, treesitter, and telescope. Make sure it all works.",
+      "expected_output": "Agent detects macOS, uses Homebrew to install neovim/ripgrep/fd as needed, creates ~/.vim/ with init.vim, creates symlink ~/.config/nvim -> ~/.vim, deploys Lua modules for lazy.nvim with telescope and treesitter plugins, verifies deployment with headless checks, generates deploy report.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "skill_name": "coross-platform-vim-nvim-deploy",
+  "description_evals": [
+    {
+      "id": "T1",
+      "query": "hey so I just got a new thinkpad for work and I need to get my vim setup going. I was using neovim on my old macbook with lazy.nvim and telescope and all that. what's the best way to get everything installed on windows?",
+      "should_trigger": true
+    },
+    {
+      "id": "T2",
+      "query": "我需要在新电脑上安装Neovim，要支持LSP和treesitter，插件用lazy.nvim管理。系统是Ubuntu 22.04。",
+      "should_trigger": true
+    },
+    {
+      "id": "T3",
+      "query": "I've been using plain vim for years with a pretty big ~/.vimrc. Thinking about switching to neovim for the LSP stuff but I want to keep my old vim config working too in case I ssh into servers that only have vim. how do I set this up?",
+      "should_trigger": true
+    },
+    {
+      "id": "T4",
+      "query": "my nvim config is totally borked after I tried to add some copilot plugin. now I get a bunch of 'module not found' errors on startup. I just want to nuke it and start fresh with a proper setup. on macos btw.",
+      "should_trigger": true
+    },
+    {
+      "id": "T5",
+      "query": "setting up a dev environment on WSL2 ubuntu. need neovim with ripgrep, fd, lazy.nvim, telescope, treesitter. also want to be able use same config when I open regular vim inside WSL. can you walk me through this?",
+      "should_trigger": true
+    },
+    {
+      "id": "T6",
+      "query": "help me deploy my vim config. I have it on github dotfiles repo but want to set it up fresh here. need neovim, ripgrep, fd installed too.",
+      "should_trigger": true
+    },
+    {
+      "id": "T7",
+      "query": "how do I make my vim and nvim share the same ~/.vimrc? got both installed on my arch linux box and tired of maintaining two separate configs",
+      "should_trigger": true
+    },
+    {
+      "id": "T8",
+      "query": "ok so my company gave me a windows laptop (kill me now lol) but I refuse to use vscode. need my full neovim setup -- telescope, which-key, catppuccin theme, LSP for typescript and python. also need to install ripgrep and fd cuz telescope needs them. I've never set up dev tools on windows before.",
+      "should_trigger": true
+    },
+    {
+      "id": "T9",
+      "query": "现在有两台电脑，一台Mac一台Linux服务器，都装了vim和neovim。怎么让两边共用一个配置，而不是每次改了快捷键还要手动同步？",
+      "should_trigger": true
+    },
+    {
+      "id": "T10",
+      "query": "i wanna do the thing where ~/.config/nvim points to ~/.vim so vim and neovim share config. mine's currently separate and it's a mess. also need lazy.nvim set up. ubuntu server, no GUI.",
+      "should_trigger": true
+    },
+    {
+      "id": "F1",
+      "query": "how do I install vscode on ubuntu? I need the remote SSH extension too",
+      "should_trigger": false
+    },
+    {
+      "id": "F2",
+      "query": "what's the best terminal emulator for windows? I heard windows terminal is good but looking for alternatives with GPU acceleration",
+      "should_trigger": false
+    },
+    {
+      "id": "F3",
+      "query": "can you help me configure my .zshrc with some nice aliases and oh-my-zsh plugins? I want git shortcuts and a better prompt",
+      "should_trigger": false
+    },
+    {
+      "id": "F4",
+      "query": "how do I delete a line in vim? also how do I search and replace? I'm a complete beginner",
+      "should_trigger": false
+    },
+    {
+      "id": "F5",
+      "query": "I need to set up git on my new machine. configure user.name, user.email, generate SSH key for github, the whole thing",
+      "should_trigger": false
+    },
+    {
+      "id": "F6",
+      "query": "my emacs config is a mess. been using doom emacs for a while but thinking about switching to vanilla emacs. can you help me write a clean init.el from scratch?",
+      "should_trigger": false
+    },
+    {
+      "id": "F7",
+      "query": "what's the difference between tmux and screen? I need a terminal multiplexer for my remote server sessions",
+      "should_trigger": false
+    },
+    {
+      "id": "F8",
+      "query": "帮我写一个vim插件，功能是在保存文件时自动运行prettier格式化代码",
+      "should_trigger": false
+    },
+    {
+      "id": "F9",
+      "query": "I want to set up a python virtual environment for my project. need to install python 3.11 and configure poetry for dependency management",
+      "should_trigger": false
+    },
+    {
+      "id": "F10",
+      "query": "how do I configure my alacritty terminal? trying to set up a custom color scheme and font (jetbrains mono with ligatures). the toml config is confusing",
+      "should_trigger": false
+    }
+  ]
+}

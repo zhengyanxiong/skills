@@ -1,0 +1,65 @@
+{
+  "skill_name": "coross-platform-vim-nvim-deploy",
+  "assertions": [
+    {
+      "id": "A1",
+      "description": "Agent detects or asks about the user's operating system before suggesting any package install commands (apt/brew/scoop)",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A2",
+      "description": "Agent creates a backup of existing vim/nvim configuration before making any modifications",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A3",
+      "description": "Generated init.vim uses has('nvim') guards to isolate Neovim-only code (Lua, LSP) from shared Vimscript settings",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A4",
+      "description": "Agent creates a Neovim symlink (~/.config/nvim) pointing to the shared ~/.vim/ directory",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A5",
+      "description": "Agent selects the correct package manager based on detected platform (Scoop for Windows, Homebrew for macOS, apt for Ubuntu)",
+      "type": "correctness",
+      "weight": 0.8
+    },
+    {
+      "id": "A6",
+      "description": "Agent provides verification commands that confirm both vim and nvim load correctly after deployment",
+      "type": "completeness",
+      "weight": 0.8
+    },
+    {
+      "id": "A7",
+      "description": "Output includes a summary of every action taken (packages installed, files created, backups made)",
+      "type": "completeness",
+      "weight": 0.6
+    },
+    {
+      "id": "A8",
+      "description": "Agent handles 'no editor installed' case by recommending Neovim installation with an explanation of why Neovim is preferred over plain Vim",
+      "type": "completeness",
+      "weight": 0.8
+    },
+    {
+      "id": "A9",
+      "description": "Agent does not suggest destructive commands (rm -rf, force-overwrite) on existing config without first creating a backup or asking for confirmation",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A10",
+      "description": "init.vim template includes lazy.nvim bootstrap code so the plugin manager self-installs on first Neovim launch",
+      "type": "completeness",
+      "weight": 0.6
+    }
+  ]
+}
