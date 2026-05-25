@@ -9,6 +9,9 @@
 #   ./link-skills.sh install --agents claude-code,kimi
 #   ./link-skills.sh install --skills skill-authoring-guide
 #
+# Supported platforms: Linux, macOS, WSL, Git Bash (Windows)
+# For native Windows PowerShell, use link-skills.ps1 instead.
+#
 # The script detects installed agents by checking for their parent config
 # directories, then creates symlinks from the central skills repo into each
 # agent's skills/ directory. Only the central repo is the source of truth;
