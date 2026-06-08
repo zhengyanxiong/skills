@@ -1,0 +1,40 @@
+{
+  "skills": {
+    "coross-platform-vim-nvim-deploy": {
+      "description": "Deploy and synchronize a cross-platform Vim/Neovim development environment across macOS, Linux, Windows, and WSL.",
+      "source": {
+        "notes": "No clear GitHub upstream source was found during initialization.",
+        "type": "local"
+      }
+    },
+    "frontend-design": {
+      "description": "Guide agents to build distinctive, production-grade frontend interfaces, components, pages, dashboards, and web applications.",
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "00756142ab04c82a447693cf373c4e0c554d1005",
+        "path": "skills/frontend-design",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
+    "skill-authoring-guide": {
+      "description": "Teach how to design, write, evaluate, and optimize reusable Agent Skills and SKILL.md instruction packages.",
+      "source": {
+        "notes": "No clear GitHub upstream source was found during initialization.",
+        "type": "local"
+      }
+    },
+    "ui-ux-pro-max": {
+      "description": "Provide searchable UI/UX design intelligence for styles, palettes, typography, charts, accessibility, and frontend stack guidance.",
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "b7e3af80f6e331f6fb456667b82b12cade7c9d35",
+        "path": ".",
+        "ref": "main",
+        "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "type": "git"
+      }
+    }
+  }
+}

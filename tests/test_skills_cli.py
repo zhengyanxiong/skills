@@ -150,6 +150,13 @@ class SkillsCliTests(unittest.TestCase):
 
     def test_sources_add_list_and_remove_persist_manifest(self):
         self.make_skill("frontend-design")
+        skills.save_manifest(self.root, {
+            "skills": {
+                "frontend-design": {
+                    "description": "Build high-quality frontend UI."
+                }
+            }
+        })
 
         out = io.StringIO()
         with redirect_stdout(out):
@@ -174,6 +181,7 @@ class SkillsCliTests(unittest.TestCase):
         self.assertEqual("https://github.com/example/agent-skills.git", source["repo"])
         self.assertEqual("skills/frontend-design", source["path"])
         self.assertEqual("main", source["ref"])
+        self.assertEqual("Build high-quality frontend UI.", manifest["skills"]["frontend-design"]["description"])
 
         out = io.StringIO()
         with redirect_stdout(out):
@@ -182,6 +190,7 @@ class SkillsCliTests(unittest.TestCase):
         self.assertEqual(0, rc)
         self.assertIn("frontend-design", out.getvalue())
         self.assertIn("skills/frontend-design", out.getvalue())
+        self.assertIn("Build high-quality frontend UI.", out.getvalue())
 
         out = io.StringIO()
         with redirect_stdout(out):
@@ -193,6 +202,24 @@ class SkillsCliTests(unittest.TestCase):
 
     def test_load_manifest_returns_empty_structure_when_missing(self):
         self.assertEqual({"skills": {}}, skills.load_manifest(self.root))
+
+    def test_local_source_status_is_local_only(self):
+        self.make_skill("skill-authoring-guide")
+        skills.save_manifest(self.root, {
+            "skills": {
+                "skill-authoring-guide": {
+                    "description": "Guide authors through reusable skill design.",
+                    "source": {
+                        "type": "local",
+                        "notes": "No upstream source found."
+                    }
+                }
+            }
+        })
+
+        status = skills.source_status(self.root, "skill-authoring-guide")
+
+        self.assertEqual("local-only", status["status"])
 
     def test_latest_path_commit_tracks_only_source_subdirectory(self):
         upstream = self.root / "upstream"

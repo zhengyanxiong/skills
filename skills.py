@@ -220,7 +220,7 @@ def source_entry(manifest: dict[str, Any], skill_name: str) -> dict[str, Any] | 
 def source_status(root: Path, skill_name: str) -> dict[str, str]:
     manifest = load_manifest(root)
     source = source_entry(manifest, skill_name)
-    if not source:
+    if not source or source.get("type") == "local":
         return {"skill": skill_name, "status": "local-only", "local": "", "upstream": ""}
     try:
         repo_dir = ensure_source_repo(root, source)
@@ -343,12 +343,13 @@ def doctor(root: Path) -> int:
 
 def sources_list(root: Path) -> int:
     manifest = load_manifest(root)
-    print("Skill\tRepo\tRef\tPath\tLast Commit")
+    print("Skill\tType\tRepo\tRef\tPath\tLast Commit\tDescription")
     for name in sorted(manifest["skills"]):
-        source = manifest["skills"][name].get("source", {})
+        entry = manifest["skills"][name]
+        source = entry.get("source", {})
         print(
-            f"{name}\t{source.get('repo', '-')}\t{source.get('ref', '-')}"
-            f"\t{source.get('path', '-')}\t{source.get('last_commit', '-')}"
+            f"{name}\t{source.get('type', '-')}\t{source.get('repo', '-')}\t{source.get('ref', '-')}"
+            f"\t{source.get('path', '-')}\t{source.get('last_commit', '-')}\t{entry.get('description', '-')}"
         )
     return 0
 
@@ -356,15 +357,14 @@ def sources_list(root: Path) -> int:
 def sources_add(root: Path, skill_name: str, repo: str, source_path: str, ref: str) -> int:
     select_skills(skill_name, root)
     manifest = load_manifest(root)
-    manifest["skills"][skill_name] = {
-        "source": {
-            "type": "git",
-            "repo": repo,
-            "ref": ref,
-            "path": source_path,
-            "last_commit": "",
-            "last_checked_at": "",
-        }
+    entry = manifest["skills"].setdefault(skill_name, {})
+    entry["source"] = {
+        "type": "git",
+        "repo": repo,
+        "ref": ref,
+        "path": source_path,
+        "last_commit": "",
+        "last_checked_at": "",
     }
     save_manifest(root, manifest)
     print(f"{skill_name}\tsource-added")
