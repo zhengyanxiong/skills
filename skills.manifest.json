@@ -1,9 +1,44 @@
 {
   "skills": {
+    "brainstorming": {
+      "description": "Shape creative or product ideas into implementation-ready designs before coding, including requirements, tradeoffs, and approval gates.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
     "coross-platform-vim-nvim-deploy": {
       "description": "Deploy and synchronize a cross-platform Vim/Neovim development environment across macOS, Linux, Windows, and WSL.",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
+        "type": "local"
+      }
+    },
+    "dispatching-parallel-agents": {
+      "description": "Coordinate multiple independent investigation or implementation tasks by delegating them to isolated parallel agents.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "drawio-skill": {
+      "description": "Create and export draw.io diagrams such as architecture diagrams, flowcharts, ERDs, UML, network diagrams, and model figures.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "executing-plans": {
+      "description": "Execute written implementation plans task by task with verification checkpoints and completion handling.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "finishing-a-development-branch": {
+      "description": "Complete a development branch by verifying tests, choosing merge/PR/keep/discard workflow, and cleaning up worktrees safely.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
         "type": "local"
       }
     },
@@ -18,10 +53,45 @@
         "type": "git"
       }
     },
+    "receiving-code-review": {
+      "description": "Evaluate and implement code review feedback with technical rigor instead of accepting unclear or questionable suggestions blindly.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "requesting-code-review": {
+      "description": "Request focused code review from a separate reviewer agent before merging or after major implementation work.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
     "skill-authoring-guide": {
       "description": "Teach how to design, write, evaluate, and optimize reusable Agent Skills and SKILL.md instruction packages.",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
+        "type": "local"
+      }
+    },
+    "subagent-driven-development": {
+      "description": "Implement plans by dispatching fresh subagents per task and reviewing each task for spec compliance and code quality.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "systematic-debugging": {
+      "description": "Investigate bugs, test failures, and unexpected behavior by finding root cause before making fixes.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "test-driven-development": {
+      "description": "Guide feature and bugfix implementation through red-green-refactor with failing tests before production code.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
         "type": "local"
       }
     },
@@ -34,6 +104,41 @@
         "ref": "main",
         "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
         "type": "git"
+      }
+    },
+    "using-git-worktrees": {
+      "description": "Set up or detect isolated Git worktrees before feature work so current branches and user changes stay protected.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "using-superpowers": {
+      "description": "Bootstrap skill usage at conversation start and enforce selecting relevant skills before responding or acting.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "verification-before-completion": {
+      "description": "Require fresh verification evidence before claiming work is complete, fixed, passing, or ready to merge.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "writing-plans": {
+      "description": "Convert approved specs or requirements into detailed, testable implementation plans with concrete steps and commands.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "writing-skills": {
+      "description": "Create, edit, and verify reusable agent skills using test-driven skill design and deployment checks.",
+      "source": {
+        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
       }
     }
   }
