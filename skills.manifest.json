@@ -3,8 +3,12 @@
     "brainstorming": {
       "description": "Shape creative or product ideas into implementation-ready designs before coding, including requirements, tradeoffs, and approval gates.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "9f04f0635114d09ca054778e2dd44942efd1c008",
+        "path": "skills/brainstorming",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "coross-platform-vim-nvim-deploy": {
@@ -17,8 +21,12 @@
     "dispatching-parallel-agents": {
       "description": "Coordinate multiple independent investigation or implementation tasks by delegating them to isolated parallel agents.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "9ccce3bf07a40e45259004a330409ba00970eff7",
+        "path": "skills/dispatching-parallel-agents",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "drawio-skill": {
@@ -31,15 +39,23 @@
     "executing-plans": {
       "description": "Execute written implementation plans task by task with verification checkpoints and completion handling.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/executing-plans",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "finishing-a-development-branch": {
       "description": "Complete a development branch by verifying tests, choosing merge/PR/keep/discard workflow, and cleaning up worktrees safely.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/finishing-a-development-branch",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "frontend-design": {
@@ -56,15 +72,23 @@
     "receiving-code-review": {
       "description": "Evaluate and implement code review feedback with technical rigor instead of accepting unclear or questionable suggestions blindly.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "1455ac0631e2f3824229f6a31a1877dc6b96952f",
+        "path": "skills/receiving-code-review",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "requesting-code-review": {
       "description": "Request focused code review from a separate reviewer agent before merging or after major implementation work.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/requesting-code-review",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "skill-authoring-guide": {
@@ -77,22 +101,34 @@
     "subagent-driven-development": {
       "description": "Implement plans by dispatching fresh subagents per task and reviewing each task for spec compliance and code quality.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/subagent-driven-development",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "systematic-debugging": {
       "description": "Investigate bugs, test failures, and unexpected behavior by finding root cause before making fixes.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/systematic-debugging",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "test-driven-development": {
       "description": "Guide feature and bugfix implementation through red-green-refactor with failing tests before production code.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "030a222af19c1f3a93c6eb876a7422d8e4fc0162",
+        "path": "skills/test-driven-development",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "ui-ux-pro-max": {
@@ -109,36 +145,56 @@
     "using-git-worktrees": {
       "description": "Set up or detect isolated Git worktrees before feature work so current branches and user changes stay protected.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/using-git-worktrees",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "using-superpowers": {
       "description": "Bootstrap skill usage at conversation start and enforce selecting relevant skills before responding or acting.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/using-superpowers",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "verification-before-completion": {
       "description": "Require fresh verification evidence before claiming work is complete, fixed, passing, or ready to merge.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "48410c7f1973bd66569a627ef27ef6619e0ba923",
+        "path": "skills/verification-before-completion",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "writing-plans": {
       "description": "Convert approved specs or requirements into detailed, testable implementation plans with concrete steps and commands.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
+        "path": "skills/writing-plans",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     },
     "writing-skills": {
       "description": "Create, edit, and verify reusable agent skills using test-driven skill design and deployment checks.",
       "source": {
-        "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
-        "type": "local"
+        "last_checked_at": "",
+        "last_commit": "4fd9aa2dd5b602a102a1ff4743849642b73655c1",
+        "path": "skills/writing-skills",
+        "ref": "main",
+        "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
       }
     }
   }

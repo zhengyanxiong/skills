@@ -242,6 +242,31 @@ class SkillsCliTests(unittest.TestCase):
 
         self.assertEqual(path_commit, latest)
 
+    def test_latest_path_commit_falls_back_to_origin_ref(self):
+        upstream = self.root / "upstream"
+        self.init_git_repo(upstream)
+        source_dir = upstream / "skills" / "using-superpowers"
+        source_dir.mkdir(parents=True)
+        (source_dir / "SKILL.md").write_text(
+            "---\nname: using-superpowers\ndescription: test\n---\n# Skill\n",
+            encoding="utf-8",
+        )
+        self.git(upstream, "add", ".")
+        self.git(upstream, "commit", "-m", "add skill")
+        expected = self.git(upstream, "rev-parse", "HEAD").stdout.strip()
+
+        clone = self.root / "clone"
+        subprocess.run(
+            ["git", "clone", "--no-checkout", str(upstream), str(clone)],
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+
+        latest = skills.latest_path_commit(clone, "main", "skills/using-superpowers")
+
+        self.assertEqual(expected, latest)
+
     def test_outdated_reports_update_available_for_changed_source_path(self):
         local = self.make_skill("frontend-design")
         upstream = self.root / "upstream"
