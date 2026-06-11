@@ -11,6 +11,12 @@
         "type": "git"
       }
     },
+    "capability-evolver": {
+      "description": "Analyze runtime logs to detect error patterns, JVM/GC issues, performance bottlenecks, and health score. Diagnose OOM, Full GC, slow operations, cascading failures, and regression signals. Generate structured improvement plans. Works with Docker, log files, and stdin.",
+      "source": {
+        "type": "local"
+      }
+    },
     "coross-platform-vim-nvim-deploy": {
       "description": "Deploy and synchronize a cross-platform Vim/Neovim development environment across macOS, Linux, Windows, and WSL.",
       "source": {
