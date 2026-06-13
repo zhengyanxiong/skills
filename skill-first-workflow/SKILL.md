@@ -121,8 +121,10 @@ metadata:
 - 脚本归类到对应功能目录（db/encoding/conversion/file/network/text/media）
 
 在 skills 仓库新增/修改 Skill 后，必须：
+- 更新 `skills.manifest.json`（补充 description + source 信息）
 - 通过 `skills.py install --agent hermes` 更新链接
 - 验证 `skills status --agent hermes` 链接正常
+- 提交并推送到 Git
 
 ## 7. 与 using-superpowers 的关系
 
