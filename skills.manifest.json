@@ -97,6 +97,12 @@
         "type": "git"
       }
     },
+    "skill-first-workflow": {
+      "description": "Enforce Skill First discipline: scan available skills before every action, load any skill with even 1% relevance, and follow the loaded skill's process. Triggers on any user request or task.",
+      "source": {
+        "type": "local"
+      }
+    },
     "skill-authoring-guide": {
       "description": "Teach how to design, write, evaluate, and optimize reusable Agent Skills and SKILL.md instruction packages.",
       "source": {
