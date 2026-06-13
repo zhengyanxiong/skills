@@ -126,6 +126,11 @@ metadata:
 - 验证 `skills status --agent hermes` 链接正常
 - 提交并推送到 Git
 
+**新增 Skill 前必须获得用户确认：**
+- 发现值得沉淀为 Skill 的经验/流程时，先向用户推荐并说明理由
+- 格式：推荐 Skill 名称 + 触发场景 + 为什么值得沉淀 + 预期收益
+- 用户确认后才创建，不要自作主张
+
 ## 7. 与 using-superpowers 的关系
 
 `using-superpowers` 是通用的"何时使用 Skill"指南，本 Skill 是对它的**执行强化版**：
