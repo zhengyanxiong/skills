@@ -1,5 +1,129 @@
 #!/usr/bin/env bash
+# skills - Skills management entry point for Linux/macOS/WSL/Git Bash.
+# Delegates to link-skills.sh after ensuring Python is available.
+#
+# If Python is not installed, prompts user to install manually or
+# auto-install via uv before delegating to link-skills.sh.
+#
+# Usage:
+#   ./skills list                         Show current link state (alias for status)
+#   ./skills install                      Create symlinks for all skills
+#   ./skills uninstall                    Remove symlinks
+#   ./skills status                       Show current link state
+#   ./skills install --dry-run            Preview changes without executing
+#   ./skills install --agents claude-code,kimi
+#   ./skills install --skills skill-authoring-guide
+
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-exec python3 "$SCRIPT_DIR/skills.py" "$@"
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# ── Colors ────────────────────────────────────────────────────────────────
+
+BOLD='\033[1m'
+DIM='\033[2m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+RED='\033[31m'
+CYAN='\033[36m'
+RESET='\033[0m'
+
+ok()  { echo -e "  ${GREEN}${BOLD}[OK]${RESET} $*"; }
+warn(){ echo -e "  ${YELLOW}${BOLD}[!!]${RESET} $*"; }
+err() { echo -e "  ${RED}${BOLD}[XX]${RESET} $*"; }
+info(){ echo -e "  ${CYAN}${BOLD}[..]${RESET} $*"; }
+
+# ── Python check ────────────────────────────────────────────────────────────
+
+check_python() {
+  if command -v python3 &>/dev/null; then
+    return 0
+  fi
+  if command -v python &>/dev/null; then
+    return 0
+  fi
+
+  echo ""
+  echo -e "${YELLOW}${BOLD}⚠  Python is not installed on this system.${RESET}"
+  echo ""
+  echo -e "  ${CYAN}[m] Manual${RESET} - show install instructions and exit"
+  echo -e "  ${GREEN}[a] Auto${RESET}   - install Python via uv"
+  echo -e "  ${RED}[q] Quit${RESET}"
+  echo ""
+  read -rp "$(echo -e ${CYAN})Choose (m/a/q, default: q): $(echo -e ${RESET})" choice
+  choice="${choice,,}"
+
+  case "$choice" in
+    m)
+      echo ""
+      echo -e "${CYAN}Install Python 3.11+ using your package manager:${RESET}"
+      echo "  Debian/Ubuntu: sudo apt install python3 python3-pip python3-venv"
+      echo "  RHEL/Fedora:   sudo dnf install python3 python3-pip"
+      echo "  Arch:          sudo pacman -S python python-pip"
+      echo "  macOS:         brew install python@3.12"
+      echo ""
+      echo -e "${CYAN}Or download from https://www.python.org/downloads/${RESET}"
+      exit 1
+      ;;
+    a)
+      echo -e "${GREEN}Installing Python via uv...${RESET}"
+
+      if ! command -v uv &>/dev/null; then
+        echo -e "${YELLOW}uv not found. Installing uv first...${RESET}"
+        if command -v curl &>/dev/null; then
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+        elif command -v wget &>/dev/null; then
+          wget -qO- https://astral.sh/uv/install.sh | sh
+        else
+          err "Neither curl nor wget found. Install uv manually: https://docs.astral.sh/uv/"
+          exit 1
+        fi
+        export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+        if ! command -v uv &>/dev/null; then
+          err "uv installation failed. Please install Python manually."
+          exit 1
+        fi
+        ok "uv installed"
+      fi
+
+      echo -e "${DIM}Running: uv python install 3.12${RESET}"
+      uv python install 3.12
+      if [ $? -eq 0 ]; then
+        ok "Python 3.12 installed via uv (managed by uv, use 'uv run' or 'uv venv')"
+        eval "$(uv generate-shell-completion bash 2>/dev/null || true)"
+        export UV_PYTHON_INSTALL_DIR="$HOME/.local/share/uv/python"
+      else
+        err "Python installation via uv failed. Install manually."
+        exit 1
+      fi
+      ;;
+    *)
+      echo -e "${RED}Exiting.${RESET}"
+      exit 1
+      ;;
+  esac
+}
+
+# ── Main ──────────────────────────────────────────────────────────────────
+
+check_python
+
+LINK_SCRIPT="$REPO_DIR/link-skills.sh"
+if [ ! -f "$LINK_SCRIPT" ]; then
+  err "link-skills.sh not found at $LINK_SCRIPT"
+  exit 1
+fi
+
+# Delegate arguments, mapping 'list' → 'status'
+ARGS=()
+for arg in "$@"; do
+  if [ "$arg" = "list" ]; then
+    ARGS+=("status")
+  else
+    ARGS+=("$arg")
+  fi
+done
+
+echo -e "${DIM}Delegating to link-skills.sh ${ARGS[*]}...${RESET}"
+echo ""
+exec "$LINK_SCRIPT" "${ARGS[@]}"
