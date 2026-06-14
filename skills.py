@@ -12,6 +12,70 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import re
+import sys
+
+# ── Path safety ────────────────────────────────────────────────────
+# Guard against path traversal and invalid skill names.
+
+# Characters disallowed in skill names (will be replaced with '-')
+_SANITIZE_RE = re.compile(r'[^a-zA-Z0-9_.-]')
+
+
+def sanitize_name(name: str) -> str:
+    """Replace unsafe characters in a skill/agent name with '-'.
+
+    Prevents path traversal via ``../``, control characters, and
+    other special chars that could escape the intended directory.
+    """
+    return _SANITIZE_RE.sub('-', name)
+
+
+def is_safe_path(target: Path, base: Path) -> bool:
+    """Return True if *target* resolves to a path under *base*.
+
+    This prevents symlink/copy operations from escaping the intended
+    parent directory via ``../`` or absolute-path trickery.
+    """
+    try:
+        resolved = target.resolve()
+        base_resolved = base.resolve()
+        return str(resolved).startswith(str(base_resolved) + "/")
+    except (OSError, ValueError):
+        return False
+
+
+def is_safe_skill_dir(candidate: Path) -> bool:
+    """Return True if *candidate* is a safe name under the repo root.
+
+    Also verifies the candidate is a directory (not a symlink to
+    somewhere outside the repo).
+    """
+    if not candidate.is_dir():
+        return False
+    if candidate.is_symlink():
+        target = candidate.resolve()
+        if not str(target).startswith(str(candidate.parent.resolve()) + "/"):
+            return False
+    return True
+
+
+# ── Terminal colors (no-op on Windows) ────────────────────────────
+try:
+    _IS_TTY = sys.stderr.isatty()
+except (OSError, AttributeError):
+    _IS_TTY = False
+
+if _IS_TTY:
+    DIM = '\x1b[2m'
+    RESET = '\x1b[0m'
+    OK = '\x1b[1;32m'    # bold green
+    WARN = '\x1b[1;33m'  # bold yellow
+    ERR = '\x1b[1;31m'   # bold red
+    INFO = '\x1b[1;36m'  # bold cyan
+else:
+    DIM = RESET = OK = WARN = ERR = INFO = ''
+
 
 AGENTS = {
     "codex": "~/.codex/skills",
@@ -217,6 +281,135 @@ def source_entry(manifest: dict[str, Any], skill_name: str) -> dict[str, Any] | 
     return entry.get("source")
 
 
+
+def parse_github_shorthand(ref: str) -> dict[str, str] | None:
+    """Parse ``owner/repo`` or ``owner/repo/path/to/skill`` into source config.
+
+    Returns ``None`` if the string isn't a GitHub shorthand.
+    """
+    m = re.match(r'^([\w.-]+)/([\w.-]+)(/.*)?$', ref)
+    if not m:
+        return None
+    owner, repo, subpath = m.group(1), m.group(2), (m.group(3) or '').strip('/')
+    return {
+        'type': 'git',
+        'repo': f'https://github.com/{owner}/{repo}.git',
+        'path': f'skills/{subpath}' if subpath else 'skills',
+        'ref': 'main',
+        'last_commit': '',
+        'last_checked_at': '',
+    }
+
+
+def cmd_add(root: Path, source_ref: str, agents: list[str] | None) -> int:
+    """Clone a remote skills source and install all matching skills.
+
+    *source_ref* can be a GitHub shorthand (``owner/repo``,
+    ``owner/repo/path``) or a full git URL.
+    """
+    # Parse the source reference
+    source = parse_github_shorthand(source_ref)
+    if source is None:
+        # Treat as full git URL — assume skills are at root
+        source = {
+            'type': 'git',
+            'repo': source_ref,
+            'path': '.',
+            'ref': 'main',
+            'last_commit': '',
+            'last_checked_at': '',
+        }
+
+    # Resolve root for this source
+    add_root = root / '.cache' / 'staging'
+    add_root.mkdir(parents=True, exist_ok=True)
+
+    print(f'  {OK} Cloning {source["repo"]} ...', flush=True)
+    try:
+        repo_dir = ensure_source_repo(root, source)
+        # Checkout the relevant path
+        checkout_path = repo_dir / source['path']
+        if not checkout_path.exists():
+            run_git(repo_dir, 'checkout', source['ref'], '--', source['path'])
+        if not checkout_path.exists():
+            print(f'  {ERR} Path "{source["path"]}" not found in {source["repo"]}')
+            return 1
+    except subprocess.CalledProcessError as e:
+        print(f'  {ERR} Clone failed: {e.stderr.strip()}')
+        return 1
+
+    # Discover skills in the checked-out path
+    discovered = discover_skills(checkout_path)
+    if not discovered:
+        print(f'  {WARN} No skills (SKILL.md) found in {source["repo"]}/{source["path"]}')
+        return 0
+
+    # Load manifest for tracking
+    manifest = load_manifest(root)
+
+    # Install each skill: copy to repo root + symlink to agents
+    installed = []
+    registry = agent_dirs()
+    # Filter agents if specified
+    selected_registry: dict[str, Path] = {}
+    for name, path in registry.items():
+        if agents is None or name in agents:
+            selected_registry[name] = path
+
+    for skill in discovered:
+        safe_name = sanitize_name(skill.name)
+        dest = root / safe_name
+
+        # Copy skill to local repo root (idempotent — skip if already exists with same content)
+        if not dest.exists() or (dest / 'SKILL.md').stat().st_mtime < (skill.path / 'SKILL.md').stat().st_mtime:
+            if dest.exists():
+                shutil.rmtree(dest)
+            shutil.copytree(skill.path, dest, symlinks=True)
+            print(f'  {OK} Copied skill "{safe_name}"', flush=True)
+        else:
+            print(f'  {DIM}Skill "{safe_name}" already exists, skipping copy{RESET}')
+
+        # Add/update manifest entry
+        skill_entry = manifest['skills'].setdefault(safe_name, {})
+        if 'description' not in skill_entry:
+            skill_entry['description'] = ''
+        skill_entry['source'] = source.copy()
+        commit = 'unknown'
+        try:
+            commit = run_git(repo_dir, 'log', '-1', '--format=%H', '--', source['path']).stdout.strip()
+        except subprocess.CalledProcessError:
+            pass
+        skill_entry['source']['last_commit'] = commit
+        skill_entry['source']['last_checked_at'] = (
+            datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+        )
+
+        # Symlink to agents
+        for agent_name, agent_dir in selected_registry.items():
+            safe_agent_name = sanitize_name(agent_name)
+            agent_dir.mkdir(parents=True, exist_ok=True)
+            link_target = agent_dir / safe_name
+            if link_target.exists() or link_target.is_symlink():
+                if link_target.is_symlink() and link_target.resolve() == dest.resolve():
+                    continue  # already points here
+                link_target.unlink()
+            try:
+                os.symlink(dest, link_target)
+                installed.append(f'{safe_name} → {safe_agent_name}')
+            except OSError as e:
+                print(f'  {ERR} Symlink failed: {e}')
+
+    save_manifest(root, manifest)
+    print('')
+    if installed:
+        print(f'  {OK} Installed {len(installed)} skill(s)')
+        for item in installed:
+            print(f'      {DIM}{item}{RESET}')
+    else:
+        print(f'  {INFO} Nothing new to install')
+    return 0
+
+
 def source_status(root: Path, skill_name: str) -> dict[str, str]:
     manifest = load_manifest(root)
     source = source_entry(manifest, skill_name)
@@ -386,6 +579,9 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
 
     sub.add_parser("list", help="List local skills")
+    add_parser = sub.add_parser("add", help="Install skills from a remote source")
+    add_parser.add_argument("source", help="GitHub shorthand (owner/repo[/path]) or git URL")
+    add_parser.add_argument("--agent", action="append", default=[], help="Only install for specific agent(s)")
     status_parser = sub.add_parser("status", help="Show local install status")
     status_parser.add_argument("--agent", default=None)
     status_parser.add_argument("--skill", default=None)
@@ -419,6 +615,8 @@ def main(argv: list[str] | None = None) -> int:
         for skill in discover_skills(root):
             print(skill.name)
         return 0
+    if args.command == "add":
+        return cmd_add(root, args.source, args.agent or None)
     if args.command == "status":
         return print_status(root, registry, args.agent, args.skill)
     if args.command == "install":
