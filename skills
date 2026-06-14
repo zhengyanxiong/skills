@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
-# skills - Fully self-contained skills symlink manager.
-# Does not depend on any other files in the repo.
-# If Python is not installed, prompts to install manually or auto via uv (Linux).
+# skills - Python availability check + delegate to skills.py
 #
 # Usage:
 #   ./skills list                         Show current link state
-#   ./skills install                      Create symlinks for all skills
+#   ./skills install                      Create/update symlinks for all skills
 #   ./skills uninstall                    Remove symlinks
 #   ./skills status                       Show current link state
-#   ./skills install --dry-run            Preview changes without executing
+#   ./skills install --dry-run            Preview without executing
 #   ./skills install --agents claude-code,kimi
 #   ./skills install --skills skill-authoring-guide
+#
+# All real logic lives in skills.py. This script only ensures Python
+# is available before delegating.
 
 set -euo pipefail
 
-REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ── Colors ────────────────────────────────────────────────────────────────
 
@@ -26,18 +27,17 @@ RED='\033[31m'
 CYAN='\033[36m'
 RESET='\033[0m'
 
-ok()  { echo -e "  ${GREEN}${BOLD}[OK]${RESET} $*"; }
-warn(){ echo -e "  ${YELLOW}${BOLD}[!!]${RESET} $*"; }
 err() { echo -e "  ${RED}${BOLD}[XX]${RESET} $*"; }
-info(){ echo -e "  ${CYAN}${BOLD}[..]${RESET} $*"; }
 
-# ── Python check ────────────────────────────────────────────────────────────
+# ── Python check ──────────────────────────────────────────────────────────
 
 check_python() {
   if command -v python3 &>/dev/null; then
+    PYTHON=python3
     return 0
   fi
   if command -v python &>/dev/null; then
+    PYTHON=python
     return 0
   fi
 
@@ -81,19 +81,22 @@ check_python() {
           err "uv installation failed. Please install Python manually."
           exit 1
         fi
-        ok "uv installed"
+        echo -e "  ${GREEN}[OK]${RESET} uv installed"
       fi
 
       echo -e "${DIM}Running: uv python install 3.12${RESET}"
       uv python install 3.12
-      if [ $? -eq 0 ]; then
-        ok "Python 3.12 installed via uv (managed by uv, use 'uv run' or 'uv venv')"
-        eval "$(uv generate-shell-completion bash 2>/dev/null || true)"
-        export UV_PYTHON_INSTALL_DIR="$HOME/.local/share/uv/python"
-      else
-        err "Python installation via uv failed. Install manually."
-        exit 1
+
+      # After install, uv-managed python is findable via `uv run` or explicit path;
+      # fall back to checking python3 again in case uv linked it into PATH.
+      if command -v python3 &>/dev/null; then
+        PYTHON=python3
+        echo -e "  ${GREEN}[OK]${RESET} Python 3.12 installed via uv"
+        return 0
       fi
+
+      err "Python installation via uv failed. Install manually."
+      exit 1
       ;;
     *)
       echo -e "${RED}Exiting.${RESET}"
@@ -102,305 +105,5 @@ check_python() {
   esac
 }
 
-# ── Known agent skill directories ────────────────────────────────────────
-
-# Format: "agent_id|display_name|skill_dir_parent|skill_dir_name"
-AGENT_DEFS=(
-  "claude-code|Claude Code|$HOME/.claude|skills"
-  "codex-cli|Codex CLI|$HOME/.codex|skills"
-  "openclaw|OpenClaw|$HOME/.openclaw|skills"
-  "kimi|Kimi|$HOME/.kimi|skills"
-  "cowork|CoWork|$HOME/.cowork|skills"
-  "cursor|Cursor|$HOME/.cursor|skills"
-)
-
-# ── Parse arguments ──────────────────────────────────────────────────────
-
-DRY_RUN=false
-COMMAND=""
-SELECTED_AGENTS=()
-SELECTED_SKILLS=()
-
-for arg in "$@"; do
-  case "$arg" in
-    install|uninstall|status|list)
-      COMMAND="$arg"
-      ;;
-    --dry-run)
-      DRY_RUN=true
-      ;;
-    --agents=*)
-      IFS=',' read -ra SELECTED_AGENTS <<< "${arg#--agents=}"
-      ;;
-    --skills=*)
-      IFS=',' read -ra SELECTED_SKILLS <<< "${arg#--skills=}"
-      ;;
-    -h|--help)
-      sed -n '2,20p' "$0"
-      exit 0
-      ;;
-    *)
-      err "Unknown argument: $arg"
-      echo "Usage: $0 [install|uninstall|status|list] [--dry-run] [--agents=a,b] [--skills=x,y]"
-      exit 1
-      ;;
-  esac
-done
-
-# Map 'list' to 'status'
-[ "$COMMAND" = "list" ] && COMMAND="status"
-
-if [ -z "$COMMAND" ]; then
-  err "Missing command. Use: install, uninstall, or status"
-  exit 1
-fi
-
-# ── Resolve agents ───────────────────────────────────────────────────────
-
-resolve_agents() {
-  local result=()
-  for def in "${AGENT_DEFS[@]}"; do
-    IFS='|' read -r agent_id display_name parent_dir skill_dir_name <<< "$def"
-    local skill_dir="${parent_dir}/${skill_dir_name}"
-
-    if [ ${#SELECTED_AGENTS[@]} -gt 0 ]; then
-      local found=false
-      for a in "${SELECTED_AGENTS[@]}"; do
-        [ "$a" = "$agent_id" ] && found=true && break
-      done
-      [ "$found" = false ] && continue
-    fi
-
-    if [ -d "$parent_dir" ]; then
-      result+=("${agent_id}|${display_name}|${parent_dir}|${skill_dir_name}|${skill_dir}")
-    fi
-  done
-  printf '%s\n' "${result[@]}"
-}
-
-resolve_skills() {
-  local result=()
-  for skill_md in "$REPO_DIR"/*/SKILL.md; do
-    [ -f "$skill_md" ] || continue
-    local skill_dir; skill_dir="$(dirname "$skill_md")"
-    local skill_name; skill_name="$(basename "$skill_dir")"
-
-    if [ ${#SELECTED_SKILLS[@]} -gt 0 ]; then
-      local found=false
-      for s in "${SELECTED_SKILLS[@]}"; do
-        [ "$s" = "$skill_name" ] && found=true && break
-      done
-      [ "$found" = false ] && continue
-    fi
-
-    result+=("${skill_name}|${skill_dir}")
-  done
-  printf '%s\n' "${result[@]}"
-}
-
-# ── Commands ──────────────────────────────────────────────────────────────
-
-cmd_install() {
-  local agents=() skills=() line
-  while IFS= read -r line; do [ -n "$line" ] && agents+=("$line"); done < <(resolve_agents)
-  while IFS= read -r line; do [ -n "$line" ] && skills+=("$line"); done < <(resolve_skills)
-
-  if [ ${#agents[@]} -eq 0 ]; then
-    warn "No installed agents detected (or none matched --agents filter)"
-    echo ""
-    echo "  Currently monitored agent config directories:"
-    for def in "${AGENT_DEFS[@]}"; do
-      IFS='|' read -r agent_id display_name parent_dir skill_dir_name <<< "$def"
-      if [ -d "$parent_dir" ]; then
-        echo -e "    ${GREEN}+${RESET} ${display_name} (${parent_dir})"
-      else
-        echo -e "    ${DIM}-${RESET} ${display_name} (${parent_dir}) -- not installed"
-      fi
-    done
-    exit 0
-  fi
-
-  if [ ${#skills[@]} -eq 0 ]; then
-    warn "No skills found in $REPO_DIR"
-    exit 0
-  fi
-
-  local total_created=0 total_skipped=0 total_errors=0
-
-  for agent_line in "${agents[@]}"; do
-    IFS='|' read -r agent_id display_name parent_dir skill_dir_name skill_dir <<< "$agent_line"
-    echo ""
-    echo -e "${BOLD}${display_name}${RESET} ${DIM}(${skill_dir})${RESET}"
-
-    if [ ! -d "$skill_dir" ]; then
-      if [ "$DRY_RUN" = true ]; then
-        info "mkdir -p $skill_dir"
-      else
-        mkdir -p "$skill_dir"
-        ok "created $skill_dir"
-      fi
-    fi
-
-    for skill_line in "${skills[@]}"; do
-      IFS='|' read -r skill_name skill_src <<< "$skill_line"
-      local link_path="${skill_dir}/${skill_name}"
-
-      if [ -L "$link_path" ]; then
-        local current_target; current_target="$(readlink "$link_path")"
-        if [ "$current_target" = "$skill_src" ]; then
-          info "${DIM}${skill_name}${RESET} ${DIM}already linked${RESET}"
-          ((total_skipped++)) || true
-        else
-          warn "${skill_name} points to ${DIM}${current_target}${RESET}, expected ${DIM}${skill_src}${RESET}"
-          if [ "$DRY_RUN" = true ]; then
-            info "would update symlink"
-          else
-            ln -sfn "$skill_src" "$link_path"
-            ok "${skill_name} ${DIM}updated${RESET}"
-          fi
-          ((total_created++)) || true
-        fi
-      elif [ -d "$link_path" ] || [ -f "$link_path" ]; then
-        err "${skill_name} ${DIM}real file exists at target, skipping${RESET}"
-        ((total_errors++)) || true
-      else
-        if [ "$DRY_RUN" = true ]; then
-          info "${skill_name} ${DIM}would symlink${RESET}"
-        else
-          ln -s "$skill_src" "$link_path"
-          ok "${skill_name} ${DIM}linked${RESET}"
-        fi
-        ((total_created++)) || true
-      fi
-    done
-  done
-
-  echo ""
-  echo -e "${BOLD}Summary:${RESET} ${GREEN}${total_created} created/updated${RESET}, ${DIM}${total_skipped} skipped${RESET}, ${RED}${total_errors} errors${RESET}"
-}
-
-cmd_uninstall() {
-  local agents=() skills=() line
-  while IFS= read -r line; do [ -n "$line" ] && agents+=("$line"); done < <(resolve_agents)
-  while IFS= read -r line; do [ -n "$line" ] && skills+=("$line"); done < <(resolve_skills)
-
-  local total_removed=0 total_skipped=0
-
-  for agent_line in "${agents[@]}"; do
-    IFS='|' read -r agent_id display_name parent_dir skill_dir_name skill_dir <<< "$agent_line"
-
-    if [ ! -d "$skill_dir" ]; then
-      echo -e "${BOLD}${display_name}${RESET} ${DIM}skill dir not found, skipping${RESET}"
-      continue
-    fi
-
-    echo ""
-    echo -e "${BOLD}${display_name}${RESET} ${DIM}(${skill_dir})${RESET}"
-
-    for skill_line in "${skills[@]}"; do
-      IFS='|' read -r skill_name skill_src <<< "$skill_line"
-      local link_path="${skill_dir}/${skill_name}"
-
-      if [ -L "$link_path" ]; then
-        local current_target; current_target="$(readlink "$link_path")"
-        if [ "$current_target" = "$skill_src" ]; then
-          if [ "$DRY_RUN" = true ]; then
-            info "${skill_name} ${DIM}would remove${RESET}"
-          else
-            rm "$link_path"
-            ok "${skill_name} ${DIM}removed${RESET}"
-          fi
-          ((total_removed++)) || true
-        else
-          warn "${skill_name} ${DIM}points elsewhere (${current_target}), not ours to remove${RESET}"
-          ((total_skipped++)) || true
-        fi
-      elif [ -e "$link_path" ]; then
-        warn "${skill_name} ${DIM}real file, not a symlink -- not touched${RESET}"
-        ((total_skipped++)) || true
-      else
-        info "${DIM}${skill_name}${RESET} ${DIM}not linked${RESET}"
-        ((total_skipped++)) || true
-      fi
-    done
-  done
-
-  echo ""
-  echo -e "${BOLD}Summary:${RESET} ${GREEN}${total_removed} removed${RESET}, ${DIM}${total_skipped} skipped${RESET}"
-}
-
-cmd_status() {
-  local agents=() skills=() line
-  while IFS= read -r line; do [ -n "$line" ] && agents+=("$line"); done < <(resolve_agents)
-  while IFS= read -r line; do [ -n "$line" ] && skills+=("$line"); done < <(resolve_skills)
-
-  echo -e "${BOLD}Central repo:${RESET} ${REPO_DIR}"
-  echo ""
-  echo -e "${BOLD}Skills in repo:${RESET}"
-  for skill_line in "${skills[@]}"; do
-    IFS='|' read -r skill_name _ <<< "$skill_line"
-    echo -e "  ${CYAN}${skill_name}${RESET}"
-  done
-
-  echo ""
-  echo -e "${BOLD}Agent links:${RESET}"
-  echo ""
-
-  for agent_line in "${agents[@]}"; do
-    IFS='|' read -r agent_id display_name parent_dir skill_dir_name skill_dir <<< "$agent_line"
-    echo -e "${BOLD}${display_name}${RESET} ${DIM}(${skill_dir})${RESET}"
-
-    if [ ! -d "$skill_dir" ]; then
-      echo -e "  ${DIM}skill directory does not exist${RESET}"
-      continue
-    fi
-
-    for skill_line in "${skills[@]}"; do
-      IFS='|' read -r skill_name skill_src <<< "$skill_line"
-      local link_path="${skill_dir}/${skill_name}"
-
-      if [ -L "$link_path" ]; then
-        local target; target="$(readlink "$link_path")"
-        if [ "$target" = "$skill_src" ]; then
-          echo -e "  ${GREEN}${skill_name}${RESET} ${DIM}-> ${target}${RESET}"
-        else
-          echo -e "  ${YELLOW}${skill_name}${RESET} ${DIM}-> ${target} ${YELLOW}(stale)${RESET}"
-        fi
-      elif [ -e "$link_path" ]; then
-        echo -e "  ${RED}${skill_name}${RESET} ${DIM}(real file, not symlink)${RESET}"
-      else
-        echo -e "  ${DIM}${skill_name} (not linked)${RESET}"
-      fi
-    done
-    echo ""
-  done
-
-  local has_missing=false
-  for def in "${AGENT_DEFS[@]}"; do
-    IFS='|' read -r agent_id display_name parent_dir skill_dir_name <<< "$def"
-    if [ ! -d "$parent_dir" ]; then
-      [ "$has_missing" = false ] && has_missing=true
-      echo -e "  ${DIM}${display_name} -- not installed (${parent_dir})${RESET}"
-    fi
-  done
-  [ "$has_missing" = true ] && echo ""
-}
-
-# ── Entry point ──────────────────────────────────────────────────────────
-
 check_python
-
-if [ "$DRY_RUN" = true ]; then
-  echo -e "${YELLOW}${BOLD}== DRY RUN (no changes will be made) ==${RESET}"
-  echo ""
-fi
-
-case "$COMMAND" in
-  install)   cmd_install ;;
-  uninstall) cmd_uninstall ;;
-  status)    cmd_status ;;
-  *)
-    err "Unknown command: $COMMAND"
-    exit 1
-    ;;
-esac
+exec "$PYTHON" "$SCRIPT_DIR/skills.py" "$@"
