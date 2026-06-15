@@ -1,31 +1,100 @@
 # Repository Guidelines
 
-## Project Structure & Module Organization
+## Supported Agents
 
-This repository stores reusable agent skills. Each skill lives in a top-level directory named with lowercase letters, digits, and hyphens, for example `skill-authoring-guide/` or `ui-ux-pro-max/`. Every skill must include `SKILL.md` with YAML frontmatter. Optional supporting files belong in `references/` for long-form docs, `scripts/` for executable helpers, `assets/` for reusable resources, and `data/` for structured lookup tables. Root-level `link-skills.sh` and `link-skills.ps1` install these skills into supported agent config directories.
+Skills can be installed into any of the following agent config directories:
 
-## Build, Test, and Development Commands
+| Agent ID | Config Directory |
+|----------|-----------------|
+| `codex` | `~/.codex/skills` |
+| `claude-code` | `~/.claude/skills` |
+| `kimi` | `~/.kimi/skills` |
+| `hermes` | `~/.hermes/skills` |
+| `minimax` | `~/.minimax/skills` |
 
-- `./link-skills.sh status`: show detected agents and current symlink state on macOS, Linux, WSL, or Git Bash.
-- `./link-skills.sh install --dry-run`: preview links that would be created without changing files.
-- `./link-skills.sh install --agents codex-cli --skills skill-authoring-guide`: link one skill to one agent.
-- `./link-skills.sh uninstall --dry-run`: preview symlink removal.
-- `./link-skills.ps1 status`: PowerShell equivalent for Windows.
+To install for a specific agent:
 
-There is no compile step. Validation is mostly structural: ensure each skill has `SKILL.md`, valid frontmatter, and any referenced files actually exist.
+```bash
+python3 skills.py install --agent codex
+python3 skills.py install --agent claude-code
+```
 
-## Coding Style & Naming Conventions
+Override the config directory with `--agent-dir`:
 
-Skill directory names and `name` frontmatter values must match exactly and use lowercase hyphenated names. Keep `SKILL.md` focused and under 500 lines; move detailed guidance into `references/`. Prefer Markdown headings, concise imperative instructions, and concrete examples. Shell scripts use Bash with `set -euo pipefail`; PowerShell scripts use explicit functions and clear parameter names.
+```bash
+python3 skills.py install --agent-dir codex=/custom/path
+```
 
-## Testing Guidelines
+## Install Skills From Remote Sources
 
-New or changed skills should include `evals.json` with 2-3 representative activation tests and `assertions.json` with measurable quality checks. For script changes, run the relevant status and dry-run commands before committing, for example `./link-skills.sh status` and `./link-skills.sh install --dry-run`.
+```bash
+# GitHub shorthand (owner/repo)
+python3 skills.py add owner/repo
 
-## Commit & Pull Request Guidelines
+# Specific path inside a repo
+python3 skills.py add owner/repo/path/to/skills
 
-Recent history uses short, direct commit subjects, sometimes in Chinese, such as `Add cross-platform skills symlink script` or `收集了两个前端skills`. Keep commits scoped to one skill or tool change. Pull requests should describe the changed skill or script, list validation commands run, and call out any new agent compatibility, symlink behavior, or required user setup. Include screenshots only for UI-focused assets or visual documentation.
+# Full git URL
+python3 skills.py add https://github.com/owner/repo.git
 
-## Agent-Specific Instructions
+# Limit to specific agents
+python3 skills.py add owner/repo --agent claude-code --agent hermes
+```
 
-When editing skills, preserve the progressive-loading model: frontmatter describes when to activate, `SKILL.md` contains core workflow, and large references load only on demand. Do not duplicate generated skill copies inside agent config directories; update this repository as the source of truth and use the link scripts.
+The `add` command clones the remote repository, discovers `SKILL.md` files, copies them to the local repo, creates symlinks to agent directories, and updates `skills.manifest.json` for tracking.
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `list` | List all local skills |
+| `add <source>` | Install skills from a remote GitHub repo or git URL |
+| `status` | Show symlink install status per agent |
+| `install` | Create symlinks for all local skills |
+| `uninstall` | Remove skill symlinks |
+| `doctor` | Validate local skills and manifest |
+| `outdated` | Check for upstream updates |
+| `sync` | Sync upstream source updates |
+| `sources list` | List source manifest entries |
+| `sources add` | Add source entry to manifest |
+| `sources remove` | Remove source entry from manifest |
+
+## Project Structure
+
+Each skill lives in a top-level directory named with lowercase letters, digits, and hyphens.
+Every skill must include `SKILL.md` with YAML frontmatter.
+
+```
+skills-repo/
+├── skill-name/
+│   ├── SKILL.md          # Required: skill description and instructions
+│   ├── references/       # Optional: long-form docs
+│   ├── scripts/          # Optional: executable helpers
+│   └── data/             # Optional: lookup tables
+├── skills.py             # Core CLI tool
+├── skills.manifest.json  # Source tracking manifest
+├── skills                # Linux/macOS entry point
+└── skills.ps1            # Windows entry point
+```
+
+## Build & Test
+
+No compile step. Run validation:
+
+```bash
+python3 skills.py doctor           # Validate all skills
+python3 skills.py install --dry-run  # Preview symlink changes
+python3 -m pytest tests/           # Run tests
+```
+
+## Coding Style
+
+- Skill directory names match `name` frontmatter value
+- `SKILL.md` under 500 lines; move details to `references/`
+- Shell scripts: `set -euo pipefail`
+- Python: type-annotated, stdlib only (no external deps)
+
+## Commit Guidelines
+
+Use Conventional Commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`.
+Keep commits scoped to one skill or tool change.
