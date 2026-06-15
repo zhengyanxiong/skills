@@ -117,12 +117,20 @@ def discover_skills(root: Path) -> list[Skill]:
 
 def link_status(local_skill: Path, link_path: Path) -> LinkStatus:
     local_skill = local_skill.resolve()
-    if not link_path.exists() and not link_path.is_symlink():
+    try:
+        path_exists = link_path.exists()
+    except PermissionError:
+        path_exists = False
+    if not path_exists and not link_path.is_symlink():
         return LinkStatus("missing")
     if link_path.is_symlink():
         raw_target = Path(os.readlink(link_path))
         target = raw_target if raw_target.is_absolute() else (link_path.parent / raw_target)
-        if not target.exists():
+        try:
+            target_exists = target.exists()
+        except PermissionError:
+            target_exists = False
+        if not target_exists:
             return LinkStatus("broken", target)
         resolved = target.resolve()
         if resolved == local_skill:
@@ -389,7 +397,11 @@ def cmd_add(root: Path, source_ref: str, agents: list[str] | None) -> int:
             safe_agent_name = sanitize_name(agent_name)
             agent_dir.mkdir(parents=True, exist_ok=True)
             link_target = agent_dir / safe_name
-            if link_target.exists() or link_target.is_symlink():
+            try:
+                link_exists = link_target.exists()
+            except PermissionError:
+                link_exists = False
+            if link_exists or link_target.is_symlink():
                 if link_target.is_symlink() and link_target.resolve() == dest.resolve():
                     continue  # already points here
                 link_target.unlink()
