@@ -1,5 +1,27 @@
 {
   "skills": {
+    "audit-context-building": {
+      "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding. Pre-audit phase skill using First Principles, 5 Whys, and 5 Hows at micro scale.",
+      "source": {
+        "last_checked_at": "2026-06-15",
+        "last_commit": "",
+        "path": "plugins/audit-context-building/skills/audit-context-building",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
+    "autoresearch": {
+      "description": "Orchestrates end-to-end autonomous AI research projects using a two-loop architecture. Inner loop runs rapid experiment iterations, outer loop synthesizes results and steers direction. Routes to domain-specific skills for execution.",
+      "source": {
+        "last_checked_at": "2026-06-15",
+        "last_commit": "",
+        "path": "0-autoresearch-skill",
+        "ref": "main",
+        "repo": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git",
+        "type": "git"
+      }
+    },
     "brainstorming": {
       "description": "Shape creative or product ideas into implementation-ready designs before coding, including requirements, tradeoffs, and approval gates.",
       "source": {
