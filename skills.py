@@ -122,10 +122,17 @@ def link_status(local_skill: Path, link_path: Path) -> LinkStatus:
         path_exists = link_path.exists()
     except PermissionError:
         path_exists = False
-    if not path_exists and not link_path.is_symlink():
+    try:
+        is_link = link_path.is_symlink()
+    except PermissionError:
+        is_link = False
+    if not path_exists and not is_link:
         return LinkStatus("missing")
-    if link_path.is_symlink():
-        raw_target = Path(os.readlink(link_path))
+    if is_link:
+        try:
+            raw_target = Path(os.readlink(link_path))
+        except OSError:
+            return LinkStatus("broken", link_path)
         target = raw_target if raw_target.is_absolute() else (link_path.parent / raw_target)
         try:
             target_exists = target.exists()
@@ -402,9 +409,16 @@ def cmd_add(root: Path, source_ref: str, agents: list[str] | None) -> int:
                 link_exists = link_target.exists()
             except PermissionError:
                 link_exists = False
-            if link_exists or link_target.is_symlink():
-                if link_target.is_symlink() and link_target.resolve() == dest.resolve():
-                    continue  # already points here
+            try:
+                is_link = link_target.is_symlink()
+            except PermissionError:
+                is_link = False
+            if link_exists or is_link:
+                try:
+                    if is_link and link_target.resolve() == dest.resolve():
+                        continue  # already points here
+                except PermissionError:
+                    pass
                 link_target.unlink()
             try:
                 os.symlink(dest, link_target)
