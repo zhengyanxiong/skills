@@ -2,7 +2,7 @@
 
 Central repository for reusable Agent Skills and a small CLI that installs them into supported agent runtimes with symlinks.
 
-The repository is the source of truth. Agent-specific skill directories should contain links back to this checkout so updates here are immediately visible in Codex, Claude Code, Kimi, Hermes, Minimax, and other compatible tools.
+The repository is the source of truth. Agent-specific skill directories should contain links back to this checkout so updates here are immediately visible in Codex, Claude Code, OpenCode, Kimi, Hermes, Minimax, and other compatible tools.
 
 ## What Is In This Repo
 
@@ -127,6 +127,7 @@ The CLI currently knows these global skill locations:
 
 - Codex: `~/.codex/skills`
 - Claude Code: `~/.claude/skills`
+- OpenCode: `~/.config/opencode/skills`
 - Kimi: `~/.kimi/skills`
 - Hermes: `~/.hermes/skills`
 - Minimax: `~/.minimax/skills`

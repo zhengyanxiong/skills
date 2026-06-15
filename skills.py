@@ -80,6 +80,7 @@ else:
 AGENTS = {
     "codex": "~/.codex/skills",
     "claude-code": "~/.claude/skills",
+    "opencode": "~/.config/opencode/skills",
     "kimi": "~/.kimi/skills",
     "hermes": "~/.hermes/skills",
     "minimax": "~/.minimax/skills",
