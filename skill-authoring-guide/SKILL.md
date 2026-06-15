@@ -17,9 +17,14 @@ compatibility: >
   包括：Claude Code、OpenClaw、Codex CLI、Gemini CLI、Cursor、Kimi。
 metadata:
   author: developer
-  version: "2.0"
+  version: "2.1"
   category: agent-development
-  tags: [skill, prompt-engineering, agent, skill-md, best-practices]
+  tags: [skill, prompt-engineering, agent, skill-md, best-practices, eval, benchmark]
+  changelog: > 
+    v2.1 合并 Anthropic 官方 skill-creator 的评估工具化内容：
+    evals.json/assertions.json 标准格式、timing 数据捕获、grading.json 评分输出、
+    聚合基准(benchmark)、eval-viewer 可视化、方差分析(Analyzer)。
+    原 skill-creator 已被吸收，无需单独安装。
 ---
 
 # Skill 编写规范指南

@@ -126,7 +126,7 @@
       }
     },
     "skill-authoring-guide": {
-      "description": "Teach how to design, write, evaluate, and optimize reusable Agent Skills and SKILL.md instruction packages.",
+      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
