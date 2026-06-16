@@ -41,4 +41,3 @@
 
 <!-- Summary of inner loop progress. How has the metric evolved?
      Note inflection points and what caused them. -->
-

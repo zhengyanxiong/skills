@@ -163,4 +163,3 @@ Note the PDF path in HEARTBEAT.md so the human knows to look at it.
 - **Include confidence intervals** or error bars where meaningful
 - **Show the trajectory early** — it's the hook that tells the reader "this is working"
 - **End with a clear next step** — the human should know what happens next without asking
-

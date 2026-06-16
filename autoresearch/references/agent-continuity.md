@@ -92,4 +92,3 @@ Both platforms share the same ground truth: the workspace files.
 | `experiments/*/results/` | Raw experimental data | After every experiment |
 
 The wall-clock loop (`/loop` or cron) is just the trigger. The workspace files are the memory. Keep them current.
-

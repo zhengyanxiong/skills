@@ -38,4 +38,3 @@ Example entries (discovery-type research — understanding grokking):
 | 9 | 2026-03-22 | outer-loop | 10 runs complete. The story is clear: neural networks "dream to learn" just like brains — consolidation after encoding, not during. Grokfast achieves similar acceleration through a different mechanism (gradient spectral filtering). Next: compare gradient spectra during our sleep phases vs Grokfast filtering to see if they converge on the same signal. Direction: BROADEN. |
 | 10 | 2026-03-22 | report | Generated progress-001.html with sleep timing vs grokking step plot. Key visual: sweet spot curve mirrors neuroscience memory consolidation window. |
 -->
-

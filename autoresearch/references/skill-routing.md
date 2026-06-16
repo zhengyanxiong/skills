@@ -216,4 +216,3 @@ grep -l "keyword" */*/SKILL.md
 ```
 
 Or search the repository's README.md which lists all skills with descriptions.
-
