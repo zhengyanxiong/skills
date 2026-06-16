@@ -7,6 +7,8 @@ import json
 import os
 import shutil
 import subprocess
+import re
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -266,11 +268,21 @@ def source_cache_dir(root: Path, repo: str) -> Path:
     return root / ".cache" / "sources" / digest
 
 
+# Track last fetch time per cache dir to avoid redundant fetches
+_fetch_timestamps: dict[str, float] = {}
+_FETCH_INTERVAL = 300  # seconds (5 min)
+
+
 def ensure_source_repo(root: Path, source: dict[str, Any]) -> Path:
     repo = source["repo"]
     cache = source_cache_dir(root, repo)
     if cache.exists():
-        run_git(cache, "fetch", "--all", "--prune")
+        # Skip fetch if recently done
+        cache_key = str(cache)
+        now = time.time()
+        if cache_key not in _fetch_timestamps or (now - _fetch_timestamps[cache_key]) > _FETCH_INTERVAL:
+            run_git(cache, "fetch", "--all", "--prune")
+            _fetch_timestamps[cache_key] = now
         return cache
     cache.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(
