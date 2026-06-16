@@ -3,53 +3,9 @@
     "audit-context-building": {
       "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding. Pre-audit phase skill using First Principles, 5 Whys, and 5 Hows at micro scale.",
       "source": {
-        "last_checked_at": "2026-06-15",
-        "last_commit": "",
+        "last_checked_at": "2026-06-16T00:45:04Z",
+        "last_commit": "d5fe2e6a7896236c3102fd5477e833623ad70298",
         "path": "plugins/audit-context-building/skills/audit-context-building",
-        "ref": "main",
-        "repo": "https://github.com/trailofbits/skills.git",
-        "type": "git"
-      }
-    },
-    "entry-point-analyzer": {
-      "description": "Identify and analyze entry points (external-facing functions, endpoints, handlers) in codebases for attack surface mapping. Supports Solidity, Solana, CosmWasm, Move (Aptos/Sui), TON, Vyper. Use when mapping trust boundaries or identifying untrusted input paths.",
-      "source": {
-        "last_checked_at": "2026-06-16",
-        "last_commit": "",
-        "path": "plugins/entry-point-analyzer/skills/entry-point-analyzer",
-        "ref": "main",
-        "repo": "https://github.com/trailofbits/skills.git",
-        "type": "git"
-      }
-    },
-    "semgrep-rule-creator": {
-      "description": "Create and optimize Semgrep rules for static analysis and security scanning. Includes quick reference, workflow guide, and rule authoring best practices. Use when writing Semgrep rules, creating custom patterns, or building security scanning rulesets.",
-      "source": {
-        "last_checked_at": "2026-06-16",
-        "last_commit": "",
-        "path": "plugins/semgrep-rule-creator/skills/semgrep-rule-creator",
-        "ref": "main",
-        "repo": "https://github.com/trailofbits/skills.git",
-        "type": "git"
-      }
-    },
-    "sharp-edges": {
-      "description": "Identify dangerous edge cases, security anti-patterns, and language-specific sharp edges in code. Covers 12+ languages with auth patterns, crypto API pitfalls, config vulnerabilities, and real case studies. Use when reviewing code for security risks or hardening against common pitfalls.",
-      "source": {
-        "last_checked_at": "2026-06-16",
-        "last_commit": "",
-        "path": "plugins/sharp-edges/skills/sharp-edges",
-        "ref": "main",
-        "repo": "https://github.com/trailofbits/skills.git",
-        "type": "git"
-      }
-    },
-    "static-analysis": {
-      "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection. Three sub-skills: codeql (query writing + database analysis), semgrep (rule creation + scanning), sarif-parsing (SARIF output processing). Use when running or configuring static analysis tools.",
-      "source": {
-        "last_checked_at": "2026-06-16",
-        "last_commit": "",
-        "path": "plugins/static-analysis",
         "ref": "main",
         "repo": "https://github.com/trailofbits/skills.git",
         "type": "git"
@@ -58,29 +14,18 @@
     "autoresearch": {
       "description": "Orchestrates end-to-end autonomous AI research projects using a two-loop architecture. Inner loop runs rapid experiment iterations, outer loop synthesizes results and steers direction. Routes to domain-specific skills for execution.",
       "source": {
-        "last_checked_at": "2026-06-15",
-        "last_commit": "",
+        "last_checked_at": "2026-06-16T00:47:11Z",
+        "last_commit": "e1897fa6b1c5caf2b8d07fbac40838791ced62d7",
         "path": "0-autoresearch-skill",
         "ref": "main",
         "repo": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git",
         "type": "git"
       }
     },
-    "mcp-builder": {
-      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
-      "source": {
-        "last_checked_at": "2026-06-16",
-        "last_commit": "",
-        "path": "skills/mcp-builder",
-        "ref": "main",
-        "repo": "https://github.com/anthropics/skills.git",
-        "type": "git"
-      }
-    },
     "brainstorming": {
       "description": "Shape creative or product ideas into implementation-ready designs before coding, including requirements, tradeoffs, and approval gates.",
       "source": {
-        "last_checked_at": "",
+        "last_checked_at": "2026-06-16T00:44:57Z",
         "last_commit": "9f04f0635114d09ca054778e2dd44942efd1c008",
         "path": "skills/brainstorming",
         "ref": "main",
@@ -119,6 +64,17 @@
         "type": "local"
       }
     },
+    "entry-point-analyzer": {
+      "description": "Identify and analyze entry points (external-facing functions, endpoints, handlers) in codebases for attack surface mapping. Supports Solidity, Solana, CosmWasm, Move (Aptos/Sui), TON, Vyper. Use when mapping trust boundaries or identifying untrusted input paths.",
+      "source": {
+        "last_checked_at": "2026-06-16T00:45:15Z",
+        "last_commit": "d5fe2e6a7896236c3102fd5477e833623ad70298",
+        "path": "plugins/entry-point-analyzer/skills/entry-point-analyzer",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
     "executing-plans": {
       "description": "Execute written implementation plans task by task with verification checkpoints and completion handling.",
       "source": {
@@ -144,9 +100,20 @@
     "frontend-design": {
       "description": "Guide agents to build distinctive, production-grade frontend interfaces, components, pages, dashboards, and web applications.",
       "source": {
-        "last_checked_at": "",
-        "last_commit": "00756142ab04c82a447693cf373c4e0c554d1005",
+        "last_checked_at": "2026-06-16T00:45:20Z",
+        "last_commit": "2235be7c60b551f5de82ade908fd3816455afcda",
         "path": "skills/frontend-design",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
+    "mcp-builder": {
+      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+      "source": {
+        "last_checked_at": "2026-06-16T00:45:35Z",
+        "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "path": "skills/mcp-builder",
         "ref": "main",
         "repo": "https://github.com/anthropics/skills.git",
         "type": "git"
@@ -174,17 +141,48 @@
         "type": "git"
       }
     },
+    "semgrep-rule-creator": {
+      "description": "Create and optimize Semgrep rules for static analysis and security scanning. Includes quick reference, workflow guide, and rule authoring best practices. Use when writing Semgrep rules, creating custom patterns, or building security scanning rulesets.",
+      "source": {
+        "last_checked_at": "2026-06-16T00:45:40Z",
+        "last_commit": "557711933147cabb9c833fd74d93e45a559b0dcd",
+        "path": "plugins/semgrep-rule-creator/skills/semgrep-rule-creator",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
+    "sharp-edges": {
+      "description": "Identify dangerous edge cases, security anti-patterns, and language-specific sharp edges in code. Covers 12+ languages with auth patterns, crypto API pitfalls, config vulnerabilities, and real case studies. Use when reviewing code for security risks or hardening against common pitfalls.",
+      "source": {
+        "last_checked_at": "2026-06-16T00:46:08Z",
+        "last_commit": "d5fe2e6a7896236c3102fd5477e833623ad70298",
+        "path": "plugins/sharp-edges/skills/sharp-edges",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
+    "skill-authoring-guide": {
+      "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
+      "source": {
+        "notes": "No clear GitHub upstream source was found during initialization.",
+        "type": "local"
+      }
+    },
     "skill-first-workflow": {
       "description": "Enforce Skill First discipline: scan available skills before every action, load any skill with even 1% relevance, and follow the loaded skill's process. Triggers on any user request or task.",
       "source": {
         "type": "local"
       }
     },
-    "skill-authoring-guide": {
-      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
+    "static-analysis": {
+      "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection. Three sub-skills: codeql (query writing + database analysis), semgrep (rule creation + scanning), sarif-parsing (SARIF output processing). Use when running or configuring static analysis tools.",
       "source": {
-        "notes": "No clear GitHub upstream source was found during initialization.",
-        "type": "local"
+        "notes": "Collection entry SKILL.md is custom-built. Sub-skills (codeql/sarif-parsing/semgrep) are synced from upstream plugins/static-analysis/skills/*.",
+        "type": "local",
+        "upstream_repo": "https://github.com/trailofbits/skills.git",
+        "upstream_path": "plugins/static-analysis/skills"
       }
     },
     "subagent-driven-development": {
