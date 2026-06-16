@@ -11,6 +11,50 @@
         "type": "git"
       }
     },
+    "entry-point-analyzer": {
+      "description": "Identify and analyze entry points (external-facing functions, endpoints, handlers) in codebases for attack surface mapping. Supports Solidity, Solana, CosmWasm, Move (Aptos/Sui), TON, Vyper. Use when mapping trust boundaries or identifying untrusted input paths.",
+      "source": {
+        "last_checked_at": "2026-06-16",
+        "last_commit": "",
+        "path": "plugins/entry-point-analyzer/skills/entry-point-analyzer",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
+    "semgrep-rule-creator": {
+      "description": "Create and optimize Semgrep rules for static analysis and security scanning. Includes quick reference, workflow guide, and rule authoring best practices. Use when writing Semgrep rules, creating custom patterns, or building security scanning rulesets.",
+      "source": {
+        "last_checked_at": "2026-06-16",
+        "last_commit": "",
+        "path": "plugins/semgrep-rule-creator/skills/semgrep-rule-creator",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
+    "sharp-edges": {
+      "description": "Identify dangerous edge cases, security anti-patterns, and language-specific sharp edges in code. Covers 12+ languages with auth patterns, crypto API pitfalls, config vulnerabilities, and real case studies. Use when reviewing code for security risks or hardening against common pitfalls.",
+      "source": {
+        "last_checked_at": "2026-06-16",
+        "last_commit": "",
+        "path": "plugins/sharp-edges/skills/sharp-edges",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
+    "static-analysis": {
+      "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection. Three sub-skills: codeql (query writing + database analysis), semgrep (rule creation + scanning), sarif-parsing (SARIF output processing). Use when running or configuring static analysis tools.",
+      "source": {
+        "last_checked_at": "2026-06-16",
+        "last_commit": "",
+        "path": "plugins/static-analysis",
+        "ref": "main",
+        "repo": "https://github.com/trailofbits/skills.git",
+        "type": "git"
+      }
+    },
     "autoresearch": {
       "description": "Orchestrates end-to-end autonomous AI research projects using a two-loop architecture. Inner loop runs rapid experiment iterations, outer loop synthesizes results and steers direction. Routes to domain-specific skills for execution.",
       "source": {
