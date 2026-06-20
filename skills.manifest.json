@@ -164,7 +164,7 @@
       }
     },
     "skill-authoring-guide": {
-      "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
+      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
@@ -283,6 +283,22 @@
         "repo": "https://github.com/obra/superpowers.git",
         "type": "git"
       }
+    },
+    "algorithmic-art": {
+      "type": "git",
+      "repo": "https://github.com/anthropics/skills.git",
+      "ref": "main",
+      "path": "skills/algorithmic-art",
+      "commit": "57546260929473d4e0d1c1bb75297be2fdfa1949",
+      "description": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration."
+    },
+    "canvas-design": {
+      "type": "git",
+      "repo": "https://github.com/anthropics/skills.git",
+      "ref": "main",
+      "path": "skills/canvas-design",
+      "commit": "57546260929473d4e0d1c1bb75297be2fdfa1949",
+      "description": "Create beautiful visual art in .png and .pdf documents using design philosophy."
     }
   }
 }
