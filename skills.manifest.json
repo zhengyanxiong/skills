@@ -171,8 +171,8 @@
     "agent-reach": {
       "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B\u7ad9, Reddit, V2EX, \u5c0f\u7ea2\u4e66, LinkedIn, YouTube, GitHub, RSS, \u96ea\u7403 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
       "source": {
-        "last_checked_at": "2026-06-23T12:53:00Z",
-        "last_commit": "22d7f03a59401b5740b380c3ad43e3ff7a9dc373",
+        "last_checked_at": "2026-06-27T09:11:27Z",
+        "last_commit": "fc24fb699badb4509d96261f2a748f11154eb5e1",
         "path": "agent_reach/skill",
         "ref": "main",
         "repo": "https://github.com/Panniantong/Agent-Reach.git",
@@ -186,8 +186,8 @@
       "ref": "main",
       "repo": "https://github.com/anthropics/skills.git",
       "source": {
-        "last_checked_at": "",
-        "last_commit": "",
+        "last_checked_at": "2026-06-27T09:11:38Z",
+        "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
         "path": "skills/algorithmic-art",
         "ref": "main",
         "repo": "https://github.com/anthropics/skills.git",
@@ -198,7 +198,7 @@
     "audit-context-building": {
       "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding. Pre-audit phase skill using First Principles, 5 Whys, and 5 Hows at micro scale.",
       "source": {
-        "last_checked_at": "2026-06-16T00:45:04Z",
+        "last_checked_at": "2026-06-27T09:11:40Z",
         "last_commit": "d5fe2e6a7896236c3102fd5477e833623ad70298",
         "path": "plugins/audit-context-building/skills/audit-context-building",
         "ref": "main",
@@ -209,7 +209,7 @@
     "autoresearch": {
       "description": "Orchestrates end-to-end autonomous AI research projects using a two-loop architecture. Inner loop runs rapid experiment iterations, outer loop synthesizes results and steers direction. Routes to domain-specific skills for execution.",
       "source": {
-        "last_checked_at": "2026-06-16T00:47:11Z",
+        "last_checked_at": "2026-06-27T09:11:42Z",
         "last_commit": "e1897fa6b1c5caf2b8d07fbac40838791ced62d7",
         "path": "0-autoresearch-skill",
         "ref": "main",
@@ -220,7 +220,7 @@
     "brainstorming": {
       "description": "Shape creative or product ideas into implementation-ready designs before coding, including requirements, tradeoffs, and approval gates.",
       "source": {
-        "last_checked_at": "2026-06-16T00:44:57Z",
+        "last_checked_at": "2026-06-27T09:11:48Z",
         "last_commit": "9f04f0635114d09ca054778e2dd44942efd1c008",
         "path": "skills/brainstorming",
         "ref": "main",
@@ -234,6 +234,14 @@
       "path": "skills/canvas-design",
       "ref": "main",
       "repo": "https://github.com/anthropics/skills.git",
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/canvas-design",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      },
       "type": "git"
     },
     "capability-evolver": {
