@@ -3,6 +3,8 @@
 #
 # Usage:
 #   ./skills list                         Show current link state
+#   ./skills list --agent claude-code     Show which skills are installed vs. not for an agent
+#   ./skills list --skill theme-factory   Show which agents have a skill installed vs. not
 #   ./skills install                      Create/update symlinks for all skills
 #   ./skills uninstall                    Remove symlinks
 #   ./skills status                       Show current link state

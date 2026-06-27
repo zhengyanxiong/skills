@@ -70,13 +70,14 @@ except (OSError, AttributeError):
 
 if _IS_TTY:
     DIM = '\x1b[2m'
+    BOLD = '\x1b[1m'
     RESET = '\x1b[0m'
     OK = '\x1b[1;32m'    # bold green
     WARN = '\x1b[1;33m'  # bold yellow
     ERR = '\x1b[1;31m'   # bold red
     INFO = '\x1b[1;36m'  # bold cyan
 else:
-    DIM = RESET = OK = WARN = ERR = INFO = ''
+    DIM = BOLD = RESET = OK = WARN = ERR = INFO = ''
 
 
 AGENTS = {
@@ -238,6 +239,88 @@ def uninstall(root: Path, registry: dict[str, Path], agent: str | None, skill_na
             link_path.unlink()
             print(f"{skill.name}\t{agent_name}\tuninstalled")
     return 1 if failed else 0
+
+
+def _grouped_install_report(
+    title: str, subtitle: str, rows: list[tuple[str, str, LinkStatus]]
+) -> None:
+    """Print a human-readable installed / not-installed / problematic report.
+
+    *rows* is a list of ``(item_name, location, LinkStatus)`` tuples —
+    *item_name* is the skill name (agent view) or agent name (skill view),
+    and *location* is the agent dir or skill path shown as a subtitle.
+    """
+    installed = [(n, loc, s) for n, loc, s in rows if s.state == "linked"]
+    missing = [(n, loc, s) for n, loc, s in rows if s.state == "missing"]
+    other = [(n, loc, s) for n, loc, s in rows if s.state not in ("linked", "missing")]
+
+    print(f"{BOLD}{title}{RESET}  {DIM}{subtitle}{RESET}")
+    print()
+
+    print(f"{BOLD}Installed ({len(installed)}):{RESET}")
+    if installed:
+        for name, _loc, _s in sorted(installed):
+            print(f"  {OK}✓{RESET} {name}")
+    else:
+        print(f"  {DIM}(none){RESET}")
+    print()
+
+    print(f"{BOLD}Not installed ({len(missing)}):{RESET}")
+    if missing:
+        for name, _loc, _s in sorted(missing):
+            print(f"  {ERR}✗{RESET} {name}")
+    else:
+        print(f"  {DIM}(none){RESET}")
+
+    if other:
+        print()
+        print(f"{BOLD}Problematic ({len(other)}):{RESET}")
+        for name, _loc, s in sorted(other):
+            detail = s.message or s.state
+            print(f"  {WARN}!{RESET} {name}  {DIM}({s.state}: {detail}){RESET}")
+
+
+def list_for_agent(root: Path, registry: dict[str, Path], agent: str) -> int:
+    """Show which local skills are installed (or not) for a specific agent."""
+    if agent not in registry:
+        raise SystemExit(f"error: unknown agent {agent!r}; known: {', '.join(sorted(registry))}")
+    agent_dir = registry[agent]
+    rows: list[tuple[str, str, LinkStatus]] = []
+    for skill in discover_skills(root):
+        rows.append((skill.name, str(agent_dir), link_status(skill.path, agent_dir / skill.name)))
+    _grouped_install_report(f"Agent: {agent}", str(agent_dir), rows)
+    return 0
+
+
+def list_for_skill(root: Path, registry: dict[str, Path], skill_name: str) -> int:
+    """Show which agents have a specific skill installed (or not)."""
+    skills = [s for s in discover_skills(root) if s.name == skill_name]
+    if not skills:
+        raise SystemExit(f"error: unknown skill {skill_name!r}")
+    skill = skills[0]
+    rows: list[tuple[str, str, LinkStatus]] = []
+    for agent_name, agent_dir in registry.items():
+        rows.append((agent_name, str(agent_dir), link_status(skill.path, agent_dir / skill.name)))
+    _grouped_install_report(f"Skill: {skill_name}", str(skill.path), rows)
+    return 0
+
+
+def cmd_list(
+    root: Path, registry: dict[str, Path], agent: str | None, skill_name: str | None
+) -> int:
+    """List local skills, or query install status by agent / by skill.
+
+    - No flags: print local skill names (one per line).
+    - ``--agent NAME``: show which skills are installed vs. not for that agent.
+    - ``--skill NAME``: show which agents have that skill installed vs. not.
+    """
+    if agent is None and skill_name is None:
+        for skill in discover_skills(root):
+            print(skill.name)
+        return 0
+    if agent is not None:
+        return list_for_agent(root, registry, agent)
+    return list_for_skill(root, registry, skill_name)
 
 
 def manifest_path(root: Path) -> Path:
@@ -617,7 +700,18 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--agent-dir", action="append", default=[], help=argparse.SUPPRESS)
     sub = parser.add_subparsers(dest="command", required=True)
 
-    sub.add_parser("list", help="List local skills")
+    list_parser = sub.add_parser("list", help="List local skills and agent install status")
+    list_group = list_parser.add_mutually_exclusive_group()
+    list_group.add_argument(
+        "--agent",
+        default=None,
+        help="Show which skills are installed vs. not for a specific agent",
+    )
+    list_group.add_argument(
+        "--skill",
+        default=None,
+        help="Show which agents have a specific skill installed vs. not",
+    )
     add_parser = sub.add_parser("add", help="Install skills from a remote source")
     add_parser.add_argument("source", help="GitHub shorthand (owner/repo[/path]) or git URL")
     add_parser.add_argument("--agent", action="append", default=[], help="Only install for specific agent(s)")
@@ -651,9 +745,7 @@ def main(argv: list[str] | None = None) -> int:
     root = repo_root(args.root)
     registry = agent_dirs(parse_agent_overrides(args.agent_dir))
     if args.command == "list":
-        for skill in discover_skills(root):
-            print(skill.name)
-        return 0
+        return cmd_list(root, registry, args.agent, args.skill)
     if args.command == "add":
         return cmd_add(root, args.source, args.agent or None)
     if args.command == "status":

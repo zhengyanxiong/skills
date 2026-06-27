@@ -169,7 +169,7 @@
   },
   "skills": {
     "agent-reach": {
-      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B站, Reddit, V2EX, 小红书, LinkedIn, YouTube, GitHub, RSS, 雪球 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
+      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B\u7ad9, Reddit, V2EX, \u5c0f\u7ea2\u4e66, LinkedIn, YouTube, GitHub, RSS, \u96ea\u7403 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
       "source": {
         "last_checked_at": "2026-06-23T12:53:00Z",
         "last_commit": "22d7f03a59401b5740b380c3ad43e3ff7a9dc373",
@@ -185,6 +185,14 @@
       "path": "skills/algorithmic-art",
       "ref": "main",
       "repo": "https://github.com/anthropics/skills.git",
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/algorithmic-art",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      },
       "type": "git"
     },
     "audit-context-building": {
@@ -370,7 +378,7 @@
       }
     },
     "skill-authoring-guide": {
-      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
+      "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
@@ -421,6 +429,17 @@
         "path": "skills/test-driven-development",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
+      }
+    },
+    "theme-factory": {
+      "description": "Toolkit for styling artifacts with a theme. 10 pre-set themes (Ocean Depths / Sunset Boulevard / Forest Canopy / Modern Minimalist / Golden Hour / Arctic Frost / Desert Rose / Tech Innovation / Botanical Garden / Midnight Galaxy) with color palettes and font pairings. Apply to slides, docs, reports, HTML landing pages, or any artifact. Includes theme-showcase.pdf for visual preview.",
+      "source": {
+        "last_checked_at": "2026-06-24T00:22:20Z",
+        "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "path": "skills/theme-factory",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
         "type": "git"
       }
     },
@@ -487,17 +506,6 @@
         "path": "skills/writing-skills",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
-        "type": "git"
-      }
-    },
-    "theme-factory": {
-      "description": "Toolkit for styling artifacts with a theme. 10 pre-set themes (Ocean Depths / Sunset Boulevard / Forest Canopy / Modern Minimalist / Golden Hour / Arctic Frost / Desert Rose / Tech Innovation / Botanical Garden / Midnight Galaxy) with color palettes and font pairings. Apply to slides, docs, reports, HTML landing pages, or any artifact. Includes theme-showcase.pdf for visual preview.",
-      "source": {
-        "last_checked_at": "2026-06-24T00:22:20Z",
-        "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
-        "path": "skills/theme-factory",
-        "ref": "main",
-        "repo": "https://github.com/anthropics/skills.git",
         "type": "git"
       }
     }
