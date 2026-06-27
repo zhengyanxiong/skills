@@ -579,8 +579,17 @@ def is_dirty_path(root: Path, path: Path) -> bool:
 
 def copy_source_path(repo_dir: Path, ref: str, source_path: str, destination: Path) -> None:
     source_dir = repo_dir / source_path
+    # Clean previous checkout contents (preserve .git).
+    # Never rmtree source_dir itself — if source_path is ".", that IS the cache
+    # root and rmtree would wipe the entire bare repo.
     if source_dir.exists():
-        shutil.rmtree(source_dir)
+        for item in source_dir.iterdir():
+            if item.name == ".git":
+                continue
+            if item.is_dir():
+                shutil.rmtree(item)
+            else:
+                item.unlink()
     run_git(repo_dir, "checkout", ref, "--", source_path)
     if not (source_dir / "SKILL.md").is_file():
         raise FileNotFoundError(f"{source_path}/SKILL.md")
