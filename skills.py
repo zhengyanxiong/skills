@@ -8,6 +8,7 @@ import os
 import shutil
 import subprocess
 import re
+import tempfile
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -583,9 +584,14 @@ def copy_source_path(repo_dir: Path, ref: str, source_path: str, destination: Pa
     run_git(repo_dir, "checkout", ref, "--", source_path)
     if not (source_dir / "SKILL.md").is_file():
         raise FileNotFoundError(f"{source_path}/SKILL.md")
-    if destination.exists():
-        shutil.rmtree(destination)
-    shutil.copytree(source_dir, destination)
+    # Atomic replace: copy into temp dir first, then move into place so a
+    # mid-copy failure leaves the existing destination intact.
+    with tempfile.TemporaryDirectory() as tmp:
+        staging = Path(tmp) / "skill"
+        shutil.copytree(source_dir, staging)
+        if destination.exists():
+            shutil.rmtree(destination)
+        shutil.move(str(staging), str(destination))
 
 
 def sync_skill(root: Path, skill_name: str) -> int:
