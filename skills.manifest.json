@@ -195,6 +195,16 @@
       },
       "type": "git"
     },
+    "api-and-interface-design": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/api-and-interface-design",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "audit-context-building": {
       "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding. Pre-audit phase skill using First Principles, 5 Whys, and 5 Hows at micro scale.",
       "source": {
@@ -228,6 +238,16 @@
         "type": "git"
       }
     },
+    "browser-testing-with-devtools": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/browser-testing-with-devtools",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "canvas-design": {
       "commit": "57546260929473d4e0d1c1bb75297be2fdfa1949",
       "description": "Create beautiful visual art in .png and .pdf documents using design philosophy.",
@@ -250,11 +270,71 @@
         "type": "local"
       }
     },
+    "ci-cd-and-automation": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/ci-cd-and-automation",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "code-review-and-quality": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/code-review-and-quality",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "code-simplification": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/code-simplification",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "context-engineering": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/context-engineering",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "coross-platform-vim-nvim-deploy": {
       "description": "Deploy and synchronize a cross-platform Vim/Neovim development environment across macOS, Linux, Windows, and WSL.",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
+      }
+    },
+    "debugging-and-error-recovery": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/debugging-and-error-recovery",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "deprecation-and-migration": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/deprecation-and-migration",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
       }
     },
     "dispatching-parallel-agents": {
@@ -265,6 +345,26 @@
         "path": "skills/dispatching-parallel-agents",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
+      }
+    },
+    "documentation-and-adrs": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/documentation-and-adrs",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "doubt-driven-development": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/doubt-driven-development",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
         "type": "git"
       }
     },
@@ -319,6 +419,56 @@
         "type": "git"
       }
     },
+    "frontend-ui-engineering": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/frontend-ui-engineering",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "git-workflow-and-versioning": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/git-workflow-and-versioning",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "idea-refine": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/idea-refine",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "incremental-implementation": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/incremental-implementation",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "interview-me": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/interview-me",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "market-research": {
       "description": "Decision-oriented market research, competitive analysis, investor due diligence, and industry intelligence with source attribution. Anti-research-theater standards.",
       "source": {
@@ -338,6 +488,36 @@
         "path": "skills/mcp-builder",
         "ref": "main",
         "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
+    "observability-and-instrumentation": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/observability-and-instrumentation",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "performance-optimization": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/performance-optimization",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "planning-and-task-breakdown": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/planning-and-task-breakdown",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
         "type": "git"
       }
     },
@@ -363,6 +543,16 @@
         "type": "git"
       }
     },
+    "security-and-hardening": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/security-and-hardening",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "semgrep-rule-creator": {
       "description": "Create and optimize Semgrep rules for static analysis and security scanning. Includes quick reference, workflow guide, and rule authoring best practices. Use when writing Semgrep rules, creating custom patterns, or building security scanning rulesets.",
       "source": {
@@ -385,6 +575,16 @@
         "type": "git"
       }
     },
+    "shipping-and-launch": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/shipping-and-launch",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "skill-authoring-guide": {
       "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
       "source": {
@@ -392,10 +592,40 @@
         "type": "local"
       }
     },
+    "skill-creator": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/skill-creator",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
     "skill-first-workflow": {
       "description": "Enforce Skill First discipline: scan available skills before every action, load any skill with even 1% relevance, and follow the loaded skill's process. Triggers on any user request or task.",
       "source": {
         "type": "local"
+      }
+    },
+    "source-driven-development": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/source-driven-development",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "spec-driven-development": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/spec-driven-development",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
       }
     },
     "static-analysis": {
@@ -462,6 +692,16 @@
         "type": "git"
       }
     },
+    "using-agent-skills": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/using-agent-skills",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
     "using-git-worktrees": {
       "description": "Set up or detect isolated Git worktrees before feature work so current branches and user changes stay protected.",
       "source": {
@@ -492,6 +732,16 @@
         "path": "skills/verification-before-completion",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
+      }
+    },
+    "web-artifacts-builder": {
+      "source": {
+        "last_checked_at": "",
+        "last_commit": "",
+        "path": "skills/web-artifacts-builder",
+        "ref": "main",
+        "repo": "https://github.com/addyosmani/agent-skills.git",
         "type": "git"
       }
     },
