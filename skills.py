@@ -594,6 +594,9 @@ def sync_skill(root: Path, skill_name: str) -> int:
     if not source:
         print(f"error: {skill_name} has no source entry")
         return 1
+    if source.get("type") == "local":
+        print(f"{skill_name}\tskipped\tlocal-source")
+        return 0
     destination = root / skill_name
     if is_dirty_path(root, destination):
         print(f"error: {skill_name} is dirty-local; commit or stash changes before sync")
