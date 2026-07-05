@@ -263,7 +263,7 @@ class SkillsCliTests(unittest.TestCase):
             capture_output=True,
         )
 
-        latest = skills.latest_path_commit(clone, "main", "skills/using-superpowers")
+        latest = skills.latest_path_commit(clone, "HEAD", "skills/using-superpowers")
 
         self.assertEqual(expected, latest)
 
