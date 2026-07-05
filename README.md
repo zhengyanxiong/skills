@@ -1,8 +1,94 @@
 # Skills Repository
 
-Agent Skills 中央仓库，附带一个小型 CLI，通过 symlink 将 skills 安装到支持的 Agent 运行环境。
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/zhengyanxiong/skills" alt="License: MIT"></a>
+  <a href="https://github.com/zhengyanxiong/skills/stargazers"><img src="https://img.shields.io/github/stars/zhengyanxiong/skills" alt="GitHub Stars"></a>
+  <a href="https://github.com/zhengyanxiong/skills/commits/main"><img src="https://img.shields.io/github/last-commit/zhengyanxiong/skills" alt="Last Commit"></a>
+  <img src="https://img.shields.io/badge/skills-60-blue" alt="60 Skills">
+</p>
 
-该仓库是 Source of Truth。各 Agent 对应的 skills 目录应链接回此仓库，确保本地的更新能立即在 Codex、Claude Code、OpenCode、Kimi、Hermes、Minimax 及其他兼容工具中生效。
+**Agent Skills 中央仓库 + 跨 Agent CLI**
+
+一个命令，统一管理 [Claude Code](#known-agent-directories)、[Codex](#known-agent-directories)、[Hermes](#known-agent-directories)、[Kimi](#known-agent-directories)、[OpenCode](#known-agent-directories)、[Minimax](#known-agent-directories) 等多个 AI Agent 工具的 Skills。通过 symlink 实现单源真相：**一处改动，6 个 Agent 同步生效**。
+
+> 🈶 **English version**: This README is in Chinese (中文). The CLI commands and structure are designed for a global audience — code samples use English. A future English translation of this README is on the roadmap.
+
+---
+
+## ✨ Why this repo?
+
+AI Agent 工具爆发后（Claude Code、Codex、Hermes、Kimi、OpenCode、Minimax…），每个工具都有各自的 `SKILL.md` 格式和 skills 目录。这带来**三个问题**：
+
+1. **重复维护** — 同一个 skill 要在 N 个 Agent 目录复制 N 份
+2. **版本碎片化** — 每个 Agent 看到的 skill 版本彼此不一致
+3. **更新繁琐** — 本地改一个 skill，要在 N 个目录手工同步
+
+**这个仓库的解法**：
+
+- ✅ **单源真相（Source of Truth）** — 仓库即中央存储
+- ✅ **CLI 工具 (`skills.py`)** — 自动 symlink 到所有 Agent
+- ✅ **Source manifest** — 每个 skill 跟踪 upstream + commit hash，可追溯
+- ✅ **跨 6+ Agent** — Codex / Claude Code / Hermes / Kimi / OpenCode / Minimax
+- ✅ **Upstream 感知** — 检测上游更新并支持 sync
+- ✅ **零依赖** — 仅 Python stdlib，跨平台（Linux/macOS/WSL）
+
+## 🚀 Quick Start
+
+### 1. 克隆仓库
+
+```bash
+git clone https://github.com/zhengyanxiong/skills.git ~/skills
+cd ~/skills
+```
+
+### 2. 安装（创建 symlink 到你的 Agent）
+
+```bash
+# 指定 Agent 安装（推荐）
+./skills install --agent codex --agent hermes
+
+# 或全部安装（缺失目录自动跳过）
+./skills install
+```
+
+### 3. 验证
+
+```bash
+./skills status
+# 输出应显示 60 个 skills 都已 linked
+```
+
+### 4. 添加新 Skill
+
+```bash
+# 从 GitHub 整仓库添加
+./skills add owner/repo --agent codex --agent hermes
+
+# 仓库内特定路径
+./skills add anthropics/skills/brand-guidelines --agent codex
+```
+
+### 5. 维护
+
+```bash
+./skills doctor    # 验证所有 SKILL.md + frontmatter
+./skills outdated  # 查看哪些 skills 有可用更新
+./skills sync      # 拉取 upstream 变更
+```
+
+---
+
+## 📚 文档导航
+
+- [✨ Why this repo?](#-why-this-repo) — 我们解决的问题
+- [🚀 Quick Start](#-quick-start) — 5 分钟上手
+- [🗂 Skills 一览](#skills-一览) — 60 个 skill 详情
+- [⚙️ Commands](#commands) — 全部 CLI 命令
+- [🤝 贡献指南](#贡献指南) — 如何添加新 skill
+- [🔒 Security](SECURITY.md) — 漏洞报告
+- [📄 License](LICENSE) — MIT
+
+---
 
 ## Skills 一览
 
