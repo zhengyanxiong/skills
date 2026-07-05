@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip  # cache disabled for stdlib-only project; informational
+          cache: false
 
       - name: Make CLI executable
         run: chmod +x skills skills.py
