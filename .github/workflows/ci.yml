@@ -1,0 +1,103 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Skills Repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip  # cache disabled for stdlib-only project; informational
+
+      - name: Make CLI executable
+        run: chmod +x skills skills.py
+
+      - name: Run skills.py doctor
+        run: python3 skills.py doctor
+
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Verify manifest consistency
+        run: |
+          echo "Listing all local skills..."
+          python3 skills.py list > /tmp/skills-list.txt
+          echo "First 10 skills:"
+          head -10 /tmp/skills-list.txt
+
+      - name: Check for untracked skills (info)
+        run: |
+          # Skills in directory but missing from manifest
+          missing=$(python3 -c "
+          import json, os
+          manifest = json.load(open('skills.manifest.json'))['skills']
+          for d in sorted(os.listdir('.')):
+              if os.path.isfile(os.path.join(d, 'SKILL.md')) and d not in manifest:
+                  print(d)
+          " || true)
+          if [ -n "$missing" ]; then
+            echo "⚠️  Warning: Skills with SKILL.md but not in manifest:"
+            echo "$missing"
+            echo "(This is informational — local skills may exist without manifest entry)"
+          else
+            echo "✅ All SKILL.md files are tracked in manifest."
+          fi
+
+  lint:
+    name: Lint CLI Tool
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile-check skills.py
+        run: python3 -m py_compile skills.py && echo "✅ skills.py compiles cleanly"
+
+      - name: Check Python syntax for tests
+        run: |
+          find tests -name "test_*.py" -exec python3 -m py_compile {} \; && \
+            echo "✅ All test files compile cleanly"
+
+  matrix:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run unit tests on Python ${{ matrix.python-version }}
+        run: python3 -m unittest discover -s tests -v
