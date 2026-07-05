@@ -238,6 +238,17 @@
         "type": "git"
       }
     },
+    "brand-guidelines": {
+      "description": "Applies Anthropic's official brand colors and typography to any artifact benefiting from Anthropic's look-and-feel.",
+      "source": {
+        "last_checked_at": "2026-07-05T07:18:31Z",
+        "last_commit": "9d2f1ae187231d8199c64b5b762e1bdf2244733d",
+        "path": "skills/brand-guidelines",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
     "browser-testing-with-devtools": {
       "source": {
         "last_checked_at": "",
@@ -466,6 +477,17 @@
         "path": "skills/interview-me",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "karpathy-guidelines": {
+      "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+      "source": {
+        "last_checked_at": "2026-07-05T07:18:31Z",
+        "last_commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+        "path": "skills/karpathy-guidelines",
+        "ref": "main",
+        "repo": "https://github.com/multica-ai/andrej-karpathy-skills.git",
         "type": "git"
       }
     },
