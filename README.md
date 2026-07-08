@@ -1,7 +1,7 @@
 # Skills Repository
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/zhengyanxiong/skills" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT"></a>
   <a href="https://github.com/zhengyanxiong/skills/stargazers"><img src="https://img.shields.io/github/stars/zhengyanxiong/skills" alt="GitHub Stars"></a>
   <a href="https://github.com/zhengyanxiong/skills/commits/main"><img src="https://img.shields.io/github/last-commit/zhengyanxiong/skills" alt="Last Commit"></a>
   <img src="https://img.shields.io/badge/skills-113-blue" alt="113 Skills">
