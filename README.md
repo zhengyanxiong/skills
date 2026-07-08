@@ -4,7 +4,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/zhengyanxiong/skills" alt="License: MIT"></a>
   <a href="https://github.com/zhengyanxiong/skills/stargazers"><img src="https://img.shields.io/github/stars/zhengyanxiong/skills" alt="GitHub Stars"></a>
   <a href="https://github.com/zhengyanxiong/skills/commits/main"><img src="https://img.shields.io/github/last-commit/zhengyanxiong/skills" alt="Last Commit"></a>
-  <img src="https://img.shields.io/badge/skills-60-blue" alt="60 Skills">
+  <img src="https://img.shields.io/badge/skills-113-blue" alt="113 Skills">
 </p>
 
 **Agent Skills 中央仓库 + 跨 Agent CLI**
@@ -55,7 +55,7 @@ cd ~/skills
 
 ```bash
 ./skills status
-# 输出应显示 60 个 skills 都已 linked
+# 输出应显示 113 个 skills 都已 linked
 ```
 
 ### 4. 添加新 Skill
@@ -82,7 +82,7 @@ cd ~/skills
 
 - [✨ Why this repo?](#-why-this-repo) — 我们解决的问题
 - [🚀 Quick Start](#-quick-start) — 5 分钟上手
-- [🗂 Skills 一览](#skills-一览) — 60 个 skill 详情
+- [🗂 Skills 一览](#skills-一览) — 113 个 skill 详情
 - [⚙️ Commands](#commands) — 全部 CLI 命令
 - [🤝 贡献指南](#贡献指南) — 如何添加新 skill
 - [🔒 Security](SECURITY.md) — 漏洞报告
@@ -92,7 +92,7 @@ cd ~/skills
 
 ## Skills 一览
 
-共 58 个 skills，来源及简要描述如下：
+共 113 个 skills（精选 50 个核心技能展示在下表，完整列表见 `skills.py list`）。来源及简要描述如下：
 
 | Skill | 来源 | 描述 |
 |-------|------|------|
@@ -102,7 +102,9 @@ cd ~/skills
 | audit-context-building | [trailofbits/skills](https://github.com/trailofbits/skills) | 超细粒度逐行代码分析，构建深层架构上下文。审计前阶段，使用第一性原理、5 Whys、5 Hows。 |
 | autoresearch | [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | 端到端自主 AI 研究项目编排，双循环架构：内循环快速实验迭代，外循环综合结果并调整方向。 |
 | brainstorming | [obra/superpowers](https://github.com/obra/superpowers) | 将创意或产品想法塑造成可落地的设计方案，包括需求、权衡和审批关卡。 |
+| brandkit | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 品牌套件生成器（taste-skill 套件之一），输出颜色/字体/资产规范。 |
 | browser-testing-with-devtools | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 通过 Chrome DevTools MCP 在真实浏览器中测试。 |
+| brutalist-skill | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 工业粗野主义 UI 风格（taste-skill 套件），避免居中+阴影+卡片模板化。 |
 | canvas-design | [anthropics/skills](https://github.com/anthropics/skills) | 使用设计理念在 .png 和 .pdf 中创建精美的视觉艺术作品。 |
 | capability-evolver | local（本仓库） | 分析运行时日志，检测错误模式、JVM/GC 问题、性能瓶颈和健康评分。 |
 | ci-cd-and-automation | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 自动化 CI/CD 流水线设置。 |
@@ -110,12 +112,15 @@ cd ~/skills
 | code-simplification | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 简化代码以提高清晰度，不改变行为。 |
 | context-engineering | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 优化 Agent 上下文设置，提高输出质量。 |
 | coross-platform-vim-nvim-deploy | local（本仓库） | 在 macOS、Linux、Windows 和 WSL 间部署和同步跨平台 Vim/Neovim 开发环境。 |
+| council | [affaan-m/ECC](https://github.com/affaan-m/ECC) | 召集四方议会（Skeptic/Pragmatist/Critic/in-context）处理模糊决策与权衡取舍。 |
 | debugging-and-error-recovery | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 系统性根因调试指南。 |
+| deep-research | [affaan-m/ECC](https://github.com/affaan-m/ECC) | 多源深度研究 + 综合。补充 `autoresearch`。 |
 | deprecation-and-migration | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 管理废弃和迁移流程。 |
 | dispatching-parallel-agents | [obra/superpowers](https://github.com/obra/superpowers) | 通过将任务委派给隔离的并行 Agent 来协调多个独立的调查或实现任务。 |
 | documentation-and-adrs | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 记录架构决策和文档（ADR）。 |
 | doubt-driven-development | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 在每次非平凡决策前进行对抗性审查。 |
 | drawio-skill | local（本仓库） | 创建和导出 draw.io 图表（架构图、流程图、ERD、UML、网络图等）。 |
+| ecc-harness | local（本仓库） | ECC 集成 Hub：解释已安装的 31 个精选 ECC 子技能、选择逻辑、如何按需取用。 |
 | entry-point-analyzer | [trailofbits/skills](https://github.com/trailofbits/skills) | 识别和分析代码库中的入口点（外部函数、端点、处理器）以进行攻击面映射。 |
 | executing-plans | [obra/superpowers](https://github.com/obra/superpowers) | 按任务执行已编写的实现计划，附带验证检查点和完成处理。 |
 | finishing-a-development-branch | [obra/superpowers](https://github.com/obra/superpowers) | 完成开发分支：验证测试、选择合并/PR/保留/丢弃策略，安全清理 worktree。 |
@@ -131,8 +136,10 @@ cd ~/skills
 | performance-optimization | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 优化应用性能。 |
 | planning-and-task-breakdown | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 将工作分解为有序任务。 |
 | receiving-code-review | [obra/superpowers](https://github.com/obra/superpowers) | 以技术严谨性评估和实现代码审查反馈。 |
+| redesign-skill | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 现有项目重设计（taste-skill 套件之一）。 |
 | requesting-code-review | [obra/superpowers](https://github.com/obra/superpowers) | 在合并前或重大实现后向独立的审查 Agent 请求集中式代码审查。 |
 | security-and-hardening | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 强化代码安全性。 |
+| security-review | [affaan-m/ECC](https://github.com/affaan-m/ECC) | 通用安全审查工作流（框架无关），结构化输出。补充 `security-and-hardening`。 |
 | semgrep-rule-creator | [trailofbits/skills](https://github.com/trailofbits/skills) | 创建和优化 Semgrep 规则，用于静态分析和安全扫描。 |
 | sharp-edges | [trailofbits/skills](https://github.com/trailofbits/skills) | 识别代码中的危险边界情况、安全反模式和特定语言"锋利边缘"。 |
 | shipping-and-launch | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 准备生产发布。 |
@@ -144,8 +151,10 @@ cd ~/skills
 | static-analysis | local（本仓库） | 静态分析工具包，集成 CodeQL、Semgrep 和 SARIF 解析。包含三个子技能：codeql、semgrep、sarif-parsing。 |
 | subagent-driven-development | [obra/superpowers](https://github.com/obra/superpowers) | 通过为每个任务分配全新的子 Agent 来实施计划，并逐任务审查规范合规性和代码质量。 |
 | systematic-debugging | [obra/superpowers](https://github.com/obra/superpowers) | 在修复之前通过查找根因来调查 Bug、测试失败和意外行为。 |
+| taste-skill | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 反 AI Slop 前端审美框架（V2 默认）：VARIANCE/MOTION/DENSITY 三旋钮，硬禁 em-dash。 |
 | test-driven-development | [obra/superpowers](https://github.com/obra/superpowers) | 通过红-绿-重构循环指导功能和 Bug 修复实现。 |
 | theme-factory | [anthropics/skills](https://github.com/anthropics/skills) | 为制品提供主题样式工具包，内置 10 套预设主题。 |
+| ua-understand | [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | 把代码库转成可交互知识图谱（Tree-sitter + LLM 混合管线）。`ua-*` 前缀避免命名冲突。 |
 | ui-ux-pro-max | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 提供可搜索的 UI/UX 设计智能库。 |
 | using-agent-skills | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 发现和调用 Agent Skills 的元技能。 |
 | market-research | [affaan-m/ECC](https://github.com/affaan-m/ECC) | 面向决策的市场研究、竞争分析、投资者尽调和行业情报，附带来源归因。 |
