@@ -168,8 +168,32 @@
     "type": "git"
   },
   "skills": {
+    "agent-eval": {
+      "description": "Head-to-head comparison of coding agents (pass rate, cost, time, consistency)",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/agent-eval",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "agent-introspection-debugging": {
+      "description": "Debug agents by tracing their own reasoning",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/agent-introspection-debugging",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "agent-reach": {
-      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B站, Reddit, V2EX, 小红书, LinkedIn, YouTube, GitHub, RSS, 雪球 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
+      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B\u7ad9, Reddit, V2EX, \u5c0f\u7ea2\u4e66, LinkedIn, YouTube, GitHub, RSS, \u96ea\u7403 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
       "source": {
         "last_checked_at": "2026-06-27T15:25:08Z",
         "last_commit": "fc24fb699badb4509d96261f2a748f11154eb5e1",
@@ -224,6 +248,18 @@
         "path": "0-autoresearch-skill",
         "ref": "main",
         "repo": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git",
+        "type": "git"
+      }
+    },
+    "backend-patterns": {
+      "description": "Cross-language backend architecture patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/backend-patterns",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -333,6 +369,18 @@
         "type": "git"
       }
     },
+    "context-budget": {
+      "description": "Token/context budget management across long-running tasks",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/context-budget",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "context-engineering": {
       "source": {
         "last_checked_at": "",
@@ -343,11 +391,59 @@
         "type": "git"
       }
     },
+    "continuous-learning": {
+      "description": "Extract learnings from completed agent sessions",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/continuous-learning",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "coross-platform-vim-nvim-deploy": {
       "description": "Deploy and synchronize a cross-platform Vim/Neovim development environment across macOS, Linux, Windows, and WSL.",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
+      }
+    },
+    "council": {
+      "description": "Convenient four-voice council for ambiguous decisions and tradeoffs",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/council",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "cpp-testing": {
+      "description": "C++ test-driven development patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/cpp-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "csharp-testing": {
+      "description": "C# test-driven development patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/csharp-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
       }
     },
     "debugging-and-error-recovery": {
@@ -357,6 +453,30 @@
         "path": "skills/debugging-and-error-recovery",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "deep-research": {
+      "description": "Multi-source deep research with synthesis",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/deep-research",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "deployment-patterns": {
+      "description": "Deployment patterns across platforms and runtimes",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/deployment-patterns",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -378,6 +498,42 @@
         "path": "skills/dispatching-parallel-agents",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
+      }
+    },
+    "django-security": {
+      "description": "Django-specific security patterns and anti-patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/django-security",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "django-tdd": {
+      "description": "Django (Python) test-driven development",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/django-tdd",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "dmux-workflows": {
+      "description": "Worktree-based multi-agent orchestration workflows",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/dmux-workflows",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -405,6 +561,13 @@
       "description": "Create and export draw.io diagrams such as architecture diagrams, flowcharts, ERDs, UML, network diagrams, and model figures.",
       "source": {
         "notes": "Migrated from ~/.codex/skills; the current repository is now the local source of truth.",
+        "type": "local"
+      }
+    },
+    "ecc-harness": {
+      "description": "ECC integration hub \u2014 documents the curated subset of ECC skills installed and how to reach for each",
+      "source": {
+        "notes": "Authored locally to document curation rationale for the 31 ECC sub-skills installed.",
         "type": "local"
       }
     },
@@ -462,6 +625,18 @@
         "type": "git"
       }
     },
+    "fsharp-testing": {
+      "description": "F# test-driven development patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/fsharp-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "git-workflow-and-versioning": {
       "source": {
         "last_checked_at": "",
@@ -469,6 +644,18 @@
         "path": "skills/git-workflow-and-versioning",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "golang-testing": {
+      "description": "Go test-driven development patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/golang-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -526,6 +713,16 @@
         "type": "git"
       }
     },
+    "improve-codebase-architecture": {
+      "source": {
+        "last_checked_at": "2026-08-01T22:35:00Z",
+        "last_commit": "697d4ce9742da558fd1ba6697c8e9775e2e302dd",
+        "path": "skills/engineering/improve-codebase-architecture",
+        "ref": "main",
+        "repo": "https://github.com/mattpocock/skills.git",
+        "type": "git"
+      }
+    },
     "incremental-implementation": {
       "source": {
         "last_checked_at": "",
@@ -554,6 +751,52 @@
         "path": "skills/karpathy-guidelines",
         "ref": "main",
         "repo": "https://github.com/multica-ai/andrej-karpathy-skills.git",
+        "type": "git"
+      }
+    },
+    "kotlin-testing": {
+      "description": "Kotlin test-driven development patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/kotlin-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "laravel-security": {
+      "description": "Laravel-specific security patterns and anti-patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/laravel-security",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "laravel-tdd": {
+      "description": "Laravel (PHP) test-driven development",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/laravel-tdd",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "last30days": {
+      "source": {
+        "last_checked_at": "2026-08-01T22:35:00Z",
+        "last_commit": "57f8d2c87a8d5463f58307168ac1070f104daa77",
+        "path": "skills/last30days",
+        "ref": "main",
+        "repo": "https://github.com/mvanhorn/last30days-skill.git",
         "type": "git"
       }
     },
@@ -621,6 +864,18 @@
         "type": "git"
       }
     },
+    "plan-orchestrate": {
+      "description": "Plan-then-orchestrate multi-step agent workflows",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/plan-orchestrate",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "planning-and-task-breakdown": {
       "source": {
         "last_checked_at": "",
@@ -628,6 +883,54 @@
         "path": "skills/planning-and-task-breakdown",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "prompt-optimizer": {
+      "description": "Systematic prompt tuning with measured outcomes",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/prompt-optimizer",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "python-testing": {
+      "description": "Python-specific testing patterns and tooling",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/python-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "quarkus-tdd": {
+      "description": "Quarkus (Java) test-driven development",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/quarkus-tdd",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "react-testing": {
+      "description": "React component testing patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/react-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -664,6 +967,30 @@
         "type": "git"
       }
     },
+    "research-ops": {
+      "description": "Research operations \u2014 sourcing, citation, archival",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/research-ops",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "rust-testing": {
+      "description": "Rust test-driven development patterns",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/rust-testing",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "security-and-hardening": {
       "source": {
         "last_checked_at": "",
@@ -671,6 +998,30 @@
         "path": "skills/security-and-hardening",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "security-review": {
+      "description": "Generic security review workflow with structured output",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/security-review",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "security-scan": {
+      "description": "Run security scans with structured output and triage",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/security-scan",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -707,7 +1058,7 @@
       }
     },
     "skill-authoring-guide": {
-      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
+      "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
@@ -757,6 +1108,18 @@
         "path": "skills/spec-driven-development",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "springboot-tdd": {
+      "description": "Spring Boot (Java) test-driven development",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/springboot-tdd",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
         "type": "git"
       }
     },
@@ -824,6 +1187,30 @@
         "type": "git"
       }
     },
+    "team-agent-orchestration": {
+      "description": "Higher-level team-of-agents coordination",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/team-agent-orchestration",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "team-builder": {
+      "description": "Compose multi-agent teams from specialist agents",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/team-builder",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "test-driven-development": {
       "description": "Guide feature and bugfix implementation through red-green-refactor with failing tests before production code.",
       "source": {
@@ -843,6 +1230,102 @@
         "path": "skills/theme-factory",
         "ref": "main",
         "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
+    "ua-understand": {
+      "description": "Analyze codebase to produce interactive knowledge graph (Understand Anything main command)",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-chat": {
+      "description": "Ask questions about a codebase using its knowledge graph",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-chat",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-dashboard": {
+      "description": "Launch interactive web dashboard for codebase knowledge graph (requires plugin runtime)",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-dashboard",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-diff": {
+      "description": "Analyze git diffs/PRs against knowledge graph for change impact",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-diff",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-domain": {
+      "description": "Extract business domain knowledge from codebase (standalone or graph-derived)",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-domain",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-explain": {
+      "description": "Deep-dive explanation of specific file/function/module",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-explain",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-knowledge": {
+      "description": "Analyze LLM wiki knowledge base into interactive graph with entity extraction",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-knowledge",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
+        "type": "git"
+      }
+    },
+    "ua-understand-onboard": {
+      "description": "Generate onboarding guide from project knowledge graph",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "73559a1",
+        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes).",
+        "path": "understand-anything-plugin/skills/understand-onboard",
+        "ref": "main",
+        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
         "type": "git"
       }
     },
@@ -900,6 +1383,18 @@
         "type": "git"
       }
     },
+    "verification-loop": {
+      "description": "Systematic verification before claiming completion",
+      "source": {
+        "last_checked_at": "2026-07-08T09:00:00Z",
+        "last_commit": "2bc924f",
+        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
+        "path": "skills/verification-loop",
+        "ref": "main",
+        "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
     "web-artifacts-builder": {
       "source": {
         "last_checked_at": "",
@@ -907,6 +1402,16 @@
         "path": "skills/web-artifacts-builder",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "writing-guidelines": {
+      "source": {
+        "last_checked_at": "2026-08-01T22:35:00Z",
+        "last_commit": "2f423a2f30bcd6fd1a687e2cd52c569ada179e88",
+        "path": "skills/writing-guidelines",
+        "ref": "main",
+        "repo": "https://github.com/vercel-labs/agent-skills.git",
         "type": "git"
       }
     },
@@ -930,481 +1435,6 @@
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
         "type": "git"
-      }
-    },
-    "council": {
-      "description": "Convenient four-voice council for ambiguous decisions and tradeoffs",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/council",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "dmux-workflows": {
-      "description": "Worktree-based multi-agent orchestration workflows",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/dmux-workflows",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "plan-orchestrate": {
-      "description": "Plan-then-orchestrate multi-step agent workflows",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/plan-orchestrate",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "team-agent-orchestration": {
-      "description": "Higher-level team-of-agents coordination",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/team-agent-orchestration",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "team-builder": {
-      "description": "Compose multi-agent teams from specialist agents",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/team-builder",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "agent-eval": {
-      "description": "Head-to-head comparison of coding agents (pass rate, cost, time, consistency)",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/agent-eval",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "agent-introspection-debugging": {
-      "description": "Debug agents by tracing their own reasoning",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/agent-introspection-debugging",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "context-budget": {
-      "description": "Token/context budget management across long-running tasks",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/context-budget",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "prompt-optimizer": {
-      "description": "Systematic prompt tuning with measured outcomes",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/prompt-optimizer",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "cpp-testing": {
-      "description": "C++ test-driven development patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/cpp-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "csharp-testing": {
-      "description": "C# test-driven development patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/csharp-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "fsharp-testing": {
-      "description": "F# test-driven development patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/fsharp-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "golang-testing": {
-      "description": "Go test-driven development patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/golang-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "kotlin-testing": {
-      "description": "Kotlin test-driven development patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/kotlin-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "python-testing": {
-      "description": "Python-specific testing patterns and tooling",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/python-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "react-testing": {
-      "description": "React component testing patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/react-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "rust-testing": {
-      "description": "Rust test-driven development patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/rust-testing",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "django-tdd": {
-      "description": "Django (Python) test-driven development",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/django-tdd",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "laravel-tdd": {
-      "description": "Laravel (PHP) test-driven development",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/laravel-tdd",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "quarkus-tdd": {
-      "description": "Quarkus (Java) test-driven development",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/quarkus-tdd",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "springboot-tdd": {
-      "description": "Spring Boot (Java) test-driven development",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/springboot-tdd",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "django-security": {
-      "description": "Django-specific security patterns and anti-patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/django-security",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "laravel-security": {
-      "description": "Laravel-specific security patterns and anti-patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/laravel-security",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "security-review": {
-      "description": "Generic security review workflow with structured output",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/security-review",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "security-scan": {
-      "description": "Run security scans with structured output and triage",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/security-scan",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "deep-research": {
-      "description": "Multi-source deep research with synthesis",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/deep-research",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "research-ops": {
-      "description": "Research operations — sourcing, citation, archival",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/research-ops",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "verification-loop": {
-      "description": "Systematic verification before claiming completion",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/verification-loop",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "continuous-learning": {
-      "description": "Extract learnings from completed agent sessions",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/continuous-learning",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "backend-patterns": {
-      "description": "Cross-language backend architecture patterns",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/backend-patterns",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "deployment-patterns": {
-      "description": "Deployment patterns across platforms and runtimes",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "2bc924f",
-        "path": "skills/deployment-patterns",
-        "ref": "main",
-        "repo": "https://github.com/affaan-m/ECC.git",
-        "type": "git",
-        "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale."
-      }
-    },
-    "ua-understand": {
-      "description": "Analyze codebase to produce interactive knowledge graph (Understand Anything main command)",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-chat": {
-      "description": "Ask questions about a codebase using its knowledge graph",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-chat",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-dashboard": {
-      "description": "Launch interactive web dashboard for codebase knowledge graph (requires plugin runtime)",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-dashboard",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-diff": {
-      "description": "Analyze git diffs/PRs against knowledge graph for change impact",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-diff",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-domain": {
-      "description": "Extract business domain knowledge from codebase (standalone or graph-derived)",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-domain",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-explain": {
-      "description": "Deep-dive explanation of specific file/function/module",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-explain",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-knowledge": {
-      "description": "Analyze LLM wiki knowledge base into interactive graph with entity extraction",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-knowledge",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ua-understand-onboard": {
-      "description": "Generate onboarding guide from project knowledge graph",
-      "source": {
-        "last_checked_at": "2026-07-08T09:00:00Z",
-        "last_commit": "73559a1",
-        "path": "understand-anything-plugin/skills/understand-onboard",
-        "ref": "main",
-        "repo": "https://github.com/Egonex-AI/Understand-Anything.git",
-        "type": "git",
-        "notes": "Prefixed with 'ua-' to avoid name clashes. ua-understand-dashboard requires the full plugin runtime (cannot run standalone in Hermes)."
-      }
-    },
-    "ecc-harness": {
-      "description": "ECC integration hub — documents the curated subset of ECC skills installed and how to reach for each",
-      "source": {
-        "type": "local",
-        "notes": "Authored locally to document curation rationale for the 31 ECC sub-skills installed."
       }
     }
   },
