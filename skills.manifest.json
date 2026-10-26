@@ -193,7 +193,7 @@
       }
     },
     "agent-reach": {
-      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B\u7ad9, Reddit, V2EX, \u5c0f\u7ea2\u4e66, LinkedIn, YouTube, GitHub, RSS, \u96ea\u7403 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
+      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B站, Reddit, V2EX, 小红书, LinkedIn, YouTube, GitHub, RSS, 雪球 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
       "source": {
         "last_checked_at": "2026-06-27T15:25:08Z",
         "last_commit": "fc24fb699badb4509d96261f2a748f11154eb5e1",
@@ -565,7 +565,7 @@
       }
     },
     "ecc-harness": {
-      "description": "ECC integration hub \u2014 documents the curated subset of ECC skills installed and how to reach for each",
+      "description": "ECC integration hub — documents the curated subset of ECC skills installed and how to reach for each",
       "source": {
         "notes": "Authored locally to document curation rationale for the 31 ECC sub-skills installed.",
         "type": "local"
@@ -968,7 +968,7 @@
       }
     },
     "research-ops": {
-      "description": "Research operations \u2014 sourcing, citation, archival",
+      "description": "Research operations — sourcing, citation, archival",
       "source": {
         "last_checked_at": "2026-07-08T09:00:00Z",
         "last_commit": "2bc924f",
@@ -1058,7 +1058,7 @@
       }
     },
     "skill-authoring-guide": {
-      "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
+      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
@@ -1435,6 +1435,39 @@
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
         "type": "git"
+      }
+    },
+    "docx": {
+      "description": "Anthropic official docx processing skill",
+      "source": {
+        "type": "github",
+        "repo": "anthropics/skills",
+        "path": "skills/docx",
+        "ref": "main",
+        "last_commit": "",
+        "last_checked_at": "2026-10-26T00:13:05.022241+00:00"
+      }
+    },
+    "pdf": {
+      "description": "Anthropic official pdf processing skill",
+      "source": {
+        "type": "github",
+        "repo": "anthropics/skills",
+        "path": "skills/pdf",
+        "ref": "main",
+        "last_commit": "",
+        "last_checked_at": "2026-10-26T00:13:05.022241+00:00"
+      }
+    },
+    "xlsx": {
+      "description": "Anthropic official xlsx processing skill",
+      "source": {
+        "type": "github",
+        "repo": "anthropics/skills",
+        "path": "skills/xlsx",
+        "ref": "main",
+        "last_commit": "",
+        "last_checked_at": "2026-10-26T00:13:05.022241+00:00"
       }
     }
   },
