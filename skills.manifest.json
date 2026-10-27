@@ -1469,6 +1469,17 @@
         "last_commit": "",
         "last_checked_at": "2026-10-26T00:13:05.022241+00:00"
       }
+    },
+    "pptx": {
+      "description": "Anthropic official PowerPoint presentation skill",
+      "source": {
+        "type": "github",
+        "repo": "anthropics/skills",
+        "path": "skills/pptx",
+        "ref": "main",
+        "last_commit": "",
+        "last_checked_at": "2026-10-27T00:28:51.890417+00:00"
+      }
     }
   },
   "source-driven-development": {
