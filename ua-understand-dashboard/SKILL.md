@@ -1,10 +1,9 @@
 ---
-name: ua-understand-dashboard
+name: understand-dashboard
 description: Launch the interactive web dashboard to visualize a codebase's knowledge graph
 argument-hint: "[project-path]"
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand-dashboard
 
 Start the Understand Anything dashboard to visualize the knowledge graph for the current project.
