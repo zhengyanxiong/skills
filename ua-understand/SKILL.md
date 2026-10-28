@@ -1,10 +1,9 @@
 ---
-name: ua-understand
+name: understand
 description: Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships
 argument-hint: "[path] [--full|--auto-update|--no-auto-update|--review|--language <lang>]"
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand
 
 Analyze the current codebase and produce a `knowledge-graph.json` file in `.understand-anything/`. This file powers the interactive dashboard for exploring the project's architecture.

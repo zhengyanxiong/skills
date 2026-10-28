@@ -1,10 +1,9 @@
 ---
-name: ua-understand-knowledge
+name: understand-knowledge
 description: Analyze a Karpathy-pattern LLM wiki knowledge base and generate an interactive knowledge graph with entity extraction, implicit relationships, and topic clustering.
 argument-hint: "[wiki-directory]"
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand-knowledge
 
 Analyzes a Karpathy-pattern LLM wiki — a three-layer knowledge base with raw sources, wiki markdown, and a schema file — and produces an interactive knowledge graph dashboard.

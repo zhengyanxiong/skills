@@ -290,7 +290,7 @@ export function errorHandler(error: unknown, req: Request): Response {
     return NextResponse.json({
       success: false,
       error: 'Validation failed',
-      details: error.issues
+      details: error.errors
     }, { status: 400 })
   }
 

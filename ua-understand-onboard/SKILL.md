@@ -1,9 +1,8 @@
 ---
-name: ua-understand-onboard
+name: understand-onboard
 description: Use when you need to generate an onboarding guide for new team members joining a project
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand-onboard
 
 Generate a comprehensive onboarding guide from the project's knowledge graph.

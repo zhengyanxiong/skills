@@ -1,10 +1,9 @@
 ---
-name: ua-understand-explain
+name: understand-explain
 description: Use when you need a deep-dive explanation of a specific file, function, or module in the codebase
 argument-hint: "[file-path]"
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand-explain
 
 Provide a thorough, in-depth explanation of a specific code component.

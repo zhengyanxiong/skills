@@ -1,9 +1,8 @@
 ---
-name: ua-understand-diff
+name: understand-diff
 description: Use when you need to analyze git diffs or pull requests to understand what changed, affected components, and risks
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand-diff
 
 Analyze the current code changes against the knowledge graph at `.understand-anything/knowledge-graph.json`.

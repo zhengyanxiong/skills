@@ -1,10 +1,9 @@
 ---
-name: ua-understand-chat
+name: understand-chat
 description: Use when you need to ask questions about a codebase or understand code using a knowledge graph
 argument-hint: "[query]"
-metadata:
-  origin: Egonex-AI/Understand-Anything
 ---
+
 # /understand-chat
 
 Answer questions about this codebase using the knowledge graph at `.understand-anything/knowledge-graph.json`.
