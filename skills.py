@@ -550,9 +550,34 @@ def source_status(root: Path, skill_name: str) -> dict[str, str]:
     return {"skill": skill_name, "status": status, "local": local, "upstream": upstream}
 
 
+def prefetch_source_repos(root: Path, skill_names: list[str]) -> None:
+    """Fetch each unique source repo at most once.
+
+    Iterating skills one-by-one would call ``git fetch`` per skill; for a
+    manifest where many skills share one upstream repo that hammers the
+    remote and triggers rate limits. Group by repo URL and fetch once each.
+    """
+    manifest = load_manifest(root)
+    seen: set[str] = set()
+    for name in skill_names:
+        source = source_entry(manifest, name)
+        if not source or source.get("type") == "local":
+            continue
+        repo = source.get("repo", "")
+        if not repo or repo in seen:
+            continue
+        seen.add(repo)
+        try:
+            ensure_source_repo(root, source)
+        except (subprocess.CalledProcessError, OSError):
+            # Defer error reporting to the per-skill path
+            pass
+
+
 def outdated(root: Path, skill_name: str | None) -> int:
     manifest = load_manifest(root)
     names = [skill_name] if skill_name else sorted({skill.name for skill in discover_skills(root)} | set(manifest["skills"]))
+    prefetch_source_repos(root, names)
     print("Skill\tLocal Commit\tUpstream Commit\tStatus")
     failed = False
     for name in names:
@@ -784,8 +809,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "sync":
         if args.all:
             manifest = load_manifest(root)
+            names = sorted(manifest["skills"])
+            prefetch_source_repos(root, names)
             failed = False
-            for name in sorted(manifest["skills"]):
+            for name in names:
                 failed = sync_skill(root, name) != 0 or failed
             return 1 if failed else 0
         if not args.skill:
