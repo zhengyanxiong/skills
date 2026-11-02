@@ -367,15 +367,42 @@ class SkillsCliTests(unittest.TestCase):
         self.assertIn("[ok] frontend-design has SKILL.md", text)
         self.assertIn("[error] manifest references missing local skill: missing-skill", text)
 
-    def test_doctor_reports_frontmatter_name_mismatch(self):
+    def test_doctor_warns_on_directory_alias_but_passes(self):
         self.make_skill("frontend-design", "---\nname: wrong-name\ndescription: test\n---\n# Skill\n")
 
         out = io.StringIO()
         with redirect_stdout(out):
             rc = skills.main(["--root", str(self.root), "doctor"])
 
+        self.assertEqual(0, rc)
+        self.assertIn(
+            "[warn] frontend-design frontmatter name is wrong-name (directory alias)",
+            out.getvalue(),
+        )
+
+    def test_doctor_reports_missing_frontmatter_name(self):
+        self.make_skill("frontend-design", "---\ndescription: test\n---\n# Skill\n")
+
+        out = io.StringIO()
+        with redirect_stdout(out):
+            rc = skills.main(["--root", str(self.root), "doctor"])
+
         self.assertEqual(1, rc)
-        self.assertIn("[error] frontend-design frontmatter name is wrong-name", out.getvalue())
+        self.assertIn("[error] frontend-design missing frontmatter name", out.getvalue())
+
+    def test_doctor_reports_duplicate_frontmatter_name(self):
+        self.make_skill("alpha-skill", "---\nname: shared-name\ndescription: one\n---\n# Skill\n")
+        self.make_skill("beta-skill", "---\nname: shared-name\ndescription: two\n---\n# Skill\n")
+
+        out = io.StringIO()
+        with redirect_stdout(out):
+            rc = skills.main(["--root", str(self.root), "doctor"])
+
+        self.assertEqual(1, rc)
+        self.assertIn(
+            "[error] duplicate frontmatter name shared-name in: alpha-skill, beta-skill",
+            out.getvalue(),
+        )
 
 
 if __name__ == "__main__":

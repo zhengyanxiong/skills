@@ -673,21 +673,40 @@ def read_frontmatter_name(skill_md: Path) -> str | None:
 
 def doctor(root: Path) -> int:
     failed = False
-    local_names = {skill.name for skill in discover_skills(root)}
-    for skill in discover_skills(root):
+    skills_found = discover_skills(root)
+    local_names = {skill.name for skill in skills_found}
+    frontmatter_names: dict[str, list[str]] = {}
+
+    for skill in skills_found:
         skill_md = skill.path / "SKILL.md"
-        if skill_md.is_file():
-            print(f"[ok] {skill.name} has SKILL.md")
-        else:
+        if not skill_md.is_file():
             failed = True
             print(f"[error] {skill.name} missing SKILL.md")
             continue
+        print(f"[ok] {skill.name} has SKILL.md")
+
         frontmatter_name = read_frontmatter_name(skill_md)
+        if not frontmatter_name:
+            failed = True
+            print(f"[error] {skill.name} missing frontmatter name")
+            continue
+
+        frontmatter_names.setdefault(frontmatter_name, []).append(skill.name)
         if frontmatter_name == skill.name:
             print(f"[ok] {skill.name} frontmatter name matches")
         else:
+            # A directory alias: skills collected from upstream repositories keep
+            # their upstream directory name (often prefixed, such as `ua-`, to
+            # avoid clashes) while SKILL.md carries the canonical skill name.
+            # Agent loaders read the frontmatter name, so a mismatch alone is
+            # informational; only duplicate names break installation.
+            print(f"[warn] {skill.name} frontmatter name is {frontmatter_name} (directory alias)")
+
+    for frontmatter_name, dir_names in sorted(frontmatter_names.items()):
+        if len(dir_names) > 1:
             failed = True
-            print(f"[error] {skill.name} frontmatter name is {frontmatter_name or '-'}")
+            joined = ", ".join(sorted(dir_names))
+            print(f"[error] duplicate frontmatter name {frontmatter_name} in: {joined}")
 
     manifest = load_manifest(root)
     for name in sorted(manifest["skills"]):

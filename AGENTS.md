@@ -89,7 +89,11 @@ python3 -m pytest tests/           # Run tests
 
 ## Coding Style
 
-- Skill directory names match `name` frontmatter value
+- Skill directory names are lowercase and hyphenated. For skills authored here they
+  match the `name` frontmatter value; skills collected from upstream repositories keep
+  their upstream directory name (often prefixed, such as `ua-` or `*-skill`, to avoid
+  clashes), so `doctor` reports those as `[warn] ... (directory alias)`. What must never
+  happen is two skills sharing one frontmatter `name` — agents load skills by that name.
 - `SKILL.md` under 500 lines; move details to `references/`
 - Shell scripts: `set -euo pipefail`
 - Python: type-annotated, stdlib only (no external deps)
