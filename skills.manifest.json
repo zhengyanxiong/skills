@@ -171,7 +171,7 @@
     "agent-eval": {
       "description": "Head-to-head comparison of coding agents (pass rate, cost, time, consistency)",
       "source": {
-        "last_checked_at": "2026-10-27T00:54:51Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/agent-eval",
@@ -183,7 +183,7 @@
     "agent-introspection-debugging": {
       "description": "Debug agents by tracing their own reasoning",
       "source": {
-        "last_checked_at": "2026-10-27T00:54:53Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/agent-introspection-debugging",
@@ -193,9 +193,9 @@
       }
     },
     "agent-reach": {
-      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B\u7ad9, Reddit, V2EX, \u5c0f\u7ea2\u4e66, LinkedIn, YouTube, GitHub, RSS, \u96ea\u7403 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
+      "description": "Cross-platform internet content router for 13 platforms (X/Twitter, B站, Reddit, V2EX, 小红书, LinkedIn, YouTube, GitHub, RSS, 雪球 etc). Routes between OpenCLI / per-platform CLIs / API backends.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:10Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fc24fb699badb4509d96261f2a748f11154eb5e1",
         "path": "agent_reach/skill",
         "ref": "main",
@@ -210,7 +210,7 @@
       "ref": "main",
       "repo": "https://github.com/anthropics/skills.git",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:16Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
         "path": "skills/algorithmic-art",
         "ref": "main",
@@ -221,7 +221,7 @@
     },
     "api-and-interface-design": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:17Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/api-and-interface-design",
         "ref": "main",
@@ -232,7 +232,7 @@
     "audit-context-building": {
       "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding. Pre-audit phase skill using First Principles, 5 Whys, and 5 Hows at micro scale.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:19Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "d5fe2e6a7896236c3102fd5477e833623ad70298",
         "path": "plugins/audit-context-building/skills/audit-context-building",
         "ref": "main",
@@ -243,7 +243,7 @@
     "autoresearch": {
       "description": "Orchestrates end-to-end autonomous AI research projects using a two-loop architecture. Inner loop runs rapid experiment iterations, outer loop synthesizes results and steers direction. Routes to domain-specific skills for execution.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:20Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "e1897fa6b1c5caf2b8d07fbac40838791ced62d7",
         "path": "0-autoresearch-skill",
         "ref": "main",
@@ -254,7 +254,7 @@
     "backend-patterns": {
       "description": "Cross-language backend architecture patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:20Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/backend-patterns",
@@ -266,7 +266,7 @@
     "brainstorming": {
       "description": "Shape creative or product ideas into implementation-ready designs before coding, including requirements, tradeoffs, and approval gates.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:21Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "9f04f0635114d09ca054778e2dd44942efd1c008",
         "path": "skills/brainstorming",
         "ref": "main",
@@ -277,7 +277,7 @@
     "brand-guidelines": {
       "description": "Applies Anthropic's official brand colors and typography to any artifact benefiting from Anthropic's look-and-feel.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:26Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
         "path": "skills/brand-guidelines",
         "ref": "main",
@@ -298,7 +298,7 @@
     },
     "browser-testing-with-devtools": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "e8c9b4632d9e4ab8ca4ea514dae03e25683e8186",
         "path": "skills/browser-testing-with-devtools",
         "ref": "main",
@@ -324,7 +324,7 @@
       "ref": "main",
       "repo": "https://github.com/anthropics/skills.git",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
         "path": "skills/canvas-design",
         "ref": "main",
@@ -341,7 +341,7 @@
     },
     "ci-cd-and-automation": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/ci-cd-and-automation",
         "ref": "main",
@@ -351,7 +351,7 @@
     },
     "code-review-and-quality": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "a4ae7518674ccfe6c5cd91353eef49046030e930",
         "path": "skills/code-review-and-quality",
         "ref": "main",
@@ -361,7 +361,7 @@
     },
     "code-simplification": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/code-simplification",
         "ref": "main",
@@ -372,7 +372,7 @@
     "context-budget": {
       "description": "Token/context budget management across long-running tasks",
       "source": {
-        "last_checked_at": "2026-10-27T00:54:54Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/context-budget",
@@ -383,7 +383,7 @@
     },
     "context-engineering": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/context-engineering",
         "ref": "main",
@@ -394,7 +394,7 @@
     "continuous-learning": {
       "description": "Extract learnings from completed agent sessions",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:07Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/continuous-learning",
@@ -413,7 +413,7 @@
     "council": {
       "description": "Convenient four-voice council for ambiguous decisions and tradeoffs",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:08Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/council",
@@ -425,7 +425,7 @@
     "cpp-testing": {
       "description": "C++ test-driven development patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:10Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/cpp-testing",
@@ -437,7 +437,7 @@
     "csharp-testing": {
       "description": "C# test-driven development patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:11Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/csharp-testing",
@@ -448,7 +448,7 @@
     },
     "debugging-and-error-recovery": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "ea12d4dcd1a796be278309ec97e1a5cf3c683b49",
         "path": "skills/debugging-and-error-recovery",
         "ref": "main",
@@ -459,7 +459,7 @@
     "deep-research": {
       "description": "Multi-source deep research with synthesis",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:13Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/deep-research",
@@ -471,7 +471,7 @@
     "deployment-patterns": {
       "description": "Deployment patterns across platforms and runtimes",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:15Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/deployment-patterns",
@@ -482,7 +482,7 @@
     },
     "deprecation-and-migration": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/deprecation-and-migration",
         "ref": "main",
@@ -493,7 +493,7 @@
     "dispatching-parallel-agents": {
       "description": "Coordinate multiple independent investigation or implementation tasks by delegating them to isolated parallel agents.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "9ccce3bf07a40e45259004a330409ba00970eff7",
         "path": "skills/dispatching-parallel-agents",
         "ref": "main",
@@ -504,7 +504,7 @@
     "django-security": {
       "description": "Django-specific security patterns and anti-patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/django-security",
@@ -516,7 +516,7 @@
     "django-tdd": {
       "description": "Django (Python) test-driven development",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:16Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/django-tdd",
@@ -528,7 +528,7 @@
     "dmux-workflows": {
       "description": "Worktree-based multi-agent orchestration workflows",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:18Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/dmux-workflows",
@@ -539,7 +539,7 @@
     },
     "documentation-and-adrs": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/documentation-and-adrs",
         "ref": "main",
@@ -560,7 +560,7 @@
     },
     "doubt-driven-development": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "97e12d03e787fb5e68d313c693f080173027ffe3",
         "path": "skills/doubt-driven-development",
         "ref": "main",
@@ -576,7 +576,7 @@
       }
     },
     "ecc-harness": {
-      "description": "ECC integration hub \u2014 documents the curated subset of ECC skills installed and how to reach for each",
+      "description": "ECC integration hub — documents the curated subset of ECC skills installed and how to reach for each",
       "source": {
         "notes": "Authored locally to document curation rationale for the 31 ECC sub-skills installed.",
         "type": "local"
@@ -585,7 +585,7 @@
     "entry-point-analyzer": {
       "description": "Identify and analyze entry points (external-facing functions, endpoints, handlers) in codebases for attack surface mapping. Supports Solidity, Solana, CosmWasm, Move (Aptos/Sui), TON, Vyper. Use when mapping trust boundaries or identifying untrusted input paths.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "d5fe2e6a7896236c3102fd5477e833623ad70298",
         "path": "plugins/entry-point-analyzer/skills/entry-point-analyzer",
         "ref": "main",
@@ -596,7 +596,7 @@
     "executing-plans": {
       "description": "Execute written implementation plans task by task with verification checkpoints and completion handling.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
         "path": "skills/executing-plans",
         "ref": "main",
@@ -607,7 +607,7 @@
     "finishing-a-development-branch": {
       "description": "Complete a development branch by verifying tests, choosing merge/PR/keep/discard workflow, and cleaning up worktrees safely.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "f2cbfbefebbfef77321e4c9abc9e949826bea9d7",
         "path": "skills/finishing-a-development-branch",
         "ref": "main",
@@ -618,7 +618,7 @@
     "frontend-design": {
       "description": "Guide agents to build distinctive, production-grade frontend interfaces, components, pages, dashboards, and web applications.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "2235be7c60b551f5de82ade908fd3816455afcda",
         "path": "skills/frontend-design",
         "ref": "main",
@@ -628,7 +628,7 @@
     },
     "frontend-ui-engineering": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "cea2f381cd4b964402e2c43353cb00c5c27ef6dd",
         "path": "skills/frontend-ui-engineering",
         "ref": "main",
@@ -639,7 +639,7 @@
     "fsharp-testing": {
       "description": "F# test-driven development patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:19Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/fsharp-testing",
@@ -650,7 +650,7 @@
     },
     "git-workflow-and-versioning": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:28Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "fea75b16472ba87e8c11f13a9e000c3ffdb2d1f5",
         "path": "skills/git-workflow-and-versioning",
         "ref": "main",
@@ -661,7 +661,7 @@
     "golang-testing": {
       "description": "Go test-driven development patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:21Z",
+        "last_checked_at": "2026-11-01T14:09:41Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/golang-testing",
@@ -683,7 +683,7 @@
     },
     "idea-refine": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:30Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "72ea01851510c1b9c2566e7e4418de431ddd37e0",
         "path": "skills/idea-refine",
         "ref": "main",
@@ -726,7 +726,7 @@
     },
     "improve-codebase-architecture": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:34Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "697d4ce9742da558fd1ba6697c8e9775e2e302dd",
         "path": "skills/engineering/improve-codebase-architecture",
         "ref": "main",
@@ -736,7 +736,7 @@
     },
     "incremental-implementation": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:34Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "b76534301587b9e75ad9cf5fdc1cd6cbe6318da3",
         "path": "skills/incremental-implementation",
         "ref": "main",
@@ -746,7 +746,7 @@
     },
     "interview-me": {
       "source": {
-        "last_checked_at": "2026-10-27T00:47:34Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "c4ad44928cd535fcfee1972988f97309d4cebf9f",
         "path": "skills/interview-me",
         "ref": "main",
@@ -757,7 +757,7 @@
     "karpathy-guidelines": {
       "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
       "source": {
-        "last_checked_at": "2026-10-27T00:47:37Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "64723a49ea6117894304eb491f0d32a60570bf45",
         "path": "skills/karpathy-guidelines",
         "ref": "main",
@@ -768,7 +768,7 @@
     "kotlin-testing": {
       "description": "Kotlin test-driven development patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:22Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/kotlin-testing",
@@ -780,7 +780,7 @@
     "laravel-security": {
       "description": "Laravel-specific security patterns and anti-patterns",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:24Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/laravel-security",
@@ -792,7 +792,7 @@
     "laravel-tdd": {
       "description": "Laravel (PHP) test-driven development",
       "source": {
-        "last_checked_at": "2026-10-27T00:55:25Z",
+        "last_checked_at": "2026-11-01T14:09:42Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
         "notes": "Curated subset of ECC skills (31 of 277). See ecc-harness/SKILL.md for selection rationale.",
         "path": "skills/laravel-tdd",
@@ -1001,7 +1001,7 @@
       }
     },
     "research-ops": {
-      "description": "Research operations \u2014 sourcing, citation, archival",
+      "description": "Research operations — sourcing, citation, archival",
       "source": {
         "last_checked_at": "2026-10-27T00:55:43Z",
         "last_commit": "db7f2a6fd5b013d56ec0ba0cfc547ba77baddbce",
@@ -1091,20 +1091,21 @@
       }
     },
     "skill-authoring-guide": {
-      "description": "\u6559\u6388\u5982\u4f55\u7f16\u5199\u9ad8\u8d28\u91cf\u3001\u53ef\u590d\u7528\u7684 Agent Skill\uff08SKILL.md\uff09\uff0c\u542b\u8bc4\u4f30\u5de5\u7a0b\u4f53\u7cfb\uff08A/B\u6d4b\u8bd5\u3001\u91cf\u5316\u65ad\u8a00\u3001\u805a\u5408\u57fa\u51c6\u3001\u65b9\u5dee\u5206\u6790\uff09\u548c Description \u4f18\u5316\u3002\u5df2\u5408\u5e76 Anthropic \u5b98\u65b9 skill-creator \u7684\u8bc4\u4f30\u5de5\u5177\u5316\u5185\u5bb9\uff0c\u65e0\u9700\u5355\u72ec\u5b89\u88c5 skill-creator\u3002",
+      "description": "教授如何编写高质量、可复用的 Agent Skill（SKILL.md），含评估工程体系（A/B测试、量化断言、聚合基准、方差分析）和 Description 优化。已合并 Anthropic 官方 skill-creator 的评估工具化内容，无需单独安装 skill-creator。",
       "source": {
         "notes": "No clear GitHub upstream source was found during initialization.",
         "type": "local"
       }
     },
     "skill-creator": {
+      "description": "Official skill-creator with eval/hillclimb system",
       "source": {
-        "last_checked_at": "2026-10-27T00:57:22Z",
-        "last_commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "type": "git",
+        "repo": "https://github.com/anthropics/skills.git",
         "path": "skills/skill-creator",
         "ref": "main",
-        "repo": "https://github.com/anthropics/skills.git",
-        "type": "git"
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
       }
     },
     "skill-first-workflow": {
@@ -1490,6 +1491,50 @@
         "ref": "main",
         "repo": "anthropics/skills",
         "type": "github"
+      }
+    },
+    "academy-guide": {
+      "description": "Claude Academy course/tutorial recommender",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/anthropics/skills.git",
+        "path": "skills/academy-guide",
+        "ref": "main",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
+      }
+    },
+    "doc-coauthoring": {
+      "description": "Structured doc co-writing workflow with reader testing",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/anthropics/skills.git",
+        "path": "skills/doc-coauthoring",
+        "ref": "main",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
+      }
+    },
+    "internal-comms": {
+      "description": "Internal comms templates (3P/newsletter/FAQ/incident)",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/anthropics/skills.git",
+        "path": "skills/internal-comms",
+        "ref": "main",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
+      }
+    },
+    "superpowers-bridge": {
+      "description": "Bridge between CLI/SDD skills and Superpowers plugin",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/javierhbr/agnostic-agent-loop.git",
+        "path": "internal/skills/packs/superpowers-bridge",
+        "ref": "main",
+        "last_commit": "f77f690a762a56a0ea9aa0ea0b314c74b9f89d9c",
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
       }
     }
   },
