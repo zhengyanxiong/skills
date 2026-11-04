@@ -168,6 +168,17 @@
     "type": "git"
   },
   "skills": {
+    "academy-guide": {
+      "description": "Claude Academy course/tutorial recommender",
+      "source": {
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/academy-guide",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
     "agent-eval": {
       "description": "Head-to-head comparison of coding agents (pass rate, cost, time, consistency)",
       "source": {
@@ -537,6 +548,17 @@
         "type": "git"
       }
     },
+    "doc-coauthoring": {
+      "description": "Structured doc co-writing workflow with reader testing",
+      "source": {
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/doc-coauthoring",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
+      }
+    },
     "documentation-and-adrs": {
       "source": {
         "last_checked_at": "2026-11-01T14:09:41Z",
@@ -741,6 +763,17 @@
         "path": "skills/incremental-implementation",
         "ref": "main",
         "repo": "https://github.com/addyosmani/agent-skills.git",
+        "type": "git"
+      }
+    },
+    "internal-comms": {
+      "description": "Internal comms templates (3P/newsletter/FAQ/incident)",
+      "source": {
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/internal-comms",
+        "ref": "main",
+        "repo": "https://github.com/anthropics/skills.git",
         "type": "git"
       }
     },
@@ -1100,18 +1133,29 @@
     "skill-creator": {
       "description": "Official skill-creator with eval/hillclimb system",
       "source": {
-        "type": "git",
-        "repo": "https://github.com/anthropics/skills.git",
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00",
+        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
         "path": "skills/skill-creator",
         "ref": "main",
-        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
-        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
+        "repo": "https://github.com/anthropics/skills.git",
+        "type": "git"
       }
     },
     "skill-first-workflow": {
       "description": "Enforce Skill First discipline: scan available skills before every action, load any skill with even 1% relevance, and follow the loaded skill's process. Triggers on any user request or task.",
       "source": {
         "type": "local"
+      }
+    },
+    "skill-inspector": {
+      "description": "",
+      "source": {
+        "last_checked_at": "2026-11-04T00:30:29Z",
+        "last_commit": "cfd4e64abe00fabbee84a7508787df5e95e7dad7",
+        "path": "skills",
+        "ref": "main",
+        "repo": "https://github.com/NVIDIA/SkillSpector.git",
+        "type": "git"
       }
     },
     "slack-gif-creator": {
@@ -1196,6 +1240,17 @@
         "path": "skills/subagent-driven-development",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
+      }
+    },
+    "superpowers-bridge": {
+      "description": "Bridge between CLI/SDD skills and Superpowers plugin",
+      "source": {
+        "last_checked_at": "2026-11-02T00:16:32.624360+00:00",
+        "last_commit": "f77f690a762a56a0ea9aa0ea0b314c74b9f89d9c",
+        "path": "internal/skills/packs/superpowers-bridge",
+        "ref": "main",
+        "repo": "https://github.com/javierhbr/agnostic-agent-loop.git",
         "type": "git"
       }
     },
@@ -1493,48 +1548,26 @@
         "type": "github"
       }
     },
-    "academy-guide": {
-      "description": "Claude Academy course/tutorial recommender",
+    "humanizer": {
+      "description": "Rewrite AI-sounding text so it reads like the writer without changing what it says.",
       "source": {
         "type": "git",
-        "repo": "https://github.com/anthropics/skills.git",
-        "path": "skills/academy-guide",
+        "repo": "https://github.com/blader/humanizer.git",
         "ref": "main",
-        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
-        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
+        "path": ".",
+        "last_commit": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
+        "last_checked_at": "2026-11-04T00:31:37.127585+00:00"
       }
     },
-    "doc-coauthoring": {
-      "description": "Structured doc co-writing workflow with reader testing",
+    "graphify": {
+      "description": "Turn any folder of files into a navigable knowledge graph with community detection, audit trail, and GraphRAG-ready outputs.",
       "source": {
         "type": "git",
-        "repo": "https://github.com/anthropics/skills.git",
-        "path": "skills/doc-coauthoring",
-        "ref": "main",
-        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
-        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
-      }
-    },
-    "internal-comms": {
-      "description": "Internal comms templates (3P/newsletter/FAQ/incident)",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/anthropics/skills.git",
-        "path": "skills/internal-comms",
-        "ref": "main",
-        "last_commit": "ca45fc496a3436251f191354091d557da31c15b5",
-        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
-      }
-    },
-    "superpowers-bridge": {
-      "description": "Bridge between CLI/SDD skills and Superpowers plugin",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/javierhbr/agnostic-agent-loop.git",
-        "path": "internal/skills/packs/superpowers-bridge",
-        "ref": "main",
-        "last_commit": "f77f690a762a56a0ea9aa0ea0b314c74b9f89d9c",
-        "last_checked_at": "2026-11-02T00:16:32.624360+00:00"
+        "repo": "https://github.com/Graphify-Labs/graphify.git",
+        "ref": "v8",
+        "path": "graphify",
+        "last_commit": "59b5ab1151e031fb42e39cfc9a50bf96f2d57ae0",
+        "last_checked_at": "2026-11-04T00:32:29.776652+00:00"
       }
     }
   },
