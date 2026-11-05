@@ -1569,6 +1569,17 @@
         "last_commit": "59b5ab1151e031fb42e39cfc9a50bf96f2d57ae0",
         "last_checked_at": "2026-11-04T00:32:29.776652+00:00"
       }
+    },
+    "domain-modeling": {
+      "description": "主动构建/打磨项目的 domain model。维护 GLOSSARY.md + docs/adr/。四个核心动作：术语冲突检测、模糊词精确化、边界场景 stress-test、代码与口述矛盾浮现。",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/mattpocock/skills.git",
+        "ref": "main",
+        "path": "skills/engineering/domain-modeling",
+        "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+        "last_checked_at": "2026-11-05T00:33:20.234343+00:00"
+      }
     }
   },
   "source-driven-development": {
