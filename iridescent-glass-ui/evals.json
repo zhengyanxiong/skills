@@ -1,0 +1,29 @@
+{
+  "skill_name": "iridescent-glass-ui",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想做一个茶品牌的官网落地页，要那种很有仙气、晶莹剔透的感觉，背景是淡淡的雾气，卡片能透出后面的光。我们的品牌色是墨绿，你帮我把整个页面做出来。",
+      "expected_output": "Agent 选择琉璃风格但没有硬套内置主题色：要么用 mist/moon 作底再派生墨绿主色，要么在 tokens.json 里新增一个变体。交付含 .ambient 光斑层的完整 HTML + iridescent-glass.css，卡片用 .glass（含 1.5px 渐变包边），标题用衬线字体栈、正文无衬线，按钮渐变两端都过 AA，最后运行 contrast_check.py 并报告 0 failing。不会在金色渐变上压白字。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "把我们现有的后台管理系统改成玻璃拟态风格，现在是比较素的 Ant Design 那种。注意别影响我们看表格数据。",
+      "expected_output": "Agent 明确指出玻璃风格不适合密集数据表 —— 用玻璃做外层容器（导航、筛选栏、统计卡片），表格本体保持素色高对比。会说明为什么不做整站玻璃化：扫读效率、对齐判断、GPU 开销。给出渐进改造顺序而不是一次性重写。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "这个琉璃风格的按钮在浅色主题下白字看不清，帮我调一下颜色。",
+      "expected_output": "Agent 用 contrast_check.py 实测确认问题（白字在 #7FA7C7 上只有 2.54:1），而不是凭感觉调。修法是把按钮渐变端点改为 tokens.json 里的 btn_from/btn_to（压暗到白字过 4.5:1），而不是降低透明度或加文字阴影。改完重新生成 _tokens.generated.css 并重跑校验，报告具体对比度数值。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "首页 hero 要放一张全屏产品视频当背景，上面盖一层标题和按钮，用琉璃效果。",
+      "expected_output": "Agent 拒绝在视频上直接用毛玻璃保证可读性，改用 .glass-solid（近实色不透明）或加一层暗色 scrim，并解释 backdrop-filter 无法对任意画面内容保证对比度。仍保留金砂包边与光晕以维持风格识别度。",
+      "files": []
+    }
+  ]
+}

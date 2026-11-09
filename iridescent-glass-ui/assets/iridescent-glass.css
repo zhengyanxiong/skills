@@ -1,0 +1,605 @@
+/* ============================================================================
+ * 幻彩琉璃 Iridescent Glass — production stylesheet
+ * ----------------------------------------------------------------------------
+ * Layer 1: tokens      → @import "_tokens.generated.css" (generated, never edit)
+ * Layer 2: primitives  → background, glass surface, rim, focus, motion
+ * Layer 3: components  → card, button, nav, input, badge, divider, modal, toast
+ *
+ * Load in HTML: one link only — this file @imports the tokens itself:
+ *   <link rel="stylesheet" href="iridescent-glass.css">
+ * (Linking _tokens.generated.css separately as well is harmless but redundant.)
+ *
+ * Every deviation from the naive "glassmorphism tutorial" recipe is commented
+ * with WHY. The four that matter most:
+ *   1. No filter:blur() on the ambient orbs — radial-gradient already fades, and
+ *      blurring a 60vw fixed element repaints a huge offscreen surface on scroll.
+ *   2. will-change is opt-in (.is-live), not permanent — permanent will-change on
+ *      every card allocates a GPU layer per card and exhausts memory on mobile.
+ *   3. The gold rim has a border fallback — mask-composite is unsupported on older
+ *      Safari/Firefox, and without the guard the rim renders as a solid block.
+ *   4. Gradient text has a solid-color fallback — background-clip:text plus
+ *      color:transparent renders INVISIBLE text wherever the clip is unsupported.
+ * ==========================================================================*/
+
+@import url("_tokens.generated.css");
+
+/* ---------------------------------------------------------------- 1. reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------ 2. root */
+
+:root {
+  /* Type scale — serif for display, sans for UI. Both stacks degrade to system
+   * fonts so the page is usable before a 5-10MB CJK webfont arrives. */
+  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  --font-body: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Inter",
+    system-ui, -apple-system, sans-serif;
+
+  --radius-card: 24px;
+  --radius-card-lg: 32px;
+  --radius-pill: 99px;
+
+  --glass-blur: 24px;
+  --glass-blur-nav: 20px;
+  --glass-saturate: 180%;
+
+  --rim-width: 1.5px;
+
+  --shadow-rest: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 0 20px rgba(255, 255, 255, 0.6);
+  --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.08), inset 0 0 30px rgba(255, 255, 255, 0.8);
+
+  --ease-fluid: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+  /* Dark glass catches far less light, so the inset highlight must drop or the
+   * card looks like frosted plastic instead of smoked crystal. */
+  --shadow-rest: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.06);
+  --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* ------------------------------------------------------------- 3. page shell */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  background-color: var(--theme-base);
+  color: var(--theme-text-main);
+  /* overflow-x: clip instead of hidden — hidden creates a scroll container and
+   * silently breaks position: sticky in descendants. clip does not. */
+  overflow-x: clip;
+  transition: background-color 0.5s var(--ease-soft), color 0.5s var(--ease-soft);
+  -webkit-font-smoothing: antialiased;
+}
+
+@supports not (overflow: clip) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Ambient light: two soft orbs, painted with gradients only.
+ * The original recipe added filter: blur(100px) on top of a radial-gradient.
+ * The gradient is already a smooth falloff, so the blur buys nothing visible and
+ * costs a large fixed-layer repaint on every composite. Dropped. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient::before,
+.ambient::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transition: background 0.5s var(--ease-soft);
+}
+
+/* theme-coloured orb, top right */
+.ambient::before {
+  width: 70vmax;
+  height: 70vmax;
+  top: -28%;
+  right: -18%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--theme-primary-rgb), 0.42) 0%,
+    rgba(var(--theme-primary-rgb), 0.18) 38%,
+    rgba(var(--theme-primary-rgb), 0.05) 62%,
+    transparent 75%
+  );
+}
+
+/* gold orb, bottom left — the 10% accent */
+.ambient::after {
+  width: 58vmax;
+  height: 58vmax;
+  bottom: -26%;
+  left: -16%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(197, 138, 42, 0.2) 0%,
+    rgba(197, 138, 42, 0.09) 40%,
+    rgba(197, 138, 42, 0.03) 62%,
+    transparent 75%
+  );
+}
+
+.dark .ambient::before {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--theme-primary-rgb), 0.3) 0%,
+    rgba(var(--theme-primary-rgb), 0.12) 40%,
+    transparent 72%
+  );
+}
+
+.dark .ambient::after {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(197, 138, 42, 0.16) 0%,
+    rgba(197, 138, 42, 0.06) 42%,
+    transparent 70%
+  );
+}
+
+/* ------------------------------------------------------- 4. glass primitive */
+
+.glass {
+  position: relative;
+  /* Baseline = opaque-ish fill that works with no backdrop-filter at all. */
+  background: rgba(255, 255, 255, var(--glass-alpha-fallback));
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-rest);
+  transition: transform 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid),
+    background-color 0.4s var(--ease-soft);
+}
+
+.dark .glass {
+  background: rgba(255, 255, 255, var(--glass-alpha-fallback));
+}
+
+/* Enhancement: real frosted glass. Declared separately so browsers that do not
+ * understand backdrop-filter keep the opaque baseline above. */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass {
+    background: rgba(255, 255, 255, var(--glass-alpha));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+
+  .dark .glass {
+    background: rgba(255, 255, 255, var(--glass-alpha));
+  }
+}
+
+/* Gold rim. Two mechanisms, guarded independently:
+ *  - mask-composite path: a 1px-thick gradient ring, real cut-crystal edge
+ *  - border path: plain 1px gold border, for engines without mask-composite */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit; /* inherit, not a hardcoded 24px — radius must match */
+  padding: var(--rim-width);
+  background: linear-gradient(
+    135deg,
+    var(--theme-gold) 0%,
+    var(--theme-gold-light) 50%,
+    var(--theme-primary) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@supports not ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
+  .glass::before {
+    display: none;
+  }
+
+  .glass {
+    border: 1px solid var(--theme-gold);
+  }
+}
+
+/* Opt-in hover lift. Add .is-interactive to any card that is clickable. */
+.is-interactive {
+  cursor: pointer;
+}
+
+.is-interactive:hover,
+.is-interactive:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Layer promotion is opt-in and short-lived: apply .is-live only while an
+ * animation is running (JS adds it on pointerenter, removes on animationend). */
+.is-live {
+  will-change: transform, backdrop-filter;
+}
+
+/* --------------------------------------------------------------- 5. typography */
+
+.display-1,
+.display-2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  margin: 0 0 var(--space-4);
+  color: var(--theme-text-main);
+}
+
+.display-1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.display-2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
+.text-sub {
+  color: var(--theme-text-sub);
+}
+
+/* Gradient display text. The @supports guard is mandatory: without it, browsers
+ * that ignore background-clip:text still apply color:transparent and the heading
+ * disappears entirely. */
+.text-iridescent {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--theme-primary-deep);
+  background: linear-gradient(100deg, var(--theme-primary-deep) 0%, var(--theme-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .text-iridescent {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+.gold-rule {
+  height: 1px;
+  border: 0;
+  margin: var(--space-5) 0;
+  background: linear-gradient(90deg, var(--theme-gold) 0%, transparent 100%);
+  opacity: 0.7;
+}
+
+/* ---------------------------------------------------------------- 6. buttons */
+
+.btn {
+  --btn-bg: linear-gradient(135deg, var(--theme-btn-from) 0%, var(--theme-btn-to) 100%);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 12px 32px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--theme-on-primary);
+  background: var(--btn-bg);
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 8px 24px rgba(var(--theme-primary-rgb), 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(var(--theme-primary-rgb), 0.42),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Keyboard focus ring — required by WCAG 2.4.7. Only :focus-visible so mouse
+ * clicks stay clean. Offset keeps the ring legible against the rim. */
+.btn:focus-visible,
+.glass-input:focus-visible,
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--theme-primary-deep);
+  outline-offset: 3px;
+  border-radius: var(--radius-pill);
+}
+
+/* Shine sweep. Animating transform instead of `left` keeps the whole animation on
+ * the compositor — animating `left` forces layout on every frame. */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: translateX(-220%) skewX(-20deg);
+  animation: btn-shine 4s var(--ease-soft) infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes btn-shine {
+  0%,
+  72% {
+    transform: translateX(-220%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(300%) skewX(-20deg);
+  }
+}
+
+/* Secondary / ghost button: glass instead of fill, so it needs a tested text
+ * colour rather than the on-primary ink. */
+.btn--ghost {
+  color: var(--theme-text-main);
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--theme-gold);
+  box-shadow: none;
+}
+
+.btn--ghost::after {
+  display: none;
+}
+
+.btn--sm {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------- 7. form controls */
+
+.glass-input {
+  width: 100%;
+  padding: 12px 18px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--theme-text-main);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(var(--theme-primary-rgb), 0.35);
+  border-radius: var(--radius-pill);
+  transition: border-color 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-input {
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+  }
+}
+
+.glass-input::placeholder {
+  color: var(--theme-text-sub);
+  opacity: 1; /* Firefox lowers placeholder opacity by default and breaks contrast */
+}
+
+.glass-input:focus {
+  border-color: var(--theme-primary-deep);
+  box-shadow: 0 0 0 3px rgba(var(--theme-primary-rgb), 0.2);
+  outline: none;
+}
+
+/* ------------------------------------------------------------------ 8. nav bar */
+
+.glass-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-3) var(--space-5);
+  background: rgba(255, 255, 255, var(--glass-alpha-fallback));
+  border-bottom: 1px solid rgba(var(--theme-gold-rgb), 0.35);
+  transition: background-color 0.4s var(--ease-soft);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-nav {
+    background: rgba(255, 255, 255, var(--glass-alpha));
+    -webkit-backdrop-filter: blur(var(--glass-blur-nav)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-nav)) saturate(var(--glass-saturate));
+  }
+}
+
+/* ----------------------------------------------------------------- 9. badges */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--theme-text-main);
+  background: rgba(var(--theme-primary-rgb), 0.16);
+  border: 1px solid rgba(var(--theme-primary-rgb), 0.4);
+  border-radius: var(--radius-pill);
+}
+
+.badge--gold {
+  background: rgba(var(--theme-gold-rgb), 0.14);
+  border-color: rgba(var(--theme-gold-rgb), 0.45);
+}
+
+/* --------------------------------------------------- 10. modal / sheet / toast */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+  background: rgba(12, 18, 22, 0.42);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .scrim {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+.modal {
+  width: min(560px, 100%);
+  max-height: min(80vh, 720px);
+  overflow: auto;
+  padding: var(--space-6);
+  border-radius: var(--radius-card-lg);
+  /* NOTE: no overflow:hidden here on purpose — Safari drops backdrop-filter on
+   * elements that clip their own rounded corners. The rim is inset so it is not
+   * clipped anyway. */
+}
+
+.toast {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 60;
+  max-width: 380px;
+  padding: 14px 20px;
+  border-radius: var(--radius-card);
+  font-size: 15px;
+  color: var(--theme-text-main);
+}
+
+/* ------------------------------------------------------- 11. motion & contrast */
+
+/* Respect the OS reduced-motion setting: no lift, no shine, no fades. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn::after {
+    display: none;
+  }
+
+  .is-interactive:hover {
+    transform: none;
+  }
+}
+
+/* Users who ask for more contrast get opaque surfaces — glass is a look, not a
+ * right. This is also the escape hatch for very bright or photo backgrounds. */
+@media (prefers-contrast: more) {
+  .glass,
+  .glass-nav,
+  .glass-input,
+  .btn--ghost {
+    background: var(--theme-base);
+  }
+
+  .glass::before {
+    opacity: 1;
+  }
+}
+
+/* On a photo or video backdrop, backdrop blur alone cannot guarantee contrast.
+ * .glass-solid drops the frosted look for an opaque surface.
+ *
+ * NOTE: background-COLOR only, and deliberately not the `background` shorthand —
+ * the shorthand + !important would also wipe a background-image declared on the
+ * same element (inline styles lose to !important declarations). Put the photo on
+ * a parent .hero and the solid panel inside it. */
+.glass-solid {
+  background-color: var(--theme-base) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Full-bleed photo/video region. The photo lives here; panels go inside it. */
+.hero {
+  position: relative;
+  overflow: clip;
+  background-size: cover;
+  background-position: center;
+  padding-block: var(--space-7);
+}
+
+/* Optional dimming layer for .hero when the photo is bright. Light text on a
+ * dimmed photo is far more reliable than text on frosted bright photo. */
+.hero--dim::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 18, 22, 0.32);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------- 12. layout helpers (thin) */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.page {
+  width: min(1120px, 100% - 2 * var(--space-5));
+  margin-inline: auto;
+  padding-block: var(--space-6) var(--space-7);
+}
