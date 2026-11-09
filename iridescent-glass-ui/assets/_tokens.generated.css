@@ -1,0 +1,264 @@
+/* GENERATED FILE — do not edit by hand.
+ * Source: assets/tokens.json
+ * Regenerate: python3 scripts/contrast_check.py assets/tokens.json --emit-css
+ */
+
+/* default theme: 雾青 — 清透空灵（默认） */
+:root {
+  --theme-primary: #7FA7C7;
+  --theme-primary-deep: #4A7699;
+  --theme-btn-from: #3F6B8C;
+  --theme-btn-to: #4E7A9C;
+  --theme-base: #F4F7F8;
+  --theme-text-main: #2C3539;
+  --theme-text-sub: #4F5C63;
+  --theme-gold: #A8741F;
+  --theme-gold-light: #E6CB9B;
+  --theme-primary-rgb: 127, 167, 199;
+  --theme-gold-rgb: 168, 116, 31;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* 雾青 — 清透空灵（默认） */
+[data-theme="mist"] {
+  --theme-primary: #7FA7C7;
+  --theme-primary-deep: #4A7699;
+  --theme-btn-from: #3F6B8C;
+  --theme-btn-to: #4E7A9C;
+  --theme-base: #F4F7F8;
+  --theme-text-main: #2C3539;
+  --theme-text-sub: #4F5C63;
+  --theme-gold: #A8741F;
+  --theme-gold-light: #E6CB9B;
+  --theme-primary-rgb: 127, 167, 199;
+  --theme-gold-rgb: 168, 116, 31;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* 孔雀蓝 — 沉静深邃 */
+[data-theme="peacock"] {
+  --theme-primary: #0F7C90;
+  --theme-primary-deep: #0A5A69;
+  --theme-btn-from: #0A5A69;
+  --theme-btn-to: #0F7C90;
+  --theme-base: #F1F7F8;
+  --theme-text-main: #1F3236;
+  --theme-text-sub: #48606A;
+  --theme-gold: #9C7018;
+  --theme-gold-light: #E3C998;
+  --theme-primary-rgb: 15, 124, 144;
+  --theme-gold-rgb: 156, 112, 24;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* 琥珀金 — 温暖琥珀 */
+[data-theme="amber"] {
+  --theme-primary: #B67A1F;
+  --theme-primary-deep: #8A5A12;
+  --theme-btn-from: #8A5A12;
+  --theme-btn-to: #9A6414;
+  --theme-base: #FAF6EF;
+  --theme-text-main: #33291B;
+  --theme-text-sub: #5E4F3A;
+  --theme-gold: #96742A;
+  --theme-gold-light: #EBD9AC;
+  --theme-primary-rgb: 182, 122, 31;
+  --theme-gold-rgb: 150, 116, 42;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* 胭脂红 — 东方胭脂 */
+[data-theme="rouge"] {
+  --theme-primary: #A94A63;
+  --theme-primary-deep: #7E3348;
+  --theme-btn-from: #7E3348;
+  --theme-btn-to: #A94A63;
+  --theme-base: #FAF4F5;
+  --theme-text-main: #342227;
+  --theme-text-sub: #63474F;
+  --theme-gold: #9C7034;
+  --theme-gold-light: #E8CFA8;
+  --theme-primary-rgb: 169, 74, 99;
+  --theme-gold-rgb: 156, 112, 52;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* 葡萄紫 — 夜宴葡萄 */
+[data-theme="amethyst"] {
+  --theme-primary: #6F52C9;
+  --theme-primary-deep: #513A9B;
+  --theme-btn-from: #513A9B;
+  --theme-btn-to: #6F52C9;
+  --theme-base: #F6F4FB;
+  --theme-text-main: #2A2438;
+  --theme-text-sub: #544C6B;
+  --theme-gold: #8E6E24;
+  --theme-gold-light: #E7D3A6;
+  --theme-primary-rgb: 111, 82, 201;
+  --theme-gold-rgb: 142, 110, 36;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* 月白灰 — 素净月白 */
+[data-theme="moon"] {
+  --theme-primary: #8E9EAC;
+  --theme-primary-deep: #5E6E7C;
+  --theme-btn-from: #5E6E7C;
+  --theme-btn-to: #647480;
+  --theme-base: #F7F8F9;
+  --theme-text-main: #2E3438;
+  --theme-text-sub: #525C64;
+  --theme-gold: #846C38;
+  --theme-gold-light: #E2D3B0;
+  --theme-primary-rgb: 142, 158, 172;
+  --theme-gold-rgb: 132, 108, 56;
+  --glass-alpha: 0.3;
+  --glass-alpha-fallback: 0.72;
+  --theme-on-primary: #FFFFFF;
+}
+
+/* dark mode base — pairs with .dark on <html> */
+.dark {
+  --theme-primary: #A8C8E0;
+  --theme-primary-deep: #7FA7C7;
+  --theme-btn-from: #7FA7C7;
+  --theme-btn-to: #A8C8E0;
+  --theme-base: #0D1418;
+  --theme-text-main: #E6EDF1;
+  --theme-text-sub: #A9B7C0;
+  --theme-gold: #E6CB9B;
+  --theme-gold-light: #8A6520;
+  --theme-primary-rgb: 168, 200, 224;
+  --theme-gold-rgb: 230, 203, 155;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #10202B;
+  color-scheme: dark;
+}
+
+/* 雾青 — 清透空灵（默认） — dark */
+[data-theme="mist"].dark {
+  --theme-primary: #A8C8E0;
+  --theme-primary-deep: #7FA7C7;
+  --theme-btn-from: #7FA7C7;
+  --theme-btn-to: #A8C8E0;
+  --theme-base: #0D1418;
+  --theme-text-main: #E6EDF1;
+  --theme-text-sub: #A9B7C0;
+  --theme-gold: #E6CB9B;
+  --theme-gold-light: #8A6520;
+  --theme-primary-rgb: 168, 200, 224;
+  --theme-gold-rgb: 230, 203, 155;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #10202B;
+  color-scheme: dark;
+}
+
+/* 孔雀蓝 — 沉静深邃 — dark */
+[data-theme="peacock"].dark {
+  --theme-primary: #4FB8CC;
+  --theme-primary-deep: #2E93A6;
+  --theme-btn-from: #2E93A6;
+  --theme-btn-to: #4FB8CC;
+  --theme-base: #08171B;
+  --theme-text-main: #DFECEF;
+  --theme-text-sub: #A2B9C0;
+  --theme-gold: #E3C998;
+  --theme-gold-light: #8A6520;
+  --theme-primary-rgb: 79, 184, 204;
+  --theme-gold-rgb: 227, 201, 152;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #06222A;
+  color-scheme: dark;
+}
+
+/* 琥珀金 — 温暖琥珀 — dark */
+[data-theme="amber"].dark {
+  --theme-primary: #E0A94E;
+  --theme-primary-deep: #C08A2E;
+  --theme-btn-from: #C08A2E;
+  --theme-btn-to: #E0A94E;
+  --theme-base: #14100A;
+  --theme-text-main: #F0E9DC;
+  --theme-text-sub: #BFB29B;
+  --theme-gold: #EBD9AC;
+  --theme-gold-light: #7A5A16;
+  --theme-primary-rgb: 224, 169, 78;
+  --theme-gold-rgb: 235, 217, 172;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #231A0C;
+  color-scheme: dark;
+}
+
+/* 胭脂红 — 东方胭脂 — dark */
+[data-theme="rouge"].dark {
+  --theme-primary: #D0728C;
+  --theme-primary-deep: #C98AA0;
+  --theme-btn-from: #C98AA0;
+  --theme-btn-to: #D0728C;
+  --theme-base: #170C10;
+  --theme-text-main: #F1E3E7;
+  --theme-text-sub: #C6A9B1;
+  --theme-gold: #E8CFA8;
+  --theme-gold-light: #7E4A2A;
+  --theme-primary-rgb: 208, 114, 140;
+  --theme-gold-rgb: 232, 207, 168;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #2A0E17;
+  color-scheme: dark;
+}
+
+/* 葡萄紫 — 夜宴葡萄 — dark */
+[data-theme="amethyst"].dark {
+  --theme-primary: #A48BE8;
+  --theme-primary-deep: #9F86E0;
+  --theme-btn-from: #9F86E0;
+  --theme-btn-to: #A48BE8;
+  --theme-base: #0F0C18;
+  --theme-text-main: #E9E4F5;
+  --theme-text-sub: #B5ACC9;
+  --theme-gold: #E7D3A6;
+  --theme-gold-light: #6E5420;
+  --theme-primary-rgb: 164, 139, 232;
+  --theme-gold-rgb: 231, 211, 166;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #1B1130;
+  color-scheme: dark;
+}
+
+/* 月白灰 — 素净月白 — dark */
+[data-theme="moon"].dark {
+  --theme-primary: #B8C7D3;
+  --theme-primary-deep: #8E9EAC;
+  --theme-btn-from: #8E9EAC;
+  --theme-btn-to: #B8C7D3;
+  --theme-base: #101418;
+  --theme-text-main: #EAEFF2;
+  --theme-text-sub: #AFBCC5;
+  --theme-gold: #E2D3B0;
+  --theme-gold-light: #6E6244;
+  --theme-primary-rgb: 184, 199, 211;
+  --theme-gold-rgb: 226, 211, 176;
+  --glass-alpha: 0.1;
+  --glass-alpha-fallback: 0.12;
+  --theme-on-primary: #1A2026;
+  color-scheme: dark;
+}
+

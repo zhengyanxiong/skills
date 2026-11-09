@@ -1,0 +1,77 @@
+{
+  "skill_name": "iridescent-glass-ui",
+  "assertions": [
+    {
+      "id": "A1",
+      "description": "生成的页面同时具备三个可辨识特征：半透明表面 + backdrop-filter、1.5px 渐变包边、底层环境光斑（.ambient 或等价实现）",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A2",
+      "description": "大标题/大数字使用衬线字体栈，正文与控件使用无衬线字体栈",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A3",
+      "description": "所有按钮/卡片圆角为 20-32px，按钮为 99px 胶囊，不存在直角（border-radius: 0）",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A4",
+      "description": "运行 contrast_check.py 并报告实测结果，而非声称已符合 AA；若新增颜色则先改 tokens.json 再生成 CSS",
+      "type": "correctness",
+      "weight": 2.0
+    },
+    {
+      "id": "A5",
+      "description": "没有把白色文字压在金色/浅色渐变上（原设计 #7FA7C7 上白字仅 2.54:1）",
+      "type": "correctness",
+      "weight": 1.5
+    },
+    {
+      "id": "A6",
+      "description": "对 backdrop-filter / mask-composite / background-clip:text 中的至少两项给出 @supports 降级，渐变文字不能降级成透明不可见",
+      "type": "correctness",
+      "weight": 1.5
+    },
+    {
+      "id": "A7",
+      "description": "包含 :focus-visible 可见焦点环样式",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A8",
+      "description": "包含 prefers-reduced-motion 与 prefers-contrast 的响应",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A9",
+      "description": "没有在背景光斑上使用 filter: blur()；动画只作用于 transform/opacity",
+      "type": "structure",
+      "weight": 1.0
+    },
+    {
+      "id": "A10",
+      "description": "照片/视频等不可控背景上的内容使用 .glass-solid 或暗色 scrim，而不是直接毛玻璃",
+      "type": "correctness",
+      "weight": 1.0
+    },
+    {
+      "id": "A11",
+      "description": "对密集数据表/后台管理等不适用场景，明确指出玻璃风格的局限而不是全站套用",
+      "type": "judgment",
+      "weight": 1.0
+    },
+    {
+      "id": "A12",
+      "description": "暗色模式使用独立映射（底色变深、主色提亮、按钮改墨字），不是简单反转浅色",
+      "type": "structure",
+      "weight": 1.0
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="mist">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>幻彩琉璃 · Iridescent Glass — 组件样张</title>
+    <!-- Order matters: generated tokens first, then the stylesheet that @imports them. -->
+    <link rel="stylesheet" href="iridescent-glass.css" />
+    <style>
+      /* Page-local chrome only. Everything below the toolbar comes from
+       * iridescent-glass.css — this file is the visual regression fixture. */
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: var(--space-6);
+      }
+      .toolbar .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      .swatch {
+        display: flex;
+        height: 12px;
+        border-radius: 99px;
+        overflow: hidden;
+        margin-top: var(--space-4);
+      }
+      .swatch > i {
+        display: block;
+        height: 100%;
+      }
+      .stat {
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin: 0;
+      }
+      .meta {
+        margin: 0;
+        font-size: 14px;
+      }
+      .row {
+        display: flex;
+        gap: var(--space-3);
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: var(--space-4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <header class="glass-nav">
+      <strong style="font-family: var(--font-display)">幻彩琉璃</strong>
+      <span class="text-sub" style="font-size: 14px">Iridescent Glass</span>
+      <span class="badge badge--gold" style="margin-left: auto">v1.0</span>
+    </header>
+
+    <main class="page stack">
+      <div class="toolbar" role="group" aria-label="主题切换">
+        <button class="btn btn--sm" data-theme-set="mist">雾青</button>
+        <button class="btn btn--sm" data-theme-set="peacock">孔雀蓝</button>
+        <button class="btn btn--sm" data-theme-set="amber">琥珀金</button>
+        <button class="btn btn--sm" data-theme-set="rouge">胭脂红</button>
+        <button class="btn btn--sm" data-theme-set="amethyst">葡萄紫</button>
+        <button class="btn btn--sm" data-theme-set="moon">月白灰</button>
+        <button class="btn btn--sm btn--ghost" id="dark-toggle" aria-pressed="false">暗色</button>
+      </div>
+
+      <section class="glass" style="padding: var(--space-6)">
+        <h1 class="display-1" style="margin-bottom: var(--space-3)">
+          光在<span class="text-iridescent">琉璃</span>里拐了个弯
+        </h1>
+        <p class="text-sub" style="max-width: 56ch; margin: 0">
+          极高透光的毛玻璃、流体有机形态、渐变金属包边与环境光晕。60% 纯净底色，30%
+          主题色，10% 金砂点缀。
+        </p>
+        <div class="swatch" aria-hidden="true">
+          <i style="flex: 6; background: var(--theme-base)"></i>
+          <i style="flex: 3; background: var(--theme-primary)"></i>
+          <i style="flex: 1; background: var(--theme-gold)"></i>
+        </div>
+        <div class="row">
+          <button class="btn">开始创作</button>
+          <button class="btn btn--ghost">了解更多</button>
+          <button class="btn" disabled>已禁用</button>
+        </div>
+        <hr class="gold-rule" />
+        <div class="row" style="margin-top: 0">
+          <span class="badge">进行中</span>
+          <span class="badge badge--gold">金砂</span>
+        </div>
+      </section>
+
+      <section class="card-grid">
+        <article class="glass is-interactive" style="padding: var(--space-5)" tabindex="0">
+          <p class="stat text-iridescent">96</p>
+          <p class="meta text-sub">通过 WCAG AA 的文字/背景组合数</p>
+        </article>
+        <article class="glass is-interactive" style="padding: var(--space-5)" tabindex="0">
+          <p class="stat">6</p>
+          <p class="meta text-sub">内置主题，全部含暗色映射</p>
+        </article>
+        <article class="glass is-interactive" style="padding: var(--space-5)" tabindex="0">
+          <p class="stat">24px</p>
+          <p class="meta text-sub">卡片毛玻璃模糊半径</p>
+        </article>
+      </section>
+
+      <section class="glass" style="padding: var(--space-6)">
+        <h2 class="display-2">表单与反馈</h2>
+        <label class="text-sub" for="demo-email" style="font-size: 14px">邮箱</label>
+        <input
+          class="glass-input"
+          id="demo-email"
+          type="email"
+          placeholder="you@example.com"
+          style="margin-top: var(--space-2)"
+        />
+        <p class="meta text-sub" style="margin-top: var(--space-3)">
+          提示文字与占位符同样通过 AA 对比度校验。
+        </p>
+      </section>
+
+      <section class="glass" style="padding: var(--space-6)">
+        <h2 class="display-2">图片背景上的可读性</h2>
+        <p class="text-sub" style="margin: 0 0 var(--space-4)">
+          毛玻璃无法在照片或视频上保证对比度。此类区域加 <code>.glass-solid</code>
+          退回近不透明表面。
+        </p>
+        <section
+          class="hero hero--dim"
+          style="
+            padding: var(--space-6);
+            border-radius: var(--radius-card);
+            background-image: linear-gradient(135deg, #2b3a44, #6d7a6a 45%, #c9b48a);
+          "
+        >
+          <div class="glass glass-solid" style="padding: var(--space-5)">
+            正文在 <code>.glass-solid</code> 上稳定可读 —— 照片在父层 <code>.hero</code>，
+            面板自身不透明。
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      // Demo-only interactivity. A real page would persist the choice.
+      const root = document.documentElement;
+      const darkBtn = document.getElementById("dark-toggle");
+      const themes = ["mist", "peacock", "amber", "rouge", "amethyst", "moon"];
+
+      function paint(url) {
+        document.querySelectorAll("[data-theme-set]").forEach((btn) => {
+          const on = btn.dataset.themeSet === (url || root.dataset.theme);
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+      }
+
+      document.querySelectorAll("[data-theme-set]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const next = btn.dataset.themeSet;
+          if (!themes.includes(next)) return;
+          root.dataset.theme = next;
+          // Remove the stale explicit-dark block so the theme's own dark mapping applies.
+          root.classList.remove("dark");
+          darkBtn.setAttribute("aria-pressed", "false");
+          paint(next);
+        });
+      });
+
+      darkBtn.addEventListener("click", () => {
+        const dark = root.classList.toggle("dark");
+        darkBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+      });
+
+      paint(root.dataset.theme);
+    </script>
+  </body>
+</html>

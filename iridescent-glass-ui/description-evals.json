@@ -1,0 +1,25 @@
+{
+  "skill_name": "iridescent-glass-ui",
+  "queries": [
+    { "query": "帮我做个茶品牌落地页，要很有仙气、晶莹剔透，卡片能透出后面的光", "should_trigger": true },
+    { "query": "这个页面太素了，想要毛玻璃那种通透高级感，背景有淡淡的光晕", "should_trigger": true },
+    { "query": "glassmorphism 风格的仪表盘，主色用孔雀蓝", "should_trigger": true },
+    { "query": "想要东方美学的 UI，宋体大标题 + 金色描边 + 半透明卡片", "should_trigger": true },
+    { "query": "帮我把这个 React 组件改成磨砂玻璃效果，边框要有金属渐变", "should_trigger": true },
+    { "query": "我用了 backdrop-filter 但是文字看不清，怎么调对比度", "should_trigger": true },
+    { "query": "给个暗色模式的毛玻璃配色，现在切暗色卡片发白很难看", "should_trigger": true },
+    { "query": "设计一套六个主题色板的 UI，能一键切换那种，要保证无障碍", "should_trigger": true },
+    { "query": "crystal / frosted glass UI with gold rim and ambient glow", "should_trigger": true },
+    { "query": "这个按钮白字在浅蓝底上看不清，帮我算一下对比度够不够", "should_trigger": true },
+    { "query": "帮我写个 React 表单组件，要支持校验和错误提示", "should_trigger": false },
+    { "query": "把网站的配色改成蓝色系，主色 #2563EB", "should_trigger": false },
+    { "query": "做个深色主题的后台管理界面，表格要能排序筛选", "should_trigger": false },
+    { "query": "这个 div 居中不了，flex 也试过了", "should_trigger": false },
+    { "query": "帮我优化下 CSS 体积，现在打包出来 800KB", "should_trigger": false },
+    { "query": "写一个赛博朋克风格的霓虹灯效果 landing page", "should_trigger": false },
+    { "query": "minimalist 极简风格的个人主页，黑白灰就行", "should_trigger": false },
+    { "query": "这个渐变色怎么写，从红到蓝 45 度", "should_trigger": false },
+    { "query": "帮我看下这个 PDF 里的设计稿配色，提取一下色值", "should_trigger": false },
+    { "query": "如何用 Tailwind 实现毛玻璃效果的 navbar class", "should_trigger": false }
+  ]
+}
