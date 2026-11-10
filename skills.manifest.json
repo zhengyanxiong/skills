@@ -1580,6 +1580,28 @@
         "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
         "last_checked_at": "2026-11-05T00:33:20.234343+00:00"
       }
+    },
+    "wizard": {
+      "description": "生成交互式 bash 向导，把只有人类能做的步骤脚本化：逐段开 URL、说明点哪里/复制什么、捕获值写入 .env 或 gh secret、每步确认、显示剩余阶段。基于 template.sh（原生支持 WSL 打开链接、隐藏密钥输入、幂等 .env upsert）。",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/mattpocock/skills.git",
+        "ref": "main",
+        "path": "skills/engineering/wizard",
+        "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+        "last_checked_at": "2026-11-10T00:31:38.240296+00:00"
+      }
+    },
+    "agent-browser": {
+      "description": "给 agent 的浏览器自动化 CLI：Chrome/Chromium over CDP，输出无障碍树快照 + 紧凑 @eN 元素引用。支持 Electron 应用、Slack 自动化、探索式测试、Vercel Sandbox 与 AWS Bedrock AgentCore 云浏览器。SKILL.md 是发现桩，实际内容按版本从 CLI 拉取。",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/vercel-labs/agent-browser.git",
+        "ref": "main",
+        "path": "skills/agent-browser",
+        "last_commit": "e7519957b9067c541825afa21a792fbe1f483047",
+        "last_checked_at": "2026-11-10T00:31:38.240296+00:00"
+      }
     }
   },
   "source-driven-development": {
