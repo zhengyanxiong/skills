@@ -98,7 +98,7 @@
 
       <section class="card-grid">
         <article class="glass is-interactive" style="padding: var(--space-5)" tabindex="0">
-          <p class="stat text-iridescent">96</p>
+          <p class="stat">96</p>
           <p class="meta text-sub">通过 WCAG AA 的文字/背景组合数</p>
         </article>
         <article class="glass is-interactive" style="padding: var(--space-5)" tabindex="0">
@@ -126,7 +126,10 @@
         </p>
       </section>
 
-      <section class="glass" style="padding: var(--space-6)">
+      <!-- Quiet section, not .glass: the panel inside already carries a surface.
+           Glass on glass reads as muddy depth — spacing and a hairline do the
+           same job without a third translucent layer. -->
+      <section class="section-quiet">
         <h2 class="display-2">图片背景上的可读性</h2>
         <p class="text-sub" style="margin: 0 0 var(--space-4)">
           毛玻璃无法在照片或视频上保证对比度。此类区域加 <code>.glass-solid</code>
