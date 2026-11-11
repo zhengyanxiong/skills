@@ -354,7 +354,11 @@ button:focus-visible,
 }
 
 /* Shine sweep. Animating transform instead of `left` keeps the whole animation on
- * the compositor — animating `left` forces layout on every frame. */
+ * the compositor — animating `left` forces layout on every frame.
+ *
+ * Fired by interaction, never on a timer. A sweep that loops forever spends
+ * attention the button has not earned, and it keeps moving for readers who only
+ * want to read the label. One pass per hover / keyboard focus. */
 .btn::after {
   content: "";
   position: absolute;
@@ -364,17 +368,20 @@ button:focus-visible,
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
   transform: translateX(-220%) skewX(-20deg);
-  animation: btn-shine 4s var(--ease-soft) infinite;
   pointer-events: none;
   z-index: -1;
 }
 
+.btn:not(:disabled):hover::after,
+.btn:not(:disabled):focus-visible::after {
+  animation: btn-shine 0.75s var(--ease-soft) 1;
+}
+
 @keyframes btn-shine {
-  0%,
-  72% {
+  from {
     transform: translateX(-220%) skewX(-20deg);
   }
-  100% {
+  to {
     transform: translateX(300%) skewX(-20deg);
   }
 }
@@ -602,4 +609,13 @@ button:focus-visible,
   width: min(1120px, 100% - 2 * var(--space-5));
   margin-inline: auto;
   padding-block: var(--space-6) var(--space-7);
+}
+
+/* A section that carries no surface of its own. Use it when the content inside
+ * already owns a panel (.hero + .glass-solid, a photo, a video): a glass section
+ * wrapped around a second translucent layer is the one nesting case the whole
+ * system forbids. Delimit with rhythm and a hairline instead. */
+.section-quiet {
+  padding-block: var(--space-6);
+  border-top: 1px solid rgba(var(--theme-primary-rgb), 0.28);
 }
