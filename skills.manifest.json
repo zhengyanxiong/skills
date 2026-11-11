@@ -1602,6 +1602,28 @@
         "last_commit": "e7519957b9067c541825afa21a792fbe1f483047",
         "last_checked_at": "2026-11-10T00:31:38.240296+00:00"
       }
+    },
+    "impeccable": {
+      "description": "设计总监级前端 Skill（v4.8.2）：UX 审查、层级、排版、配色、动效、UX 文案、可访问性、响应式、空状态、边缘案例，可产出 DESIGN.md 与 tokens 设计系统。按 surface 模式（Persuade/Experience vs Operate/Read）调整投入强度，要求必须查看渲染结果后再验收。42 篇 reference 按动作分文档（audit/critique/polish/harden/animate/live 等）。",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/pbakaus/impeccable.git",
+        "ref": "main",
+        "path": ".hermes/skills/impeccable",
+        "last_commit": "f2baa414a87d9acf1e21ccf776bfaec0262ad6df",
+        "last_checked_at": "2026-11-11T00:35:56.135589+00:00"
+      }
+    },
+    "diagram-design": {
+      "description": "品牌化图表生成（v2.6）：45+ 种图表类型（架构/时序/状态机/ERD/桑基/鱼骨/Wardley/甘特/热力等）输出 HTML/SVG/PNG，支持 .drawio / Mermaid / .excalidraw / PlantUML 导入。附 224 个示例 HTML 作为视觉参考。",
+      "source": {
+        "type": "git",
+        "repo": "https://github.com/cathrynlavery/diagram-design.git",
+        "ref": "main",
+        "path": "skills/diagram-design",
+        "last_commit": "f2496acbde9f45ccb55c24d4f75210c8a1355df8",
+        "last_checked_at": "2026-11-11T00:35:56.135589+00:00"
+      }
     }
   },
   "source-driven-development": {
