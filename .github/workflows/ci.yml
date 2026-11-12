@@ -27,11 +27,16 @@ jobs:
       - name: Make CLI executable
         run: chmod +x skills skills.py
 
+      - name: Install pytest
+        run: python3 -m pip install --disable-pip-version-check pytest
+
       - name: Run skills.py doctor
         run: python3 skills.py doctor
 
+      # pytest, not `unittest discover`: the pytest-style test modules
+      # (tests/test_skills.py) are plain classes, which unittest silently skips.
       - name: Run unit tests
-        run: python3 -m unittest discover -s tests -v
+        run: python3 -m pytest tests/ -v
 
       - name: Verify manifest consistency
         run: |
@@ -98,5 +103,55 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install pytest
+        run: python3 -m pip install --disable-pip-version-check pytest
+
       - name: Run unit tests on Python ${{ matrix.python-version }}
-        run: python3 -m unittest discover -s tests -v
+        run: python3 -m pytest tests/ -v
+
+  windows:
+    name: Windows (Python ${{ matrix.python-version }})
+    runs-on: windows-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install pytest
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run unit tests
+        run: python -m pytest tests/ -v
+
+      - name: Run skills.py doctor
+        run: python skills.py doctor
+
+      # End-to-end: the runner has no symlink privilege (same as a normal user
+      # shell), so this is exactly the path that must fall back to a junction.
+      - name: Install / status / uninstall round-trip
+        shell: pwsh
+        env:
+          DSH_HOME: ${{ runner.temp }}\dsh-home
+        run: |
+          python skills.py install --agent dsh --skill iridescent-glass-ui
+          if ($LASTEXITCODE -ne 0) { throw "install failed" }
+          $link = Join-Path $env:DSH_HOME "skills\iridescent-glass-ui"
+          if (-not (Test-Path $link)) { throw "skill link missing after install" }
+          python skills.py status --agent dsh --skill iridescent-glass-ui
+          if ($LASTEXITCODE -ne 0) { throw "status failed" }
+          python skills.py uninstall --agent dsh --skill iridescent-glass-ui
+          if ($LASTEXITCODE -ne 0) { throw "uninstall failed" }
+          if (Test-Path (Join-Path $env:DSH_HOME "skills\iridescent-glass-ui")) {
+            throw "link still present after uninstall"
+          }
+          echo "✅ junction install/status/uninstall round-trip clean"

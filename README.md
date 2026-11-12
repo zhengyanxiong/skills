@@ -286,6 +286,15 @@ CLI 当前支持以下全局 skill 位置：
 
 如果目标路径已包含真实目录或指向其他位置的 symlink，install 会报告 `conflict` 并保持原样。
 
+### Windows
+
+CLI 在 Windows 上直接可用（`python skills.py ...` 或 `.\skills.ps1 ...`），不需要管理员权限：
+
+- **链接降级**：创建符号链接需要 `SeCreateSymbolicLinkPrivilege`（管理员或开发者模式），普通命令行会抛 `WinError 1314`。遇到这种情况自动降级为**目录联接（junction）**，无需任何权限，目录遍历完全透明——agent 照常加载。安装输出会标 `installed (junction)` 让你知道用的是哪种。
+- **状态与卸载**：`status` 认识 junction（`Path.is_symlink()` 对它返回 False，只认符号链接会把 junction 误报成 `conflict`）；`uninstall` 用 `rmdir` 摘除 junction，不会碰真实 skill 目录。
+- **路径包含判断**：内部用 `Path.is_relative_to` 而不是拼 `"/"` 前缀，否则 Windows 的反斜杠会让所有合法路径都被判为越界。
+- **ANSI 颜色**：自动给控制台开 `ENABLE_VIRTUAL_TERMINAL_PROCESSING`；开不了（重定向输出、老旧控制台）就退回无色纯文本。
+
 ## 最近更新
 
 ```

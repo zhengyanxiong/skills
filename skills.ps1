@@ -8,11 +8,10 @@
 
 .EXAMPLE
   .\skills.ps1 list
-  .\skills.ps1 install
-  .\skills.ps1 status
-  .\skills.ps1 install -DryRun
-  .\skills.ps1 install -Agents claude-code,kimi
-  .\skills.ps1 install -Skills skill-authoring-guide
+  .\skills.ps1 install --agent claude-code
+  .\skills.ps1 install --skill skill-authoring-guide --agent codex
+  .\skills.ps1 status --agent hermes
+  .\skills.ps1 uninstall --agent dsh
 #>
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path

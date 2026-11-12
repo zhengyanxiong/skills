@@ -53,7 +53,7 @@ class SkillsCliTests(unittest.TestCase):
 
         self.assertEqual("missing", skills.link_status(local, agent_dir / "frontend-design").state)
 
-        os.symlink(local, agent_dir / "frontend-design")
+        skills.create_link(local, agent_dir / "frontend-design")
         linked = skills.link_status(local, agent_dir / "frontend-design")
         self.assertEqual("linked", linked.state)
         self.assertEqual(local.resolve(), linked.target)
@@ -66,7 +66,7 @@ class SkillsCliTests(unittest.TestCase):
         broken_local = self.make_skill("broken-skill")
         broken_path = agent_dir / "broken-skill"
         missing_target = self.root / "missing-target"
-        os.symlink(missing_target, broken_path)
+        skills.create_link(missing_target, broken_path)
         self.assertEqual("broken", skills.link_status(broken_local, broken_path).state)
 
     def test_install_status_and_uninstall_use_symlinks(self):
