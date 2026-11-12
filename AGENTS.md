@@ -8,9 +8,14 @@ Skills can be installed into any of the following agent config directories:
 |----------|-----------------|
 | `codex` | `~/.codex/skills` |
 | `claude-code` | `~/.claude/skills` |
+| `opencode` | `~/.config/opencode/skills` |
 | `kimi` | `~/.kimi/skills` |
 | `hermes` | `~/.hermes/skills` |
 | `minimax` | `~/.minimax/skills` |
+| `dsh` | `$DSH_HOME/skills` (default `~/.dsh/skills`) |
+
+`dsh` is the DeepSeek Harness CLI. It scans user skills from `$DSH_HOME/skills`;
+set `DSH_HOME` if your install lives elsewhere and the resolved path follows it.
 
 To install for a specific agent:
 
@@ -83,7 +88,7 @@ No compile step. Run validation:
 
 ```bash
 python3 skills.py doctor           # Validate all skills
-python3 skills.py install --dry-run  # Preview symlink changes
+python3 skills.py status           # Show per-agent link status (no writes)
 python3 -m pytest tests/           # Run tests
 ```
 

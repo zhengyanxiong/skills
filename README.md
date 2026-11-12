@@ -282,6 +282,7 @@ CLI 当前支持以下全局 skill 位置：
 - Kimi: `~/.kimi/skills`
 - Hermes: `~/.hermes/skills`
 - Minimax: `~/.minimax/skills`
+- DeepSeek Harness (`dsh`): `$DSH_HOME/skills`（默认 `~/.dsh/skills`）
 
 如果目标路径已包含真实目录或指向其他位置的 symlink，install 会报告 `conflict` 并保持原样。
 

@@ -161,6 +161,20 @@ class TestAgentDirs:
         dirs = skills.agent_dirs({"custom-agent": "/tmp/custom"})
         assert str(dirs["custom-agent"]) == "/tmp/custom"
 
+    def test_dsh_uses_default_home(self, monkeypatch):
+        monkeypatch.delenv("DSH_HOME", raising=False)
+        assert skills._dsh_skills_dir() == "~/.dsh/skills"
+
+    def test_dsh_honours_dsh_home(self, monkeypatch, tmp_path):
+        monkeypatch.setenv("DSH_HOME", str(tmp_path))
+        assert skills._dsh_skills_dir() == str(tmp_path / "skills")
+
+    def test_dsh_dir_is_absolute(self):
+        dirs = skills.agent_dirs()
+        assert "dsh" in dirs
+        assert dirs["dsh"].is_absolute()
+        assert dirs["dsh"].name == "skills"
+
     def test_select(self):
         reg = {"a": Path("/p1"), "b": Path("/p2")}
         assert list(skills.select_agents("a", reg)) == ["a"]

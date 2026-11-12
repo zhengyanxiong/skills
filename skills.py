@@ -81,6 +81,16 @@ else:
     DIM = BOLD = RESET = OK = WARN = ERR = INFO = ''
 
 
+def _dsh_skills_dir() -> str:
+    """DeepSeek Harness (CLI: ``dsh``) user-scope skills dir.
+
+    dsh resolves user skills from ``$DSH_HOME/skills`` and defaults DSH_HOME to
+    ``~/.dsh``. Read the env var rather than hardcoding ``~`` so a relocated
+    DSH_HOME still resolves to the directory dsh actually scans.
+    """
+    return os.path.join(os.environ.get("DSH_HOME") or "~/.dsh", "skills")
+
+
 AGENTS = {
     "codex": "~/.codex/skills",
     "claude-code": "~/.claude/skills",
@@ -88,6 +98,7 @@ AGENTS = {
     "kimi": "~/.kimi/skills",
     "hermes": "~/.hermes/skills",
     "minimax": "~/.minimax/skills",
+    "dsh": _dsh_skills_dir(),
 }
 
 MANIFEST = "skills.manifest.json"
