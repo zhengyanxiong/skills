@@ -5,9 +5,10 @@ import argparse
 import hashlib
 import json
 import os
-import shutil
-import subprocess
 import re
+import shutil
+import stat
+import subprocess
 import tempfile
 import time
 from dataclasses import dataclass
@@ -15,7 +16,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import re
 import sys
 
 # ── Path safety ────────────────────────────────────────────────────
@@ -39,11 +39,18 @@ def is_safe_path(target: Path, base: Path) -> bool:
 
     This prevents symlink/copy operations from escaping the intended
     parent directory via ``../`` or absolute-path trickery.
+
+    The containment check uses ``is_relative_to`` instead of string prefixing:
+    on Windows the separator is ``\\``, so comparing against ``base + "/"``
+    rejected every legitimate child path and made the whole guard fail closed.
     """
     try:
         resolved = target.resolve()
         base_resolved = base.resolve()
-        return str(resolved).startswith(str(base_resolved) + "/")
+        # Strictly below *base*: base itself is not a valid target.
+        if resolved == base_resolved:
+            return False
+        return resolved.is_relative_to(base_resolved)
     except (OSError, ValueError):
         return False
 
@@ -51,22 +58,51 @@ def is_safe_path(target: Path, base: Path) -> bool:
 def is_safe_skill_dir(candidate: Path) -> bool:
     """Return True if *candidate* is a safe name under the repo root.
 
-    Also verifies the candidate is a directory (not a symlink to
+    Also verifies the candidate is a directory (not a link pointing
     somewhere outside the repo).
     """
     if not candidate.is_dir():
         return False
-    if candidate.is_symlink():
-        target = candidate.resolve()
-        if not str(target).startswith(str(candidate.parent.resolve()) + "/"):
+    if candidate.is_symlink() or _is_junction(candidate):
+        try:
+            return candidate.resolve().is_relative_to(candidate.parent.resolve())
+        except (OSError, ValueError):
             return False
     return True
 
 
-# ── Terminal colors (no-op on Windows) ────────────────────────────
+# ── Terminal colors ───────────────────────────────────────────────
+
+
+def _enable_windows_ansi() -> bool:
+    """Enable VT escape processing on the Windows console.
+
+    cmd.exe renders ANSI colour only when the console mode carries
+    ENABLE_VIRTUAL_TERMINAL_PROCESSING; otherwise the codes print as literal
+    ``←[2m`` noise. Returns False when the mode cannot be set (redirected
+    output, legacy console), so the caller falls back to plain text.
+    """
+    if os.name != "nt":
+        return True
+    try:
+        import ctypes
+
+        kernel32 = ctypes.windll.kernel32
+        handle = kernel32.GetStdHandle(-11)  # stdout
+        mode = ctypes.c_uint32()
+        if not kernel32.GetConsoleMode(handle, ctypes.byref(mode)):
+            return False
+        return bool(kernel32.SetConsoleMode(handle, mode.value | 0x0004))
+    except Exception:
+        return False
+
+
 try:
-    _IS_TTY = sys.stderr.isatty()
+    _IS_TTY = sys.stdout.isatty()
 except (OSError, AttributeError):
+    _IS_TTY = False
+
+if _IS_TTY and not _enable_windows_ansi():
     _IS_TTY = False
 
 if _IS_TTY:
@@ -131,35 +167,114 @@ def discover_skills(root: Path) -> list[Skill]:
     return result
 
 
+def _is_junction(path: Path) -> bool:
+    """True if *path* is a Windows directory junction.
+
+    Junctions are reparse points, but ``Path.is_symlink()`` reports False for
+    them — so without this check a junction looks like a real directory and
+    install/uninstall both refuse to touch it ("target is not a link").
+    """
+    if os.name != "nt":
+        return False
+    isjunction = getattr(os.path, "isjunction", None)  # Python 3.12+
+    if isjunction is not None:
+        try:
+            return isjunction(path)
+        except OSError:
+            return False
+    try:
+        st = path.lstat()
+    except OSError:
+        return False
+    reparse = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+    return bool(getattr(st, "st_file_attributes", 0) & reparse) and stat.S_ISDIR(st.st_mode)
+
+
+def link_target(link_path: Path) -> Path | None:
+    """Return what *link_path* points at, or None if it is not a link at all."""
+    if link_path.is_symlink():
+        raw = Path(os.readlink(link_path))
+        return raw if raw.is_absolute() else (link_path.parent / raw)
+    if _is_junction(link_path):
+        return link_path.resolve()
+    return None
+
+
+def _create_junction(target: Path, link_path: Path) -> bool:
+    """Create a directory junction. Returns False if every strategy failed."""
+    try:
+        # CPython ships this helper on Windows; avoids spawning a console window
+        # the way `cmd /c mklink` does. Not in the stubs, hence getattr.
+        import _winapi
+
+        create_junction = getattr(_winapi, "CreateJunction", None)
+        if create_junction is not None:
+            create_junction(str(target), str(link_path))
+            return True
+    except Exception:
+        pass
+    try:
+        subprocess.run(
+            ["cmd", "/c", "mklink", "/J", str(link_path), str(target)],
+            check=True,
+            capture_output=True,
+        )
+        return True
+    except Exception:
+        return False
+
+
+def create_link(target: Path, link_path: Path) -> str:
+    """Link *link_path* to *target*; return the kind of link created.
+
+    ``"symlink"`` on POSIX (and on Windows with Developer Mode / elevation).
+    ``"junction"`` when Windows refuses the symlink: creating one requires
+    SeCreateSymbolicLinkPrivilege, so a plain user shell gets WinError 1314.
+    A junction needs no privilege and is transparent to anything walking the
+    directory, so agents load the skills either way.
+    """
+    try:
+        os.symlink(target, link_path, target_is_directory=True)
+        return "symlink"
+    except OSError:
+        if os.name != "nt" or not _create_junction(target, link_path):
+            raise
+        return "junction"
+
+
+def remove_link(link_path: Path) -> None:
+    """Remove a link without touching its target.
+
+    A junction is a directory, so ``unlink()`` raises ``PermissionError``;
+    ``rmdir()`` detaches it and leaves the real skill directory intact.
+    """
+    if _is_junction(link_path):
+        os.rmdir(link_path)
+    else:
+        link_path.unlink()
+
+
 def link_status(local_skill: Path, link_path: Path) -> LinkStatus:
     local_skill = local_skill.resolve()
     try:
         path_exists = link_path.exists()
     except PermissionError:
         path_exists = False
+    target = link_target(link_path)
+    if target is None:
+        if not path_exists:
+            return LinkStatus("missing")
+        return LinkStatus("conflict", link_path.resolve(), "target is not a link")
     try:
-        is_link = link_path.is_symlink()
+        target_exists = target.exists()
     except PermissionError:
-        is_link = False
-    if not path_exists and not is_link:
-        return LinkStatus("missing")
-    if is_link:
-        try:
-            raw_target = Path(os.readlink(link_path))
-        except OSError:
-            return LinkStatus("broken", link_path)
-        target = raw_target if raw_target.is_absolute() else (link_path.parent / raw_target)
-        try:
-            target_exists = target.exists()
-        except PermissionError:
-            target_exists = False
-        if not target_exists:
-            return LinkStatus("broken", target)
-        resolved = target.resolve()
-        if resolved == local_skill:
-            return LinkStatus("linked", resolved)
-        return LinkStatus("conflict", resolved, "symlink points elsewhere")
-    return LinkStatus("conflict", link_path.resolve(), "target is not a symlink")
+        target_exists = False
+    if not target_exists:
+        return LinkStatus("broken", target)
+    resolved = target.resolve()
+    if resolved == local_skill:
+        return LinkStatus("linked", resolved)
+    return LinkStatus("conflict", resolved, "link points elsewhere")
 
 
 def agent_dirs(overrides: dict[str, str] | None = None) -> dict[str, Path]:
@@ -228,8 +343,9 @@ def install(root: Path, registry: dict[str, Path], agent: str | None, skill_name
                 failed = True
                 print(f"error: {agent_name}/{skill.name} is {status.state}; expected missing or linked")
                 continue
-            os.symlink(skill.path, link_path)
-            print(f"{skill.name}\t{agent_name}\tinstalled")
+            kind = create_link(skill.path, link_path)
+            suffix = "" if kind == "symlink" else f" ({kind})"
+            print(f"{skill.name}\t{agent_name}\tinstalled{suffix}")
     return 1 if failed else 0
 
 
@@ -248,7 +364,7 @@ def uninstall(root: Path, registry: dict[str, Path], agent: str | None, skill_na
                 failed = True
                 print(f"error: {agent_name}/{skill.name} is {status.state}; refusing to remove")
                 continue
-            link_path.unlink()
+            remove_link(link_path)
             print(f"{skill.name}\t{agent_name}\tuninstalled")
     return 1 if failed else 0
 

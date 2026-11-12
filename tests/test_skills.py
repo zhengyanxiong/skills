@@ -111,7 +111,7 @@ class TestLinkStatus:
         link_dir = tmp_path / "agent"
         link_dir.mkdir()
         link = link_dir / "test-skill"
-        os.symlink(skill, link)
+        skills.create_link(skill, link)
         status = skills.link_status(skill, link)
         assert status.state == "linked"
         assert status.target == skill.resolve()
@@ -121,9 +121,71 @@ class TestLinkStatus:
         link_dir = tmp_path / "agent"
         link_dir.mkdir()
         link = link_dir / "ghost"
-        os.symlink(tmp_path / "nonexistent", link)
+        skills.create_link(tmp_path / "nonexistent", link)
         status = skills.link_status(skill, link)
         assert status.state == "broken"
+
+
+# ── Link abstraction: POSIX symlinks, Windows junctions ─────────────────
+
+
+class TestLinkAbstraction:
+    def test_create_and_remove_roundtrip(self, tmp_path):
+        skill = _make_skill_dir(tmp_path, "test-skill")
+        link_dir = tmp_path / "agent"
+        link_dir.mkdir()
+        link = link_dir / "test-skill"
+
+        kind = skills.create_link(skill, link)
+        assert kind in ("symlink", "junction")
+        assert (link / "SKILL.md").is_file()  # readable through the link
+        assert skills.link_status(skill, link).state == "linked"
+
+        skills.remove_link(link)
+        assert not link.exists()
+        assert (skill / "SKILL.md").is_file()  # removing the link spares the target
+
+    def test_is_junction_false_on_posix(self, tmp_path):
+        if os.name == "nt":
+            return  # covered by the Windows-only tests below
+        assert skills._is_junction(tmp_path) is False
+
+    def test_link_target_is_none_for_real_directory(self, tmp_path):
+        assert skills.link_target(tmp_path) is None
+
+    def test_install_reports_junction_kind(self, tmp_path, capsys):
+        """install must surface a non-symlink fallback instead of silently using it."""
+        skill = _make_skill_dir(tmp_path, "test-skill")
+        link_dir = tmp_path / "agent"
+        rc = skills.install(tmp_path, {"fake": link_dir}, "fake", "test-skill")
+        out = capsys.readouterr().out
+        assert rc == 0
+        assert "installed" in out
+        assert skills.link_status(skill, link_dir / "test-skill").state == "linked"
+
+
+# ── Windows-only behaviour ──────────────────────────────────────────────
+
+
+class TestWindowsJunctions:
+    def test_junction_is_recognised_and_removable(self, tmp_path):
+        if os.name != "nt":
+            import pytest
+
+            pytest.skip("junctions are Windows-only")
+        skill = _make_skill_dir(tmp_path, "test-skill")
+        link_dir = tmp_path / "agent"
+        link_dir.mkdir()
+        link = link_dir / "test-skill"
+
+        assert skills._create_junction(skill, link) is True
+        assert skills._is_junction(link) is True
+        assert skills.link_target(link) is not None
+        assert skills.link_status(skill, link).state == "linked"
+
+        skills.remove_link(link)
+        assert not skills._is_junction(link)
+        assert (skill / "SKILL.md").is_file()
 
 
 # ── Manifest operations ─────────────────────────────────────────────────

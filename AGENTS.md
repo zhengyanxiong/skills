@@ -89,8 +89,15 @@ No compile step. Run validation:
 ```bash
 python3 skills.py doctor           # Validate all skills
 python3 skills.py status           # Show per-agent link status (no writes)
-python3 -m pytest tests/           # Run tests
+python3 -m pytest tests/           # Run tests (pytest, not unittest discover)
 ```
+
+Windows: `python skills.py …` or `.\skills.ps1 …`. Symlinks need
+`SeCreateSymbolicLinkPrivilege`; the CLI falls back to a directory junction when
+that is unavailable, so no elevation is required. Links go through
+`create_link()` / `remove_link()` / `link_target()` — never call `os.symlink`
+directly, and never assume a link is a symlink (`Path.is_symlink()` is False for
+junctions).
 
 ## Coding Style
 
