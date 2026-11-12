@@ -34,6 +34,33 @@ def sanitize_name(name: str) -> str:
     return _SANITIZE_RE.sub('-', name)
 
 
+def _normalize_path(path: Path) -> Path:
+    """Drop the Windows extended-length prefix so equal paths compare equal.
+
+    Resolving a junction goes through ``GetFinalPathNameByHandle``, which hands
+    back the ``\\\\?\\C:\\...`` form. Left alone, that string never equals the
+    plain ``C:\\...`` path to the same directory, so every junction reads as
+    "points elsewhere".
+    """
+    if os.name != "nt":
+        return path
+    text = str(path)
+    if text.startswith("\\\\?\\"):
+        text = text[4:]
+        if text[:4].upper() == "UNC\\":
+            text = "\\\\" + text[4:]
+        return Path(text)
+    return path
+
+
+def same_path(first: Path, second: Path) -> bool:
+    """True if both paths point at the same filesystem object."""
+    try:
+        return os.path.samefile(first, second)
+    except OSError:
+        return os.path.normcase(str(first)) == os.path.normcase(str(second))
+
+
 def is_safe_path(target: Path, base: Path) -> bool:
     """Return True if *target* resolves to a path under *base*.
 
@@ -45,10 +72,10 @@ def is_safe_path(target: Path, base: Path) -> bool:
     rejected every legitimate child path and made the whole guard fail closed.
     """
     try:
-        resolved = target.resolve()
-        base_resolved = base.resolve()
+        resolved = _normalize_path(target.resolve())
+        base_resolved = _normalize_path(base.resolve())
         # Strictly below *base*: base itself is not a valid target.
-        if resolved == base_resolved:
+        if same_path(resolved, base_resolved):
             return False
         return resolved.is_relative_to(base_resolved)
     except (OSError, ValueError):
@@ -255,7 +282,7 @@ def remove_link(link_path: Path) -> None:
 
 
 def link_status(local_skill: Path, link_path: Path) -> LinkStatus:
-    local_skill = local_skill.resolve()
+    local_skill = _normalize_path(local_skill.resolve())
     try:
         path_exists = link_path.exists()
     except PermissionError:
@@ -264,15 +291,15 @@ def link_status(local_skill: Path, link_path: Path) -> LinkStatus:
     if target is None:
         if not path_exists:
             return LinkStatus("missing")
-        return LinkStatus("conflict", link_path.resolve(), "target is not a link")
+        return LinkStatus("conflict", _normalize_path(link_path.resolve()), "target is not a link")
     try:
         target_exists = target.exists()
     except PermissionError:
         target_exists = False
     if not target_exists:
-        return LinkStatus("broken", target)
-    resolved = target.resolve()
-    if resolved == local_skill:
+        return LinkStatus("broken", _normalize_path(target))
+    resolved = _normalize_path(target.resolve())
+    if same_path(resolved, local_skill):
         return LinkStatus("linked", resolved)
     return LinkStatus("conflict", resolved, "link points elsewhere")
 

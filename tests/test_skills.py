@@ -167,6 +167,27 @@ class TestLinkAbstraction:
 # ── Windows-only behaviour ──────────────────────────────────────────────
 
 
+class TestPathNormalization:
+    """A junction resolves to the ``\\\\?\\C:\\...`` form while the plain path
+    stays ``C:\\...``; without normalisation every junction reads as 'points
+    elsewhere'."""
+
+    def test_identity_on_posix(self, tmp_path):
+        if os.name == "nt":
+            return
+        assert skills._normalize_path(tmp_path) == tmp_path
+
+    def test_strips_extended_length_prefix(self):
+        if os.name != "nt":
+            return
+        assert str(skills._normalize_path(Path(r"\\?\C:\repo\skill"))) == r"C:\repo\skill"
+        assert str(skills._normalize_path(Path(r"\\?\UNC\srv\share"))) == r"\\srv\share"
+
+    def test_same_path_compares_objects(self, tmp_path):
+        assert skills.same_path(tmp_path, tmp_path / ".") is True
+        assert skills.same_path(tmp_path, tmp_path / "nope") is False
+
+
 class TestWindowsJunctions:
     def test_junction_is_recognised_and_removable(self, tmp_path):
         if os.name != "nt":
@@ -219,17 +240,18 @@ class TestAgentDirs:
             assert agent in dirs
             assert dirs[agent].is_absolute()
 
-    def test_with_overrides(self):
-        dirs = skills.agent_dirs({"custom-agent": "/tmp/custom"})
-        assert str(dirs["custom-agent"]) == "/tmp/custom"
+    def test_with_overrides(self, tmp_path):
+        custom = tmp_path / "custom"
+        dirs = skills.agent_dirs({"custom-agent": str(custom)})
+        assert dirs["custom-agent"] == custom.resolve()
 
     def test_dsh_uses_default_home(self, monkeypatch):
         monkeypatch.delenv("DSH_HOME", raising=False)
-        assert skills._dsh_skills_dir() == "~/.dsh/skills"
+        assert skills._dsh_skills_dir() == os.path.join("~/.dsh", "skills")
 
     def test_dsh_honours_dsh_home(self, monkeypatch, tmp_path):
         monkeypatch.setenv("DSH_HOME", str(tmp_path))
-        assert skills._dsh_skills_dir() == str(tmp_path / "skills")
+        assert skills._dsh_skills_dir() == os.path.join(str(tmp_path), "skills")
 
     def test_dsh_dir_is_absolute(self):
         dirs = skills.agent_dirs()
