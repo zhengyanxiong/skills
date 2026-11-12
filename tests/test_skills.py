@@ -181,7 +181,8 @@ class TestPathNormalization:
         if os.name != "nt":
             return
         assert str(skills._normalize_path(Path(r"\\?\C:\repo\skill"))) == r"C:\repo\skill"
-        assert str(skills._normalize_path(Path(r"\\?\UNC\srv\share"))) == r"\\srv\share"
+        # UNC roots normalise with a trailing separator, so compare Paths.
+        assert skills._normalize_path(Path(r"\\?\UNC\srv\share")) == Path(r"\\srv\share")
 
     def test_same_path_compares_objects(self, tmp_path):
         assert skills.same_path(tmp_path, tmp_path / ".") is True
