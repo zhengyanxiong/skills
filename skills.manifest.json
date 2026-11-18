@@ -179,6 +179,17 @@
         "type": "git"
       }
     },
+    "agent-browser": {
+      "description": "给 agent 的浏览器自动化 CLI：Chrome/Chromium over CDP，输出无障碍树快照 + 紧凑 @eN 元素引用。支持 Electron 应用、Slack 自动化、探索式测试、Vercel Sandbox 与 AWS Bedrock AgentCore 云浏览器。SKILL.md 是发现桩，实际内容按版本从 CLI 拉取。",
+      "source": {
+        "last_checked_at": "2026-11-10T00:31:38.240296+00:00",
+        "last_commit": "e7519957b9067c541825afa21a792fbe1f483047",
+        "path": "skills/agent-browser",
+        "ref": "main",
+        "repo": "https://github.com/vercel-labs/agent-browser.git",
+        "type": "git"
+      }
+    },
     "agent-eval": {
       "description": "Head-to-head comparison of coding agents (pass rate, cost, time, consistency)",
       "source": {
@@ -360,6 +371,17 @@
         "type": "git"
       }
     },
+    "cinematic-film": {
+      "description": "Makes narrated cinematic films entirely from code, on any subject. One continuous camera glides over one designed world of photos, documents, cards, maps with routes and big numbers, with every stamp, highlight and number landing on the narrator's word, then sound effects, an optional score and burned-in captions. For documentaries and history, product launches, brand and founder stories, science and tech explainers, biographies and true crime. Covers the script, voiceover from any TTS split into timed lines, images (archives with their licences, your own photos, AI stills), a beat table, the scene, self-review stills and a memory-safe parallel render. Use for \"make a cinematic video about\", \"documentary about\", \"explainer video\", \"launch film\", \"Vox-style video\", \"evidence board animation\", or turning a story into a video for X, YouTube or TikTok.",
+      "source": {
+        "last_checked_at": "2026-11-18T00:44:19Z",
+        "last_commit": "bf435561c6203f90f971300efe952b68b5ec3417",
+        "path": "skills",
+        "ref": "main",
+        "repo": "https://github.com/Moh4696/cinematic-skill.git",
+        "type": "git"
+      }
+    },
     "code-review-and-quality": {
       "source": {
         "last_checked_at": "2026-11-01T14:09:41Z",
@@ -501,6 +523,17 @@
         "type": "git"
       }
     },
+    "diagram-design": {
+      "description": "品牌化图表生成（v2.6）：45+ 种图表类型（架构/时序/状态机/ERD/桑基/鱼骨/Wardley/甘特/热力等）输出 HTML/SVG/PNG，支持 .drawio / Mermaid / .excalidraw / PlantUML 导入。附 224 个示例 HTML 作为视觉参考。",
+      "source": {
+        "last_checked_at": "2026-11-11T00:35:56.135589+00:00",
+        "last_commit": "f2496acbde9f45ccb55c24d4f75210c8a1355df8",
+        "path": "skills/diagram-design",
+        "ref": "main",
+        "repo": "https://github.com/cathrynlavery/diagram-design.git",
+        "type": "git"
+      }
+    },
     "dispatching-parallel-agents": {
       "description": "Coordinate multiple independent investigation or implementation tasks by delegating them to isolated parallel agents.",
       "source": {
@@ -509,6 +542,17 @@
         "path": "skills/dispatching-parallel-agents",
         "ref": "main",
         "repo": "https://github.com/obra/superpowers.git",
+        "type": "git"
+      }
+    },
+    "distilly": {
+      "description": "Set up the owner profile so a personal agent knows who it works for (first-run setup, \"get to know me\"), or distill colleague, relationship, or celebrity source material into reusable Person Profiles for agents.",
+      "source": {
+        "last_checked_at": "2026-11-18T00:44:19Z",
+        "last_commit": "0afc45c29c360ba7bc8260f1bb0bf34e9155f4fa",
+        "path": ".",
+        "ref": "dot-skill",
+        "repo": "https://github.com/titanwings/distilly.git",
         "type": "git"
       }
     },
@@ -578,6 +622,17 @@
         "ref": "main",
         "repo": "anthropics/skills",
         "type": "github"
+      }
+    },
+    "domain-modeling": {
+      "description": "主动构建/打磨项目的 domain model。维护 GLOSSARY.md + docs/adr/。四个核心动作：术语冲突检测、模糊词精确化、边界场景 stress-test、代码与口述矛盾浮现。",
+      "source": {
+        "last_checked_at": "2026-11-05T00:33:20.234343+00:00",
+        "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+        "path": "skills/engineering/domain-modeling",
+        "ref": "main",
+        "repo": "https://github.com/mattpocock/skills.git",
+        "type": "git"
       }
     },
     "doubt-driven-development": {
@@ -703,6 +758,28 @@
         "type": "git"
       }
     },
+    "graphify": {
+      "description": "Turn any folder of files into a navigable knowledge graph with community detection, audit trail, and GraphRAG-ready outputs.",
+      "source": {
+        "last_checked_at": "2026-11-04T00:32:29.776652+00:00",
+        "last_commit": "59b5ab1151e031fb42e39cfc9a50bf96f2d57ae0",
+        "path": "graphify",
+        "ref": "v8",
+        "repo": "https://github.com/Graphify-Labs/graphify.git",
+        "type": "git"
+      }
+    },
+    "humanizer": {
+      "description": "Rewrite AI-sounding text so it reads like the writer without changing what it says.",
+      "source": {
+        "last_checked_at": "2026-11-04T00:31:37.127585+00:00",
+        "last_commit": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
+        "path": ".",
+        "ref": "main",
+        "repo": "https://github.com/blader/humanizer.git",
+        "type": "git"
+      }
+    },
     "idea-refine": {
       "source": {
         "last_checked_at": "2026-11-01T14:09:42Z",
@@ -743,6 +820,17 @@
         "path": "skills",
         "ref": "main",
         "repo": "https://github.com/Leonxlnx/taste-skill.git",
+        "type": "git"
+      }
+    },
+    "impeccable": {
+      "description": "设计总监级前端 Skill（v4.8.2）：UX 审查、层级、排版、配色、动效、UX 文案、可访问性、响应式、空状态、边缘案例，可产出 DESIGN.md 与 tokens 设计系统。按 surface 模式（Persuade/Experience vs Operate/Read）调整投入强度，要求必须查看渲染结果后再验收。42 篇 reference 按动作分文档（audit/critique/polish/harden/animate/live 等）。",
+      "source": {
+        "last_checked_at": "2026-11-11T00:35:56.135589+00:00",
+        "last_commit": "f2baa414a87d9acf1e21ccf776bfaec0262ad6df",
+        "path": ".hermes/skills/impeccable",
+        "ref": "main",
+        "repo": "https://github.com/pbakaus/impeccable.git",
         "type": "git"
       }
     },
@@ -1169,6 +1257,17 @@
         "type": "github"
       }
     },
+    "socratic-tutor": {
+      "description": "Structured Socratic tutoring when the user explicitly asks to be taught, quizzed, or drilled to mastery on a topic: diagnostic placement, a skill map with levels 0-5, spaced review, and a final assessment. Trigger phrases: 'teach me', 'tutor me', 'quiz me', 'drill me', 'help me master'. Not for one-off 'explain X' or 'what is X' questions.",
+      "source": {
+        "last_checked_at": "2026-11-18T00:44:19Z",
+        "last_commit": "469868f4489cbdbe178c775a0af05bb6bef63689",
+        "path": "socratic-tutor",
+        "ref": "master",
+        "repo": "https://github.com/janestreet/agent_skills.git",
+        "type": "git"
+      }
+    },
     "soft-skill": {
       "description": "",
       "source": {
@@ -1209,6 +1308,17 @@
         "path": "skills/springboot-tdd",
         "ref": "main",
         "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "stack-diagram": {
+      "description": "Create cloud-architecture-style diagrams of tech stacks, system architectures, infra layouts, and service topologies — with real brand logos, grouped containers, and clean orthogonal arrows — delivered as self-contained HTML, a PNG image, a React/TSX component, or a live artifact. Use this skill whenever the user asks for an architecture / system / stack / infra diagram, a tech-stack overview, a service topology, a cloud-vendor-style diagram, or wants tech logos arranged into a picture of how their services connect — in any language, even if they don't name an output format, and even if the tools involved aren't cloud services.",
+      "source": {
+        "last_checked_at": "2026-11-18T00:44:19Z",
+        "last_commit": "85ff93b92f69bf400337b9d9edc310650493ee59",
+        "path": "skills",
+        "ref": "main",
+        "repo": "https://github.com/caru-ini/stack-diagram.git",
         "type": "git"
       }
     },
@@ -1505,6 +1615,17 @@
         "type": "git"
       }
     },
+    "wizard": {
+      "description": "生成交互式 bash 向导，把只有人类能做的步骤脚本化：逐段开 URL、说明点哪里/复制什么、捕获值写入 .env 或 gh secret、每步确认、显示剩余阶段。基于 template.sh（原生支持 WSL 打开链接、隐藏密钥输入、幂等 .env upsert）。",
+      "source": {
+        "last_checked_at": "2026-11-10T00:31:38.240296+00:00",
+        "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+        "path": "skills/engineering/wizard",
+        "ref": "main",
+        "repo": "https://github.com/mattpocock/skills.git",
+        "type": "git"
+      }
+    },
     "writing-guidelines": {
       "source": {
         "last_checked_at": "2026-08-01T22:35:00Z",
@@ -1546,83 +1667,6 @@
         "ref": "main",
         "repo": "anthropics/skills",
         "type": "github"
-      }
-    },
-    "humanizer": {
-      "description": "Rewrite AI-sounding text so it reads like the writer without changing what it says.",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/blader/humanizer.git",
-        "ref": "main",
-        "path": ".",
-        "last_commit": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
-        "last_checked_at": "2026-11-04T00:31:37.127585+00:00"
-      }
-    },
-    "graphify": {
-      "description": "Turn any folder of files into a navigable knowledge graph with community detection, audit trail, and GraphRAG-ready outputs.",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/Graphify-Labs/graphify.git",
-        "ref": "v8",
-        "path": "graphify",
-        "last_commit": "59b5ab1151e031fb42e39cfc9a50bf96f2d57ae0",
-        "last_checked_at": "2026-11-04T00:32:29.776652+00:00"
-      }
-    },
-    "domain-modeling": {
-      "description": "主动构建/打磨项目的 domain model。维护 GLOSSARY.md + docs/adr/。四个核心动作：术语冲突检测、模糊词精确化、边界场景 stress-test、代码与口述矛盾浮现。",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/mattpocock/skills.git",
-        "ref": "main",
-        "path": "skills/engineering/domain-modeling",
-        "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
-        "last_checked_at": "2026-11-05T00:33:20.234343+00:00"
-      }
-    },
-    "wizard": {
-      "description": "生成交互式 bash 向导，把只有人类能做的步骤脚本化：逐段开 URL、说明点哪里/复制什么、捕获值写入 .env 或 gh secret、每步确认、显示剩余阶段。基于 template.sh（原生支持 WSL 打开链接、隐藏密钥输入、幂等 .env upsert）。",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/mattpocock/skills.git",
-        "ref": "main",
-        "path": "skills/engineering/wizard",
-        "last_commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
-        "last_checked_at": "2026-11-10T00:31:38.240296+00:00"
-      }
-    },
-    "agent-browser": {
-      "description": "给 agent 的浏览器自动化 CLI：Chrome/Chromium over CDP，输出无障碍树快照 + 紧凑 @eN 元素引用。支持 Electron 应用、Slack 自动化、探索式测试、Vercel Sandbox 与 AWS Bedrock AgentCore 云浏览器。SKILL.md 是发现桩，实际内容按版本从 CLI 拉取。",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/vercel-labs/agent-browser.git",
-        "ref": "main",
-        "path": "skills/agent-browser",
-        "last_commit": "e7519957b9067c541825afa21a792fbe1f483047",
-        "last_checked_at": "2026-11-10T00:31:38.240296+00:00"
-      }
-    },
-    "impeccable": {
-      "description": "设计总监级前端 Skill（v4.8.2）：UX 审查、层级、排版、配色、动效、UX 文案、可访问性、响应式、空状态、边缘案例，可产出 DESIGN.md 与 tokens 设计系统。按 surface 模式（Persuade/Experience vs Operate/Read）调整投入强度，要求必须查看渲染结果后再验收。42 篇 reference 按动作分文档（audit/critique/polish/harden/animate/live 等）。",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/pbakaus/impeccable.git",
-        "ref": "main",
-        "path": ".hermes/skills/impeccable",
-        "last_commit": "f2baa414a87d9acf1e21ccf776bfaec0262ad6df",
-        "last_checked_at": "2026-11-11T00:35:56.135589+00:00"
-      }
-    },
-    "diagram-design": {
-      "description": "品牌化图表生成（v2.6）：45+ 种图表类型（架构/时序/状态机/ERD/桑基/鱼骨/Wardley/甘特/热力等）输出 HTML/SVG/PNG，支持 .drawio / Mermaid / .excalidraw / PlantUML 导入。附 224 个示例 HTML 作为视觉参考。",
-      "source": {
-        "type": "git",
-        "repo": "https://github.com/cathrynlavery/diagram-design.git",
-        "ref": "main",
-        "path": "skills/diagram-design",
-        "last_commit": "f2496acbde9f45ccb55c24d4f75210c8a1355df8",
-        "last_checked_at": "2026-11-11T00:35:56.135589+00:00"
       }
     }
   },

@@ -1,0 +1,83 @@
+{
+ "title": "Twelve Seconds",
+ "takes": [
+  {"take": "T01_cold_open", "lines": [
+   {"id": 1, "text": "December 17th, 1903. A windy beach in North Carolina.",
+    "spoken": "December seventeenth, nineteen oh three. A windy beach in North Carolina.",
+    "hero": "the date, set big; then the map pin on the Outer Banks", "typed": "DECEMBER 17, 1903 · KILL DEVIL HILLS, N.C."},
+   {"id": 2, "text": "A machine of spruce and cloth leaves the sand.",
+    "spoken": "A machine of spruce and cloth leaves the sand.",
+    "hero": "the first-flight photograph lands", "typed": ""},
+   {"id": 3, "text": "Twelve seconds. One hundred and twenty feet.",
+    "spoken": "Twelve seconds. One hundred and twenty feet.",
+    "hero": "two counters roll up under the photo", "typed": "12 SECONDS · 120 FEET"},
+   {"id": 4, "text": "The man who took this picture had never taken one before.",
+    "spoken": "The man who took this picture had never taken one before.",
+    "hero": "pen circle round the photo; name bar under it; title after the line", "typed": "JOHN T. DANIELS · title TWELVE SECONDS", "gap_after": 1.2}
+  ]},
+  {"take": "T02_dayton", "lines": [
+   {"id": 5, "text": "Four years earlier, two brothers ran a bicycle shop in Dayton, Ohio.",
+    "spoken": "Four years earlier, two brothers ran a bicycle shop in Dayton, Ohio.",
+    "hero": "string from the photo to Dayton on the map; the cycle-shop photo", "typed": "DAYTON"},
+   {"id": 6, "text": "Wilbur and Orville Wright. Neither had a high school diploma.",
+    "spoken": "Wilbur and Orville Wright. Neither had a high school diploma.",
+    "hero": "two portraits, red name bars", "typed": "WILBUR WRIGHT · ORVILLE WRIGHT"},
+   {"id": 7, "text": "In 1899, Wilbur wrote to the Smithsonian for everything it had on flight.",
+    "spoken": "In eighteen ninety-nine, Wilbur wrote to the Smithsonian for everything it had on flight.",
+    "hero": "his letter, typeset as a document", "typed": "letter header DAYTON, OHIO · MAY 30, 1899"},
+   {"id": 8, "text": "I am an enthusiast, he wrote, but not a crank.",
+    "spoken": "I am an enthusiast, he wrote, but not a crank.",
+    "hero": "highlighter swipes the sentence on the letter", "typed": ""}
+  ]},
+  {"take": "T03_the_rival", "lines": [
+   {"id": 9, "text": "The man in charge there, Samuel Langley, was building a flying machine of his own.",
+    "spoken": "The man in charge there, Samuel Langley, was building a flying machine of his own.",
+    "hero": "string from the letter to Langley's portrait", "typed": "SAMUEL P. LANGLEY"},
+   {"id": 10, "text": "The War Department gave him fifty thousand dollars.",
+    "spoken": "The War Department gave him fifty thousand dollars.",
+    "hero": "counter rolls to $50,000", "typed": "$50,000"},
+   {"id": 11, "text": "On October 7th, 1903, it launched from a houseboat on the Potomac, and dropped straight into the river.",
+    "spoken": "On October seventh, nineteen oh three, it launched from a houseboat on the Potomac, and dropped straight into the river.",
+    "hero": "the machine on its houseboat; stamp on 'river'", "typed": "label OCTOBER 7, 1903 · map WASHINGTON · stamp FAILED"},
+   {"id": 12, "text": "Two days later, The New York Times said a real flying machine might take one to ten million years.",
+    "spoken": "Two days later, The New York Times said a real flying machine might take one to ten million years.",
+    "hero": "the editorial; highlighter on its prediction", "typed": "doc header THE NEW YORK TIMES · OCT. 9, 1903"},
+   {"id": 13, "text": "On December 8th, Langley tried again. Same river. Same result.",
+    "spoken": "On December eighth, Langley tried again. Same river. Same result.",
+    "hero": "a second stamp beside the first", "typed": "stamp FAILED AGAIN"}
+  ]},
+  {"take": "T04_kitty_hawk", "lines": [
+   {"id": 14, "text": "Nine days later, the Wright brothers were back on that beach.",
+    "spoken": "Nine days later, the Wright brothers were back on that beach.",
+    "hero": "route Dayton to the Outer Banks across the map", "typed": ""},
+   {"id": 15, "text": "Their whole effort had cost less than a thousand dollars.",
+    "spoken": "Their whole effort had cost less than a thousand dollars.",
+    "hero": "counter rolls to $1,000", "typed": "UNDER $1,000"},
+   {"id": 16, "text": "Orville flew first. By noon, Wilbur stayed up for fifty-nine seconds.",
+    "spoken": "Orville flew first. By noon, Wilbur stayed up for fifty-nine seconds.",
+    "hero": "counter 59 SECONDS beside the 12", "typed": "59 SECONDS"},
+   {"id": 17, "text": "They wired their father: Success. Four flights. Home for Christmas.",
+    "spoken": "They wired their father. Success. Four flights. Home for Christmas.",
+    "hero": "the telegram; highlighter on 'Success'", "typed": "", "gap_after": 1.0}
+  ]},
+  {"take": "T05_close", "lines": [
+   {"id": 18, "text": "The government spent fifty thousand dollars, and got a wreck in a river.",
+    "spoken": "The government spent fifty thousand dollars, and got a wreck in a river.",
+    "hero": "the camera crosses back to Langley's prints", "typed": ""},
+   {"id": 19, "text": "Two bicycle mechanics spent less than a thousand, and got the sky.",
+    "spoken": "Two bicycle mechanics spent less than a thousand, and got the sky.",
+    "hero": "final pull-back: the whole wall", "typed": ""}
+  ]}
+ ],
+ "fact_notes": [
+  "Dec 17, 1903, Kill Devil Hills near Kitty Hawk: first flight 12 s, 120 ft, Orville at the controls; fourth flight (Wilbur, about noon) 59 s, 852 ft.",
+  "John T. Daniels of the Kill Devil Hills lifesaving station squeezed the shutter bulb; he had never taken a photograph.",
+  "Neither brother received a high-school diploma (Wilbur finished the course but the family moved before graduation; Orville left in his junior year).",
+  "Wilbur's letter to the Smithsonian is dated May 30, 1899 and contains 'I am an enthusiast, but not a crank in the sense that I have some pet theories as to the proper construction of a flying machine.'",
+  "Langley was Secretary of the Smithsonian; the War Department's Board of Ordnance and Fortification granted $50,000 (the Smithsonian added about $20,000).",
+  "Aerodrome A failed on launch from a houseboat on the Potomac on Oct 7 and Dec 8, 1903; Dec 8 to Dec 17 is nine days.",
+  "NYT editorial 'Flying Machines Which Do Not Fly', Oct 9, 1903: '...in from one million to ten million years.'",
+  "Wright expenses 1900-1903 including travel: a little under $1,000 (commonly cited, McCullough; Orville later said about $1,000).",
+  "Telegram text: 'Success four flights thursday morning ... longest 57 seconds inform Press home Christmas' (57 is the telegrapher's error for 59)."
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "title": "From Cherry to Cup",
+ "takes": [
+  {"take": "T01_open", "lines": [
+   {"id": 1, "text": "Every cup of coffee starts as a cherry.",
+    "spoken": "Every cup of coffee starts as a cherry.",
+    "hero": "the title, set big", "typed": "FROM CHERRY TO CUP", "gap_after": 0.8}
+  ]},
+  {"take": "T02_journey", "lines": [
+   {"id": 2, "text": "It grows on a shrub, in a band around the equator called the Coffee Belt.",
+    "spoken": "It grows on a shrub, in a band around the equator called the Coffee Belt.",
+    "hero": "card GROW", "typed": "GROW"},
+   {"id": 3, "text": "Pickers take the ripe cherries, and the fruit is washed or dried away.",
+    "spoken": "Pickers take the ripe cherries, and the fruit is washed or dried away.",
+    "hero": "card PICK", "typed": "PICK"},
+   {"id": 4, "text": "The green seed inside is roasted at around 200 degrees.",
+    "spoken": "The green seed inside is roasted at around two hundred degrees.",
+    "hero": "card ROAST; the number rolls up", "typed": "ROAST · 200°C"},
+   {"id": 5, "text": "Then it is ground, brewed, and poured.",
+    "spoken": "Then it is ground, brewed, and poured.",
+    "hero": "card BREW", "typed": "BREW"}
+  ]},
+  {"take": "T03_close", "lines": [
+   {"id": 6, "text": "Months of work, for a few minutes in a cup.",
+    "spoken": "Months of work, for a few minutes in a cup.",
+    "hero": "pull back: the whole journey", "typed": ""}
+  ]}
+ ],
+ "fact_notes": ["Replace this template with your own story; keep one note per claim with its source."]
+}

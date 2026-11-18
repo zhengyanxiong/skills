@@ -1,0 +1,12 @@
+{
+ "maps": [{
+  "name": "us",
+  "source": "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json",
+  "object": "states",
+  "projection": {"type": "albers", "lon0": -96, "lat0": 37.5, "p1": 29.5, "p2": 45.5},
+  "drop": ["Alaska", "Hawaii", "Puerto Rico", "Guam", "American Samoa", "United States Virgin Islands", "Commonwealth of the Northern Mariana Islands"],
+  "neighbors": {"source": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json", "object": "countries",
+                "keep": ["Canada", "Mexico", "Cuba", "Bahamas"], "dark": ["Canada", "Mexico"], "clip": [-135, 14, -55, 58]},
+  "places": {"Dayton": [39.76, -84.19], "Kill Devil Hills": [36.02, -75.67], "Washington": [38.90, -77.04]}
+ }]
+}
