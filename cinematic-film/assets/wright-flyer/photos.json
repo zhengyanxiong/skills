@@ -1,0 +1,19 @@
+{
+ "grade": "bw",
+ "photos": [
+  {"id": "P01", "what": "First flight, Dec 17 1903", "kind": "photo", "commons": "File:First flight2.jpg"},
+  {"id": "P02", "what": "Orville Wright in the Wright Cycle Company shop, 1890s", "kind": "photo",
+   "commons": "File:Orville Wright in a work apron standing behind equipment at the Wright Cycle Company, c. 1890s. (a1895985-1dd8-b71b-0bd7-087631da420f).jpg"},
+  {"id": "P03", "what": "Wilbur Wright, 1905", "kind": "photo", "commons": "File:Wilbur Wright-crop.jpg", "crop": [0.04, 0.02, 0.96, 0.86]},
+  {"id": "P04", "what": "Orville Wright, 1905", "kind": "photo", "commons": "File:Orville Wright 1905-crop.jpg", "crop": [0.04, 0.02, 0.96, 0.86]},
+  {"id": "P05", "what": "Samuel P. Langley", "kind": "photo", "commons": "File:Samuel Pierpont Langley SI-87-17019h original.jpg", "crop": [0.0, 0.04, 1.0, 0.72]},
+  {"id": "P06", "what": "Langley's Aerodrome A on its houseboat, Oct 7 1903", "kind": "photo",
+   "commons": "File:Attempted Flight of Langley's Full Sized Plane, being readied for Launching, October 7th 1903. (50255040742).jpg",
+   "credit": "Photographer unknown (Commons upload via Flickr user tormentor4555)"},
+  {"id": "P07", "what": "Orville's telegram to his father, Dec 17 1903", "kind": "doc", "commons": "File:Telegram Orville Wright 17 dec 1903.jpg"}
+ ],
+ "recreations": [
+  "Wilbur Wright's letter of May 30, 1899 to the Smithsonian: the sentence shown is quoted from the letter; the page is typeset in code.",
+  "New York Times editorial 'Flying Machines Which Do Not Fly', Oct 9, 1903: the quoted sentence is real; the page is typeset in code."
+ ]
+}

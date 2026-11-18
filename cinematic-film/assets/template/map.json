@@ -1,0 +1,10 @@
+{
+ "maps": [{
+  "name": "world",
+  "source": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json",
+  "object": "countries",
+  "projection": {"type": "equirect", "lon0": 10, "lat0": 0},
+  "drop": ["Antarctica"],
+  "places": {"Addis Ababa": [9.03, 38.74], "Bogota": [4.71, -74.07], "Hanoi": [21.03, 105.85]}
+ }]
+}
