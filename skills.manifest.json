@@ -251,6 +251,17 @@
         "type": "git"
       }
     },
+    "ask-matt": {
+      "description": "Ask which skill or flow fits your situation. A router over the skills in this repo.",
+      "source": {
+        "last_checked_at": "2026-11-20T00:31:35Z",
+        "last_commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+        "path": "skills/engineering/ask-matt",
+        "ref": "main",
+        "repo": "https://github.com/mattpocock/skills.git",
+        "type": "git"
+      }
+    },
     "audit-context-building": {
       "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding. Pre-audit phase skill using First Principles, 5 Whys, and 5 Hows at micro scale.",
       "source": {
@@ -1547,6 +1558,17 @@
         "path": ".claude/skills/ui-ux-pro-max",
         "ref": "main",
         "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "type": "git"
+      }
+    },
+    "unslop": {
+      "description": "Turns vibecoded, AI-looking UI into a designed interface with its own character. Finds a direction from the product itself, then fixes spacing, color, icons, copy, type, layout, details, visuals and motion in that order, and can generate a real hero visual with an image tool when one is available. Use when the user asks to unslop, polish, clean up or redesign a screen so it stops looking AI-generated, or when a UI shows the usual tells like purple gradients, glows, gradient text, emoji labels, \"New ✨\" badges, glossy blobs, uppercase tracked labels, pulsing elements or uneven spacing. Works on React, Tailwind, HTML and CSS, for dashboards, apps and landing pages.",
+      "source": {
+        "last_checked_at": "2026-11-20T00:31:35Z",
+        "last_commit": "5cd3b65ceed91782f9d339d3d2eff834fdaf5495",
+        "path": "skills",
+        "ref": "main",
+        "repo": "https://github.com/heydamir/unslop.git",
         "type": "git"
       }
     },
