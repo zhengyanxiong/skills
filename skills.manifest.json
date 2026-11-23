@@ -1572,6 +1572,17 @@
         "type": "git"
       }
     },
+    "ub-mode": {
+      "description": "Follow the reduced principles when writing or changing code. Every change follows First Make it Work, then Then Make it Right, then Follow Practice. Use when the user runs /ub-mode or asks for the reduced principles.",
+      "source": {
+        "last_checked_at": "2026-11-23T01:22:57Z",
+        "last_commit": "3da62bf3fcfd2034de41f30d920d2739e566171f",
+        "path": "",
+        "ref": "master",
+        "repo": "https://github.com/unclebob/ub-mode.git",
+        "type": "git"
+      }
+    },
     "ui-ux-pro-max": {
       "description": "Provide searchable UI/UX design intelligence for styles, palettes, typography, charts, accessibility, and frontend stack guidance.",
       "source": {
