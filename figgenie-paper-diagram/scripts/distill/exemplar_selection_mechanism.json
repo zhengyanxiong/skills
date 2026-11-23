@@ -1,0 +1,1599 @@
+{
+  "_comment": "mechanism selection (v3 groups, 2026-09-20): the exemplar candidates of mech-prescreen/semantics/candidates.json (30 per group, human-rated good, semantic record written by an agent), reviewed by hand on exemplar-review/mechanism/review.html (drops + stars + moves); what_to_learn from references/mechanism/layouts.md for the figures its exemplar tables cite (note_source doc), else from the record's reusable_patterns (note_source record), or rewritten by a note agent that looked at the figure (note_source agent). A figure is listed under its primary group (starred there when starred at all) and unstarred under its secondary groups.",
+  "source": {
+    "semantics": "lab/extracted/corpus_semantics.jsonl",
+    "index": "lab/extracted/corpus_index.csv",
+    "filter": "record kind == 'mechanism' and index row diagram/mechanism/good; candidates = mech-prescreen/semantics/candidate_ids.txt",
+    "decisions": "../../../exemplar-review/mechanism/decisions.json",
+    "n_candidates": 152,
+    "n_dropped": 5,
+    "n_starred": 73,
+    "n_moved": 1
+  },
+  "exemplars": [
+    {
+      "id": "asplos25-018_fig6",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Two policies drawn on the identical satellite x day grid; only the reference arrows' source row changes, making the cause of the lower change-% immediately traceable.",
+      "what_to_learn": "Keep the satellite-row/day-column grid, colours and callout box identical across panels, and change only each dashed arrow's source row (same satellite vs. any satellite) so the drop in change-% reads on its own — but satellite icons stay unlabelled.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-038_fig1",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Moving from exclusive, to static, to on-demand GPU allocation packs the same four training/inference functions onto fewer GPUs (4 to 3 to 2) by matching each function's actual compute request/limit instead of over- or statically provisioning it.",
+      "what_to_learn": "One full-width legend above three panels; identical icon chain inside each; one bold verdict line at the same y in every panel",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-026_fig10",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Capturing one CUDAGraph per strategy wastes memory linearly with strategy count; bucketing batch sizes, disaggregating target/draft capture, and merging strategies that share parameters keeps memory nearly flat while still gaining the throughput of many adaptive strategies.",
+      "what_to_learn": "A two-line check/cross scorecard under every alternative; roman numerals for the sub-steps that build the winner",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-067_fig5",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Four-panel figure where a numbered synthesis pipeline (with a feedback loop) sits beside the resulting protocol trace and the two original protocols it fuses, using one shared sequence-diagram notation throughout.",
+      "what_to_learn": "Draw the synthesized protocol and both source protocols with the same lifeline-plus-boxed-state notation so states and messages line up panel to panel, and carry one two-colour domain tint through every panel.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos26-074_fig4",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Two stacked circuit variants share one input row and one four-colour weight-value key, so shrinking 16 multipliers to 4 shared accumulators is visible as a colour count, not a claim.",
+      "what_to_learn": "Stack both variants on one aligned input row, colour every occurrence of the same weight value identically in both, so sixteen boxes shrinking to four reads as a colour count — but the routing order still needs tracing.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi24-029_fig6",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Parcae recovers from preemptions with three migration strategies over the same instance grid: swap in a same-stage peer (intra-stage), reassign a spare instance to a different stage (inter-stage), or reshuffle every surviving instance into a new pipeline layout.",
+      "what_to_learn": "before-grid → labelled rule box → after-grid, repeated per panel; a dashed hatched box holds whatever falls out",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi24-095_fig3",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One baseline self-loop cell versus two unrolled staircases; a single yellow halo shows exactly what a memory-constrained switch must keep between steps — one hidden state or all raw inputs.",
+      "what_to_learn": "Redraw the same GRU box as a diagonal staircase across time, grey out steps outside focus, and wrap only what must persist in constrained storage with one yellow halo — small around one hidden state, wide around every raw input.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi24-097_fig7",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Pairs a shared-origin phase-plane trajectory comparison with stacked good/bad time-series panels on one time axis, showing why a good initial position gives a larger, more usable respiration signal.",
+      "what_to_learn": "Fan two trajectories from one shared origin in a phase-plane panel, then stack the matching good/bad time-series beneath shared dashed reference lines so amplitude differences line up visually — but (a)'s colours don't match (b)/(c)'s.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi25-035_fig1",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Same coloured step-blocks reused in both panels so the reader sees which steps (thread switching, context save) vanish moving from synchronous to asynchronous.",
+      "what_to_learn": "Colour-code each step type once (orange = context ops, blue = request/poll) and reuse those colours in both panels, then bracket the idle span the async version fills with useful work instead of a thread switch.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-074_fig4",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Four-panel comparison: a legend table defining three coloured path variables, a shared background-traffic graph, then two solutions overlaying different numeric splits on those same coloured paths.",
+      "what_to_learn": "Define each alternate path's colour once in a legend table, redraw the identical background graph per solution, and change only the numbers stacked on each coloured edge — but two stacked numbers per short segment make the graph dense.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-082_fig4",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Base model plus LoRA drawn once with '?' placeholders to pose the search, then four numbered single-layer templates get recombined pairwise into the full candidate graphs being compared.",
+      "what_to_learn": "Give each small reusable unit a number badge once (① Linear with its tensor-state tags on every edge), then build every candidate by stacking two numbered units and swapping only the one connecting communication operator between them.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi23-029_fig3",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A GPU x memory-budget grid comparing replication vs model-parallel placement across the same three budget rows, using identical model colours and only labeling the shared row axis once.",
+      "what_to_learn": "Keep one colour per model across both panels; draw it as a whole tile under replication and subdivide that tile into shards under model parallelism, sharing one 1x/2x/4x row axis across the divider — but identical shard groups go unnoticed.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-003_fig4",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Same worker pipeline drawn twice, coloured red vs green, making an abstract 'imbalance' concrete as one heavier micro-batch; the other panel maps a chunk onto the mask rows it touches.",
+      "what_to_learn": "Draw the same worker pipeline twice, colouring only the rows that differ (red = heavy micro-batch, green = light) to make 'imbalance' visible at a glance; elsewhere, map a chunk's label directly onto the mask rows it occupies.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-010_fig7",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Two identical page-state-machine templates side by side (state spine + numbered steps + linked epoch-phase column), differing only by one extra intermediate state and its numbering.",
+      "what_to_learn": "Draw each variant as an identical spine of numbered states with a phase column linked by short cross-arrows and a return loop on the left; give the busier variant one extra spine state and renumber after it.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi26-024_fig3",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Same BFS/DFS branch templates drawn twice, before/after; a single vertical dashed rule marks the reward-wait barrier that the after-panel fills with new green speculative boxes.",
+      "what_to_learn": "Keep the identical branch layout in both panels and mark the blocking point as one vertical dashed rule; fill past it with solid green boxes for confirmed speculation and dashed-outline boxes for a second, unconfirmed layer.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi26-040_fig1",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Locks for disaggregated shared memory can be layered on top of cache coherence (redundant transactions), bypass it entirely (losing optimizations), or, as proposed, generalize the same substrate to implement both, unifying the two layers.",
+      "what_to_learn": "Dashed vertical rules instead of panel boxes; a bold descriptive caption per panel instead of (a)/(b)/(c) — and the cost: an automated panel counter reads it as one panel",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp24-011_fig7",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Same 3x4 data-parallel x pipeline-stage worker grid drawn twice: one clustered whole-column failure (checkpoint needed) versus scattered failures leaving one live worker per column (training survives).",
+      "what_to_learn": "Ring one whole failed column in a dashed box labelled by name for the worst case; for the survivable case, scatter the same failure icons so every column still keeps one active worker — but red/black arrows go unexplained.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp24-024_fig3",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One coloured Input/Weight/Output key from the whole-matrix panel is reused unchanged through both partition variants, and a nested Step/Shift/Step insert shows the exact tiles trading places.",
+      "what_to_learn": "Fix one colour per Input row-block, Weight column-block and Output block in the whole-operator panel, reuse those exact colours in every partitioned variant, and show the trade as a half-filled output block that a Shift sub-frame completes.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp24-035_fig2",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Same CPU-Mem/CPU/GPU/GPU-Mem template with a PCIe bar reused for both offloading designs; circled numbered arrows trace which layer or result crosses the bus and when.",
+      "what_to_learn": "Reuse one CPU-Mem/CPU-icon/GPU-icon/GPU-Mem template over a PCIe bar for both designs, numbering each cross-bus arrow in order, and show idle vs busy compute by icon fill density alone — but that convention has no legend.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-001_fig11",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A triangular masked-attention block map, coloured data-vs-compute, whose colours carry into flat per-device shelves for two placements so the reader can just count blue tiles to see the imbalance vanish.",
+      "what_to_learn": "Draw the triangular block map once, colour data vs compute blocks, then reuse those colours in flat per-device shelves so imbalance is countable at a glance — but no arrows mark which block moved between placements.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-024_fig1",
+      "group": "comparison",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One shared two-icon system legend at top, then growing question-complexity is shown purely by stretching the same retrieve-then-answer chain to more links across three stacked panels.",
+      "what_to_learn": "State the RAG system once as a tiny two-icon legend, then reuse one fixed shape (question, retrieved document, answer) across all three panels, growing only how many times it repeats — one-shot, then chained sub-questions, then an open iterative loop.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-006_fig1",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Contrasting batch parallelism's full-parameter AllReduce of gradients with Z3/FSDP's sharded design, which AllGathers parameters just-in-time and ReduceScatters gradients, trading extra communication for lower peak memory.",
+      "what_to_learn": "Stack the alternatives when the template is a wide left-to-right chain; let an added element (thick blue bars) plus renamed labels be the entire delta",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos25-151_fig13",
+      "group": "comparison",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Four primitive instructions manipulate a qubit token's position on the router tree: LOAD introduces it at the escape port, TRANSPORT slides it across an edge, ROUTE switches it between a router's own ports, and STORE commits it into a router's state.",
+      "what_to_learn": "an instruction-set catalog drawn as repeated before/after pairs of the same small structure, one pair per operation; a single highlighted sub-structure (green) plus a single moving token (orange) isolating what changed",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-021_fig1",
+      "group": "comparison",
+      "star": false,
+      "primary": false,
+      "why_chosen": "An analog crossbar reproduces a matrix-vector multiply physically: matrix values become programmed conductances, input-vector values become row voltages, Ohm's law multiplies them at each junction, and Kirchhoff's current law accumulates the products down each column into the result.",
+      "what_to_learn": "a plain arithmetic panel paired with a physically-realized circuit panel computing the same worked example; consistent per-value colour coding carried from a circuit diagram into the arithmetic equations that verify it; circled step numbers overlaid on a crossbar to narrate program -> multiply -> accumulate -> result",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-047_figtex2",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Four circuit designs for the multi-party SWAP test trade GHZ-state width against circuit depth when scaling to n-qubit states; the paper's scheme (d) uses parallel Toffoli-via-Fanout gates to get both optimal depth and width.",
+      "what_to_learn": "four aligned circuit-diagram panels compared side by side with a swapped-in replacement block for one datapath; per-panel derived-cost caption (depth, GHZ width) below each design variant",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-076_fig23",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "The same double-binary-tree shape admits many different node-number permutations that all balance communication load equally, leaving freedom to pick one that also fits the network topology.",
+      "what_to_learn": "identical tree skeleton repeated side by side with only the node numbering changed to depict alternative permutations; a double binary tree drawn as two mirrored trees stacked, sharing the same node IDs split between leaf and internal role",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi25-037_fig4",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Plain BDDs (a) duplicate a 14-node srcIP/srcPort sub-structure once per forwarding path because interleaved field variables cannot be merged; decoupling each field into its own reduced BDD (b) cuts this to 24 nodes but cannot alone represent multiple packet sets; layering a Network Decision Diagram (c) on top of the…",
+      "what_to_learn": "One worked example redrawn in three encodings, with a red box on the sub-structure the text counts",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi26-131_fig7",
+      "group": "comparison",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Deriving two edge-disjoint paths per router tolerates any single link failure, but simulating the network under B's real deny-p policy shows B's import of [B,D] actually violates that fault-tolerance contract.",
+      "what_to_learn": "the same small network topology redrawn with two different annotation conventions (path arrows vs numbered route lists) to move from design intent to diagnosed behaviour",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-048_fig4",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "SNIC's extra internal PCIe switch adds a second PCIe hop that READ must cross twice round-trip, while WRITE saves one hop by completing at the switch instead of returning all the way to the RNIC core.",
+      "what_to_learn": "Two tiny swimlanes where the only difference is one extra lane; count the crossings, no colour needed",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi24-004_fig2",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Illustrates why a server's effective throughput drops when it serves few long requests instead of many short ones, since more decode tokens serialize into longer per-request time.",
+      "what_to_learn": "stacked request bars split into a solid prompt segment and a cell-segmented decode-token tail, bracketed with a plain-language throughput verdict",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi24-015_fig3",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Comparing four ways to start model B while A infers shows that only live-migrating A's state (not reloading it) avoids hurting either model's latency.",
+      "what_to_learn": "shared Setup diagram at top feeding four stacked identical Server1/Server2 Gantt-style timelines, each closed off by a checkmark/cross Performance column",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi25-050_fig5",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "NVLink connects all of a server's GPUs through an NVSwitch at 1.6 Tbps per GPU, far faster than the 200 Gbps inter-server RDMA network; without NVLink, GPU pairs instead share just a 256 Gbps PCIe link.",
+      "what_to_learn": "two identical Server0/RDMA/Server1/NIC templates side by side, differing only in how the bottom row of GPUs is interconnected",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi26-068_fig6",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Two lettered replay scenarios show how CURP+Raft's view-change recovery can either silently drop a fast-committed command (Case 1) or let a recovered leader commit two conflicting commands out of their promised order (Case 2).",
+      "what_to_learn": "a fixed 5-row server roster redrawn frame by frame with coloured message arrows and leader/crash icons updating state, repeated once per failure-case row",
+      "note_source": "record"
+    },
+    {
+      "id": "sosp24-017_fig9",
+      "group": "comparison",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Literally draws which files are shared vs private via a labelled brace and a single highlighted mountpoint, then turns the overlay-fs equation (base + modification) into a matched stacked-box diagram.",
+      "what_to_learn": "Use a labelled brace under a group of sibling nodes to mark what's reused/shared, highlight the one reconfigurable node in red, then draw 'X = A + B' composition as vertically stacked, colour-matched boxes.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-060_fig4",
+      "group": "comparison",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Only evicting the same tokens in balanced numbers across both layer types keeps their caches aligned, so a later request can still hit; imbalanced or unaligned eviction breaks the hit.",
+      "what_to_learn": "One shared start fanning out to lettered outcomes, each ending in a pass/fail icon; the arrow labels carry the alternative's name",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos25-047_fig4",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Four tournament phases drawn as four completely different population shapes — grid, cluster blob, cycle graph, pair — unified only by one green-dot 'winner' colour and one repeated transition icon.",
+      "what_to_learn": "Let each phase's container shape mimic its tournament format — grid of pools, two-region blob, cyclic graph, simple pair — but keep the winner dot's colour and transition-icon arrow identical everywhere so the eye tracks one shrinking population.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-092_fig5",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Seven reachable states of one small circuit are drawn as seven copies of the same Buf1+Branch stub, nested inside two colour boxes that name which input-length bound reaches each subset.",
+      "what_to_learn": "Repeat the same small sub-diagram once per state, varying only its token values, and nest the tighter bound's states inside the looser bound's box as a literal subset — but draw no arrow back to the source circuit.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-147_fig6",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Same four-GPU topology drawn twice; only the colours on two edges swap (red inter-island, green intra-island), making a device-placement trade-off visible as which flow now crosses the boundary.",
+      "what_to_learn": "Redraw the identical topology before and after, joined by one open chevron arrow; recolour only the edges whose island-crossing status changed (red = crosses, green = doesn't), keeping every data-volume label in place so the swap reads by colour alone.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos26-094_fig2",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "VLP replaces a multiplier with a shared accumulator plus per-input temporal comparators: each input's spike, timed to its own value, subscribes to the accumulator's sum at the right cycle to read off its product, scaling to a full outer-product array.",
+      "what_to_learn": "Six construction stages inside one column, each adding a block to one running example; waveform under its circuit",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi23-008_fig5",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One static frame overlays old and new core bindings for a single packet class, using a red dashed arrow for the change and four numbered callouts to narrate order.",
+      "what_to_learn": "Draw the old binding in plain solid lines, overlay just the changed link as one accent dashed arrow in the same frame, and number callouts 1-4 for rule-change, reroute, drop, pickup — but it only reads right in that order.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi24-023_fig5",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Mirrors one numbered, colour-grouped grid tensor on both sender and receiver sides, so a single simulated packet loss traces cleanly to exactly which grid cells go blank.",
+      "what_to_learn": "Number and colour-group the same grid tensor identically on both sides (sub-tensor = colour = packet); mark one packet lost with a red X, then blank only the grid cells that packet owned in the reconstructed tensor.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi25-040_fig10",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "The rewriting-based tunneling protocol substitutes traditional outer-header encapsulation with in-place rewriting of the container's own IP/MAC header fields to host addresses (plus a restore key) on egress, then rewrites them back to the original container addresses on ingress at the destination.",
+      "what_to_learn": "Three identical frames; the operation name rides the arrow between them; only the text inside the fixed coloured rows changes",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi25-062_fig12",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Chains four unlike diagram types (dataflow graph, profiling table, DP algorithm box, Gantt schedule) into one numbered pipeline, using one colour per stage to tie them all together.",
+      "what_to_learn": "Keep one colour per logical item across four different diagram types (graph, table, algorithm box, timeline), and outline in red just the table rows the search picked — but two DFG nodes share the same green, blurring their schedule blocks.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-023_fig9",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A dashed 'blast radius' box shrinks from all three pipeline stages to just the failed one, paired with two full Gantt schedules whose bar length alone argues the 23% speedup.",
+      "what_to_learn": "Redraw the same dashed scope box smaller so it wraps only the recovering worker, swap the now-excluded neighbours for their log-table stand-ins, and pair full-width Gantt bars before/after so the blank rows and a bracketed percentage argue the speedup directly.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi26-024_fig9",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A node's fill colour (grey/yellow/green) tracks whether it is explored, the current main-branch choice, or a speculative lookahead candidate, and a dashed box isolates the speculative-simulation frames that run ahead of the confirmed rollout.",
+      "what_to_learn": "Chevrons between frames, a dashed box around a speculative sub-sequence, red numerals for just-changed values, a legend strip on top",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi26-079_fig6",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A five-step lock/copy/stitch/unlock protocol merges NIC-buffered entries into new tree nodes and, frame by frame, repeats itself one level higher up the host tree until the update reaches the root.",
+      "what_to_learn": "One numbered 1–5 recipe listed in a side legend and replayed identically at each of three tree levels",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi26-086_fig1",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A six-box process/artifact chain reuses one grey template for each intermediate artifact, changing only a single bold red word (unknown to valid), each elaborated by a dashed worked-equation callout below.",
+      "what_to_learn": "Alternate process and artifact boxes in one row, reuse the same artifact template each time and change one bold coloured word to mark progress, and hang a dashed worked-equation callout under each artifact — but never legend the colour code.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-039_fig1",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A voter's registration moves through four stages of decreasing supervision: public check-in, private kiosk credentialing (real and fake), supervised check-out display, then unsupervised activation of the real credential.",
+      "what_to_learn": "Frame border dash-pattern as the encoding; one bold Time arrow beneath every frame; a small legend for the pattern",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp25-047_fig14",
+      "group": "evolution",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Chains four representations of the same schedule (symbolic graph, formal constraints, solved graph, generated code) into one numbered pipeline so the same dependency structure visibly survives each transform.",
+      "what_to_learn": "Draw the same two-row dependency graph twice, logical-time then execution-time, and make the ILP's solution visible as a literal geometric skew (angle θ) between the two layouts; number the pipeline 1-4, flanked by the formal constraints and the emitted code.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-082_fig2",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Checkpointing trades periodic save overhead (O_save) for bounded recovery: when a fault strikes before a checkpoint completes, only the progress since the last complete checkpoint (O_lost) is lost, and recovery reloads exactly that last complete checkpoint (O_restart).",
+      "what_to_learn": "a Gantt-style iteration timeline with periodic checkpoint boxes, a dashed box for a lost/incomplete one, and bracketed spans quantifying save/lost/restart overhead",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos25-151_fig13",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Four primitive instructions manipulate a qubit token's position on the router tree: LOAD introduces it at the escape port, TRANSPORT slides it across an edge, ROUTE switches it between a router's own ports, and STORE commits it into a router's state.",
+      "what_to_learn": "an instruction-set catalog drawn as repeated before/after pairs of the same small structure, one pair per operation; a single highlighted sub-structure (green) plus a single moving token (orange) isolating what changed",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-013_fig8",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A key frame runs full 3DGS mapping and records each Gaussian's non-contributory pixel count; as long as covisibility stays high, later non-key frames reuse that record to skip the same low-contribution Gaussians, until falling covisibility forces a fresh key frame.",
+      "what_to_learn": "three time-ordered columns sharing one template (photo -> mapping arrow -> annotated scene -> data table); a small worked data table whose flagged rows are cross-referenced by colour into the diagram above it; a feedback arrow carrying one frame's recorded values into the next frame's decision",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-076_fig9",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "When a core fails, Ouroboros forms a replacement chain to the nearest KV-storing core: each core's weights shift one hop toward the fault, evicting that KV cache, covering the failure without full remapping optimization.",
+      "what_to_learn": "A key panel (the task graph) beside a before/after grid pair; the delta is one red X and the shifted cell contents",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-094_fig3",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Computing exp() from a LUT is split into two temporal subscriptions: the mantissa selects which row of consecutive values to fetch (shared across inputs needing that row), and the exponent then picks the value from that row.",
+      "what_to_learn": "building a two-step (row, then element) addressing scheme across several small panels before showing the circuit that implements it; pairing a circuit/dataflow panel with an adjacent cycle-by-cycle timing diagram, linked by dashed zoom-callout lines; colour-coded rows/lanes so a shared resource (one LUT row) can be traced to every input that reuses it",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-003_fig7",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Sorting message records by private label makes same-label pairs adjacent so they can be detected, patched and swapped into complete sender/receiver pairs, then re-sorting by entry_id restores each enclave's original slots without ever revealing who talked to whom.",
+      "what_to_learn": "a grid of small record-tables repeated in successive columns to show a multi-pass sort/transform pipeline; colour- and value-linking a handful of tracked records across frames whose row/column position is not stable; numbered stage-name boxes placed between columns rather than inside them",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-065_fig2",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Because a proclet already bundles its own heap and threads as a self-contained partition, migrating it between machines is just relocating that unit, not a special operation.",
+      "what_to_learn": "Before and after in one frame: dashed ghost at the old slot, curved arrow, red operation label",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi24-086_fig11",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Inserting a fine-tuned NN-PD module between the modulator and a fixed FE model lets the pipeline learn a pre-distorted signal that cancels the front-end's modeled nonlinearity.",
+      "what_to_learn": "baseline block chain stacked above an augmented block chain with a colour-coded feedback loop added",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi26-074_fig2",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Holding the (A,C) and (B,C) split ratios fixed and only re-optimizing the (A,B) demand's routing across the direct edge and an indirect A-C-B path lowers the network's maximum link utilization from 1.0 to 0.75.",
+      "what_to_learn": "a table of capacities/demands feeding a shared topology, then the same topology redrawn before/after an optimization step with per-edge used/capacity fractions and one demand's colour split across a direct and a rerouted arrow",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi26-126_figtex7",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Three example operations show how each MNode's cached namespace tree can fall behind the owner's copy, and how remote lookups and invalidation broadcasts keep replicas eventually consistent.",
+      "what_to_learn": "a repeating MNode box template (Namespace Replica tree over an Inode Table) instantiated 1-3 times per panel, with cross-box arrows coloured by traffic type",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi26-131_fig7",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Deriving two edge-disjoint paths per router tolerates any single link failure, but simulating the network under B's real deny-p policy shows B's import of [B,D] actually violates that fault-tolerance contract.",
+      "what_to_learn": "the same small network topology redrawn with two different annotation conventions (path arrows vs numbered route lists) to move from design intent to diagnosed behaviour",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-020_fig9",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "As Thread 2 executes one $7 transfer under separate A/B locks, the physical balances update first and the ghost (specification) values catch up atomically in one instantaneous step that exactly matches the GSM's single global transition.",
+      "what_to_learn": "a swimlane timeline where a specification-level (ghost) copy and an implementation-level (physical) copy of the same value are drawn as paired boxes that travel together, with one isolated instant where the ghost jumps to re-sync",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-029_fig3",
+      "group": "evolution",
+      "star": false,
+      "primary": false,
+      "why_chosen": "A GPU x memory-budget grid comparing replication vs model-parallel placement across the same three budget rows, using identical model colours and only labeling the shared row axis once.",
+      "what_to_learn": "Keep one colour per model across both panels; draw it as a whole tile under replication and subdivide that tile into shards under model parallelism, sharing one 1x/2x/4x row axis across the divider — but identical shard groups go unnoticed.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-013_fig2",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A receiver's cumulative acknowledgment only advances when messages arrive contiguously from m1 onward, so replicas with the same total message count can still report different ack values.",
+      "what_to_learn": "The same small table replayed per time-step with a derived summary column recomputed each frame",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi25-031_fig11",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A coarse, uniform-across-layers k_chunk search first picks the best n_tb^max by counting how many steps fit under the target slowdown, then a fine-grained per-layer search refines k_chunk further.",
+      "what_to_learn": "a per-layer table replayed step by step with a running Sum row and a checkmark/cross verdict against a fixed target, zoomed from a coarse uniform version into a fine per-layer version",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi26-024_fig3",
+      "group": "evolution",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Same BFS/DFS branch templates drawn twice, before/after; a single vertical dashed rule marks the reward-wait barrier that the after-panel fills with new green speculative boxes.",
+      "what_to_learn": "Keep the identical branch layout in both panels and mark the blocking point as one vertical dashed rule; fill past it with solid green boxes for confirmed speculation and dashed-outline boxes for a second, unconfirmed layer.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi26-068_fig6",
+      "group": "evolution",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Two lettered replay scenarios show how CURP+Raft's view-change recovery can either silently drop a fast-committed command (Case 1) or let a recovered leader commit two conflicting commands out of their promised order (Case 2).",
+      "what_to_learn": "a fixed 5-row server roster redrawn frame by frame with coloured message arrows and leader/crash icons updating state, repeated once per failure-case row",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi26-136_fig7",
+      "group": "evolution",
+      "star": false,
+      "primary": true,
+      "why_chosen": "RT builds a squeeze transducer for one concrete input DFA by taking their automaton product state by state, then projects that product onto its output symbols alone to get the result NFA.",
+      "what_to_learn": "small automaton diagrams whose accepting states are drawn as double circles and whose transitions are labelled input/output pairs; a 2x2 progression from two small input automata to their product and then to a simplified result automaton",
+      "note_source": "record"
+    },
+    {
+      "id": "sosp24-024_fig3",
+      "group": "evolution",
+      "star": false,
+      "primary": false,
+      "why_chosen": "One coloured Input/Weight/Output key from the whole-matrix panel is reused unchanged through both partition variants, and a nested Step/Shift/Step insert shows the exact tiles trading places.",
+      "what_to_learn": "Fix one colour per Input row-block, Weight column-block and Output block in the whole-operator panel, reuse those exact colours in every partitioned variant, and show the trade as a half-filled output block that a Shift sub-frame completes.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi23-073_fig4",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One hub state radiates three numbered guarded transitions to peer actions and back to itself; the same hub-and-spoke shape reappears, smaller, nested inside one peer state as its own sub-loop.",
+      "what_to_learn": "Put the shared hub state at the centre with peer actions fanning out on numbered, guarded arrows that all loop back to it; draw one action's internal loop as a smaller copy of that exact hub-and-spoke shape inside its box.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi23-079_fig7",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Splitting the cold-page state in two, with and without a remembered swap-entry, lets Canvas make repeated swap-outs lock-free instead of reallocating an entry every time.",
+      "what_to_learn": "Keep the node small (a digit), put the state's name outside it as a heading, guards in italic on curved arrows",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi24-105_fig5",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A start/end pseudo-state pair brackets three parallel classify-then-act branches, so a control loop with three different action paths still reads as one left-to-right pass.",
+      "what_to_learn": "Bracket the loop with dashed start/end pseudo-states; fan out from start into parallel same-shaped classification branches, one per case, each running its own action box before rejoining the end state and looping back to start.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi25-027_fig1",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "CCF extends Raft's Follower/Candidate/Leader state machine with a Joiner bootstrapping state and two protocol extensions, CheckQuorum (a leader steps down without a quorum) and ProposeVote (a retiring leader fast-tracks a successor), drawn as dashed additions over Raft's solid original states and transitions.",
+      "what_to_learn": "Solid = the known protocol, dashed = this paper's addition, for both nodes and edges; circle only the transitions the text discusses",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi25-044_fig9",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Numbers three pipeline stages that repeat one 'history feeds a state-checker with a red terminal outcome' template for value and for frequency, then merges both verdicts in the third stage.",
+      "what_to_learn": "Repeat one small template, a running history feeding a state-checker box with a red terminal outcome, once for the traced value and once for its frequency; number both ①② and combine their verdicts in a third numbered checker.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-022_fig4",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Two stacked yes/no diamonds whose NO branches both dead-end in one shared fallback box, while YES keeps narrowing to a specific pick — logic collapsed to its actual branch count.",
+      "what_to_learn": "Chain the diamonds vertically and route every NO arrow into one shared fallback box instead of a separate box per branch, then tie the flowchart to the candidate-pool icon cluster with a single bracket leader line, not repeated arrows.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-030_fig8",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A monitoring-loop flowchart where each stage box shows its own literal example buffer (coloured D/O event tiles) feeding a yes/no gate that self-loops until enough events accumulate.",
+      "what_to_learn": "Put a real buffer of coloured event tiles inside each box, and loop its gate diamond back into that box on 'no' but forward to the next box on 'yes' — but three stacked diamonds stay dense to trace.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi23-032_fig8",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Read-delegation and write-combining share one twin-diamond decision skeleton; a green 'Time Window' bracket marks the one real memory round-trip that queued duplicate requests reuse instead of repeating it.",
+      "what_to_learn": "Bracket the delegate's one memory round-trip as a 'Time Window,' with dashed arrows fanning back to queued duplicate requests instead of repeating the trip; draw the bypass path looping visibly under every memory-side phase box.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi24-003_fig11",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One inconsistency verdict, computed once at a Handler node, is re-stamped with the same two accent colours and Prioritize/Abort labels at three completely different scheduler layers below.",
+      "what_to_learn": "Compute the verdict once at the top and re-draw its two accent colours plus Prioritize/Abort text at every layer below, even as each layer's queue icon changes shape — but reused bare letters force reading by position, not name.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp24-014_fig6",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A token-bucket flowchart where every box's role (component / condition / action) is readable from one shared shape+colour code alone, with database cylinders hanging off the chain as side-cars.",
+      "what_to_learn": "Give every box one of three shape+colour roles (blue rounded = component, violet diamond = condition, tan dashed = action), and feed each side-car database with a dashed 'Update' arrow kept separate from its plain read arrow.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-017_fig8",
+      "group": "logic",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A registration timeline sets up vCPU-as-CPU, then one decision-diamond template — with the same little CPU-state lookup table inside — is reused twice for source and destination routing.",
+      "what_to_learn": "Embed the literal small state-lookup table inside the decision diamond itself, reuse that exact diamond+table shape for both the source and destination check, and bracket the two halves in one accent colour to name the phases.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos26-041_fig7",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "STRAW tracks a read counter per block and per wordline; every interval it checks each wordline's accumulated disturbance against a threshold, relocates the valid pages of any heavily-disturbed wordline, and erases the block once nothing valid remains.",
+      "what_to_learn": "One fill colour per functional stage; `Y`/`N` on every branch; a labelled loop box containing its own decision",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-057_fig9",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "PIPM extends MSI cache coherence with two migration-aware states (ME, I') encoded via directory state plus an in-memory bit, adding six new host/device transitions.",
+      "what_to_learn": "a directory-state-plus-status-bit truth table paired with a circle-and-arrow state diagram sharing the same state names",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-067_fig5",
+      "group": "logic",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Four-panel figure where a numbered synthesis pipeline (with a feedback loop) sits beside the resulting protocol trace and the two original protocols it fuses, using one shared sequence-diagram notation throughout.",
+      "what_to_learn": "Draw the synthesized protocol and both source protocols with the same lifeline-plus-boxed-state notation so states and messages line up panel to panel, and carry one two-colour domain tint through every panel.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos26-091_fig2",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A CPU-triggered write to DATA is checked by hardware against STATUS::FULL to decide whether the queue moves to Busy or QueueFull; RESET forces Idle from anywhere, and CONFIG may only be touched while Idle.",
+      "what_to_learn": "a two-colour solid/dashed arrow convention distinguishing software-triggered from hardware-triggered transitions; a nested dotted substate box inside a solid superstate box to show refinement without adding a new top-level state; a small legend box inside the diagram itself explaining the arrow-colour convention",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-042_fig13",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Reaching a later chunk of video 2 requires surviving one independent swipe-away decision at every intervening chunk, each with its own probability.",
+      "what_to_learn": "a repeating continue-or-branch-off decision unit chained left to right to build a recursive probability model",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-079_fig1",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A page fault takes one of three shortcuts depending on cache and memory state, but every path converges on the same metadata-update and PTE-install finish, with only two steps needing locks.",
+      "what_to_learn": "Long bypass arrows over the top for fast paths; an icon + fill + legend marking the steps that need locks",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi24-031_fig9",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "RAPID's blocking mode is a 4-state FSM (Run, Wait, Suspend, Schedule) driven by the packet buffer PB: a flow is suspended whenever PB is non-empty and only returns to normal Run processing once a timeout finds PB empty after scheduling.",
+      "what_to_learn": "a small colour-coded finite-state machine with one accent colour per state and its adjoining transitions",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi24-067_fig5",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "MetaOpt avoids needlessly rewriting an inner problem: if aligned with the outer objective or merely a feasibility problem, its constraints are merged in as is; otherwise a convex problem gets a primal-dual/KKT rewrite, and anything else is marked NA.",
+      "what_to_learn": "A left-to-right diamond cascade: `Y` drops to a terminal box, `N` continues right, so the unhandled case lands last",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi24-068_fig5",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Practitioners can pick a suitable max-min fair allocator with two questions: whether a strict fairness guarantee is required (routing to GB), and if not, which pair of properties they prioritize, each routing to a different named allocator and parameter.",
+      "what_to_learn": "Colour only the leaves; leave decision nodes unfilled; write branch conditions as full words on the edge",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi24-079_fig7",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "To build a positive test case exercising DFA state 5, MESSI concatenates two paths: P1 (1→3→5) from the start to the target state, and P2 (5→7→9→10) from the target onward to an accepting state.",
+      "what_to_learn": "a plain state-machine diagram with two differently-styled highlighted paths stitched together at a shared target state to build one worked example",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi25-016_fig7",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A single decision tree, split into four subsystem lanes, cascades Z-score threshold checks so the metrics closest to the root are the ones most sensitive to a faulty machine.",
+      "what_to_learn": "repeated check-node cascade (low: next check, high: verdict leaf), grouped into lanes by subsystem",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi25-043_fig6",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "An ingress queue (IQ) at a Pyrrha switch cycles between Paused and Resumed as PAUSE/RESUME congestion-control frames arrive, moves to Soft-merging when a MERGE frame reassigns it to a new congestion root, and can only become Unassigned, freeing its slot, once it is empty while in the Resumed or Soft-merging state.",
+      "what_to_learn": "a small 4-state FSM with colour-coded states and event-labelled arrows for a per-queue control protocol",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi25-044_fig7",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "All studied systems detect slowness the same two-staged way: a monitored metric first crosses a warning threshold, triggering a warning action, and only reaches a fatal action either by exceeding a separate, higher fatal threshold directly, or by accumulating enough warnings (the warning count) over time.",
+      "what_to_learn": "a two-threshold decision flowchart generalized from many concrete systems' logic, with a small reference table of real threshold values alongside it",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-031_figtex1",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "The same two naturally-consistent transactions that dOCC's locking validation falsely aborts under contention are both committed by NCC's timestamp pre-assignment, refinement, and safeguard check, with a middle panel showing how per-version timestamps get refined.",
+      "what_to_learn": "swimlane timelines for two clients and the keys they touch, with per-client colour coding kept consistent across a 'before' and 'after' panel to highlight a protocol fix",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi24-051_fig4",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Only memory that is Locked, VMPL0-private and content-verified may be treated as memory-safe; sharing, copying or writing are the sole safe ways to move between the five permission states.",
+      "what_to_learn": "small badge-icon pairs (trust glyph + lock glyph) attached to each named state of an access-permission state machine",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi25-010_fig7",
+      "group": "logic",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Two identical page-state-machine templates side by side (state spine + numbered steps + linked epoch-phase column), differing only by one extra intermediate state and its numbering.",
+      "what_to_learn": "Draw each variant as an identical spine of numbered states with a phase column linked by short cross-arrows and a return loop on the left; give the busier variant one extra spine state and renumber after it.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-038_fig9",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Two per-slot flags, occupied and complete, define four states - clean, being filled, valid, and invalidated-while-filling - and the Fill/Lock/Invalidate/Evict transitions between them let Scalio detect the race where a slot is invalidated while still being filled.",
+      "what_to_learn": "Four states as one repeated record layout in a 2×2 grid; the flag bits inside are what distinguishes them",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi26-076_fig8",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A cache block's Inactive/Semiactive/Active state, driven purely by whether its CET index and thread reference map (rmap) are set, lets CaM manage concurrent access without locking or unnecessary cache replacement.",
+      "what_to_learn": "The concrete data structure and the abstract machine side by side, sharing one colour key",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi26-122_fig12",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A single per-page survival-ratio threshold, set at the point where the cost curves of remapping and copying cross, is enough to route each page to whichever of the two movement strategies is cheaper.",
+      "what_to_learn": "a central decision diamond routing two colour-coded inputs to two colour-coded strategy boxes, paired with a small inset curve that motivates the decision threshold",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi26-136_fig7",
+      "group": "logic",
+      "star": false,
+      "primary": false,
+      "why_chosen": "RT builds a squeeze transducer for one concrete input DFA by taking their automaton product state by state, then projects that product onto its output symbols alone to get the result NFA.",
+      "what_to_learn": "small automaton diagrams whose accepting states are drawn as double circles and whose transitions are labelled input/output pairs; a 2x2 progression from two small input automata to their product and then to a simplified result automaton",
+      "note_source": "record"
+    },
+    {
+      "id": "sosp25-063_fig2",
+      "group": "logic",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A low-level state sequence L0..L6 and a high-level sequence H0..H4 run in parallel, with dashed arrows showing each L state's corresponding H state under refinement.",
+      "what_to_learn": "two parallel horizontal state chains at different abstraction levels linked by dashed many-to-one refinement arrows",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos25-033_fig4",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A transaction's updates are first persisted in a firmware write log tagged by TxID, a separate compact TxLog then records the commit order, and only afterward does log cleaning flush the committed data to flash in that recorded order.",
+      "what_to_learn": "Colour-tag the object being followed so it stays identifiable in every structure it passes through",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos25-046_fig16",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Turns a provisioning formula into a picture: PA-demand stacks (sums) while VA-demand overlaps (multiplexes/maxes), with small numbered sub-segments literally carried from the per-window source bars into the combined bar.",
+      "what_to_learn": "Encode 'sum' as stacked blocks and 'take-the-max' as overlaid/multiplexed blocks in the same bar, so the arithmetic operator is legible from the drawing; carry each numbered sub-segment from the source bars into the same spot in the combined bar.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-142_fig6",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One primitive-level dataflow graph, colour-coded by operation type, gets a second independent overlay — dashed purple boxes labelled Pass N — marking exactly which subgraph each optimizer rewrite touched.",
+      "what_to_learn": "Keep one fixed colour per primitive type across the graph, overlay a second layer of dashed pass-labelled boxes to narrate which rewrite touched which subgraph — but repeating the same Pass-3 label three times leaves 'why the same pass' unanswered.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-037_fig3",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A branch-and-bound search tree with real H/M/Rank values in every node, colour-coded terminals labelled by exactly why they stopped (Learned / Dedupe / Non-minimal), walked by circled numerals.",
+      "what_to_learn": "Colour every terminal node the same blue but caption each with the specific reason it stopped (Learned, Dedupe, Non-minimal), and collapse a proven-bounded subtree into a flat labelled shelf instead of drawing its boxes.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-075_fig11",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A three-step rate-control pipeline (predict, clamp, budget-check) where step 2 draws the value literally boxed inside two labelled rails (max_ratio/min_ratio) instead of a text inequality.",
+      "what_to_learn": "Merge labelled inputs into one prediction box with a single bracket, then draw the next step's bound as two horizontal rails (max_ratio, min_ratio) with the value's box nested between them — but the two outcome labels differ only by capitalization.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi24-024_fig9",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A three-stage strip: full heatmap collapses to a one-row column-sum, then Top-K distills that into a literal index list, which becomes the column headers of a differently-coloured output matrix.",
+      "what_to_learn": "Reduce the full heatmap to one colour-matching summary row inside the process box, hand off Top-K as a literal dashed 'Selected Idx' box, then reuse those exact numbers as column headers on a new, differently-coloured matrix.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-031_fig8",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "DecDEC approximates global top-K selection by splitting the input into independent chunks and, within each chunk, scattering elements into magnitude buckets, then gathering from low buckets and randomly filling any boundary bucket.",
+      "what_to_learn": "A dashed zoom callout from one element of the overview into the numbered sub-steps that happen inside it",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi26-048_fig2",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One incident traced across four colour-coded subsystem boxes on a single stall/continue timeline, each region keeping its own lettered step count (B, H, X, L) instead of one global sequence.",
+      "what_to_learn": "Give each subsystem its own colour and its own lettered step count (B/H/X/L) instead of one global number, and draw the causal jump as one arrow crossing straight from the stalled thread's timeline into the box that resolves it.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi26-082_fig3",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Best-first search repeatedly pops the nearest unexpanded node from a sorted candidate pool, traverses its edges to discover new neighbors, and inserts them back into the pool by distance until every pooled node has been expanded.",
+      "what_to_learn": "Pair the walked structure with a small table that spells out the state after each step; corner legend; ❶/❷ used for roles, not order",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp23-030_fig8",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "One numbered path threads across two dashed side-by-side phase boxes, with only the two decision points — victim pick, miss key — picked out in saturated colour.",
+      "what_to_learn": "Run one numbered step-path across both dashed phase boxes without renumbering at the boundary, saturate the decision boxes' colour, and fold the weight-feedback loop into the victim-pick step's arrow instead of its own number — easy to miss that dependency.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-008_fig3",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Three parties can jointly compute a boolean AND on XOR-secret-shared inputs by each locally combining its two known share-pairs, masking the result with a pre-shared zero, and sending that single masked value once around a ring.",
+      "what_to_learn": "Definitions column, per-party identical computation boxes, message-order ring; one worked numeric example highlighted throughout",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp25-042_fig3",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Stacks a concrete worked routing example directly above the abstract pipeline that computes it, letting the reader match each component box to the exact job/table it produced.",
+      "what_to_learn": "Draw the worked example (jobs routed to lettered on-prem/cloud nodes) directly above the component diagram that generates those routes, marking only the pipeline stages with red 'Step 1/2a/2b' labels, distinct from the small circled job-ID numbers.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-053_fig5",
+      "group": "walkthrough",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A single numbered pipeline escalates a training failure from cheap real-time checks through machine eviction, reattempt, rollback, and dual-phase replay, ending in a diagnosis or human escalation.",
+      "what_to_learn": "Nine numbered guarded edges across a wide double-column strip; shape + fill as a role code, declared in a dashed legend box",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-021_fig1",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "An analog crossbar reproduces a matrix-vector multiply physically: matrix values become programmed conductances, input-vector values become row voltages, Ohm's law multiplies them at each junction, and Kirchhoff's current law accumulates the products down each column into the result.",
+      "what_to_learn": "a plain arithmetic panel paired with a physically-realized circuit panel computing the same worked example; consistent per-value colour coding carried from a circuit diagram into the arithmetic equations that verify it; circled step numbers overlaid on a crossbar to narrate program -> multiply -> accumulate -> result",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-026_fig10",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Capturing one CUDAGraph per strategy wastes memory linearly with strategy count; bucketing batch sizes, disaggregating target/draft capture, and merging strategies that share parameters keeps memory nearly flat while still gaining the throughput of many adaptive strategies.",
+      "what_to_learn": "A two-line check/cross scorecard under every alternative; roman numerals for the sub-steps that build the winner",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-030_fig9",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "AlphaSyndrome represents a syndrome-measurement schedule as a tick-divided circuit: each tick performs at most one Pauli check per qubit (Z-check via a plain CNOT, X-check via a Hadamard-CNOT-Hadamard sandwich) or leaves the ancilla explicitly idling, ending in a Z-basis measurement.",
+      "what_to_learn": "a standard quantum-circuit timeline with dashed vertical rules marking discrete scheduling ticks; a text callout with an arrow picking out one specific gate instance for discussion; reuse of a Hadamard-CNOT-Hadamard sandwich (established in an earlier figure) as a single compound 'X-check' unit",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-047_fig7",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Two Toffoli gates sharing one control qubit would normally run sequentially; decomposing each into T-gates and then using commutation rules to push matching-control CNOTs together turns them into parallel Fanout gates, cutting circuit depth without changing the T-depth.",
+      "what_to_learn": "consistent two-colour shading tracking which of two originally-sequential operations a gate belongs to, carried across multiple panels of a derivation; a small 'rule' panel of equivalent circuit fragments used to justify a reordering applied in a following panel; a numbered step axis over a quantum circuit to make parallel execution explicit",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-057_fig9",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "PIPM extends MSI cache coherence with two migration-aware states (ME, I') encoded via directory state plus an in-memory bit, adding six new host/device transitions.",
+      "what_to_learn": "a directory-state-plus-status-bit truth table paired with a circle-and-arrow state diagram sharing the same state names",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-067_fig5",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Four-panel figure where a numbered synthesis pipeline (with a feedback loop) sits beside the resulting protocol trace and the two original protocols it fuses, using one shared sequence-diagram notation throughout.",
+      "what_to_learn": "Draw the synthesized protocol and both source protocols with the same lifeline-plus-boxed-state notation so states and messages line up panel to panel, and carry one two-colour domain tint through every panel.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos26-094_fig3",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Computing exp() from a LUT is split into two temporal subscriptions: the mantissa selects which row of consecutive values to fetch (shared across inputs needing that row), and the exponent then picks the value from that row.",
+      "what_to_learn": "building a two-step (row, then element) addressing scheme across several small panels before showing the circuit that implements it; pairing a circuit/dataflow panel with an adjacent cycle-by-cycle timing diagram, linked by dashed zoom-callout lines; colour-coded rows/lanes so a shared resource (one LUT row) can be traced to every input that reuses it",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-003_fig7",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Sorting message records by private label makes same-label pairs adjacent so they can be detected, patched and swapped into complete sender/receiver pairs, then re-sorting by entry_id restores each enclave's original slots without ever revealing who talked to whom.",
+      "what_to_learn": "a grid of small record-tables repeated in successive columns to show a multi-pass sort/transform pipeline; colour- and value-linking a handful of tracked records across frames whose row/column position is not stable; numbered stage-name boxes placed between columns rather than inside them",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-008_fig5",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "One static frame overlays old and new core bindings for a single packet class, using a red dashed arrow for the change and four numbered callouts to narrate order.",
+      "what_to_learn": "Draw the old binding in plain solid lines, overlay just the changed link as one accent dashed arrow in the same frame, and number callouts 1-4 for rule-change, reroute, drop, pickup — but it only reads right in that order.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi23-073_fig4",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "One hub state radiates three numbered guarded transitions to peer actions and back to itself; the same hub-and-spoke shape reappears, smaller, nested inside one peer state as its own sub-loop.",
+      "what_to_learn": "Put the shared hub state at the centre with peer actions fanning out on numbered, guarded arrows that all loop back to it; draw one action's internal loop as a smaller copy of that exact hub-and-spoke shape inside its box.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi23-089_fig1",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A typical tracing framework tags a request once but then reports every span it generates immediately and unconditionally to the backend, win or lose, before it is even known whether the trace will matter.",
+      "what_to_learn": "A bold wavy line as the request's own path; circled numbers along it; a second, dotted channel and a grey band for the backend — all at 333 px wide",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi23-089_fig2",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Instead of reporting every span immediately, Hindsight buffers locally and only pulls a request's spans, backward through its breadcrumb trail, once a trigger flags that request as worth the cost.",
+      "what_to_learn": "the same base topology as a sibling figure, redrawn with one new colour-coded mechanism layered on top; paired zoom-in callouts opening two components' internals from specific points on a main path",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi24-018_fig4",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "One packet's metrics and, when needed, one signed route update both travel the same round trip across the public Internet, verified at every hop before any route table is trusted enough to change.",
+      "what_to_learn": "two colour-coded horizontal bands (control plane above, data plane below) with vertical feed arrows from control-plane inputs down into the numbered data-plane pipeline; a shared cloud icon that two different packet types both dotted-line through, reused instead of drawn twice",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi25-027_fig1",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "CCF extends Raft's Follower/Candidate/Leader state machine with a Joiner bootstrapping state and two protocol extensions, CheckQuorum (a leader steps down without a quorum) and ProposeVote (a retiring leader fast-tracks a successor), drawn as dashed additions over Raft's solid original states and transitions.",
+      "what_to_learn": "Solid = the known protocol, dashed = this paper's addition, for both nodes and edges; circle only the transitions the text discusses",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi25-034_fig6",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "When a client detects that the returned key does not match the requested key (a hash collision), it sends a correction request that the switch forwards untouched, bypassing its cache logic, to the storage server, which returns the correct value in a 4-step round trip.",
+      "what_to_learn": "Three boxes, four numbered arrows alternating direction, message name in italic beside each number, one highlighted row in a key table hung off the source",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi25-035_fig1",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Same coloured step-blocks reused in both panels so the reader sees which steps (thread switching, context save) vanish moving from synchronous to asynchronous.",
+      "what_to_learn": "Colour-code each step type once (orange = context ops, blue = request/poll) and reuse those colours in both panels, then bracket the idle span the async version fills with useful work instead of a thread switch.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi25-044_fig9",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Numbers three pipeline stages that repeat one 'history feeds a state-checker with a red terminal outcome' template for value and for frequency, then merges both verdicts in the third stage.",
+      "what_to_learn": "Repeat one small template, a running history feeding a state-checker box with a red terminal outcome, once for the traced value and once for its frequency; number both ①② and combine their verdicts in a third numbered checker.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-043_figtex18",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A client can pipeline a causally-dependent second transaction immediately after a speculative outcome for the first, without waiting for finality; if the process later reports that speculation was stale, the client resubmits at a later round instead of stalling on every request.",
+      "what_to_learn": "a two-lane (server/client) swimlane with round-indexed sub-phase boxes on one lane, crossed by numbered, differently-coloured arrows tracing a speculate-then-correct message exchange",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi26-095_fig3",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Because AS2 holds a ROA for 5.6/16 even without announcing it, BAR-SAV correctly accepts its Direct-Server-Return response that naive SAV policies would wrongly drop as spoofed.",
+      "what_to_learn": "a small AS-level topology with provider/customer and peer edges plus a distinct arrow colour per traffic type (announcement, request, response), annotated with a pass/fail verdict at the decision point",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-020_fig9",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "As Thread 2 executes one $7 transfer under separate A/B locks, the physical balances update first and the ghost (specification) values catch up atomically in one instantaneous step that exactly matches the GSM's single global transition.",
+      "what_to_learn": "a swimlane timeline where a specification-level (ghost) copy and an implementation-level (physical) copy of the same value are drawn as paired boxes that travel together, with one isolated instant where the ghost jumps to re-sync",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-032_fig8",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Read-delegation and write-combining share one twin-diamond decision skeleton; a green 'Time Window' bracket marks the one real memory round-trip that queued duplicate requests reuse instead of repeating it.",
+      "what_to_learn": "Bracket the delegate's one memory round-trip as a 'Time Window,' with dashed arrows fanning back to queued duplicate requests instead of repeating the trip; draw the bypass path looping visibly under every memory-side phase box.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi23-049_fig10",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Tracing example code through its multi-hop remote-fork execution shows how each forked function reads the prior hop's output over RDMA from a different machine's DRAM.",
+      "what_to_learn": "code listing paired label-for-label with an adjacent node chain, with per-hop memory boxes drawn beneath the link they belong to",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi24-020_fig4",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Flock's Relay authenticates each serverless instance separately (teal S2R) before downgrading and re-forwarding their sockets so the instances complete a direct mTLS handshake (green S2S) end-to-end.",
+      "what_to_learn": "A lifeline walkthrough with no numbers at all: top-down order plus two phase colours",
+      "note_source": "doc"
+    },
+    {
+      "id": "osdi25-010_fig7",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Two identical page-state-machine templates side by side (state spine + numbered steps + linked epoch-phase column), differing only by one extra intermediate state and its numbering.",
+      "what_to_learn": "Draw each variant as an identical spine of numbered states with a phase column linked by short cross-arrows and a return loop on the left; give the busier variant one extra spine state and renumber after it.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-016_fig6",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Because KPerfIR keeps IR structure available at profiling time, it can correlate code directly with per-iteration timelines, critical-path traces across warp groups, and program-object memory-access patterns.",
+      "what_to_learn": "compiler IR snippet on the left with curved 'Correspond' arrows into a coloured timeline or grid on the right, closed off by a small reusable legend",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi26-037_fig5",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A shadow pointer created by the first check_ptr call remembers an object's pseudo- and real-address bases; a later check_ptr call reuses that record to translate a new pseudo-pointer offset into the correct real memory address.",
+      "what_to_learn": "a vertical code-flow arrow linking numbered code snippets to a shared side annotation box and a memory-layout table",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi26-079_fig6",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "A five-step lock/copy/stitch/unlock protocol merges NIC-buffered entries into new tree nodes and, frame by frame, repeats itself one level higher up the host tree until the update reaches the root.",
+      "what_to_learn": "One numbered 1–5 recipe listed in a side legend and replayed identically at each of three tree levels",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp24-035_fig2",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Same CPU-Mem/CPU/GPU/GPU-Mem template with a PCIe bar reused for both offloading designs; circled numbered arrows trace which layer or result crosses the bus and when.",
+      "what_to_learn": "Reuse one CPU-Mem/CPU-icon/GPU-icon/GPU-Mem template over a PCIe bar for both designs, numbering each cross-bus arrow in order, and show idle vs busy compute by icon fill density alone — but that convention has no legend.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-039_fig3",
+      "group": "walkthrough",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A voter's single public tag anchors two credentials, real and fake, both used to sign otherwise-identical encrypted ballots; only at tally does a verifiable shuffle anonymize tags and ballots so only tag-matched real votes get decrypted and counted.",
+      "what_to_learn": "parallel real/fake instances of the same box template (Credential, Vote) carried through matching Ledger logs, reunited only at a shuffle step drawn with a crossed-ribbon icon",
+      "note_source": "record"
+    },
+    {
+      "id": "sosp25-047_fig14",
+      "group": "walkthrough",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Chains four representations of the same schedule (symbolic graph, formal constraints, solved graph, generated code) into one numbered pipeline so the same dependency structure visibly survives each transform.",
+      "what_to_learn": "Draw the same two-row dependency graph twice, logical-time then execution-time, and make the ILP's solution visible as a literal geometric skew (angle θ) between the two layouts; number the pipeline 1-4, flanked by the formal constraints and the emitted code.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos26-053_fig1",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Graphiti wraps a dataflow circuit in a verified rewrite loop: it parses the circuit into ExprHigh, matches a subgraph, rewrites it on the verification-friendly ExprLow representation, and lifts the result back up, iterating or emitting the optimized circuit.",
+      "what_to_learn": "A dashed region boundary naming what is and is not the contribution, with matching caption colours; draw a loop by drawing its stages twice",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-103_figtex7",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A STeP program graph shows one expert's full tile pipeline (flatten, reshape, accumulate, load its off-chip weight, matmul, retile) fully drawn while a sibling expert is left collapsed, and both outputs merge back together at Reassemble.",
+      "what_to_learn": "Collapse the repeated sibling into an empty placeholder and draw one instance in full; annotate every edge with the shape it carries",
+      "note_source": "doc"
+    },
+    {
+      "id": "asplos26-132_fig2",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A multimodal encode-backbone-decode anatomy where every modality keeps one colour from inline sentence icon through its encoder box to its token span.",
+      "what_to_learn": "Colour-match each inline sentence icon to its encoder and token run, bracket every run with its count, and neck the backbone between many inputs and two decoders — but the output row drops that colour link.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi24-023_figtex23",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Sender and receiver of a real streaming system laid out as mirrored blocks, showing how forward data flow and two separate feedback loops fit in one compact diagram.",
+      "what_to_learn": "Mirror sender/receiver as matching grey boxes of blue sub-blocks; give bitrate control and fast re-sync each a bent-back feedback arrow, plus one arrow crossing the network to request re-sync — but identical labels leave only position telling sides apart.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi24-086_fig7",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A neural-network layer template that draws only the connections which survive pruning, each with its literal weight, instead of a full dense mesh.",
+      "what_to_learn": "Chain two dashed-outline layer boxes left to right; draw only the fully-connected layer's surviving connections as individual weight-labelled arrows, skipping the dense mesh — but the same +1 label repeats across three arrows, so colour alone tells them apart.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi25-047_fig5",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Small identical scenario CDFs each contribute one 99th-percentile point to a larger derived distribution below — a clean way to show how a summary distribution is built from samples.",
+      "what_to_learn": "Draw several identical small curve panels side by side, mark the one value harvested from each with a dot, then run a dashed arrow from each dot into the matching point on one larger derived curve below.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi25-064_fig4",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "OptiReduce's Transpose AllReduce connects colocated parameter-server/worker nodes in a peer-to-peer mesh over an Unreliable Bounded Transport; zooming into one node's pipeline shows how a gradient bucket is Hadamard-encoded (to disperse the effect of any lost gradient), split into shards that rotate responsibility…",
+      "what_to_learn": "Topology above, one node's pipeline zoomed below, joined by one bold arrow; a bracket naming which stages a timeout covers",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi26-043_fig5",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A node-by-round grid where colour alone marks which shard owns a cell, and pointer arrows chain same-colour cells into the ordering the text argues for.",
+      "what_to_learn": "Colour every grid cell by its shard chain, leave others blank, and draw pointer arrows only between same-colour cells, with leader cells in a third colour where several chains converge — but dense crossings blur exact endpoints.",
+      "note_source": "agent"
+    },
+    {
+      "id": "nsdi26-043_fig9",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Two dependent-transaction chains sharing one node-by-round grid, each arrowed up to the crowned round that commits it, so latency is read straight off as column distance.",
+      "what_to_learn": "Overlay both chains on one round grid and arrow each transaction up to the crowned round that commits it, so latency reads as column count — but four separate colours blur which pair is the fast path.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp23-002_fig5",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A four-stage pipeline anatomy where every stage is an identical '1...N' box pair with fully crossing connections to the next stage, illustrating independent, elastic per-stage scaling.",
+      "what_to_learn": "Give every stage an identical '1...N' box pair and fully cross-connect neighboring stages so any replica can reach any replica — but the dashed-vs-solid arrow meaning (async vs sync RPC) is explained only in the caption, never on the figure.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp24-007_fig3",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Augmenting each layer of a DNN with a lightweight exit ramp lets easy inputs leave the model as soon as a ramp is confident, so a batch's effective size shrinks layer by layer instead of every input running the full network.",
+      "what_to_learn": "Running counts written on the arrows between repeated stages; an ellipsis to compress the middle; a dashed box naming the pre-existing part",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp24-011_figtex2",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Because data-parallel peer workers at the same pipeline stage hold identical parameters, a failed worker's incoming micro-batches can be split across its healthy peers, which forward the extra output to the failed worker's original downstream successor.",
+      "what_to_learn": "A grid coloured on two independent axes, a red X for the failure, fork-then-merge arrows for the reroute, a taught-once legend",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp24-017_fig9",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "Literally draws which files are shared vs private via a labelled brace and a single highlighted mountpoint, then turns the overlay-fs equation (base + modification) into a matched stacked-box diagram.",
+      "what_to_learn": "Use a labelled brace under a group of sibling nodes to mark what's reused/shared, highlight the one reconfigurable node in red, then draw 'X = A + B' composition as vertically stacked, colour-matched boxes.",
+      "note_source": "agent"
+    },
+    {
+      "id": "sosp25-001_fig12",
+      "group": "anatomy",
+      "star": true,
+      "primary": true,
+      "why_chosen": "A small worked hypergraph (3 queries, 5 compute blocks, 3 KV, 3 outputs) that teaches the paper's vertex/weight/hyperedge notation on one concrete example before it is used at scale.",
+      "what_to_learn": "Beneath each vertex circle print its [compute, data] weight tuple; group each hyperedge's members with a translucent hatch-coloured region instead of drawn lines — but overlapping hyperedges blend into a hard-to-read plaid where several share a block.",
+      "note_source": "agent"
+    },
+    {
+      "id": "asplos25-034_fig1",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "The general point-based neural rendering pipeline reduces to three per-tile steps: project each scene ellipsoid to an image-plane ellipse, sort the intersecting ellipses by depth, and blend their colours front-to-back to shade the pixel.",
+      "what_to_learn": "matching upper-case 3D objects to lower-case 2D projections via colour and a projection line, with a magnified tile inset showing pixel-level detail",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos25-053_fig4",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "GPUlog parallelizes a join by having each GPU thread stride through the outer relation and probe a shared hash-indexed sorted array (HISA) built from the inner relation, so many threads can look up matches concurrently instead of scanning.",
+      "what_to_learn": "a worked numeric join example split into dashed-bordered regions (outer relation, hash index, inner relation, results) connected by many-to-one probing arrows",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos25-091_fig2",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Splitting an n x n matrix-vector product's n diagonals into n1 baby-step groups of n2 diagonals each cuts the needed ciphertext rotations from n down to about n1+n2 (here 3+2=5 vs 6), a saving that grows as O(sqrt(n)) instead of O(n) for larger matrices.",
+      "what_to_learn": "colour-banded diagonals of a matrix extracted into separate multiply-and-sum columns, regrouped by a rotation-count bracket label, to make an asymptotic rotation-count argument visually countable",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos25-151_fig12",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "One Fat-Tree QRAM query's address-routing gates (load, rotate, two-qubit gate, alternating SWAP-I/SWAP-II) are scheduled cycle by cycle down to a single controlled-gate memory access and back, and three such queries are staggered to pipeline the whole tree.",
+      "what_to_learn": "a coloured grid keyed to a small reference tree diagram, one colour per hierarchy level; trapezoidal shading linking a wide detailed table to narrow staggered summary bars repeating the same pattern over time; primed vs unprimed labels marking an outward mirror of an inward operation sequence",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-026_fig9",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Starting from a prompt, the draft model branches topK candidate tokens at each of Draft_Depth levels, building a probability-scored tree; only the Tokens_to_Verify highest-confidence tokens in that tree (highlighted blue) are ultimately sent to the target model for verification.",
+      "what_to_learn": "a branching probability tree with a coloured highlight marking the subset actually used downstream; column headers naming each depth/step level of a search or drafting procedure; an inline legend distinguishing two arrow colours by role rather than a separate colour-swatch key",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-047_fig7",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Two Toffoli gates sharing one control qubit would normally run sequentially; decomposing each into T-gates and then using commutation rules to push matching-control CNOTs together turns them into parallel Fanout gates, cutting circuit depth without changing the T-depth.",
+      "what_to_learn": "consistent two-colour shading tracking which of two originally-sequential operations a gate belongs to, carried across multiple panels of a derivation; a small 'rule' panel of equivalent circuit fragments used to justify a reordering applied in a following panel; a numbered step axis over a quantum circuit to make parallel execution explicit",
+      "note_source": "record"
+    },
+    {
+      "id": "asplos26-148_fig4",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Only the Gaussians that fall inside the camera's view frustum, a small, spatially clustered region of the whole scene, are accessed when rendering a view; everything outside the frustum can safely stay off the GPU.",
+      "what_to_learn": "A textless figure: colour-vs-grey to separate the relevant subset, a tinted region, a hand-drawn camera glyph",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi23-042_fig11",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "The random variable D21 (chunks watched before swiping to video 2) is the base case of the recursive model, enumerated here as exactly three possible chunk sequences, each with its own probability.",
+      "what_to_learn": "three stacked timelines sharing a common origin chunk, each ending in a labelled probability expression",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi23-085_fig1",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "In current serverless platforms, how functions are invoked (coarse, workflow-driven) and how their data actually flows (fine-grained, all-to-all, or time-batched) are treated as one thing but are not.",
+      "what_to_learn": "a single invocation arrow paired with a dense mesh of dashed data-flow arrows to show that control and data flow diverge; an explicit two-line legend distinguishing solid invocation arrows from dashed data arrows",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi24-023_figtex7",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Grace's receiver waits for a still-missing packet only until a computed deadline t*, because waiting past that point yields lower utility than decoding immediately with the packets already in hand.",
+      "what_to_learn": "a decaying sawtooth curve annotated with speech-bubble callouts marking a threshold that splits a favourable from an unfavourable outcome",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi24-061_fig3",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "CAPA's capacity-augment workflow is a fixed pipeline of four one-time orchestration/qualification steps followed by a per-domain Drain/Config/Undrain loop that repeats until every FBR SDN control domain has been processed.",
+      "what_to_learn": "a one-time setup chain feeding into a labelled while-loop of three repeated steps",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi24-068_figtex18",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A concrete 4-element sorting network is traced end to end: each comparator sends the smaller input to the upper wire and the larger to the lower wire, and with inputs 9,6,4,8 colour-coded throughout, five comparators leave the wires sorted as 4,6,8,9.",
+      "what_to_learn": "One colour per tracked value, held across every wire; a separate miniature legend defining the one non-obvious symbol",
+      "note_source": "doc"
+    },
+    {
+      "id": "nsdi26-036_fig8",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "A Login application flow is modeled as a small graph of sequential and parallel URL requests, each carrying latency/failure parameters and a backup alternative, from which the simulator derives closed-form duration and failure formulas.",
+      "what_to_learn": "a left-to-right request-pattern graph with a dashed fallback node hanging off one step and a fan-out/fan-in parallel block, closed by symbolic aggregate formulas below the graph",
+      "note_source": "record"
+    },
+    {
+      "id": "nsdi26-131_fig4",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Running the symbolic simulation on the example network surfaces exactly two contract violations, c1 at C and c2 at F, and shows how forcing them changes which route each router finally selects.",
+      "what_to_learn": "a small labelled network graph with each node's candidate paths listed beside it, selected paths underlined, and a violation-driven subset coloured red and cross-referenced to a definitions table below",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi23-022_fig6",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Colour links two overlapping instrumented-read outputs, (1,20) and (2,43,8), directly to the predicate-anti and item-anti edges they produce in the inferred statement-dependency graph.",
+      "what_to_learn": "a code listing stacked above the graph it produces, with colour-coded dashed connectors tying specific highlighted lines to the specific edges they justify",
+      "note_source": "record"
+    },
+    {
+      "id": "osdi25-003_fig4",
+      "group": "anatomy",
+      "star": false,
+      "primary": false,
+      "why_chosen": "Same worker pipeline drawn twice, coloured red vs green, making an abstract 'imbalance' concrete as one heavier micro-batch; the other panel maps a chunk onto the mask rows it touches.",
+      "what_to_learn": "Draw the same worker pipeline twice, colouring only the rows that differ (red = heavy micro-batch, green = light) to make 'imbalance' visible at a glance; elsewhere, map a chunk's label directly onto the mask rows it occupies.",
+      "note_source": "agent"
+    },
+    {
+      "id": "osdi25-050_fig10",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "BlitzScale models cluster networking at two levels: a leaf-to-spine RDMA topology for scale-out traffic between nodes, and a full-mesh NVLink group for scale-up traffic between the GPUs inside one node/cluster.",
+      "what_to_learn": "a cloud-to-switch-to-node network hierarchy with one node zoomed into its NIC/accelerator/interconnect internals",
+      "note_source": "record"
+    },
+    {
+      "id": "sosp23-016_fig5",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "One request's key/value vectors are split into fixed-size blocks (4 tokens each) that PagedAttention stores in whatever physical block-table slots are free, so logically adjacent blocks need not be physically contiguous.",
+      "what_to_learn": "Draw the container bigger than the data when the *absence* is the point; fan-out arrows to the occupied rows only",
+      "note_source": "doc"
+    },
+    {
+      "id": "sosp25-047_fig15",
+      "group": "anatomy",
+      "star": false,
+      "primary": true,
+      "why_chosen": "Memory management operations (deallocation, or GPU/CPU swap eviction and reload) are added to the SDG with an identity dependence on producer P and an inverse-mapped dependence on consumer C, so they run only after production and last use.",
+      "what_to_learn": "a small unchanged sub-graph ringed by a dashed boundary, with new operator nodes attached outside it by labelled forward/inverse dependency arrows",
+      "note_source": "record"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "figgenie-paper-diagram-mathjax",
+  "private": true,
+  "type": "module",
+  "description": "MathJax 3 (node) used by tex_measure.py / tex_fill.py / svg2pptx.py to typeset TeX formulas as SVG paths and MathML. Install with `npm install` in this directory (node_modules is not committed).",
+  "dependencies": { "mathjax-full": "^3.2.2" }
+}

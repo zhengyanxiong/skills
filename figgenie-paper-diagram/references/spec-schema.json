@@ -1,0 +1,2025 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://forge-systems-paper-figure/figgenie-paper-diagram/references/spec-schema.json",
+ "title": "Systems-paper architecture figure spec",
+ "description": "The JSON intermediate between 'what the paper says' and 'the SVG the agent draws'. It describes STRUCTURE (who exists, what contains what, what flows where, what is new) plus optional grid hints -- never absolute coordinates: the agent hand-draws the SVG from this. Vocabulary is taken verbatim from references/layouts.md (templates, direction, lanes, panels), references/palettes.json (palette ids and colour roles), references/encoding.md (line style, heads, step markers, legend) and references/style-rules.md (numeric bands). Fill it with references/spec-guide.md; check it with scripts/spec_validate.py. Every object is closed (additionalProperties:false) so typos surface as errors. Referential integrity (every from/to/parent/attached_to/anchor/legend_ref resolves, no container cycles, edge endpoints resolve (nodes; a container or lane endpoint is a warning, since the linter checks the arrow against the frame), no node is used as a parent, unique ids across all arrays) is NOT expressible in JSON Schema and is enforced by the validator. The schema is a contract for the linter and for round-tripping user feedback, not a straitjacket: every object accepts `notes` and any `x-*`/`_*` field, every kind enum has `other`, and the template list has `custom`. The human-facing artifact is the natural-language brief (references/brief-template.md); the spec is derived from the confirmed brief. Mechanism figures (meta.kind = mechanism) add meta.mechanism (group, base, arrangement), panels[] / deltas[] for alternatives and frames, values[] for worked examples, node kinds state / decision / slot / cell / port, edge kinds transition / pointer / mapping / message with a `guard`, and steps[].carries; see spec-guide.md section 7 and references/mechanism/. Bitmaps (a sample, photo, screenshot, rendered result, icon) are nodes with `image` (a local PNG / JPEG next to the spec, never a URL) and usually kind `image`; the SVG draws them as <image> and embed_fonts.py inlines them at delivery (spec-guide.md section 4, 'Bitmaps'). Three families of figure share it: systems architecture (the default), mechanism (meta.kind) and AI-venue Figure 1s (meta.family = 'ai', references/ai/).",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "meta",
+  "nodes"
+ ],
+ "properties": {
+  "meta": {
+   "$ref": "#/$defs/meta"
+  },
+  "containers": {
+   "type": "array",
+   "default": [],
+   "description": "Group / region / panel frames. A container is a box drawn around other elements; An edge may end on it (the validator warns, the linter checks the arrow against the frame); when the prose names a specific box inside, prefer that node. Depth of the container chain plus the node itself must stay <= 3 (encoding.md A10).",
+   "items": {
+    "$ref": "#/$defs/container"
+   }
+  },
+  "lanes": {
+   "type": "array",
+   "default": [],
+   "description": "Swimlanes, tier bands and phase columns (layouts.md `phase-lanes`, `layered`, `multi-tier`). Lanes are the WHO (a rank, a worker, a plane); phases are the WHEN. Use at most 3 lanes at single column.",
+   "items": {
+    "$ref": "#/$defs/lane"
+   }
+  },
+  "nodes": {
+   "type": "array",
+   "minItems": 1,
+   "description": "Every labelled box in the figure. One entry per drawn component, even a one-word chip in a DAG. Replicated components are ONE entry with `multiplicity` set, not N entries.",
+   "items": {
+    "$ref": "#/$defs/node"
+   }
+  },
+  "edges": {
+   "type": "array",
+   "default": [],
+   "description": "Directed connectors between nodes. Endpoints are node ids by default; to point at a group, target the representative node inside it, or the container/lane itself when the whole group is meant (validator warning, linter-checked). Corpus median is 6 flows, p90 10.",
+   "items": {
+    "$ref": "#/$defs/edge"
+   }
+  },
+  "steps": {
+   "type": "array",
+   "default": [],
+   "description": "The numbered walkthrough. Only fill this when there is a real order (encoding.md Part D: 3-8 steps); the caption must list them in prose.",
+   "items": {
+    "$ref": "#/$defs/step"
+   }
+  },
+  "legend": {
+   "$ref": "#/$defs/legend"
+  },
+  "annotations": {
+   "type": "array",
+   "default": [],
+   "description": "Text that is not a component name: callouts, brackets over an interval, free labels ('Kernel Space', 'x16').",
+   "items": {
+    "$ref": "#/$defs/annotation"
+   }
+  },
+  "constraints": {
+   "type": "array",
+   "default": [],
+   "description": "Alignment and ordering hints for the hand-drawn layout. Advisory, not solved: the agent honours them, the linter checks them.",
+   "items": {
+    "$ref": "#/$defs/constraint"
+   }
+  },
+  "style_overrides": {
+   "$ref": "#/$defs/style_overrides"
+  },
+  "notes": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+  },
+  "panels": {
+   "type": "array",
+   "default": [],
+   "items": {
+    "$ref": "#/$defs/panel"
+   },
+   "description": "meta.kind mechanism only: the panels (alternatives) or frames (moments) of a multi-panel figure, in order. Two or more entries for comparison and evolution; declare which panel each element belongs to with its `panel` field."
+  },
+  "deltas": {
+   "type": "array",
+   "default": [],
+   "items": {
+    "$ref": "#/$defs/delta"
+   },
+   "description": "meta.kind mechanism only: the changes each panel / frame makes to the shared template. An evolution figure is the template plus one delta list per frame; a comparison is the template plus what each alternative does differently."
+  },
+  "values": {
+   "type": "array",
+   "default": [],
+   "items": {
+    "$ref": "#/$defs/value"
+   },
+   "description": "meta.kind mechanism only, when worked_example: the concrete values the reader checks, linked where the same value recurs."
+  }
+ },
+ "$defs": {
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+   "description": "kebab-case identifier, unique across containers+lanes+nodes+edges+annotations+legend items. Derive it from the label: 'Pipeline Schedule Searcher' -> 'pipeline-schedule-searcher'."
+  },
+  "ref": {
+   "type": "string",
+   "description": "A reference to an id declared elsewhere in this spec. The validator errors on dangling references."
+  },
+  "meta": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "title",
+    "figure_kind",
+    "column",
+    "template"
+   ],
+   "description": "Everything about the figure as a whole.",
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id",
+     "description": "Spec id, usually <paper>-fig<N>, e.g. 'dip-fig6'."
+    },
+    "title": {
+     "type": "string",
+     "default": "",
+     "description": "One line naming the figure for humans, e.g. 'DIP overall workflow'. Not drawn on the canvas -- figures carry no internal title (layouts.md, Titles)."
+    },
+    "system": {
+     "type": "object",
+     "additionalProperties": false,
+     "default": {},
+     "description": "The system the figure is about.",
+     "properties": {
+      "name": {
+       "type": "string",
+       "default": "",
+       "description": "System name as the paper spells it, e.g. 'DIP'."
+      },
+      "one_liner": {
+       "type": "string",
+       "default": "",
+       "description": "What the system is, in one sentence from the abstract."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+      }
+     },
+     "patternProperties": {
+      "^(x-|_)": {
+       "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+      }
+     }
+    },
+    "family": {
+     "enum": [
+      "systems",
+      "ai"
+     ],
+     "default": "systems",
+     "description": "Which corpus the figure follows. systems = OSDI / NSDI / SOSP / ASPLOS figures (the default; everything else in this schema applies unchanged). ai = the Figure 1s of ICLR, ICML, NeurIPS, CVPR, ACL and AAAI (references/ai/): the width band comes from meta.venue, budgets and the advisory checks from references/ai/style-thresholds.json and the figure's kinds from meta.ai; meta.kind stays architecture (an overview) or mechanism (how one part works) as before."
+    },
+    "venue": {
+     "enum": [
+      "iclr",
+      "icml",
+      "neurips",
+      "cvpr",
+      "acl",
+      "aaai"
+     ],
+     "description": "AI family only: the venue whose template sets the text width (NeurIPS and ICLR 396 pt, single-column templates; ICML 486, CVPR 495, ACL 454, AAAI 504 pt, two-column templates with a 219-239 pt column). Required when meta.family = 'ai'."
+    },
+    "figure_kind": {
+     "enum": [
+      "whole-system",
+      "subsystem",
+      "request-path",
+      "comparison",
+      "deployment",
+      "mechanism"
+     ],
+     "default": "whole-system",
+     "description": "What the figure depicts; drives template choice and numbering rate (layouts.md `depicts`). Maps to the corpus vocabulary: whole-system='whole-system architecture', subsystem='one subsystem', request-path='one path/request flow', comparison, deployment. request-path figures are numbered 52% of the time, deployment 0%. mechanism = meta.kind is mechanism; the depicted scope is then given by meta.mechanism.group and base."
+    },
+    "style": {
+     "enum": [
+      "corpus",
+      "charon"
+     ],
+     "default": "corpus",
+     "description": "Named style. 'corpus' (default) = the house rules distilled from the rated corpus. Any other value is one paper's look the user asked for, described in references/styles/<style>.md (with references/styles/<style>.json read by lint.py / spec_validate.py): it changes weight, outlines, fill roles and framing, never the print floors (type >= 6 pt, canvas, contrast). Set it only when the user asks for that style; pair it with the matching palette (meta.palette = 'charon')."
+    },
+    "venue_style": {
+     "enum": [
+      "acm",
+      "usenix"
+     ],
+     "default": "acm",
+     "description": "Which template family the paper uses. Affects column widths and caption style only."
+    },
+    "column": {
+     "enum": [
+      "single",
+      "double"
+     ],
+     "default": "single",
+     "description": "81% of the systems corpus is single column. Double column is a strip, not a bigger square: same height, double width, aspect ~3.2 (layouts.md). AI family: 'double' = the venue's full text width (89% of good Figure 1s; the default), 'single' = one column of a two-column venue (ICML, CVPR, ACL, AAAI only)."
+    },
+    "width_pt": {
+     "type": "number",
+     "default": 240,
+     "minimum": 100,
+     "maximum": 620,
+     "description": "Canvas width in points at print size. 240 (target; 245-252 typical) for single column, 504 (506-514 typical) for double. Becomes the viewBox width."
+    },
+    "max_height_pt": {
+     "type": "number",
+     "default": 160,
+     "minimum": 40,
+     "maximum": 340,
+     "description": "Height ceiling in points. Single column: median 153, soft max 257. Double column: median 168, soft max 313. The drawn viewBox height must be <= this."
+    },
+    "template": {
+     "enum": [
+      "pipeline",
+      "layered",
+      "two-panel",
+      "control-data",
+      "hub-spoke",
+      "matrix",
+      "host-device",
+      "overview-with-inset",
+      "control-loop",
+      "phase-lanes",
+      "multi-tier",
+      "nested-stack",
+      "baseline-vs-ours",
+      "replicated-grid",
+      "dataflow-dag",
+      "n-panel-comparison",
+      "composite-figure",
+      "mirrored-pair",
+      "flanked-core",
+      "block-floorplan",
+      "mechanism",
+      "ai",
+      "custom"
+     ],
+     "default": "pipeline",
+     "description": "The core frame, chosen with the table in layouts.md 'Choosing a template'. The first seven are the corpus's own taxonomy; the other thirteen are recurring sub-patterns with their own rules (I-M added 2026-09-07 from the 736-figure type-discovery pass). custom = none of the 20 fits; describe the arrangement in meta.notes (layouts.md is guidance, not a cage). 'mechanism' = the frame comes from meta.mechanism.arrangement, not from an architecture template. 'ai' = an AI-venue figure (meta.family = ai): there is no template; meta.ai.arrangement describes the arrangement (references/ai/layouts.md)."
+    },
+    "modifiers": {
+     "type": "array",
+     "default": [],
+     "description": "Added templates layered on top of the core frame (layouts.md: 'Pick the core template for the overall frame, then apply the added ones as modifiers'), e.g. template=layered + modifiers=[replicated-grid, overview-with-inset].",
+     "items": {
+      "enum": [
+       "overview-with-inset",
+       "control-loop",
+       "phase-lanes",
+       "multi-tier",
+       "nested-stack",
+       "baseline-vs-ours",
+       "replicated-grid",
+       "dataflow-dag",
+       "n-panel-comparison",
+       "composite-figure",
+       "mirrored-pair",
+       "flanked-core",
+       "block-floorplan"
+      ]
+     }
+    },
+    "direction": {
+     "enum": [
+      "left-right",
+      "top-down",
+      "bottom-up",
+      "mixed",
+      "radial",
+      "none"
+     ],
+     "default": "left-right",
+     "description": "Reading direction. Corpus: left-right 117, top-down 83, mixed 68, bottom-up 4 -- bottom-up is essentially unused; only memory hierarchies read from the device outward. AI family (references/ai/layouts.md §3): left-right 54%, mixed 29%, top-down 11%, circular / radial 3%, none 2%; bottom-up stacks are normal in model anatomy (23% of records) and audio (36%)."
+    },
+    "panels": {
+     "type": "integer",
+     "default": 1,
+     "minimum": 1,
+     "maximum": 8,
+     "description": "Number of lettered sub-figure panels ((a), (b), ...); sub-panels inside a part do not count. 80% of the corpus is single-frame; >= 3 panels is a recorded weakness unless the figure is a composite the user asked for (panels[] with axis part, spec-guide §8), whose parts are budgeted one by one. Declare each panel as a container with kind='panel' or, in a mechanism or composite figure, as a panels[] entry."
+    },
+    "palette": {
+     "enum": [
+      "blue-orange",
+      "green-red",
+      "high-contrast",
+      "cream-pastel",
+      "grey-scaffold",
+      "greyscale",
+      "blue-mono",
+      "warm-bands",
+      "multi-hue-categorical",
+      "amber-highlight",
+      "cool-grey-cyan",
+      "blue-outline",
+      "ink-outline",
+      "pastel-outline",
+      "pastel-regions",
+      "green-outline",
+      "blue-ground",
+      "greyscale-outline",
+      "cream-ground",
+      "categorical-outline",
+      "green-ground",
+      "charon",
+      "office-pastel",
+      "tinted-regions",
+      "role-colours",
+      "verdict-contrast",
+      "frozen-trainable",
+      "custom"
+     ],
+     "default": "blue-orange",
+     "description": "Palette id from references/palettes.json; roles resolve there. The *-outline ids have container/lane = null (outline only, no fill); the *-ground ids and pastel-regions fill the container with a tint. 'custom' requires style_overrides.palette_roles to define at least module, stroke and text. The five families marked \"family\": \"ai\" (office-pastel, tinted-regions, role-colours, verdict-contrast, frozen-trainable; references/ai/palettes.md §9) are the AI family's starting points; its figures may use any family."
+    },
+    "font": {
+     "type": "string",
+     "default": "arial",
+     "description": "Font key resolved by the step-6 font map, e.g. 'arial', 'calibri', 'helvetica', 'times', 'computer-modern', 'dejavu', 'inter'. The drawn SVG declares a full family stack once on the root <svg>. 82% of the corpus is sans."
+    },
+    "font_cjk": {
+     "type": "string",
+     "default": "source-han-sans",
+     "description": "Font key for CJK glyphs when `language` is zh/ja/ko or any label contains CJK: a `script: cjk` family from assets/fonts/fonts.json ('source-han-sans' = 思源黑体, pairs with 'source-sans'; 'source-han-serif' = 思源宋体, pairs with 'times'). Not shipped: resolved from the system, subsetted and embedded by embed_fonts.py; the root stack names the Latin family first and the CJK family second."
+    },
+    "step_markers": {
+     "enum": [
+      "none",
+      "circled-numbers",
+      "letters",
+      "labelled-arrows",
+      "plain-numbers",
+      "timeline-ticks"
+     ],
+     "default": "none",
+     "description": "How steps[] are drawn. Circled numbers order a traversal; letters index prose and imply no order (encoding.md A7). Mechanism corpus (152 records): none 61%, circled-numbers 20%, plain-numbers 7% (bare digits beside the path, 31% of walkthroughs), letters 7%, labelled-arrows 5%, timeline-ticks 1% (tick labels on a time axis stand in for step numbers)."
+    },
+    "language": {
+     "type": "string",
+     "default": "en",
+     "description": "Language of the drawn labels ('en', 'zh'). Conversation language is independent of this."
+    },
+    "version": {
+     "type": "integer",
+     "default": 1,
+     "minimum": 1,
+     "description": "Bumped every time user feedback is applied and the figure is redrawn."
+    },
+    "caption_draft": {
+     "type": "string",
+     "default": "",
+     "description": "The caption to ship with the figure. Must decode any circled numbers in order (encoding.md Part C) and must not carry meaning the figure needs to be readable."
+    },
+    "open_questions": {
+     "type": "array",
+     "default": [],
+     "description": "Questions to put to the user before or after the first draw -- which components are new, which path is the main one, is a group boundary the system boundary. Empty means the agent is not guessing at anything.",
+     "items": {
+      "type": "string"
+     }
+    },
+    "_source": {
+     "type": "string",
+     "default": "",
+     "description": "Provenance for reverse-engineered example specs: the exemplar id under assets/exemplars/."
+    },
+    "_notes": {
+     "type": "string",
+     "default": "",
+     "description": "For example specs: what the original does that this spec captures, and what it cannot."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "kind": {
+     "enum": [
+      "architecture",
+      "mechanism"
+     ],
+     "default": "architecture",
+     "description": "Figure kind. architecture = a whole-system overview (the default; everything below applies unchanged). mechanism = how ONE part works: a walkthrough, successive frames, alternatives side by side, control logic, or a component opened up (references/mechanism/). A mechanism spec fills meta.mechanism, may use panels[] / deltas[] / values[], and takes its budgets from the mechanism thresholds."
+    },
+    "mechanism": {
+     "type": "object",
+     "additionalProperties": false,
+     "default": {},
+     "description": "Only for meta.kind = mechanism: the v3 group and how the drawing is organised (mech-prescreen/typedisc/types_v3.md; the same vocabulary as the mechanism semantic records).",
+     "properties": {
+      "group": {
+       "enum": [
+        "comparison",
+        "evolution",
+        "logic",
+        "walkthrough",
+        "anatomy",
+        "other"
+       ],
+       "default": "anatomy",
+       "description": "Primary group, in priority order comparison > evolution > logic > walkthrough > anatomy: comparison = the same template drawn once per alternative (panels[] with axis alternatives); evolution = one instance in successive frames (panels[] with axis time + deltas[]); logic = a state machine or decision flow (nodes kind state/decision, edges with guard); walkthrough = one structure with numbered markers along a path (steps[]); anatomy = a static structure opened up. 'other' when the figure is none of the five: describe its reading path in notes; the group-specific checks are skipped."
+      },
+      "groups": {
+       "type": "array",
+       "default": [],
+       "items": {
+        "enum": [
+         "comparison",
+         "evolution",
+         "logic",
+         "walkthrough",
+         "anatomy",
+         "other"
+        ]
+       },
+       "description": "Secondary groups, e.g. a walkthrough drawn on a state machine = ['logic']."
+      },
+      "worked_example": {
+       "type": "boolean",
+       "default": false,
+       "description": "The concrete values ARE the content (tables, matrices, rows of numbers the reader checks): fill values[]. Values written beside boxes are annotations, not a worked example."
+      },
+      "base": {
+       "enum": [
+        "component",
+        "data-structure",
+        "graph",
+        "tree",
+        "timeline",
+        "topology",
+        "table",
+        "code",
+        "state-machine",
+        "flowchart",
+        "scene",
+        "mixed",
+        "circuit",
+        "other"
+       ],
+       "default": "component",
+       "description": "What the structure is drawn as: the surface the story sits on. Picks the parts (assets/symbols by_subtype mechanism) and the default node kinds: data-structure -> slot/cell nodes, timeline -> lifeline lanes + message edges, state-machine -> state nodes + transition edges, flowchart -> decision nodes. 'circuit' = gates/wires/waveforms (1 record); 'other' when none of the names fits -- say what it is in notes."
+      },
+      "arrangement": {
+       "enum": [
+        "single",
+        "panels-row",
+        "panels-column",
+        "panels-grid",
+        "frames-row",
+        "frames-column",
+        "inset",
+        "stacked-timeline",
+        "other"
+       ],
+       "default": "single",
+       "description": "How panels / frames are laid out (the mechanism counterpart of meta.template). single = one drawing; panels-* = alternatives side by side; frames-* = the same instance at successive moments; inset = a magnified region beside the whole; stacked-timeline = lifelines stacked over one time axis."
+      },
+      "frame_template": {
+       "enum": [
+        "identical",
+        "aligned",
+        "free",
+        "none"
+       ],
+       "default": "none",
+       "description": "How repeated panels relate. identical = same elements at the same positions, only the delta differs (evolution default); aligned = same skeleton, contents differ (comparison default); free = each panel its own layout; none = single panel."
+      },
+      "delta_marking": {
+       "enum": [
+        "colour",
+        "bold-stroke",
+        "dashed-ghost",
+        "strike",
+        "callout",
+        "badge",
+        "none"
+       ],
+       "default": "none",
+       "description": "Default way a change / difference is marked across panels (deltas[].marking inherits it): colour = the changed element takes the accent fill; dashed-ghost = the old state stays as a dashed outline; strike = crossed out; callout = a leader + note; badge = a small glyph (checkmark / cross / number)."
+      },
+      "zoom_callout": {
+       "type": "boolean",
+       "default": false,
+       "description": "An inset magnifies one region: mark the region with a container kind 'panel' and the inset with a panel whose axis is 'zoom'."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+      }
+     },
+     "patternProperties": {
+      "^(x-|_)": {
+       "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+      }
+     }
+    },
+    "ai": {
+     "type": "object",
+     "additionalProperties": false,
+     "default": {},
+     "description": "Only for meta.family = ai: what kind of Figure 1 this is, in the vocabulary of references/ai/ (kinds.md, domains.md, layouts.md). Descriptive: the validator reads it to pick budgets and to phrase its advice, never to reject an arrangement.",
+     "properties": {
+      "kinds": {
+       "type": "array",
+       "default": [],
+       "items": {
+        "enum": [
+         "stage-pipeline",
+         "model-anatomy",
+         "side-by-side-contrast",
+         "worked-walkthrough",
+         "concept-schematic",
+         "scope-overview",
+         "actor-interaction",
+         "contribution-mosaic",
+         "other"
+        ]
+       },
+       "description": "Every kind that applies, primary first (kinds overlap: a mosaic whose tiles hold a pipeline is contribution-mosaic + stage-pipeline). Budgets follow the primary kind (style-thresholds.json by_kind)."
+      },
+      "variant": {
+       "type": "string",
+       "default": "",
+       "description": "A variant slug of the primary kind (kinds.md: stage-chain, phase-bands, overview-plus-zoom, paired-lanes, example-gallery, single-agent-loop ...) or your own slug."
+      },
+      "subfield": {
+       "enum": [
+        "llm-nlp",
+        "multimodal",
+        "vision",
+        "generative",
+        "agents",
+        "rl-robotics",
+        "audio",
+        "science-engineering",
+        "ml-core",
+        "other"
+       ],
+       "default": "other",
+       "description": "The paper's primary sub-field (references/ai/domains.md says what each one draws differently)."
+      },
+      "subfield2": {
+       "enum": [
+        "llm-nlp",
+        "multimodal",
+        "vision",
+        "generative",
+        "agents",
+        "rl-robotics",
+        "audio",
+        "science-engineering",
+        "ml-core",
+        "other",
+        ""
+       ],
+       "default": "",
+       "description": "A secondary sub-field when the paper straddles two (two thirds do); read both sections of domains.md."
+      },
+      "arrangement": {
+       "enum": [
+        "single",
+        "pipeline-row",
+        "pipeline-column",
+        "panels-row",
+        "panels-column",
+        "panels-grid",
+        "lanes",
+        "hub",
+        "bands",
+        "cards-grid",
+        "dashboard",
+        "chat-column",
+        "inset",
+        "free",
+        "other"
+       ],
+       "default": "other",
+       "description": "How the canvas is divided, in the vocabulary of references/ai/layouts.md §1 (the AI counterpart of meta.template, which is then 'ai'). It describes the arrangement decided on; 'other' with a note is a value."
+      },
+      "grouping": {
+       "type": "array",
+       "default": [],
+       "items": {
+        "enum": [
+         "tinted-regions",
+         "framed-boxes",
+         "dashed-boxes",
+         "whitespace",
+         "panel-frames",
+         "other"
+        ]
+       },
+       "description": "How parts are set apart (layouts.md §7: tinted regions 60% of records, framed boxes 59%, dashed boxes 45%, white space 41%; usually two of them)."
+      },
+      "samples": {
+       "enum": [
+        "none",
+        "text",
+        "image",
+        "video",
+        "audio",
+        "3d",
+        "table",
+        "network-graph",
+        "chart",
+        "code",
+        "molecule",
+        "mixed",
+        "other"
+       ],
+       "default": "none",
+       "description": "The modality of the samples the figure shows (a prompt and its answer, image tiles, a waveform, a molecule). 53% of the corpus shows samples; the brief names the paper's own material for them."
+      },
+      "idioms": {
+       "type": "array",
+       "default": [],
+       "items": {
+        "type": "string"
+       },
+       "description": "The stock drawn forms the figure uses, as vocabulary ids (llm, transformer-block, lora-adapter, token-strip, diffusion-chain, agent-loop, chat-bubbles, benchmark-card, filmstrip ...; assets/exemplars/ai/vocab.json): the parts library is searched by them (assets/symbols/index.json families, subtype ai)."
+      },
+      "materials": {
+       "type": "array",
+       "default": [],
+       "items": {
+        "type": "string"
+       },
+       "description": "What the paper supplies for the figure: sample images, screenshots, real prompts and answers, numbers, the model's or the paper's logo. Named here so the plan draws from them and never invents them."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: the arrangement in your own words when 'other', what was decided against the corpus habit and why"
+      }
+     }
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "container": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "label"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id"
+    },
+    "label": {
+     "type": "string",
+     "default": "",
+     "description": "Group title, drawn on the container's edge. Empty string draws an unlabelled frame."
+    },
+    "kind": {
+     "enum": [
+      "solid",
+      "dashed",
+      "band",
+      "lane",
+      "panel",
+      "none",
+      "other"
+     ],
+     "default": "solid",
+     "description": "solid = physical enclosure (a host, a chip, a switch). dashed = logical grouping / system boundary / 'this is our system' -- pick ONE meaning for dashed per figure. band = tinted full-width region. lane = a container that is itself a swimlane (prefer lanes[]). panel = a sub-figure frame labelled (a)/(b). none = grouping that exists in the spec but is not drawn."
+    },
+    "parent": {
+     "$ref": "#/$defs/ref",
+     "description": "Enclosing container or lane id. Omit for a top-level frame."
+    },
+    "title_position": {
+     "enum": [
+      "top-left",
+      "top-center",
+      "inside-top",
+      "outside-top",
+      "bottom-left",
+      "bottom-center",
+      "left-rotated",
+      "right-rotated"
+     ],
+     "default": "top-left",
+     "description": "Where the group title sits. Corpus default is on the top edge or top-left inside; band and tier names go in a margin gutter, rotated if the gutter is narrow. bottom-* is used when the top edge is crowded (asplos26-132_fig6 sets Online Planner bottom-left)."
+    },
+    "role": {
+     "enum": [
+      "novel",
+      "existing",
+      "external",
+      "boundary"
+     ],
+     "default": "existing",
+     "description": "novel = the paper's own subsystem (gets the dashed contribution box or a tint). existing = reused infrastructure (grey). external = outside the system. boundary = a pure network/trust divider with no contents of its own."
+    },
+    "panel_label": {
+     "type": "string",
+     "default": "",
+     "description": "Sub-figure tag drawn below the panel, e.g. '(a) Baseline'. Only for kind='panel'."
+    },
+    "section_ref": {
+     "type": "string",
+     "default": "",
+     "description": "Paper section describing this group, e.g. '3.2'. Appended to group titles only, never to leaf boxes."
+    },
+    "multiplicity": {
+     "type": "string",
+     "default": "",
+     "description": "Replication count for a repeated group, e.g. 'x16'. The drawn figure shows two concrete replicas plus an ellipsis, never N copies (layouts.md `replicated-grid`)."
+    },
+    "order": {
+     "type": "integer",
+     "default": 0,
+     "description": "Position among siblings along the reading direction. Lower comes first."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Free note for the drawer; never rendered."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id this element belongs to (meta.kind mechanism with panels[]). Omit = shared template element, drawn in every panel."
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "lane": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "label"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id"
+    },
+    "label": {
+     "type": "string",
+     "default": "",
+     "description": "Lane / tier / phase name, drawn in the gutter, not inside the band."
+    },
+    "kind": {
+     "enum": [
+      "lane",
+      "tier",
+      "phase",
+      "lifeline",
+      "time"
+     ],
+     "default": "lane",
+     "description": "lane = one actor or instance (WHO). tier = a layer in a stack (layouts.md `layered`, `multi-tier`). phase = a time interval (WHEN), drawn as a dashed vertical rule with a header, never as a tinted band -- lanes and phases must not share a visual device. lifeline = one actor's row of a timeline / message-sequence chart (messages are edges kind message). time = the time axis itself (a phase ruler), at most one per figure."
+    },
+    "orientation": {
+     "enum": [
+      "horizontal",
+      "vertical"
+     ],
+     "default": "horizontal",
+     "description": "horizontal = a row spanning the canvas (the usual case for lanes and tiers). vertical = a column (the usual case for phases)."
+    },
+    "order": {
+     "type": "integer",
+     "default": 0,
+     "description": "Top-to-bottom (horizontal) or left-to-right (vertical) position. Lower comes first."
+    },
+    "label_side": {
+     "enum": [
+      "left",
+      "right",
+      "top",
+      "bottom",
+      "center"
+     ],
+     "default": "left",
+     "description": "Which gutter carries the name. A rotated right gutter frees the left margin for section tags; 'center' means the name is set inside the band itself, which only works when the band holds no boxes (an interconnect band)."
+    },
+    "role": {
+     "enum": [
+      "novel",
+      "existing",
+      "external",
+      "boundary"
+     ],
+     "default": "existing",
+     "description": "Same meaning as on containers."
+    },
+    "section_ref": {
+     "type": "string",
+     "default": "",
+     "description": "Paper section for this tier, e.g. '4.1'."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Free note for the drawer; never rendered."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id this element belongs to (meta.kind mechanism with panels[]). Omit = shared template element, drawn in every panel."
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "node": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "label"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id"
+    },
+    "label": {
+     "type": "string",
+     "description": "The name drawn inside the box, exactly as the paper spells it. Two duplicate labels on distinct boxes is a recorded weakness -- disambiguate here, not in the caption. Empty only for kind 'port', 'icon' or 'image' (a bar, a pin, a symbol or a picture with its name drawn elsewhere); every other kind must carry a label. For kind 'image' the label is the caption drawn beside or under the picture."
+    },
+    "sublabel": {
+     "type": "string",
+     "default": "",
+     "description": "Second line in a smaller size: a size, a role, an example ('2MB', 'System Software for: Thread Scheduling / RPC Stack')."
+    },
+    "kind": {
+     "enum": [
+      "module",
+      "store",
+      "compute",
+      "queue",
+      "external",
+      "actor",
+      "note",
+      "icon",
+      "state",
+      "decision",
+      "slot",
+      "cell",
+      "port",
+      "image",
+      "text",
+      "bubble",
+      "chart",
+      "other"
+     ],
+     "default": "module",
+     "description": "Semantic class; picks the default shape (module/compute/external/actor -> rectangle, store -> cylinder, queue -> slotted rectangle, note -> borderless text, icon -> symbol only, image -> a bitmap). Deviate from a rectangle only where the idiom is already known to readers (encoding.md A9). image = a bitmap -- a sample input or output, a photo, a screenshot, a rendered result, an icon: `image` names the file; drawn as <image>, usually with a thin frame, its label a caption. other = anything else; describe it in notes and draw what the paper shows. Mechanism kinds: state = a named state of a state machine (rounded box or ellipse); decision = a diamond with labelled branches; slot = one entry of an array / queue / log drawn as a slotted row; cell = one cell of a table or matrix; port = a small interface pin on a component edge. AI family additions: text = a quoted text block (a prompt, a response, code lines, a record) drawn as a card with its lines -- two or three lines, never a page; bubble = a speech or thought bubble with a short message, tied to its actor; chart = a small plot drawn to scale (data-scale=\"data\") or as a picture."
+    },
+    "parent": {
+     "$ref": "#/$defs/ref",
+     "description": "Enclosing container or lane id. Omit for a node sitting directly on the canvas."
+    },
+    "role": {
+     "enum": [
+      "novel",
+      "existing",
+      "external",
+      "baseline",
+      "optional"
+     ],
+     "default": "existing",
+     "description": "The single most important field in the spec: it decides the colour system. novel = the paper's contribution (accent or the coloured family), existing = reused/unchanged (grey or white), external = outside the system boundary, baseline = the prior design in a comparison, optional = present only in some configurations (dashed). Median 5 of 10 components are novel, so novel alone is not emphasis."
+    },
+    "emphasis": {
+     "enum": [
+      "none",
+      "accent",
+      "bold-border",
+      "shaded",
+      "ghost",
+      "strike"
+     ],
+     "default": "none",
+     "description": "Extra visual weight on top of role. accent = the saturated contribution fill -- at most 2 per figure (palettes.json: 2 saturated fills is the ceiling). bold-border and shaded are the quieter alternatives. ghost = drawn as a dashed outline (the previous state, an optional or removed element); strike = crossed out (deleted, failed)."
+    },
+    "symbol": {
+     "type": "string",
+     "default": "",
+     "description": "Name of a symbol from assets/symbols/ (copied inline as <g data-symbol=\"...\">), or a free-text description of a shape the library does not have. The agent is free to draw anything not in the library."
+    },
+    "idiom": {
+     "type": "string",
+     "default": "",
+     "description": "AI family: the stock drawn form this node is (a vocabulary id: llm, transformer-block, lora-adapter, vae-codebook, diffusion-chain, token-strip, chat-bubbles ...), so the matching parts can be found (assets/symbols/index.json, subtype ai, by family) and the figure's idioms are known. Descriptive."
+    },
+    "train_state": {
+     "enum": [
+      "",
+      "trainable",
+      "frozen",
+      "shared",
+      "other"
+     ],
+     "default": "",
+     "description": "AI family: the training state the figure must show for this part. Drawn with the snowflake / fire glyphs (6% of records), a padlock, or the palette's state colours (frozen-trainable), and said in the key: the corpus splits blue and grey evenly between the two states, so the key or the glyph must say which is which (references/ai/encoding.md Part A, Part D)."
+    },
+    "image": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "src"
+     ],
+     "description": "The bitmap this node shows (kind 'image', or any box with a small picture or icon in it): a sample, a photo, a screenshot, a rendered result, an icon. Drawn as <image> inside n:<id> with explicit x / y / width / height in pt; embed_fonts.py inlines the file into the SVG at delivery, exactly like the fonts (spec-guide.md section 4, 'Bitmaps').",
+     "properties": {
+      "src": {
+       "type": "string",
+       "minLength": 1,
+       "description": "The PNG or JPEG file, as a path relative to the figure folder (the spec, the SVG and the file sit together). Never a URL: a figure does not depend on a remote file -- download a picture found online first (check its licence, credit it in the caption). The validator errors on a URL and warns when the file is missing or not .png / .jpg / .jpeg."
+      },
+      "content": {
+       "enum": [
+        "sample",
+        "photo",
+        "screenshot",
+        "render",
+        "icon",
+        "other"
+       ],
+       "default": "other",
+       "description": "What the picture is: sample = an example input or output the system handles (an image, a frame, a document page); photo = a photograph (hardware, a testbed; JPEG); screenshot = a UI or terminal capture (PNG); render = a rendered or generated result (PNG); icon = a logo or icon; other = anything else, say what in notes."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: provenance, licence, crop wanted, anything the enums cannot say"
+      },
+      "role": {
+       "enum": [
+        "sample-input",
+        "sample-output",
+        "data-thumbnail",
+        "result",
+        "screenshot",
+        "illustration",
+        "icon",
+        "logo",
+        "other"
+       ],
+       "default": "other",
+       "description": "What the picture is in the figure (AI family records: sample inputs and outputs 34% of figures, data thumbnails 10%, rendered results 7%): the plan sizes and frames pictures by role, and a logo or mascot is the paper's own material (never a library part)."
+      }
+     },
+     "patternProperties": {
+      "^(x-|_)": {
+       "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+      }
+     }
+    },
+    "section_ref": {
+     "type": "string",
+     "default": "",
+     "description": "Paper section, e.g. '3.2'. Cheap and encouraged, but the corpus puts these on group titles, not leaf boxes."
+    },
+    "size_hint": {
+     "enum": [
+      "s",
+      "m",
+      "l"
+     ],
+     "default": "m",
+     "description": "Relative box size. Box size in the corpus means importance or capacity, so use l sparingly."
+    },
+    "grid": {
+     "$ref": "#/$defs/grid"
+    },
+    "order": {
+     "type": "integer",
+     "default": 0,
+     "description": "Position among siblings along the reading direction."
+    },
+    "multiplicity": {
+     "type": "string",
+     "default": "",
+     "description": "'xN', '1 ... N', 'x16'. Always required when the drawn figure stacks, offsets or elides copies -- an ellipsis with no count is a recorded weakness."
+    },
+    "text_lines": {
+     "type": "array",
+     "default": [],
+     "description": "Pre-wrapped label lines when the automatic wrap would be wrong. Overrides label wrapping only, not the label itself.",
+     "items": {
+      "type": "string"
+     }
+    },
+    "legend_ref": {
+     "$ref": "#/$defs/ref",
+     "description": "Legend item id that decodes this node's fill or symbol."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Free note for the drawer; never rendered."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id this element belongs to (meta.kind mechanism with panels[]). Omit = shared template element, drawn in every panel."
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "grid": {
+   "type": "object",
+   "additionalProperties": false,
+   "default": {},
+   "description": "Optional placement hint, not a coordinate. row/col are 0-based cells in the template's implied grid; for `phase-lanes` use parent=the lane (who) and grid.col=the phase (when).",
+   "properties": {
+    "row": {
+     "type": "integer",
+     "default": 0,
+     "minimum": 0,
+     "description": "0-based row."
+    },
+    "col": {
+     "type": "integer",
+     "default": 0,
+     "minimum": 0,
+     "description": "0-based column."
+    },
+    "rowspan": {
+     "type": "integer",
+     "default": 1,
+     "minimum": 1,
+     "description": "Cells spanned vertically."
+    },
+    "colspan": {
+     "type": "integer",
+     "default": 1,
+     "minimum": 1,
+     "description": "Cells spanned horizontally."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "edge": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "from",
+    "to"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id"
+    },
+    "from": {
+     "$ref": "#/$defs/ref",
+     "description": "Source node id. A container or lane id is accepted with a warning (the arrow is then checked against the frame)."
+    },
+    "to": {
+     "$ref": "#/$defs/ref",
+     "description": "Target node id (or a container / lane id, with a warning). from == to is a legal self-loop (drawn as a small curved return)."
+    },
+    "label": {
+     "type": "string",
+     "default": "",
+     "description": "What the edge carries, in the paper's words ('metadata prefetching', 'the updated configuration'). A return edge must be labelled with what it carries, never with 'loop'."
+    },
+    "kind": {
+     "enum": [
+      "data",
+      "control",
+      "feedback",
+      "dependency",
+      "membership",
+      "transition",
+      "pointer",
+      "mapping",
+      "message",
+      "gradient",
+      "attention",
+      "interaction",
+      "other"
+     ],
+     "default": "data",
+     "description": "The flow class. data = the request/data path (solid). control = decisions, metadata, commands (dashed, only if containers are solid). feedback = a return edge closing a cycle. dependency = a weak 'uses' link (dotted). membership = 'belongs to', drawn as a leader, not an arrow. other = describe in notes. Mechanism kinds: transition = a state-machine edge labelled with its trigger or guard (`guard`); pointer = a reference from a slot / node to another (thin, open head); mapping = a correspondence between two representations (thin, no head or both); message = a message between lifelines on a timeline (horizontal or sloped arrow, ordered top to bottom). AI family additions: gradient = a loss or gradient path (usually dashed, one style per figure), attention = an attention or cross-attention link between blocks, interaction = an exchange between actors (a message, an action, feedback) in an actor figure."
+    },
+    "style": {
+     "enum": [
+      "solid",
+      "dashed",
+      "dotted"
+     ],
+     "default": "solid",
+     "description": "Line style. Dashed has ONE job per figure: control flow, optional edges, or group boundaries -- never two of the three."
+    },
+    "weight": {
+     "enum": [
+      "thin",
+      "normal",
+      "main"
+     ],
+     "default": "normal",
+     "description": "0.5pt / 0.75pt / 1.0-1.25pt. 'main' marks the one path the figure is about; use it on a contiguous chain, not scattered edges."
+    },
+    "head": {
+     "enum": [
+      "filled",
+      "open",
+      "none",
+      "both"
+     ],
+     "default": "filled",
+     "description": "Small filled triangle on every directed edge. 'both' means a genuinely bidirectional interface, not 'they talk'. 'none' means a physical link or containment."
+    },
+    "route": {
+     "enum": [
+      "orthogonal",
+      "straight",
+      "curved"
+     ],
+     "default": "orthogonal",
+     "description": "62% of the corpus is fully orthogonal. Curves are for feedback and cross-lane edges; dataflow-dag is the one template where diagonals are normal."
+    },
+    "step": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "default": null,
+     "minimum": 1,
+     "description": "Step number carried by this edge, matching a steps[] entry. null for unnumbered edges."
+    },
+    "from_side": {
+     "enum": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "auto"
+     ],
+     "default": "auto",
+     "description": "Anchor hint on the source box."
+    },
+    "to_side": {
+     "enum": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "auto"
+     ],
+     "default": "auto",
+     "description": "Anchor hint on the target box."
+    },
+    "route_hint": {
+     "type": "string",
+     "default": "",
+     "description": "Prose routing instruction where it matters, e.g. 'along the bottom margin, outside the container' -- feedback and bypass edges must leave the main path alone."
+    },
+    "legend_ref": {
+     "$ref": "#/$defs/ref",
+     "description": "Legend item id that decodes this edge's colour or line style. Required in spirit whenever arrow colour or line style carries meaning."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Free note for the drawer; never rendered."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id this element belongs to (meta.kind mechanism with panels[]). Omit = shared template element, drawn in every panel."
+    },
+    "guard": {
+     "type": "string",
+     "default": "",
+     "description": "Condition, event or trigger drawn on a transition or decision branch ('lock()', 'Hit', 'Enough local memory: no'). Every edge leaving a decision node and every transition should carry one."
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "step": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "n",
+    "attached_to"
+   ],
+   "properties": {
+    "n": {
+     "type": "integer",
+     "minimum": 1,
+     "description": "1-based step number, contiguous from 1. Keep the whole walkthrough to 3-8 steps."
+    },
+    "attached_to": {
+     "$ref": "#/$defs/ref",
+     "description": "Edge id (usual) or node id the marker sits on. The glyphs must lie along the path in reading order."
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "description": "One clause for the caption walkthrough, e.g. 'prefetch batch metadata'. The caption lists these in order."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "carries": {
+     "type": "string",
+     "default": "",
+     "description": "What the traced item is at this step ('raw span', 'chunk A'), for walkthroughs that follow one object through the structure."
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id this element belongs to (meta.kind mechanism with panels[]). Omit = shared template element, drawn in every panel."
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "legend": {
+   "type": "object",
+   "additionalProperties": false,
+   "default": {},
+   "description": "In-figure key. Required when more than 4 semantic fills are in play, when line style or arrow colour carries meaning, or when any non-universal glyph is used (encoding.md Part C). Not required when the only encoding is accent-vs-neutral.",
+   "properties": {
+    "mode": {
+     "enum": [
+      "none",
+      "auto",
+      "explicit"
+     ],
+     "default": "none",
+     "description": "none = no legend (78% of the corpus). auto = the drawer derives one entry per distinct role/edge-kind actually used. explicit = use items[] verbatim."
+    },
+    "placement": {
+     "enum": [
+      "inside",
+      "below",
+      "right"
+     ],
+     "default": "inside",
+     "description": "inside a free corner is preferred (34 of 59 corpus legends) and must sit within roughly one box-width of something it decodes. below for a key shared by several panels; right for a per-row key."
+    },
+    "title": {
+     "type": "string",
+     "default": "",
+     "description": "Optional heading, e.g. 'Legends'."
+    },
+    "items": {
+     "type": "array",
+     "default": [],
+     "description": "Legend rows, in the order they should be drawn.",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "label"
+      ],
+      "properties": {
+       "id": {
+        "$ref": "#/$defs/id",
+        "description": "Referenced by nodes[].legend_ref / edges[].legend_ref."
+       },
+       "label": {
+        "type": "string",
+        "minLength": 1,
+        "description": "What the swatch means, e.g. 'Control Flow'."
+       },
+       "swatch": {
+        "$ref": "#/$defs/swatch"
+       },
+       "notes": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+       }
+      },
+      "patternProperties": {
+       "^(x-|_)": {
+        "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+       }
+      }
+     }
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "swatch": {
+   "type": "object",
+   "additionalProperties": false,
+   "default": {},
+   "description": "The sample drawn beside a legend label.",
+   "properties": {
+    "kind": {
+     "enum": [
+      "fill",
+      "stroke",
+      "line",
+      "marker",
+      "symbol"
+     ],
+     "default": "fill",
+     "description": "fill = a filled rectangle. stroke = an outlined rectangle. line = a short connector with its head. marker = a circled number or letter. symbol = a miniature of a library symbol."
+    },
+    "role": {
+     "type": "string",
+     "default": "",
+     "description": "Palette role name (module, module-alt, accent, arrow, arrow-accent, lane, container) or an explicit #rrggbb."
+    },
+    "line_style": {
+     "enum": [
+      "solid",
+      "dashed",
+      "dotted"
+     ],
+     "default": "solid",
+     "description": "For kind='line'."
+    },
+    "head": {
+     "enum": [
+      "filled",
+      "open",
+      "none",
+      "both"
+     ],
+     "default": "filled",
+     "description": "For kind='line'."
+    },
+    "symbol": {
+     "type": "string",
+     "default": "",
+     "description": "For kind='symbol': the symbol name."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "annotation": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "text"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "description": "The annotation text. Italic grey by default -- commentary, not a component name."
+    },
+    "anchor": {
+     "$ref": "#/$defs/ref",
+     "description": "Node, edge, container, lane or panel id this annotation is about (a panel: a verdict or a total that belongs to the whole panel or part). Omit only for a free-floating label, which then needs no leader."
+    },
+    "leader": {
+     "type": "boolean",
+     "default": false,
+     "description": "Draw a thin leader line to the anchor. A floating callout with no leader is a recorded failure mode; set this true whenever the annotation is not touching its target."
+    },
+    "kind": {
+     "enum": [
+      "callout",
+      "bracket",
+      "label",
+      "verdict",
+      "delta",
+      "zoom",
+      "title"
+     ],
+     "default": "label",
+     "description": "callout = commentary in a small box or with a leader. bracket = a span marker over an interval (a saved duration, a repeated block). label = a bare word placed on the drawing ('Kernel Space', 'x16', 'Time'). verdict = a checkmark / cross / warning badge judging the anchor; delta = a callout naming what changed at the anchor; zoom = the link from a magnified region to its inset. title = a title, claim or the paper's name set into the figure (AI family: 6% of records, scope overviews 19%; references/ai/encoding.md Part E)."
+    },
+    "side": {
+     "enum": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "auto"
+     ],
+     "default": "auto",
+     "description": "Which side of the anchor the annotation sits on."
+    },
+    "legend_ref": {
+     "$ref": "#/$defs/ref",
+     "description": "Legend item id that decodes this annotation's fill or glyph (e.g. the task chips a legend swatch explains)."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id this element belongs to (meta.kind mechanism with panels[]). Omit = shared template element, drawn in every panel."
+    },
+    "glyph": {
+     "type": "string",
+     "default": "",
+     "description": "Glyph drawn with a verdict annotation: 'check', 'cross', 'warning', 'lock', or a symbol name from assets/symbols/."
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "constraint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "targets"
+   ],
+   "properties": {
+    "kind": {
+     "enum": [
+      "same-row",
+      "same-column",
+      "same-width",
+      "same-height",
+      "distribute-h",
+      "distribute-v",
+      "center-in-parent",
+      "keep-apart",
+      "order"
+     ],
+     "default": "same-row",
+     "description": "Alignment or ordering rule. 'order' means targets appear in the listed sequence along the reading direction; 'keep-apart' means do not place these adjacent (used to stop two same-coloured boxes touching)."
+    },
+    "targets": {
+     "type": "array",
+     "minItems": 1,
+     "description": "Ids of nodes, containers or lanes the rule applies to.",
+     "items": {
+      "$ref": "#/$defs/ref"
+     }
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Why the constraint exists, e.g. 'vertical alignment means simultaneity'."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "style_overrides": {
+   "type": "object",
+   "additionalProperties": false,
+   "default": {},
+   "description": "Deviations from the chosen palette and from the style-rules.md bands. Everything here is optional; leaving it empty is the normal case. The validator warns on values outside the measured bands.",
+   "properties": {
+    "palette_roles": {
+     "type": "object",
+     "additionalProperties": false,
+     "default": {},
+     "description": "Per-role colour overrides. Role names are exactly palettes.json role_vocabulary. Required (module, stroke, text at minimum) when meta.palette is 'custom'.",
+     "properties": {
+      "canvas": {
+       "type": "string",
+       "default": "#ffffff",
+       "description": "Page background. White in 272/272 figures -- never tint it."
+      },
+      "container": {
+       "type": "string",
+       "default": "",
+       "description": "Outer group fill; always lighter than its contents."
+      },
+      "lane": {
+       "type": "string",
+       "default": "",
+       "description": "Band fill; lighter than every box that sits on it."
+      },
+      "module": {
+       "type": "string",
+       "default": "",
+       "description": "Default component fill."
+      },
+      "module-alt": {
+       "type": [
+        "string",
+        "array"
+       ],
+       "default": "",
+       "description": "Second and third component fills, as a hex or a list of hexes.",
+       "items": {
+        "type": "string"
+       }
+      },
+      "accent": {
+       "type": "string",
+       "default": "",
+       "description": "Contribution fill. At most 2 saturated fills in the figure."
+      },
+      "stroke": {
+       "type": "string",
+       "default": "",
+       "description": "Box outlines; near-neutral and dark."
+      },
+      "text": {
+       "type": "string",
+       "default": "",
+       "description": "Primary label colour; near-black, >= 4.5:1 against the fill under it."
+      },
+      "text-muted": {
+       "type": "string",
+       "default": "",
+       "description": "Annotations and units."
+      },
+      "arrow": {
+       "type": "string",
+       "default": "",
+       "description": "Default connector colour."
+      },
+      "arrow-accent": {
+       "type": "string",
+       "default": "",
+       "description": "The one highlighted path."
+      },
+      "legend": {
+       "type": "string",
+       "default": "",
+       "description": "Legend box background."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+      }
+     },
+     "patternProperties": {
+      "^(x-|_)": {
+       "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+      }
+     }
+    },
+    "stroke_width_pt": {
+     "type": "object",
+     "additionalProperties": false,
+     "default": {},
+     "description": "Line weights in points. Corpus median 0.55; keep to <= 3 distinct widths.",
+     "properties": {
+      "container": {
+       "type": "number",
+       "default": 0.5,
+       "minimum": 0.15,
+       "maximum": 2,
+       "description": "Group frames."
+      },
+      "box": {
+       "type": "number",
+       "default": 0.75,
+       "minimum": 0.15,
+       "maximum": 2,
+       "description": "Component boxes."
+      },
+      "main": {
+       "type": "number",
+       "default": 1.0,
+       "minimum": 0.15,
+       "maximum": 2.5,
+       "description": "The main path."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+      }
+     },
+     "patternProperties": {
+      "^(x-|_)": {
+       "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+      }
+     }
+    },
+    "font_size_pt": {
+     "type": "object",
+     "additionalProperties": false,
+     "default": {},
+     "description": "Three-level type scale within about 1.6x, floor 5pt at print size (median 6.5).",
+     "properties": {
+      "title": {
+       "type": "number",
+       "default": 8,
+       "minimum": 5,
+       "maximum": 14,
+       "description": "Group and container titles."
+      },
+      "label": {
+       "type": "number",
+       "default": 6.5,
+       "minimum": 5,
+       "maximum": 12,
+       "description": "Component names -- the body size."
+      },
+      "small": {
+       "type": "number",
+       "default": 5.5,
+       "minimum": 4.5,
+       "maximum": 10,
+       "description": "Sublabels, edge labels, annotations."
+      },
+      "notes": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+      }
+     },
+     "patternProperties": {
+      "^(x-|_)": {
+       "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+      }
+     }
+    },
+    "corner_radius_pt": {
+     "type": "number",
+     "default": 2,
+     "minimum": 0,
+     "maximum": 6,
+     "description": "One radius for the whole figure; mixed corner radii is a laxity to avoid."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Why the override exists -- usually 'the user asked for it'."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "panel": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id"
+   ],
+   "description": "One panel or frame of a multi-panel mechanism figure (meta.kind mechanism). Elements say which panel they belong to with their `panel` field; an element without `panel` in a multi-panel figure is part of the shared template and is drawn in every panel unless a delta removes it there. In a composite figure the top-level panels are its lettered parts (axis part) and a part's sub-panels name it as their parent.",
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+     "description": "kebab-case identifier, unique across containers+lanes+nodes+edges+annotations+legend items. Derive it from the label: 'Pipeline Schedule Searcher' -> 'pipeline-schedule-searcher'."
+    },
+    "label": {
+     "type": "string",
+     "default": "",
+     "description": "Panel title as drawn ('Batch parallelism', 't = 1', 'Before'). Empty for an untitled frame."
+    },
+    "panel_label": {
+     "type": "string",
+     "default": "",
+     "description": "Sub-figure tag drawn below or beside the panel, e.g. '(a)'."
+    },
+    "axis": {
+     "enum": [
+      "alternatives",
+      "time",
+      "zoom",
+      "part",
+      "stages",
+      "examples",
+      "narrative",
+      "overview",
+      "modalities"
+     ],
+     "default": "alternatives",
+     "description": "What the panels vary along: alternatives = designs / policies / cases compared (comparison); time = successive states of one instance (evolution); zoom = a magnified region of another panel; part = one lettered part of a composite figure (a structure, a table of values, a timeline, a control loop ... shown side by side because they tell one story) -- a part repeats no template, may hold its own sub-panels (their `parent` names it) and is held to its own box budget (spec-guide §8). AI family (references/ai/layouts.md §2): stages = steps of one process in panels or bands (24% of multi-panel records), examples = cases or categories side by side (20%; a gallery of cards), narrative = unlike panels telling one story -- problem, method, result; task, model, data (34%), overview = the whole next to its parts (19%), modalities = one panel per modality (2%)."
+    },
+    "view": {
+     "enum": [
+      "structure",
+      "values",
+      "timeline",
+      "loop",
+      "table",
+      "chart",
+      "other"
+     ],
+     "default": "structure",
+     "description": "For a part (axis part): what kind of drawing it holds -- structure = boxes and arrows (an architecture or a component opened up), values = numbers drawn to scale or written in place (loads, sizes, a worked example), timeline = lanes over time, loop = a control cycle, table = a grid of cells, chart = a small plot that belongs to the argument. Tells the drawer which part's conventions apply (layouts.md, mechanism/layouts.md) and the linter which parts are drawn to scale."
+    },
+    "parent": {
+     "$ref": "#/$defs/ref",
+     "description": "The panel this one sits in: sub-panels of a part (e.g. the four alternatives of a 'values' part) name the part. Elements declared on the parent panel are the template the sub-panels repeat. Omit at the top level."
+    },
+    "order": {
+     "type": "integer",
+     "default": 0,
+     "description": "Position along the arrangement (reading order). Lower comes first."
+    },
+    "template_of": {
+     "$ref": "#/$defs/ref",
+     "description": "Id of the panel whose layout this panel repeats (frame_template identical / aligned). Omit on the first panel."
+    },
+    "differs": {
+     "type": "string",
+     "default": "",
+     "description": "What this panel changes against the template, in the paper's words -- the sentence the deltas[] entries spell out."
+    },
+    "verdict": {
+     "type": "string",
+     "default": "",
+     "description": "How the panel is judged when the figure takes sides: 'wrong', 'ours', 'x2.3 faster', or an empty string when neutral. Drawn as a badge or in the panel title."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Free note for the drawer; never rendered."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "delta": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "panel",
+    "target",
+    "change"
+   ],
+   "description": "What one panel / frame changes relative to the shared template (evolution frames, comparison alternatives). The drawer keeps everything else identical and marks only these.",
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+     "description": "kebab-case identifier, unique across containers+lanes+nodes+edges+annotations+legend items. Derive it from the label: 'Pipeline Schedule Searcher' -> 'pipeline-schedule-searcher'."
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel id the change applies to."
+    },
+    "target": {
+     "$ref": "#/$defs/ref",
+     "description": "Node, edge, container, annotation or value id that changes in that panel."
+    },
+    "change": {
+     "enum": [
+      "added",
+      "removed",
+      "changed",
+      "highlighted",
+      "moved",
+      "replaced"
+     ],
+     "default": "changed",
+     "description": "added = present only in this panel; removed = absent here (dashed-ghost keeps its outline); changed = label / value / fill differs (say how in `with`); highlighted = same content, emphasised; moved = same element at another position; replaced = another element takes its place (name it in `with`)."
+    },
+    "with": {
+     "type": "string",
+     "default": "",
+     "description": "The new label, value or element for changed / replaced, e.g. 'params[0]', '= 398.2', 'AllGather'."
+    },
+    "marking": {
+     "enum": [
+      "inherit",
+      "colour",
+      "bold-stroke",
+      "dashed-ghost",
+      "strike",
+      "callout",
+      "badge",
+      "none"
+     ],
+     "default": "inherit",
+     "description": "How the change is drawn; inherit = meta.mechanism.delta_marking."
+    },
+    "note": {
+     "type": "string",
+     "default": "",
+     "description": "Free note for the drawer; never rendered."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  },
+  "value": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "text"
+   ],
+   "description": "A concrete value of a worked example (meta.mechanism.worked_example): a cell, a row entry, a number on an arrow that the reader is meant to read and check. Link the places the same value appears so the drawer can give them one colour.",
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+     "description": "kebab-case identifier, unique across containers+lanes+nodes+edges+annotations+legend items. Derive it from the label: 'Pipeline Schedule Searcher' -> 'pipeline-schedule-searcher'."
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "description": "The value as drawn ('70', '0x7ffff5554f58', 'k=3')."
+    },
+    "at": {
+     "$ref": "#/$defs/ref",
+     "description": "Node (cell / slot / row) or edge the value sits in or on. Omit for a free value placed by `panel` and `order`."
+    },
+    "panel": {
+     "$ref": "#/$defs/ref",
+     "description": "Panel the value belongs to, when the figure has panels."
+    },
+    "role": {
+     "enum": [
+      "input",
+      "intermediate",
+      "result",
+      "key",
+      "index"
+     ],
+     "default": "intermediate",
+     "description": "input = given; intermediate = computed on the way; result = the answer (drawn as '= result' rows or cells, encoding.md); key = a lookup key; index = a position / address."
+    },
+    "links": {
+     "type": "array",
+     "default": [],
+     "items": {
+      "$ref": "#/$defs/ref"
+     },
+     "description": "Other value ids that are the same value elsewhere in the figure; the drawer links them with one colour or a thin leader."
+    },
+    "highlight": {
+     "type": "boolean",
+     "default": false,
+     "description": "Emphasise this value (the cell the text discusses)."
+    },
+    "order": {
+     "type": "integer",
+     "default": 0,
+     "description": "Reading order among the values of one node or panel."
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "free text: anything the enums cannot say (why this element is drawn this way, what the user asked for, doubts)"
+    }
+   },
+   "patternProperties": {
+    "^(x-|_)": {
+     "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+    }
+   }
+  }
+ },
+ "patternProperties": {
+  "^(x-|_)": {
+   "description": "extension / working field (x-* or _*): ignored by the validator, free for notes, provenance, editor state"
+  }
+ }
+}

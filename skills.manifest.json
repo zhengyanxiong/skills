@@ -692,6 +692,17 @@
         "type": "git"
       }
     },
+    "figgenie-paper-diagram": {
+      "description": "Draw publication-quality paper figures as SVG the way top venues draw them. Systems papers (OSDI, NSDI, SOSP, ASPLOS): architecture / overview figures distilled from 727 human-rated figures, and **mechanism figures** — how one part of a system works: a walkthrough with numbered steps, before/after or step-by-step frames, a state machine or decision flow, alternatives side by side, the anatomy of one component or data structure, a worked example with real values (\"架构图\", \"系统总览图\", \"画一张 overview 图\", \"论文插图\", \"机制图\", \"原理图\", \"示意图\", \"画一张 X 是怎么工作的图\", \"状态机 / 流程图\", \"before/after 对比图\", \"算例图\") — distilled from 986 rated mechanism figures. AI papers (ICLR, ICML, NeurIPS, CVPR, ACL, AAAI): the Figure 1 / teaser / overview figure — a stage pipeline, a model's anatomy, a side-by-side contrast, a worked walkthrough on real samples, a concept schematic, a benchmark or dataset overview, an agent interaction, a contribution mosaic (\"AI 顶会图\", \"Figure 1\", \"teaser 图\", \"方法总览图\", \"模型结构图\", \"框架图\", \"benchmark 总览\"), distilled from 3,274 labelled Figure 1s, 1,158 user ratings, 336 semantic records, 3,210 exemplars and a 998-part library. Workflow: intake → a natural-language brief the user confirms → figure spec → exemplars the user picks (AI family) → drawing plan → hand-drawn SVG that follows corpus layouts, palettes, visual encodings and a parts library → render / lint / look-and-fix loop → SVG + caption draft, then iterate on feedback. Use whenever the user wants such a figure for a paper or talk, asks how one should be laid out, coloured or annotated, wants an existing figure critiqued against the venue's conventions (\"把这张图重画/改风格\"), or asks for a named paper style (\"Charon 风格\"). Vector TeX formulas when the figure needs the paper's symbols; an editable PowerPoint deck on request (\"转成可编辑的 PPT\"). Not for data plots or charts.",
+      "source": {
+        "last_checked_at": "2026-11-23T00:48:53Z",
+        "last_commit": "c136a6aeefc6f6fe11fc615a5199cca57be3322a",
+        "path": "skills/figgenie-paper-diagram",
+        "ref": "main",
+        "repo": "https://github.com/Sleepy-Avacado/FigGenie-paper-diagram-skill.git",
+        "type": "git"
+      }
+    },
     "finishing-a-development-branch": {
       "description": "Complete a development branch by verifying tests, choosing merge/PR/keep/discard workflow, and cleaning up worktrees safely.",
       "source": {
@@ -1118,6 +1129,17 @@
         "path": "skills",
         "ref": "main",
         "repo": "https://github.com/Leonxlnx/taste-skill.git",
+        "type": "git"
+      }
+    },
+    "remotion-motion-graphics": {
+      "description": "Create and edit professional motion graphics videos with Remotion (React-based video). Use this skill EVERY time the user wants to create a video, edit a video, animate something, build an intro/outro/logo animation, make a Reel/Short/promo/launch video, add text animations or captions to footage, composite images and B-roll into a video, or mentions Remotion, motion graphics, video rendering, or \"make this video look better/less generic\". Also trigger when editing an existing Remotion project or when the user complains their video looks basic, generic, or amateur — this skill contains the exact fixes. Always read this skill BEFORE writing any Remotion code.",
+      "source": {
+        "last_checked_at": "2026-11-23T00:48:53Z",
+        "last_commit": "1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383",
+        "path": "remotion-motion-graphics",
+        "ref": "main",
+        "repo": "https://github.com/haidrrrry/claude-remotion-skill.git",
         "type": "git"
       }
     },

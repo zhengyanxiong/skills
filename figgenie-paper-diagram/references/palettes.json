@@ -1,0 +1,3195 @@
+{
+ "role_vocabulary": {
+  "canvas": "Page/figure background. White in 272/272 architecture figures -- never tint it.",
+  "container": "Fill of an outer group or region box (a host, a plane, a subsystem).",
+  "lane": "Fill of a swimlane / horizontal or vertical band (a phase, a tier, a timeline row).",
+  "module": "Default component-box fill: the colour most boxes get.",
+  "module-alt": "Second and third component fills, for a different *kind* of component.",
+  "accent": "Fill that marks the novel component or the main path. At most 1-2 per figure.",
+  "stroke": "Box outlines. Near-neutral and dark; 0.5-1pt in the corpus.",
+  "text": "Primary label text. Near-black; never lighter than the module it sits on.",
+  "text-muted": "Secondary text: annotations, units, greyed-out labels.",
+  "arrow": "Default connector colour, usually the same neutral as `stroke`.",
+  "arrow-accent": "Highlighted connector: the request path, the error, the new flow.",
+  "legend": "Legend box background, when the legend sits inside the figure."
+ },
+ "general_rules": {
+  "canvas": "#ffffff - 272/272 architecture figures use a white page background.",
+  "distinct_fills_per_figure": {
+   "median": 4,
+   "mean": 4.2,
+   "note": "median 5 distinct hexes overall (fills + strokes + text)"
+  },
+  "saturated_fills_per_figure": {
+   "median": 1,
+   "mean": 1.17,
+   "distribution": {
+    "0": 103,
+    "1": 84,
+    "2": 44,
+    "3": 24,
+    "4": 12,
+    "5": 4,
+    "6": 1
+   },
+   "note": "chroma >= 0.40; 106/272 figures use none and 86 use exactly one - treat 2 as the ceiling"
+  },
+  "grey": {
+   "figures_using_grey": 187,
+   "share": 0.69,
+   "median_grey_share_of_hexes": 0.2,
+   "note": "grey marks existing/unchanged components; 113/272 encoding.color_means strings mention grey"
+  },
+  "accent": {
+   "figures_with_an_accent": 200,
+   "share": 0.74,
+   "families": {
+    "warm (orange/gold)": 68,
+    "red": 46,
+    "blue": 34,
+    "green": 18,
+    "cyan": 17,
+    "grey": 15,
+    "purple": 2
+   },
+   "note": "one accent per figure is the norm; a second one only for the highlighted connector"
+  },
+  "fill_style": {
+   "flat": 241,
+   "hatch": 25,
+   "mixed": 3,
+   "none": 3
+  },
+  "office_theme_hexes": {
+   "figures": 33,
+   "share": 0.12
+  },
+  "text": {
+   "median_lightness": 0.35,
+   "note": "near-black by default; 45 of 103 recorded text/module pairs fall below 4.5:1 - do not copy that"
+  },
+  "ground": {
+   "figures": 726,
+   "classes": {
+    "outline-containers": 356,
+    "grey-container": 161,
+    "multi-tint": 52,
+    "tinted-blue": 45,
+    "flat-on-canvas": 41,
+    "tinted-orange": 20,
+    "tinted-green": 17,
+    "tinted-red": 10,
+    "tinted-teal": 8,
+    "white-container": 7,
+    "tinted-yellow": 6,
+    "tinted-purple": 3
+   },
+   "note": "How the outer group boxes are filled in the good architecture figures with semantic records: outline-containers = nesting >= 2 but no container/lane fill (bare outlines, often dashed); flat-on-canvas = no containers at all; the rest by the container fill. Grey grounds are a minority."
+  }
+ },
+ "provenance": {
+  "figures": 272,
+  "clusters": 11,
+  "source": "lab/extracted/corpus_semantics.jsonl joined with lab/extracted/corpus_index.csv (type=diagram, subtype=architecture)",
+  "generator": "figgenie-paper-diagram/scripts/distill/palette_cluster.py",
+  "ground_extension": {
+   "figures": 726,
+   "added": [
+    "blue-outline",
+    "ink-outline",
+    "pastel-outline",
+    "pastel-regions",
+    "green-outline",
+    "blue-ground",
+    "greyscale-outline",
+    "cream-ground",
+    "categorical-outline",
+    "green-ground"
+   ],
+   "generator": "figgenie-paper-diagram/scripts/distill/palette_grounds.py",
+   "date": "2026-09-18"
+  }
+ },
+ "palettes": [
+  {
+   "id": "blue-orange",
+   "name": "Blue modules, orange accent",
+   "description": "Light-blue component boxes on a light-grey ground, with one orange box or arrow for the contribution; cream and pale-green as second and third fills.",
+   "when_to_use": "The default choice for a whole-system overview. Safest when the figure has one obvious novel component and 6-15 boxes.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#f2f2f2",
+    "lane": "#fff2cc",
+    "module": "#dae8fc",
+    "module-alt": [
+     "#fff2cc",
+     "#e2f0d9",
+     "#f8cecc"
+    ],
+    "accent": "#ed7d31",
+    "stroke": "#36393d",
+    "text": "#0d0d0d",
+    "text-muted": "#595959",
+    "arrow": "#666666",
+    "arrow-accent": "#c00000",
+    "legend": "#fff2cc"
+   },
+   "extra_fills": [
+    "#deebf7",
+    "#e2f0d9",
+    "#b2c7e6",
+    "#a6569d",
+    "#feb6c8",
+    "#dae8fc"
+   ],
+   "contrast_notes": "every role pair clears 4.5:1 with the listed text colour",
+   "stats": {
+    "n_figures": 36,
+    "share": 0.132,
+    "mean_grey_frac": 0.143,
+    "pastel_share": 0.194,
+    "monochrome_share": 0.0,
+    "hue_families": [
+     "blue",
+     "warm",
+     "green",
+     "red"
+    ],
+    "tools": {
+     "powerpoint": 13,
+     "omnigraffle": 6,
+     "quartz": 4,
+     "drawio": 4,
+     "keynote": 2,
+     "tikz": 2
+    },
+    "venues": {
+     "ASPLOS26": 11,
+     "ASPLOS25": 9,
+     "SOSP25": 4,
+     "NSDI26": 3,
+     "NSDI23": 2,
+     "OSDI25": 2
+    },
+    "abstractions": {
+     "distributed": 13,
+     "hardware": 9,
+     "compiler": 4,
+     "kernel": 2,
+     "application": 2,
+     "ml-system": 2
+    },
+    "templates": {
+     "pipeline": 12,
+     "two-panel": 10,
+     "layered": 4,
+     "control-data": 4,
+     "hub-spoke": 3,
+     "matrix": 1
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-127_fig3",
+     "png": "lab/extracted/asplos26-127/src/fig3_jarvis_7.png",
+     "src_svg": "lab/extracted/asplos26-127/src/fig3_jarvis_7.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp25-053_fig4",
+     "png": "lab/extracted/sosp25-053/src/fig4_architecture.png",
+     "src_svg": "lab/extracted/sosp25-053/src/fig4_architecture.svg",
+     "tool": "drawio",
+     "venue": "SOSP25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-157_fig2",
+     "png": "lab/extracted/asplos25-157/src/fig2_CIM_archi.png",
+     "src_svg": "lab/extracted/asplos25-157/src/fig2_CIM_archi.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp24-005_fig4",
+     "png": "lab/extracted/sosp24-005/src/fig4_overview_v2_Perseus.png",
+     "src_svg": "lab/extracted/sosp24-005/src/fig4_overview_v2_Perseus.svg",
+     "tool": "omnigraffle",
+     "venue": "SOSP24",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi25-003_fig2",
+     "png": "lab/extracted/osdi25-003/src/fig2_4d_parallel.png",
+     "src_svg": "lab/extracted/osdi25-003/src/fig2_4d_parallel.svg",
+     "tool": "quartz",
+     "venue": "OSDI25",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "green-red",
+   "name": "Green modules, red highlight",
+   "description": "Pale-green component boxes with a mid-grey container; red is reserved for the highlighted path, the error case or the outlined contribution.",
+   "when_to_use": "Pipelines and layered stacks where one path (a failure, a fast path, the paper's addition) has to jump out of an otherwise calm figure.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#ededed",
+    "lane": "#f4cccd",
+    "module": "#d8f3dc",
+    "module-alt": [
+     "#dae8fc",
+     "#fff2cc",
+     "#f8cecc"
+    ],
+    "accent": "#ff0000",
+    "stroke": "#262626",
+    "text": "#191919",
+    "text-muted": "#7f7f7f",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#ff0000",
+    "legend": "#cfe8f6"
+   },
+   "extra_fills": [
+    "#ebd9fc",
+    "#efcfe3",
+    "#b7e0a8",
+    "#dae8fc",
+    "#2c2c2c"
+   ],
+   "contrast_notes": "text on accent is 4.4:1 (#191919 on #ff0000) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 34,
+    "share": 0.125,
+    "mean_grey_frac": 0.258,
+    "pastel_share": 0.324,
+    "monochrome_share": 0.118,
+    "hue_families": [
+     "green",
+     "blue",
+     "warm",
+     "red"
+    ],
+    "tools": {
+     "powerpoint": 10,
+     "tikz": 7,
+     "unknown": 3,
+     "quartz": 3,
+     "inkscape": 2,
+     "omnigraffle": 2
+    },
+    "venues": {
+     "ASPLOS26": 11,
+     "NSDI26": 8,
+     "ASPLOS25": 6,
+     "NSDI24": 3,
+     "NSDI23": 2,
+     "SOSP24": 2
+    },
+    "abstractions": {
+     "distributed": 11,
+     "ml-system": 7,
+     "hardware": 6,
+     "runtime": 3,
+     "compiler": 2,
+     "application": 2
+    },
+    "templates": {
+     "pipeline": 12,
+     "layered": 9,
+     "two-panel": 5,
+     "host-device": 3,
+     "matrix": 3,
+     "hub-spoke": 1
+    }
+   },
+   "exemplars": [
+    {
+     "id": "nsdi26-087_fig3",
+     "png": "lab/extracted/nsdi26-087/src/fig3_overview.png",
+     "src_svg": "lab/extracted/nsdi26-087/src/fig3_overview.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-129_fig3",
+     "png": "lab/extracted/asplos26-129/src/fig3_arch.png",
+     "src_svg": "lab/extracted/asplos26-129/src/fig3_arch.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-138_fig17",
+     "png": "lab/extracted/asplos25-138/src/fig17_tapas-arch.png",
+     "src_svg": "lab/extracted/asplos25-138/src/fig17_tapas-arch.svg",
+     "tool": "inkscape",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-066_fig6",
+     "png": "lab/extracted/asplos26-066/src/fig6_overview_figure.png",
+     "src_svg": "lab/extracted/asplos26-066/src/fig6_overview_figure.svg",
+     "tool": "omnigraffle",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi24-004_fig8",
+     "png": "lab/extracted/nsdi24-004/src/fig8_madeye-fig_cropped.png",
+     "src_svg": "lab/extracted/nsdi24-004/src/fig8_madeye-fig_cropped.svg",
+     "tool": "google-slides",
+     "venue": "NSDI24",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "high-contrast",
+   "name": "High-contrast primaries",
+   "description": "Near-white boxes with heavy near-black outlines, a mid-grey container, and fully saturated primaries (deep red, pure blue, orange) for the few elements that matter.",
+   "when_to_use": "Small single-column figures and TikZ figures that will be printed small: maximum legibility, colour used sparingly and loudly.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#d9d9d9",
+    "lane": "#ebebeb",
+    "module": "#f2f2f2",
+    "module-alt": [
+     "#0000ff",
+     "#ffffbf",
+     "#ff0000"
+    ],
+    "accent": "#c00000",
+    "stroke": "#191919",
+    "text": "#191919",
+    "text-muted": "#7f7f7f",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#c00000",
+    "legend": "#f2f2f2"
+   },
+   "extra_fills": [
+    "#a6a6a6",
+    "#f2f2f2",
+    "#ededed",
+    "#bfbfbf"
+   ],
+   "contrast_notes": "text on accent is 2.7:1 (#191919 on #c00000) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 28,
+    "share": 0.103,
+    "mean_grey_frac": 0.408,
+    "pastel_share": 0.071,
+    "monochrome_share": 0.393,
+    "hue_families": [
+     "grey",
+     "blue",
+     "warm",
+     "red"
+    ],
+    "tools": {
+     "powerpoint": 8,
+     "tikz": 7,
+     "quartz": 3,
+     "omnigraffle": 2,
+     "unknown": 1,
+     "inkscape": 1
+    },
+    "venues": {
+     "ASPLOS26": 9,
+     "ASPLOS25": 8,
+     "NSDI26": 3,
+     "OSDI24": 2,
+     "OSDI25": 2,
+     "SOSP24": 2
+    },
+    "abstractions": {
+     "distributed": 10,
+     "hardware": 9,
+     "runtime": 4,
+     "ml-system": 2,
+     "network": 1,
+     "application": 1
+    },
+    "templates": {
+     "pipeline": 8,
+     "layered": 5,
+     "two-panel": 5,
+     "control-data": 3,
+     "hub-spoke": 3,
+     "matrix": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "osdi25-012_fig3",
+     "png": "lab/extracted/osdi25-012/src/fig3_fig3-xjx-crop.png",
+     "src_svg": "lab/extracted/osdi25-012/src/fig3_fig3-xjx-crop.svg",
+     "tool": "tikz",
+     "venue": "OSDI25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-096_fig1",
+     "png": "lab/extracted/asplos25-096/src/fig1_overview_5.png",
+     "src_svg": "lab/extracted/asplos25-096/src/fig1_overview_5.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp24-007_figtex6",
+     "png": "lab/extracted/sosp24-007/src/texfig6_sys_arch.png",
+     "src_svg": "lab/extracted/sosp24-007/src/texfig6_sys_arch.svg",
+     "tool": "omnigraffle",
+     "venue": "SOSP24",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi26-082_fig2",
+     "png": "lab/extracted/nsdi26-082/src/fig2_overview4.png",
+     "src_svg": "lab/extracted/nsdi26-082/src/fig2_overview4.svg",
+     "tool": "ghostscript",
+     "venue": "NSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-013_fig2",
+     "png": "lab/extracted/asplos26-013/src/fig2_Background.png",
+     "src_svg": "lab/extracted/asplos26-013/src/fig2_Background.svg",
+     "tool": "visio",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "cream-pastel",
+   "name": "Cream and pastel mix",
+   "description": "Cream default boxes with pale blue, green and pink alternates, dashed grey containers, and a saturated orange only where emphasis is needed.",
+   "when_to_use": "Dense figures with many small boxes of several kinds (encoder blocks, queues, caches) where every box needs a fill but none may shout.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#d9d9d9",
+    "lane": "#e0eaf5",
+    "module": "#fbe5d6",
+    "module-alt": [
+     "#dae8fc",
+     "#d5e8d4",
+     "#f8cecc"
+    ],
+    "accent": "#ffc000",
+    "stroke": "#4f4f4f",
+    "text": "#333333",
+    "text-muted": "#595959",
+    "arrow": "#666666",
+    "arrow-accent": "#ff0000",
+    "legend": "#fff2cc"
+   },
+   "extra_fills": [
+    "#d9d9d9",
+    "#c2f1c8",
+    "#f2cfee",
+    "#9dc3e6",
+    "#bdd7ee",
+    "#f5f5f5"
+   ],
+   "contrast_notes": "container: corpus value #fce5cd replaced by #d9d9d9 (cluster-modal light neutral, kept >=0.08 lightness away from the module fill); accent: corpus value #ffe699 replaced by #ffc000 (cluster-modal accent that separates from the module fill)",
+   "stats": {
+    "n_figures": 27,
+    "share": 0.099,
+    "mean_grey_frac": 0.141,
+    "pastel_share": 0.444,
+    "monochrome_share": 0.0,
+    "hue_families": [
+     "warm",
+     "blue",
+     "green",
+     "grey"
+    ],
+    "tools": {
+     "tikz": 6,
+     "quartz": 5,
+     "powerpoint": 5,
+     "drawio": 4,
+     "omnigraffle": 3,
+     "google-slides": 2
+    },
+    "venues": {
+     "ASPLOS25": 6,
+     "SOSP25": 6,
+     "ASPLOS26": 5,
+     "OSDI26": 4,
+     "SOSP24": 2,
+     "NSDI23": 1
+    },
+    "abstractions": {
+     "distributed": 9,
+     "hardware": 6,
+     "ml-system": 3,
+     "runtime": 3,
+     "compiler": 2,
+     "kernel": 2
+    },
+    "templates": {
+     "layered": 8,
+     "pipeline": 6,
+     "two-panel": 3,
+     "other": 3,
+     "control-data": 3,
+     "matrix": 3
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-077_fig3",
+     "png": "lab/extracted/asplos26-077/src/fig3_new_overview.png",
+     "src_svg": "lab/extracted/asplos26-077/src/fig3_new_overview.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-100_fig3",
+     "png": "lab/extracted/asplos25-100/src/fig3_LLaMA_model_new_new.png",
+     "src_svg": "lab/extracted/asplos25-100/src/fig3_LLaMA_model_new_new.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi23-085_fig8",
+     "png": "lab/extracted/nsdi23-085/src/fig8_architecture.png",
+     "src_svg": "lab/extracted/nsdi23-085/src/fig8_architecture.svg",
+     "tool": "tikz",
+     "venue": "NSDI23",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-026_fig6",
+     "png": "lab/extracted/asplos26-026/src/fig6_main.png",
+     "src_svg": "lab/extracted/asplos26-026/src/fig6_main.svg",
+     "tool": "keynote",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-080_fig5",
+     "png": "lab/extracted/asplos26-080/src/fig5_system_design_new.png",
+     "src_svg": "lab/extracted/asplos26-080/src/fig5_system_design_new.svg",
+     "tool": "quartz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "grey-scaffold",
+   "name": "Grey scaffold with pastel tints",
+   "description": "Grey is the default box and the container; cream, pale blue and pale pink mark the few boxes that differ, with orange for the accent.",
+   "when_to_use": "Figures that reuse an existing system: grey for what already exists, a tint only where the paper adds or changes something.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#f2f2f2",
+    "lane": "#fff2cc",
+    "module": "#d9d9d9",
+    "module-alt": [
+     "#fff2cc",
+     "#dae8fc",
+     "#f8cecc"
+    ],
+    "accent": "#ed7d31",
+    "stroke": "#231f20",
+    "text": "#221815",
+    "text-muted": "#595959",
+    "arrow": "#848686",
+    "arrow-accent": "#c00000",
+    "legend": "#f8cbad"
+   },
+   "extra_fills": [
+    "#d0cece",
+    "#404040",
+    "#cd8ebe",
+    "#d1d1d1"
+   ],
+   "contrast_notes": "container: corpus value #e7e6e6 replaced by #f2f2f2 (cluster-modal light neutral, kept >=0.08 lightness away from the module fill); lane: corpus value #d9d9d9 replaced by #fff2cc (cluster-modal light fill distinct from the container)",
+   "stats": {
+    "n_figures": 27,
+    "share": 0.099,
+    "mean_grey_frac": 0.382,
+    "pastel_share": 0.407,
+    "monochrome_share": 0.074,
+    "hue_families": [
+     "grey",
+     "green",
+     "warm",
+     "blue"
+    ],
+    "tools": {
+     "powerpoint": 9,
+     "tikz": 5,
+     "omnigraffle": 3,
+     "quartz": 3,
+     "drawio": 2,
+     "inkscape": 1
+    },
+    "venues": {
+     "ASPLOS26": 7,
+     "ASPLOS25": 6,
+     "NSDI26": 3,
+     "OSDI26": 3,
+     "NSDI25": 2,
+     "OSDI24": 2
+    },
+    "abstractions": {
+     "distributed": 12,
+     "ml-system": 7,
+     "hardware": 5,
+     "kernel": 1,
+     "storage": 1,
+     "runtime": 1
+    },
+    "templates": {
+     "pipeline": 9,
+     "hub-spoke": 5,
+     "layered": 3,
+     "matrix": 2,
+     "control-data": 2,
+     "two-panel": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos25-039_fig3",
+     "png": "lab/extracted/asplos25-039/src/fig3_fig-sec5-overview.png",
+     "src_svg": "lab/extracted/asplos25-039/src/fig3_fig-sec5-overview.svg",
+     "tool": "inkscape",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi24-023_fig3",
+     "png": "lab/extracted/nsdi24-023/src/fig3_workflow-new.png",
+     "src_svg": "lab/extracted/nsdi24-023/src/fig3_workflow-new.svg",
+     "tool": "quartz",
+     "venue": "NSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-129_fig5",
+     "png": "lab/extracted/asplos26-129/src/fig5_tech1.png",
+     "src_svg": "lab/extracted/asplos26-129/src/fig5_tech1.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi24-036_fig8",
+     "png": "lab/extracted/osdi24-036/src/fig8_arch.png",
+     "src_svg": "lab/extracted/osdi24-036/src/fig8_arch.svg",
+     "tool": "tikz",
+     "venue": "OSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-046_fig14",
+     "png": "lab/extracted/asplos25-046/src/fig14_hybrid_vm.png",
+     "src_svg": "lab/extracted/asplos25-046/src/fig14_hybrid_vm.svg",
+     "tool": "drawio",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "greyscale",
+   "name": "Greyscale only",
+   "description": "No hue at all: near-white boxes, a mid-grey container band, black outlines and arrows; emphasis comes from weight and dashed outlines.",
+   "when_to_use": "Print-first venues, figures that must survive a black-and-white print-out, and figures whose message is structure rather than kind.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#d9d9d9",
+    "lane": "#ebebeb",
+    "module": "#f2f2f2",
+    "module-alt": [
+     "#bfbfbf",
+     "#cccccc"
+    ],
+    "accent": "#666666",
+    "stroke": "#000000",
+    "text": "#000000",
+    "text-muted": "#595959",
+    "arrow": "#000000",
+    "arrow-accent": "#ff0000",
+    "legend": "#f2f2f2"
+   },
+   "extra_fills": [],
+   "contrast_notes": "container: corpus value #f2f2f2 replaced by #d9d9d9 (cluster-modal light neutral, kept >=0.08 lightness away from the module fill); lane: corpus value #f2f2f2 replaced by #ebebeb (cluster-modal light fill distinct from the container); accent: corpus value #ff0000 replaced by #666666 (monochrome family: darkest grey its members use for emphasis (borrow #c00000 only for a highlighted path)); text on accent is 3.7:1 (#000000 on #666666) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 27,
+    "share": 0.099,
+    "mean_grey_frac": 0.73,
+    "pastel_share": 0.0,
+    "monochrome_share": 1.0,
+    "hue_families": [
+     "grey"
+    ],
+    "tools": {
+     "omnigraffle": 9,
+     "quartz": 4,
+     "powerpoint": 3,
+     "keynote": 3,
+     "inkscape": 3,
+     "tikz": 2
+    },
+    "venues": {
+     "ASPLOS25": 8,
+     "OSDI26": 5,
+     "SOSP23": 3,
+     "SOSP24": 3,
+     "NSDI26": 2,
+     "ASPLOS26": 1
+    },
+    "abstractions": {
+     "distributed": 10,
+     "hardware": 4,
+     "compiler": 3,
+     "runtime": 3,
+     "network": 2,
+     "storage": 2
+    },
+    "templates": {
+     "layered": 7,
+     "pipeline": 7,
+     "two-panel": 6,
+     "host-device": 2,
+     "control-data": 2,
+     "other": 1
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos25-031_fig1",
+     "png": "lab/extracted/asplos25-031/src/fig1_Plaid_p14.png",
+     "src_svg": "lab/extracted/asplos25-031/src/fig1_Plaid_p14.svg",
+     "tool": "tikz",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp23-013_fig3",
+     "png": "lab/extracted/sosp23-013/src/fig3_overview.png",
+     "src_svg": "lab/extracted/sosp23-013/src/fig3_overview.svg",
+     "tool": "omnigraffle",
+     "venue": "SOSP23",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp24-040_fig1",
+     "png": "lab/extracted/sosp24-040/src/fig1_current_stack.png",
+     "src_svg": "lab/extracted/sosp24-040/src/fig1_current_stack.svg",
+     "tool": "omnigraffle",
+     "venue": "SOSP24",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp24-007_fig7",
+     "png": "lab/extracted/sosp24-007/src/fig7_cut_vertices.png",
+     "src_svg": "lab/extracted/sosp24-007/src/fig7_cut_vertices.svg",
+     "tool": "omnigraffle",
+     "venue": "SOSP24",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi26-060_fig8",
+     "png": "lab/extracted/osdi26-060/src/fig8_system_architecture.png",
+     "src_svg": "lab/extracted/osdi26-060/src/fig8_system_architecture.svg",
+     "tool": "quartz",
+     "venue": "OSDI26",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "blue-mono",
+   "name": "Blue monochrome",
+   "description": "One blue family end to end -- pale blue fills, a mid blue for the second tier and a strong Office blue for the accent and arrows.",
+   "when_to_use": "Hardware and micro-architecture figures, and any figure where colour should carry depth (light = outer, dark = inner) rather than category.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#f2f2f2",
+    "lane": "#d9d9d9",
+    "module": "#deebf7",
+    "module-alt": [
+     "#ffffbf",
+     "#c5e0b4",
+     "#d65b47"
+    ],
+    "accent": "#4472c4",
+    "stroke": "#7f7f7f",
+    "text": "#333333",
+    "text-muted": "#7f7f7f",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#4472c4",
+    "legend": "#deebf7"
+   },
+   "extra_fills": [
+    "#d9d9d9",
+    "#b4c7e7",
+    "#eeeeee",
+    "#a6a6a6"
+   ],
+   "contrast_notes": "lane: corpus value #deebf7 replaced by #d9d9d9 (cluster-modal light fill distinct from the container); text on accent is 2.7:1 (#333333 on #4472c4) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 23,
+    "share": 0.085,
+    "mean_grey_frac": 0.229,
+    "pastel_share": 0.391,
+    "monochrome_share": 0.391,
+    "hue_families": [
+     "blue",
+     "grey",
+     "warm",
+     "green"
+    ],
+    "tools": {
+     "powerpoint": 7,
+     "quartz": 6,
+     "omnigraffle": 4,
+     "inkscape": 2,
+     "tikz": 2,
+     "visio": 1
+    },
+    "venues": {
+     "ASPLOS26": 6,
+     "OSDI26": 5,
+     "ASPLOS25": 4,
+     "NSDI24": 2,
+     "NSDI26": 2,
+     "SOSP25": 2
+    },
+    "abstractions": {
+     "hardware": 7,
+     "distributed": 6,
+     "application": 3,
+     "network": 2,
+     "ml-system": 2,
+     "compiler": 2
+    },
+    "templates": {
+     "two-panel": 6,
+     "layered": 6,
+     "pipeline": 5,
+     "hub-spoke": 3,
+     "control-data": 1,
+     "matrix": 1
+    }
+   },
+   "exemplars": [
+    {
+     "id": "sosp23-026_fig3",
+     "png": "lab/extracted/sosp23-026/src/fig3_researchfocus-new.png",
+     "src_svg": "lab/extracted/sosp23-026/src/fig3_researchfocus-new.svg",
+     "tool": "quartz",
+     "venue": "SOSP23",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-076_fig2",
+     "png": "lab/extracted/asplos26-076/src/fig2_overall_architecture.png",
+     "src_svg": "lab/extracted/asplos26-076/src/fig2_overall_architecture.svg",
+     "tool": "inkscape",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi26-018_fig7",
+     "png": "lab/extracted/osdi26-018/src/fig7_communication_backend.png",
+     "src_svg": "lab/extracted/osdi26-018/src/fig7_communication_backend.svg",
+     "tool": "omnigraffle",
+     "venue": "OSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-013_fig10",
+     "png": "lab/extracted/asplos26-013/src/fig10_Architecture_overview.png",
+     "src_svg": "lab/extracted/asplos26-013/src/fig10_Architecture_overview.svg",
+     "tool": "visio",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-147_fig2",
+     "png": "lab/extracted/asplos25-147/src/fig2_MTP_Overview_1Cols.png",
+     "src_svg": "lab/extracted/asplos25-147/src/fig2_MTP_Overview_1Cols.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "warm-bands",
+   "name": "Warm container bands",
+   "description": "Cream, peach and pale-green bands name the phases or planes; the boxes inside stay pale, and a gold accent marks the key step.",
+   "when_to_use": "Layered or two-plane figures where the *regions* are the message (control plane vs data plane, offline vs online, per-section bands).",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#fff2cc",
+    "lane": "#f1e2c1",
+    "module": "#e2f0d9",
+    "module-alt": [
+     "#fbe5d6",
+     "#deebf7",
+     "#ffbebd"
+    ],
+    "accent": "#f0a30a",
+    "stroke": "#231916",
+    "text": "#231916",
+    "text-muted": "#7f7f7f",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#c00000",
+    "legend": "#f2f2f2"
+   },
+   "extra_fills": [
+    "#7f7f7f",
+    "#d7e4be",
+    "#d9f2d0",
+    "#f4cccc",
+    "#eeeeee",
+    "#ffcccc"
+   ],
+   "contrast_notes": "every role pair clears 4.5:1 with the listed text colour",
+   "stats": {
+    "n_figures": 22,
+    "share": 0.081,
+    "mean_grey_frac": 0.113,
+    "pastel_share": 0.5,
+    "monochrome_share": 0.091,
+    "hue_families": [
+     "warm",
+     "green",
+     "blue",
+     "red"
+    ],
+    "tools": {
+     "powerpoint": 10,
+     "quartz": 4,
+     "drawio": 2,
+     "inkscape": 1,
+     "illustrator": 1,
+     "chrome": 1
+    },
+    "venues": {
+     "ASPLOS26": 6,
+     "ASPLOS25": 4,
+     "NSDI23": 3,
+     "NSDI26": 2,
+     "OSDI26": 2,
+     "NSDI24": 1
+    },
+    "abstractions": {
+     "distributed": 8,
+     "ml-system": 6,
+     "runtime": 3,
+     "hardware": 3,
+     "network": 1,
+     "compiler": 1
+    },
+    "templates": {
+     "layered": 6,
+     "pipeline": 4,
+     "two-panel": 4,
+     "control-data": 3,
+     "matrix": 2,
+     "other": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "sosp23-016_fig4",
+     "png": "lab/extracted/sosp23-016/src/fig4_system-overview.png",
+     "src_svg": "lab/extracted/sosp23-016/src/fig4_system-overview.svg",
+     "tool": "google-slides",
+     "venue": "SOSP23",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp24-041_figtex8",
+     "png": "lab/extracted/sosp24-041/src/texfig8_design_elastic_decoding_phase.png",
+     "src_svg": "lab/extracted/sosp24-041/src/texfig8_design_elastic_decoding_phase.svg",
+     "tool": "powerpoint",
+     "venue": "SOSP24",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi26-024_fig8",
+     "png": "lab/extracted/osdi26-024/src/fig8_overview.png",
+     "src_svg": "lab/extracted/osdi26-024/src/fig8_overview.svg",
+     "tool": "powerpoint",
+     "venue": "OSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-098_fig2",
+     "png": "lab/extracted/asplos25-098/src/fig2_new_frame.png",
+     "src_svg": "lab/extracted/asplos25-098/src/fig2_new_frame.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi26-030_fig1",
+     "png": "lab/extracted/nsdi26-030/src/fig1_LMTexe.png",
+     "src_svg": "lab/extracted/nsdi26-030/src/fig1_LMTexe.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI26",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "multi-hue-categorical",
+   "name": "Multi-hue categorical",
+   "description": "Four to six distinct hues (green, pink, cream, blue) used as categories rather than as decoration, a deep crimson accent, and saturated chips from extra_fills for the legend swatches.",
+   "when_to_use": "Figures where colour *is* the data: colour-coded flows, per-tenant resources, heterogeneous engines. Always ship a legend with it.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#dae3f5",
+    "lane": "#f4cccd",
+    "module": "#d5e8d4",
+    "module-alt": [
+     "#f8cecc",
+     "#fff2cc",
+     "#b9d2b6"
+    ],
+    "accent": "#b1001c",
+    "stroke": "#231f20",
+    "text": "#231f20",
+    "text-muted": "#666666",
+    "arrow": "#598980",
+    "arrow-accent": "#c00000",
+    "legend": "#d5e8d4"
+   },
+   "extra_fills": [
+    "#f8cecc",
+    "#fad9d5",
+    "#349f3c",
+    "#9368b9",
+    "#6fd19f",
+    "#d6d6d6"
+   ],
+   "contrast_notes": "text on accent is 2.2:1 (#231f20 on #b1001c) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 18,
+    "share": 0.066,
+    "mean_grey_frac": 0.195,
+    "pastel_share": 0.056,
+    "monochrome_share": 0.111,
+    "hue_families": [
+     "red",
+     "warm",
+     "blue",
+     "green"
+    ],
+    "tools": {
+     "powerpoint": 5,
+     "omnigraffle": 4,
+     "illustrator": 2,
+     "tikz": 2,
+     "wps": 2,
+     "drawio": 1
+    },
+    "venues": {
+     "ASPLOS25": 6,
+     "ASPLOS26": 5,
+     "NSDI26": 2,
+     "SOSP24": 2,
+     "NSDI24": 1,
+     "OSDI25": 1
+    },
+    "abstractions": {
+     "hardware": 6,
+     "distributed": 5,
+     "network": 2,
+     "runtime": 2,
+     "compiler": 1,
+     "application": 1
+    },
+    "templates": {
+     "two-panel": 5,
+     "pipeline": 5,
+     "layered": 4,
+     "control-data": 2,
+     "other": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-141_fig2",
+     "png": "lab/extracted/asplos26-141/src/fig2_background_gpu_arch_short.png",
+     "src_svg": "lab/extracted/asplos26-141/src/fig2_background_gpu_arch_short.svg",
+     "tool": "wps",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-110_fig2",
+     "png": "lab/extracted/asplos25-110/src/fig2_fig-cluster-architecture.png",
+     "src_svg": "lab/extracted/asplos25-110/src/fig2_fig-cluster-architecture.svg",
+     "tool": "illustrator",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-094_fig9",
+     "png": "lab/extracted/asplos26-094/src/fig9_architecture_overview.png",
+     "src_svg": "lab/extracted/asplos26-094/src/fig9_architecture_overview.svg",
+     "tool": "omnigraffle",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-110_fig1",
+     "png": "lab/extracted/asplos25-110/src/fig1_fig-cluster-overview.png",
+     "src_svg": "lab/extracted/asplos25-110/src/fig1_fig-cluster-overview.svg",
+     "tool": "illustrator",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi26-084_figtex4",
+     "png": "lab/extracted/nsdi26-084/src/texfig4_part-inf-arch-3.png",
+     "src_svg": "lab/extracted/nsdi26-084/src/texfig4_part-inf-arch-3.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI26",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "amber-highlight",
+   "name": "Amber highlight on neutral",
+   "description": "Neutral grey lanes and peach/white boxes, with a dark gold-amber fill reserved for the one component or step the paper contributes.",
+   "when_to_use": "Before/after and baseline-vs-ours figures: keep everything neutral and let a single amber block carry the claim.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#d9d9d9",
+    "lane": "#f2f2f2",
+    "module": "#ffeed9",
+    "module-alt": [
+     "#a7c0de",
+     "#d3e2b7",
+     "#ff7d94"
+    ],
+    "accent": "#cc9600",
+    "stroke": "#2c2c2e",
+    "text": "#2c2c2e",
+    "text-muted": "#a6a6a6",
+    "arrow": "#36393d",
+    "arrow-accent": "#ff0000",
+    "legend": "#fff2cc"
+   },
+   "extra_fills": [
+    "#3977c6",
+    "#747474",
+    "#a6a6a6"
+   ],
+   "contrast_notes": "container: corpus value #fff2cc replaced by #d9d9d9 (cluster-modal light neutral, kept >=0.08 lightness away from the module fill)",
+   "stats": {
+    "n_figures": 16,
+    "share": 0.059,
+    "mean_grey_frac": 0.251,
+    "pastel_share": 0.125,
+    "monochrome_share": 0.062,
+    "hue_families": [
+     "warm",
+     "grey",
+     "blue",
+     "green"
+    ],
+    "tools": {
+     "powerpoint": 6,
+     "tikz": 2,
+     "visio": 2,
+     "quartz": 2,
+     "chrome": 2,
+     "google-slides": 1
+    },
+    "venues": {
+     "ASPLOS26": 4,
+     "OSDI24": 3,
+     "OSDI26": 3,
+     "ASPLOS25": 2,
+     "NSDI25": 1,
+     "NSDI26": 1
+    },
+    "abstractions": {
+     "application": 4,
+     "distributed": 4,
+     "runtime": 3,
+     "ml-system": 2,
+     "hardware": 2,
+     "compiler": 1
+    },
+    "templates": {
+     "pipeline": 5,
+     "layered": 3,
+     "matrix": 2,
+     "two-panel": 2,
+     "other": 1,
+     "hub-spoke": 1
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-019_fig1",
+     "png": "lab/extracted/asplos26-019/src/fig1_Overvie_Figure.png",
+     "src_svg": "lab/extracted/asplos26-019/src/fig1_Overvie_Figure.svg",
+     "tool": "quartz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-082_fig1",
+     "png": "lab/extracted/asplos25-082/src/fig1a_DPEP_Rank3_a.png",
+     "src_svg": "lab/extracted/asplos25-082/src/fig1a_DPEP_Rank3_a.svg",
+     "tool": "tikz",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi25-062_fig7",
+     "png": "lab/extracted/nsdi25-062/src/fig7_Architecture_1.png",
+     "src_svg": "lab/extracted/nsdi25-062/src/fig7_Architecture_1.svg",
+     "tool": "visio",
+     "venue": "NSDI25",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp25-047_fig3",
+     "png": "lab/extracted/sosp25-047/src/fig3_transformer_arch.png",
+     "src_svg": "lab/extracted/sosp25-047/src/fig3_transformer_arch.svg",
+     "tool": "drawio",
+     "venue": "SOSP25",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi26-046_fig8",
+     "png": "lab/extracted/osdi26-046/src/fig8_traj-level-rollout.png",
+     "src_svg": "lab/extracted/osdi26-046/src/fig8_traj-level-rollout.svg",
+     "tool": "powerpoint",
+     "venue": "OSDI26",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "cool-grey-cyan",
+   "name": "Cool grey and cyan",
+   "description": "Cool light-grey containers with pale cyan-blue boxes and a warm tan counterpart, near-black outlines and a deep teal accent.",
+   "when_to_use": "Orchestration and control-plane figures that need a quieter, cooler look than blue-orange while still being in colour.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#f2f2f2",
+    "lane": "#e7e7e7",
+    "module": "#c5e5e5",
+    "module-alt": [
+     "#f4b183",
+     "#bcbddc",
+     "#db6965"
+    ],
+    "accent": "#117788",
+    "stroke": "#262626",
+    "text": "#262626",
+    "text-muted": "#4e4e4e",
+    "arrow": "#262626",
+    "arrow-accent": "#c00000",
+    "legend": "#f2f2f2"
+   },
+   "extra_fills": [],
+   "contrast_notes": "lane: corpus value #f2f2f2 replaced by #e7e7e7 (cluster-modal light fill distinct from the container); text on accent is 2.9:1 (#262626 on #117788) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 12,
+    "share": 0.044,
+    "mean_grey_frac": 0.338,
+    "pastel_share": 0.417,
+    "monochrome_share": 0.083,
+    "hue_families": [
+     "grey",
+     "cyan",
+     "warm",
+     "blue"
+    ],
+    "tools": {
+     "omnigraffle": 3,
+     "tikz": 2,
+     "powerpoint": 1,
+     "keynote": 1,
+     "visio": 1,
+     "inkscape": 1
+    },
+    "venues": {
+     "ASPLOS26": 6,
+     "ASPLOS25": 3,
+     "NSDI26": 3
+    },
+    "abstractions": {
+     "hardware": 4,
+     "distributed": 4,
+     "runtime": 2,
+     "storage": 1,
+     "ml-system": 1
+    },
+    "templates": {
+     "hub-spoke": 3,
+     "two-panel": 2,
+     "layered": 2,
+     "control-data": 2,
+     "pipeline": 2,
+     "other": 1
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-036_fig8",
+     "png": "lab/extracted/asplos26-036/src/fig8_overview.png",
+     "src_svg": "lab/extracted/asplos26-036/src/fig8_overview.svg",
+     "tool": "omnigraffle",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi26-127_fig6",
+     "png": "lab/extracted/nsdi26-127/src/fig6_overview.png",
+     "src_svg": "lab/extracted/nsdi26-127/src/fig6_overview.svg",
+     "tool": "omnigraffle",
+     "venue": "NSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-008_fig3",
+     "png": "lab/extracted/asplos26-008/src/fig3_real_world_prototype_architecture_v8.png",
+     "src_svg": "lab/extracted/asplos26-008/src/fig3_real_world_prototype_architecture_v8.svg",
+     "tool": "tikz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-019_fig4",
+     "png": "lab/extracted/asplos26-019/src/fig4_System_Overview.png",
+     "src_svg": "lab/extracted/asplos26-019/src/fig4_System_Overview.svg",
+     "tool": "quartz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-151_fig1",
+     "png": "lab/extracted/asplos25-151/src/fig1_motivation.png",
+     "src_svg": "lab/extracted/asplos25-151/src/fig1_motivation.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    }
+   ]
+  },
+  {
+   "id": "blue-outline",
+   "name": "Blue boxes, outline containers",
+   "description": "Light-blue component boxes straight on the white page; groups and hosts are drawn as outlines only (0.5-0.75 pt, solid or dashed, no fill), with a strong Office blue or an orange box for the contribution.",
+   "when_to_use": "The transparent-ground twin of blue-orange / blue-mono: the same blue vocabulary when the figure has several nested groups and a grey slab behind each would stack up muddy; the outline keeps nesting legible.",
+   "ground": "transparent",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": null,
+    "module": "#dae8fc",
+    "module-alt": [
+     "#fff2cc",
+     "#c5e0b4",
+     "#f8cecc"
+    ],
+    "accent": "#4472c4",
+    "stroke": "#212121",
+    "text": "#0d0d0d",
+    "text-muted": "#595959",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#c00000",
+    "legend": "#fff2cc"
+   },
+   "extra_fills": [
+    "#d9d9d9",
+    "#deebf7",
+    "#e2f0d9",
+    "#b2c7e6",
+    "#dae8fc",
+    "#333333"
+   ],
+   "contrast_notes": "text on accent is 4.1:1 (#0d0d0d on #4472c4) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 97,
+    "share": 0.134,
+    "mean_grey_frac": 0.174,
+    "pastel_share": 0.309,
+    "monochrome_share": 0.268,
+    "hue_families": [
+     "blue",
+     "warm",
+     "grey",
+     "green"
+    ],
+    "tools": {
+     "powerpoint": 37,
+     "unknown": 31,
+     "omnigraffle": 9,
+     "quartz": 6,
+     "tikz": 4,
+     "keynote": 3
+    },
+    "venues": {
+     "OSDI26": 15,
+     "ASPLOS25": 14,
+     "ASPLOS26": 13,
+     "NSDI25": 10,
+     "NSDI24": 9,
+     "NSDI26": 7
+    },
+    "abstractions": {
+     "distributed": 28,
+     "hardware": 16,
+     "network": 10,
+     "compiler": 9,
+     "kernel": 9,
+     "ml-system": 8
+    },
+    "templates": {
+     "pipeline": 30,
+     "layered": 17,
+     "two-panel": 15,
+     "other": 12,
+     "control-data": 8,
+     "hub-spoke": 8
+    }
+   },
+   "exemplars": [
+    {
+     "id": "osdi26-094_fig1",
+     "png": "lab/extracted/osdi26-094/osdi26-094_fig1_p2_vector.png",
+     "src_svg": "lab/extracted/osdi26-094/osdi26-094_fig1_p2_vector.svg",
+     "tool": "unknown",
+     "venue": "OSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi24-032_fig9",
+     "png": "lab/extracted/osdi24-032/osdi24-032_fig9_p7_vector.png",
+     "src_svg": "lab/extracted/osdi24-032/osdi24-032_fig9_p7_vector.svg",
+     "tool": "powerpoint",
+     "venue": "OSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi24-033_fig1",
+     "png": "lab/extracted/nsdi24-033/nsdi24-033_fig1_p4_mixed.png",
+     "src_svg": "lab/extracted/nsdi24-033/nsdi24-033_fig1_p4_mixed.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-002_fig1",
+     "png": "lab/extracted/asplos26-002/asplos26-002_fig1_p2_vector.png",
+     "src_svg": "lab/extracted/asplos26-002/asplos26-002_fig1_p2_vector.svg",
+     "tool": "unknown",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "ink-outline",
+   "name": "Near-white boxes, ink outlines, one accent",
+   "description": "White or near-white boxes with black 0.75-1 pt outlines, thin outline containers (often rounded or dashed) and at most one saturated fill - crimson, orange or blue - on the box the paper adds.",
+   "when_to_use": "Small single-column figures and TikZ-like drawings printed small: the transparent twin of high-contrast. Everything reads in greyscale, colour is spent on one element.",
+   "ground": "transparent",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": null,
+    "module": "#f2f2f2",
+    "module-alt": [
+     "#fff2cc",
+     "#dae8fc",
+     "#c5e5e5"
+    ],
+    "accent": "#b1001c",
+    "stroke": "#010000",
+    "text": "#010000",
+    "text-muted": "#666666",
+    "arrow": "#666666",
+    "arrow-accent": "#b1001c",
+    "legend": "#f8cbad"
+   },
+   "extra_fills": [
+    "#a6a6a6",
+    "#404040",
+    "#d9d9d9",
+    "#ededed",
+    "#ab47bc",
+    "#d1d1d1"
+   ],
+   "contrast_notes": "text on accent is 2.9:1 (#010000 on #b1001c) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 90,
+    "share": 0.124,
+    "mean_grey_frac": 0.352,
+    "pastel_share": 0.267,
+    "monochrome_share": 0.367,
+    "hue_families": [
+     "grey",
+     "warm",
+     "blue",
+     "cyan"
+    ],
+    "tools": {
+     "unknown": 31,
+     "powerpoint": 24,
+     "omnigraffle": 19,
+     "tikz": 7,
+     "quartz": 3,
+     "drawio": 1
+    },
+    "venues": {
+     "ASPLOS26": 17,
+     "NSDI26": 16,
+     "ASPLOS25": 13,
+     "OSDI26": 9,
+     "OSDI23": 6,
+     "SOSP24": 6
+    },
+    "abstractions": {
+     "distributed": 23,
+     "hardware": 22,
+     "kernel": 13,
+     "runtime": 10,
+     "ml-system": 8,
+     "network": 7
+    },
+    "templates": {
+     "layered": 19,
+     "pipeline": 19,
+     "control-data": 14,
+     "two-panel": 13,
+     "matrix": 8,
+     "other": 8
+    }
+   },
+   "exemplars": [
+    {
+     "id": "nsdi26-091_fig4",
+     "png": "lab/extracted/nsdi26-091/nsdi26-091_fig4_p6_vector.png",
+     "src_svg": "lab/extracted/nsdi26-091/nsdi26-091_fig4_p6_vector.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp25-007_fig2",
+     "png": "lab/extracted/sosp25-007/sosp25-007_fig2_p4_vector.png",
+     "src_svg": "lab/extracted/sosp25-007/sosp25-007_fig2_p4_vector.svg",
+     "tool": "unknown",
+     "venue": "SOSP25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-008_fig1",
+     "png": "lab/extracted/asplos26-008/src/fig1_Generic_Jupyter_Notebook_System_Architec.png",
+     "src_svg": "lab/extracted/asplos26-008/src/fig1_Generic_Jupyter_Notebook_System_Architec.svg",
+     "tool": "tikz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp23-011_fig3",
+     "png": "lab/extracted/sosp23-011/sosp23-011_fig3_p5_mixed.png",
+     "src_svg": "lab/extracted/sosp23-011/sosp23-011_fig3_p5_mixed.svg",
+     "tool": "powerpoint",
+     "venue": "SOSP23",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "pastel-outline",
+   "name": "Cream and pastel boxes, outline containers",
+   "description": "Cream / peach default boxes with pale-blue, pale-green and pink alternates for the other kinds of component, an amber or red accent, and containers drawn as bare outlines on white.",
+   "when_to_use": "Dense figures with several kinds of boxes (the cream-pastel look) when the regions should not add yet another fill; the pastel fills already separate the kinds, the outline only delimits the region.",
+   "ground": "transparent",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": null,
+    "module": "#fff2cc",
+    "module-alt": [
+     "#dae8fc",
+     "#e2f0d9",
+     "#f8cecc"
+    ],
+    "accent": "#ffc000",
+    "stroke": "#030303",
+    "text": "#030303",
+    "text-muted": "#595959",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#c00000",
+    "legend": "#fff2cc"
+   },
+   "extra_fills": [
+    "#d5e8d4",
+    "#dae8fc",
+    "#d9d9d9",
+    "#3977c6",
+    "#747474",
+    "#a6a6a6"
+   ],
+   "contrast_notes": "every role pair clears 4.5:1 with the listed text colour",
+   "stats": {
+    "n_figures": 87,
+    "share": 0.12,
+    "mean_grey_frac": 0.181,
+    "pastel_share": 0.402,
+    "monochrome_share": 0.069,
+    "hue_families": [
+     "warm",
+     "blue",
+     "grey",
+     "green"
+    ],
+    "tools": {
+     "unknown": 31,
+     "powerpoint": 26,
+     "omnigraffle": 10,
+     "quartz": 4,
+     "tikz": 3,
+     "google-slides": 3
+    },
+    "venues": {
+     "OSDI26": 17,
+     "ASPLOS26": 13,
+     "NSDI24": 11,
+     "ASPLOS25": 10,
+     "NSDI26": 8,
+     "NSDI23": 6
+    },
+    "abstractions": {
+     "distributed": 22,
+     "ml-system": 13,
+     "network": 12,
+     "runtime": 10,
+     "kernel": 10,
+     "hardware": 9
+    },
+    "templates": {
+     "pipeline": 25,
+     "layered": 19,
+     "two-panel": 12,
+     "control-data": 10,
+     "matrix": 6,
+     "other": 6
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-026_fig6",
+     "png": "lab/extracted/asplos26-026/src/fig6_main.png",
+     "src_svg": "lab/extracted/asplos26-026/src/fig6_main.svg",
+     "tool": "keynote",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-080_fig5",
+     "png": "lab/extracted/asplos26-080/src/fig5_system_design_new.png",
+     "src_svg": "lab/extracted/asplos26-080/src/fig5_system_design_new.svg",
+     "tool": "quartz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-100_fig3",
+     "png": "lab/extracted/asplos25-100/src/fig3_LLaMA_model_new_new.png",
+     "src_svg": "lab/extracted/asplos25-100/src/fig3_LLaMA_model_new_new.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-056_fig3",
+     "png": "lab/extracted/asplos25-056/asplos25-056_fig3_p4_mixed.png",
+     "src_svg": "lab/extracted/asplos25-056/asplos25-056_fig3_p4_mixed.svg",
+     "tool": "omnigraffle",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "pastel-regions",
+   "name": "Each region its own pastel tint",
+   "description": "Two to four regions (planes, hosts, phases) each filled with a different very light tint - cream, pale green, pale blue, pink - with white or pale-blue boxes inside and a dark-gold or red accent. `container`, `lane` and `legend` list the first three tints; `region_tints` has the full set.",
+   "when_to_use": "Figures whose message is the split into regions (client / server, control / data plane, before / after) when a legend for the regions should be avoided: the tint names the region.",
+   "ground": "multi-tint",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#fff2cc",
+    "lane": "#d5e8d4",
+    "module": "#dae8fc",
+    "module-alt": [
+     "#fff2cc",
+     "#d5e8d4",
+     "#f8cecc"
+    ],
+    "accent": "#d6b656",
+    "stroke": "#0a0a0a",
+    "text": "#0a0a0a",
+    "text-muted": "#595959",
+    "arrow": "#666666",
+    "arrow-accent": "#c00000",
+    "legend": "#dae8fc"
+   },
+   "extra_fills": [
+    "#b7e0a8",
+    "#f5f5f5",
+    "#7f7f7f"
+   ],
+   "contrast_notes": "every role pair clears 4.5:1 with the listed text colour",
+   "stats": {
+    "n_figures": 52,
+    "share": 0.072,
+    "mean_grey_frac": 0.222,
+    "pastel_share": 0.519,
+    "monochrome_share": 0.019,
+    "hue_families": [
+     "warm",
+     "blue",
+     "green",
+     "grey"
+    ],
+    "tools": {
+     "unknown": 25,
+     "powerpoint": 13,
+     "tikz": 3,
+     "quartz": 3,
+     "illustrator": 1,
+     "drawio": 1
+    },
+    "venues": {
+     "ASPLOS25": 9,
+     "NSDI26": 9,
+     "NSDI24": 7,
+     "OSDI26": 7,
+     "ASPLOS26": 5,
+     "NSDI25": 5
+    },
+    "abstractions": {
+     "distributed": 16,
+     "ml-system": 9,
+     "hardware": 9,
+     "network": 8,
+     "compiler": 3,
+     "runtime": 3
+    },
+    "templates": {
+     "pipeline": 18,
+     "layered": 13,
+     "two-panel": 6,
+     "control-data": 5,
+     "other": 4,
+     "hub-spoke": 3
+    }
+   },
+   "exemplars": [
+    {
+     "id": "nsdi26-144_fig1",
+     "png": "lab/extracted/nsdi26-144/src/fig1_overview_v13.png",
+     "src_svg": "lab/extracted/nsdi26-144/src/fig1_overview_v13.svg",
+     "tool": "tikz",
+     "venue": "NSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi24-022_fig1",
+     "png": "lab/extracted/nsdi24-022/nsdi24-022_fig1_p3_vector.png",
+     "src_svg": "lab/extracted/nsdi24-022/nsdi24-022_fig1_p3_vector.svg",
+     "tool": "unknown",
+     "venue": "NSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi26-124_fig1",
+     "png": "lab/extracted/nsdi26-124/nsdi26-124_fig1_p2_mixed.png",
+     "src_svg": "lab/extracted/nsdi26-124/nsdi26-124_fig1_p2_mixed.svg",
+     "tool": "unknown",
+     "venue": "NSDI26",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)",
+   "region_tints": [
+    "#fff2cc",
+    "#d5e8d4",
+    "#dae8fc",
+    "#f8cecc",
+    "#e1d5e7"
+   ]
+  },
+  {
+   "id": "green-outline",
+   "name": "Green boxes, outline containers",
+   "description": "Pale-green component boxes with pale-blue / pink alternates, red reserved for the highlighted path, containers as solid or dashed outlines on white.",
+   "when_to_use": "Pipelines and stacks where one path must jump out (the green-red look) drawn without a grey ground, typically with dashed host or trust boundaries.",
+   "ground": "transparent",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": null,
+    "module": "#d8f3dc",
+    "module-alt": [
+     "#dae8fc",
+     "#f8cecc",
+     "#fff2cc"
+    ],
+    "accent": "#ff0000",
+    "stroke": "#5e5e5e",
+    "text": "#2c2c2c",
+    "text-muted": "#7f7f7f",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#ff0000",
+    "legend": "#dbdbdb"
+   },
+   "extra_fills": [
+    "#ebd9fc",
+    "#efcfe3",
+    "#2c2c2c"
+   ],
+   "contrast_notes": "text on accent is 3.5:1 (#2c2c2c on #ff0000) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 45,
+    "share": 0.062,
+    "mean_grey_frac": 0.173,
+    "pastel_share": 0.333,
+    "monochrome_share": 0.156,
+    "hue_families": [
+     "green",
+     "blue",
+     "grey",
+     "red"
+    ],
+    "tools": {
+     "unknown": 18,
+     "powerpoint": 13,
+     "tikz": 5,
+     "quartz": 2,
+     "drawio": 1,
+     "keynote": 1
+    },
+    "venues": {
+     "NSDI26": 9,
+     "ASPLOS26": 8,
+     "ASPLOS25": 7,
+     "NSDI23": 4,
+     "NSDI24": 4,
+     "OSDI26": 4
+    },
+    "abstractions": {
+     "hardware": 11,
+     "distributed": 11,
+     "ml-system": 7,
+     "network": 7,
+     "runtime": 4,
+     "storage": 2
+    },
+    "templates": {
+     "pipeline": 12,
+     "layered": 11,
+     "two-panel": 8,
+     "other": 5,
+     "host-device": 3,
+     "matrix": 3
+    }
+   },
+   "exemplars": [
+    {
+     "id": "osdi23-011_fig5",
+     "png": "lab/extracted/osdi23-011/osdi23-011_fig5_p6_mixed.png",
+     "src_svg": "lab/extracted/osdi23-011/osdi23-011_fig5_p6_mixed.svg",
+     "tool": "unknown",
+     "venue": "OSDI23",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi24-107_fig5",
+     "png": "lab/extracted/nsdi24-107/nsdi24-107_fig5_p6_vector.png",
+     "src_svg": "lab/extracted/nsdi24-107/nsdi24-107_fig5_p6_vector.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi25-054_fig2",
+     "png": "lab/extracted/nsdi25-054/nsdi25-054_fig2_p5_vector.png",
+     "src_svg": "lab/extracted/nsdi25-054/nsdi25-054_fig2_p5_vector.svg",
+     "tool": "unknown",
+     "venue": "NSDI25",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi23-027_fig4",
+     "png": "lab/extracted/nsdi23-027/nsdi23-027_fig4_p5_mixed.png",
+     "src_svg": "lab/extracted/nsdi23-027/nsdi23-027_fig4_p5_mixed.svg",
+     "tool": "unknown",
+     "venue": "NSDI23",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "blue-ground",
+   "name": "Pale-blue ground, warm boxes",
+   "description": "A pale-blue container behind cream / orange component boxes (or pale-blue lanes behind white boxes), dark outlines, a crimson or Office-blue accent.",
+   "when_to_use": "One dominant region (a host, a chip, a runtime) that should read as a unit; the warm boxes pop against the cool ground without any saturated fill.",
+   "ground": "tinted-blue",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#dceaf7",
+    "lane": "#dae8fc",
+    "module": "#fff2cc",
+    "module-alt": [
+     "#dceaf7",
+     "#82b366",
+     "#fadbdf"
+    ],
+    "accent": "#c00000",
+    "stroke": "#4c4d4c",
+    "text": "#0d0d0d",
+    "text-muted": "#595959",
+    "arrow": "#595959",
+    "arrow-accent": "#6c8ebf",
+    "legend": "#d5e8d4"
+   },
+   "extra_fills": [
+    "#c2f1c8",
+    "#f2cfee"
+   ],
+   "contrast_notes": "text on accent is 3.0:1 (#0d0d0d on #c00000) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 45,
+    "share": 0.062,
+    "mean_grey_frac": 0.161,
+    "pastel_share": 0.311,
+    "monochrome_share": 0.178,
+    "hue_families": [
+     "blue",
+     "warm",
+     "green",
+     "grey"
+    ],
+    "tools": {
+     "unknown": 16,
+     "powerpoint": 12,
+     "omnigraffle": 5,
+     "quartz": 3,
+     "wps": 3,
+     "tikz": 2
+    },
+    "venues": {
+     "ASPLOS26": 11,
+     "ASPLOS25": 6,
+     "OSDI26": 6,
+     "NSDI26": 4,
+     "NSDI23": 3,
+     "OSDI23": 3
+    },
+    "abstractions": {
+     "distributed": 12,
+     "hardware": 9,
+     "kernel": 6,
+     "network": 4,
+     "compiler": 4,
+     "runtime": 4
+    },
+    "templates": {
+     "pipeline": 10,
+     "layered": 9,
+     "control-data": 6,
+     "two-panel": 6,
+     "host-device": 6,
+     "other": 4
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-096_fig6",
+     "png": "lab/extracted/asplos26-096/asplos26-096_fig6_p10_vector.png",
+     "src_svg": "lab/extracted/asplos26-096/asplos26-096_fig6_p10_vector.svg",
+     "tool": "unknown",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi24-064_fig3",
+     "png": "lab/extracted/nsdi24-064/nsdi24-064_fig3_p7_vector.png",
+     "src_svg": "lab/extracted/nsdi24-064/nsdi24-064_fig3_p7_vector.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp25-002_fig1",
+     "png": "lab/extracted/sosp25-002/sosp25-002_fig1_p3_mixed.png",
+     "src_svg": "lab/extracted/sosp25-002/sosp25-002_fig1_p3_mixed.svg",
+     "tool": "powerpoint",
+     "venue": "SOSP25",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "greyscale-outline",
+   "name": "Greyscale, outline containers",
+   "description": "No hue at all: light-grey or white boxes, black outlines and text, containers as black or dashed outlines on the white page; red or blue is used at most for a word or an arrow.",
+   "when_to_use": "B/W-safe figures and print-first venues when the structure is nested: the transparent twin of greyscale, where a mid-grey container slab would swallow the grey boxes.",
+   "ground": "transparent",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": null,
+    "module": "#cccccc",
+    "module-alt": [
+     "#d9d9d9"
+    ],
+    "accent": "#ff0000",
+    "stroke": "#000000",
+    "text": "#000000",
+    "text-muted": "#666666",
+    "arrow": "#333333",
+    "arrow-accent": "#ff0000",
+    "legend": "#d9d9d9"
+   },
+   "extra_fills": [],
+   "contrast_notes": "every role pair clears 4.5:1 with the listed text colour",
+   "stats": {
+    "n_figures": 44,
+    "share": 0.061,
+    "mean_grey_frac": 0.641,
+    "pastel_share": 0.0,
+    "monochrome_share": 1.0,
+    "hue_families": [
+     "grey"
+    ],
+    "tools": {
+     "unknown": 17,
+     "omnigraffle": 14,
+     "powerpoint": 5,
+     "inkscape": 2,
+     "google-slides": 2,
+     "keynote": 2
+    },
+    "venues": {
+     "NSDI23": 6,
+     "OSDI23": 6,
+     "ASPLOS25": 5,
+     "SOSP23": 4,
+     "ASPLOS26": 3,
+     "NSDI24": 3
+    },
+    "abstractions": {
+     "distributed": 13,
+     "hardware": 7,
+     "kernel": 7,
+     "network": 6,
+     "ml-system": 3,
+     "storage": 3
+    },
+    "templates": {
+     "pipeline": 12,
+     "layered": 10,
+     "two-panel": 8,
+     "other": 5,
+     "host-device": 4,
+     "control-data": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "osdi23-032_fig5",
+     "png": "lab/extracted/osdi23-032/osdi23-032_fig5_p7_vector.png",
+     "src_svg": "lab/extracted/osdi23-032/osdi23-032_fig5_p7_vector.svg",
+     "tool": "unknown",
+     "venue": "OSDI23",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi24-007_fig3",
+     "png": "lab/extracted/osdi24-007/src/fig3_architecture.png",
+     "src_svg": "lab/extracted/osdi24-007/src/fig3_architecture.svg",
+     "tool": "tikz",
+     "venue": "OSDI24",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi23-014_fig4",
+     "png": "lab/extracted/osdi23-014/osdi23-014_fig4_p5_vector.png",
+     "src_svg": "lab/extracted/osdi23-014/osdi23-014_fig4_p5_vector.svg",
+     "tool": "omnigraffle",
+     "venue": "OSDI23",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi23-039_fig3",
+     "png": "lab/extracted/osdi23-039/osdi23-039_fig3_p6_vector.png",
+     "src_svg": "lab/extracted/osdi23-039/osdi23-039_fig3_p6_vector.svg",
+     "tool": "unknown",
+     "venue": "OSDI23",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "cream-ground",
+   "name": "Cream ground, blue boxes",
+   "description": "A cream or peach container behind pale-blue component boxes, pale-green alternates and an amber accent; warm-bands is the banded version of the same look.",
+   "when_to_use": "Warm, print-friendly figures with one main region; the cool boxes separate cleanly from the warm ground, and the amber accent stays in the same temperature.",
+   "ground": "tinted-warm",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#fff2cc",
+    "lane": "#fbe5d6",
+    "module": "#dae8fc",
+    "module-alt": [
+     "#fbe5d6",
+     "#d5e8d4",
+     "#ff7d94"
+    ],
+    "accent": "#f0a30a",
+    "stroke": "#231916",
+    "text": "#231916",
+    "text-muted": "#7f7f7f",
+    "arrow": "#7f7f7f",
+    "arrow-accent": "#ffc000",
+    "legend": "#fff2cc"
+   },
+   "extra_fills": [
+    "#f0f0f0"
+   ],
+   "contrast_notes": "every role pair clears 4.5:1 with the listed text colour",
+   "stats": {
+    "n_figures": 26,
+    "share": 0.036,
+    "mean_grey_frac": 0.21,
+    "pastel_share": 0.423,
+    "monochrome_share": 0.231,
+    "hue_families": [
+     "warm",
+     "blue",
+     "grey",
+     "green"
+    ],
+    "tools": {
+     "unknown": 8,
+     "powerpoint": 8,
+     "omnigraffle": 3,
+     "drawio": 2,
+     "quartz": 2,
+     "illustrator": 1
+    },
+    "venues": {
+     "ASPLOS26": 5,
+     "NSDI26": 5,
+     "SOSP25": 4,
+     "ASPLOS25": 3,
+     "NSDI23": 2,
+     "NSDI25": 2
+    },
+    "abstractions": {
+     "runtime": 6,
+     "hardware": 4,
+     "distributed": 3,
+     "compiler": 3,
+     "network": 3,
+     "kernel": 3
+    },
+    "templates": {
+     "layered": 7,
+     "pipeline": 5,
+     "two-panel": 4,
+     "other": 3,
+     "matrix": 2,
+     "hub-spoke": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos26-153_fig14",
+     "png": "lab/extracted/asplos26-153/asplos26-153_fig14_p10_vector.png",
+     "src_svg": "lab/extracted/asplos26-153/asplos26-153_fig14_p10_vector.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-034_fig8",
+     "png": "lab/extracted/asplos25-034/src/fig8_arch.png",
+     "src_svg": "lab/extracted/asplos25-034/src/fig8_arch.svg",
+     "tool": "omnigraffle",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "sosp25-009_fig6",
+     "png": "lab/extracted/sosp25-009/sosp25-009_fig6_p7_vector.png",
+     "src_svg": "lab/extracted/sosp25-009/sosp25-009_fig6_p7_vector.svg",
+     "tool": "unknown",
+     "venue": "SOSP25",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "categorical-outline",
+   "name": "Categorical hues, outline containers",
+   "description": "Four to six distinct hues used as categories (pink, blue, peach, green, lavender boxes), a crimson or magenta accent, and containers or panel frames drawn as outlines on white.",
+   "when_to_use": "Colour is the data (traffic classes, tenants, engine kinds) and the figure also has regions: the transparent twin of multi-hue-categorical, so the categorical fills stay the only colour on the page.",
+   "ground": "transparent",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": null,
+    "module": "#f8cecc",
+    "module-alt": [
+     "#dae8fc",
+     "#ffe6cc",
+     "#d5e8d4"
+    ],
+    "accent": "#a50040",
+    "stroke": "#231f20",
+    "text": "#231f20",
+    "text-muted": "#666666",
+    "arrow": "#404040",
+    "arrow-accent": "#c00000",
+    "legend": "#ffe6cc"
+   },
+   "extra_fills": [
+    "#e6e6e6",
+    "#349f3c",
+    "#9368b9",
+    "#6fd19f",
+    "#d6d6d6",
+    "#f8cecc"
+   ],
+   "contrast_notes": "corpus value #598980 is tinted (chroma 0.19); replaced by the neutral #404040; text on accent is 2.1:1 (#231f20 on #a50040) - use #ffffff for labels inside that box",
+   "stats": {
+    "n_figures": 25,
+    "share": 0.034,
+    "mean_grey_frac": 0.154,
+    "pastel_share": 0.36,
+    "monochrome_share": 0.16,
+    "hue_families": [
+     "red",
+     "blue",
+     "warm",
+     "green"
+    ],
+    "tools": {
+     "unknown": 10,
+     "powerpoint": 8,
+     "omnigraffle": 3,
+     "matplotlib": 2,
+     "illustrator": 1,
+     "tikz": 1
+    },
+    "venues": {
+     "ASPLOS25": 5,
+     "ASPLOS26": 4,
+     "NSDI23": 4,
+     "NSDI24": 4,
+     "NSDI26": 4,
+     "OSDI23": 1
+    },
+    "abstractions": {
+     "hardware": 7,
+     "network": 7,
+     "distributed": 5,
+     "kernel": 3,
+     "application": 1,
+     "ml-system": 1
+    },
+    "templates": {
+     "pipeline": 9,
+     "two-panel": 6,
+     "layered": 3,
+     "other": 3,
+     "host-device": 2,
+     "control-data": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "asplos25-110_fig1",
+     "png": "lab/extracted/asplos25-110/src/fig1_fig-cluster-overview.png",
+     "src_svg": "lab/extracted/asplos25-110/src/fig1_fig-cluster-overview.svg",
+     "tool": "illustrator",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-127_fig2",
+     "png": "lab/extracted/asplos26-127/src/fig2_Overview_58.png",
+     "src_svg": "lab/extracted/asplos26-127/src/fig2_Overview_58.svg",
+     "tool": "powerpoint",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos26-134_fig1",
+     "png": "lab/extracted/asplos26-134/src/fig1_motivation.png",
+     "src_svg": "lab/extracted/asplos26-134/src/fig1_motivation.svg",
+     "tool": "tikz",
+     "venue": "ASPLOS26",
+     "in_cluster": true
+    },
+    {
+     "id": "nsdi26-084_figtex4",
+     "png": "lab/extracted/nsdi26-084/src/texfig4_part-inf-arch-3.png",
+     "src_svg": "lab/extracted/nsdi26-084/src/texfig4_part-inf-arch-3.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI26",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "green-ground",
+   "name": "Pale-green ground, blue boxes",
+   "description": "A pale-green container or band behind pale-blue boxes with cream alternates and an orange accent.",
+   "when_to_use": "A quieter alternative to the blue ground when blue is already taken by the boxes; common for the trusted / secure region (green = trusted) of a two-region figure.",
+   "ground": "tinted-green",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#e2f0d9",
+    "lane": "#d0dfe6",
+    "module": "#dae3f3",
+    "module-alt": [
+     "#fff2cc",
+     "#97d077",
+     "#b1ddf0"
+    ],
+    "accent": "#ed7d31",
+    "stroke": "#666666",
+    "text": "#1a1a1a",
+    "text-muted": "#666666",
+    "arrow": "#404040",
+    "arrow-accent": "#c00000",
+    "legend": "#cfe8f6"
+   },
+   "extra_fills": [
+    "#ffffff",
+    "#f8cecc",
+    "#fad9d5",
+    "#f2f2f2",
+    "#656565",
+    "#cccccc"
+   ],
+   "contrast_notes": "corpus value #4e5c3e is tinted (chroma 0.12); replaced by the neutral #1a1a1a; corpus value #385723 is tinted (chroma 0.20); replaced by the neutral #404040",
+   "stats": {
+    "n_figures": 25,
+    "share": 0.034,
+    "mean_grey_frac": 0.244,
+    "pastel_share": 0.32,
+    "monochrome_share": 0.12,
+    "hue_families": [
+     "warm",
+     "green",
+     "grey",
+     "blue"
+    ],
+    "tools": {
+     "powerpoint": 9,
+     "unknown": 8,
+     "tikz": 3,
+     "omnigraffle": 2,
+     "quartz": 2,
+     "drawio": 1
+    },
+    "venues": {
+     "ASPLOS26": 4,
+     "NSDI26": 4,
+     "OSDI26": 4,
+     "ASPLOS25": 3,
+     "OSDI23": 3,
+     "OSDI24": 3
+    },
+    "abstractions": {
+     "distributed": 9,
+     "ml-system": 4,
+     "hardware": 3,
+     "compiler": 3,
+     "network": 3,
+     "kernel": 2
+    },
+    "templates": {
+     "pipeline": 6,
+     "layered": 5,
+     "other": 4,
+     "control-data": 3,
+     "host-device": 3,
+     "two-panel": 2
+    }
+   },
+   "exemplars": [
+    {
+     "id": "nsdi26-087_fig3",
+     "png": "lab/extracted/nsdi26-087/src/fig3_overview.png",
+     "src_svg": "lab/extracted/nsdi26-087/src/fig3_overview.svg",
+     "tool": "powerpoint",
+     "venue": "NSDI26",
+     "in_cluster": true
+    },
+    {
+     "id": "asplos25-097_fig2",
+     "png": "lab/extracted/asplos25-097/asplos25-097_fig2_p5_vector.png",
+     "src_svg": "lab/extracted/asplos25-097/asplos25-097_fig2_p5_vector.svg",
+     "tool": "unknown",
+     "venue": "ASPLOS25",
+     "in_cluster": true
+    },
+    {
+     "id": "osdi25-017_fig7",
+     "png": "lab/extracted/osdi25-017/osdi25-017_fig7_p6_mixed.png",
+     "src_svg": "lab/extracted/osdi25-017/osdi25-017_fig7_p6_mixed.svg",
+     "tool": "powerpoint",
+     "venue": "OSDI25",
+     "in_cluster": true
+    }
+   ],
+   "added": "2026-09-18 ground extension (palette_grounds.py)"
+  },
+  {
+   "id": "charon",
+   "name": "Charon: ink outlines, identity pastels, grey headers",
+   "description": "The palette of the named style 'charon' (references/styles/charon.md), measured from the seven diagrams of the Charon paper (MLSys 2026). Every box has a dark-ink outline; four pastels each name one component or concept and keep that meaning across all figures of the paper (blue, peach, mint, pink); grey marks structure (title bars, platform cards, bookend bars); there is no accent fill -- 'ours' versus 'the old way' is said in green and red text.",
+   "when_to_use": "Only with meta.style = 'charon' (or when the user asks for this look). Suits figures whose components fall into 3-4 kinds that recur across several figures of one paper.",
+   "style": "charon",
+   "origin": "style-reference: hand-measured from assets/exemplars/styles/charon/ (not a corpus cluster; palette_cluster.py does not produce it -- re-add by hand if palettes.json is regenerated)",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": "#fef3eb",
+    "module": "#cddfff",
+    "module-alt": [
+     "#ffecd6",
+     "#b5d8cb",
+     "#ffc9c3"
+    ],
+    "accent": "#6bb097",
+    "stroke": "#042433",
+    "text": "#000000",
+    "text-muted": "#595959",
+    "arrow": "#000000",
+    "arrow-accent": "#178d6a",
+    "legend": "#d9d9d9"
+   },
+   "header": "#d9d9d9",
+   "identity_fills": [
+    {
+     "hex": "#cddfff",
+     "name": "blue",
+     "in_charon": "graph operators, profiling engine, transformer blocks, forward"
+    },
+    {
+     "hex": "#ffecd6",
+     "name": "peach",
+     "in_charon": "prediction engine, value generation, outputs, torch steps"
+    },
+    {
+     "hex": "#b5d8cb",
+     "name": "mint",
+     "in_charon": "analytical engine, norm layers, communication, expected output"
+    },
+    {
+     "hex": "#ffc9c3",
+     "name": "pink",
+     "in_charon": "graph simulation, key generation, backward, pruning tool"
+    },
+    {
+     "hex": "#d9d9d9",
+     "name": "grey",
+     "in_charon": "title bars, platform card, fused engine, embedding / LM head, bookend bars"
+    }
+   ],
+   "region_tints": [
+    "#fef3eb",
+    "#edf1f9",
+    "#fff2f1",
+    "#f2f2f2",
+    "#e8f0fb"
+   ],
+   "state_pairs": {
+    "note": "mechanism figures: one hue per resource or owner, solid = normal / full, pale + dotted outline = degraded / not resident",
+    "green": {
+     "solid": "#6bb097",
+     "pale": "#b9d9cd",
+     "line": "#178d6a"
+    },
+    "blue": {
+     "solid": "#7eb2e8",
+     "pale": "#c1daf4",
+     "line": "#3f90de"
+    },
+    "red": {
+     "solid": "#ff7e79",
+     "pale": "#ffc0be",
+     "line": "#c00000"
+    }
+   },
+   "text_colours": {
+    "ours": "#178d6a",
+    "baseline": "#c00000",
+    "forward": "#315ab4",
+    "backward": "#c25160",
+    "update": "#068c79"
+   },
+   "extra_fills": [
+    "#d9d9d9",
+    "#ffebeb",
+    "#d0e4e2",
+    "#fff5df",
+    "#d0e3f6"
+   ],
+   "contrast_notes": "black text on every fill clears 7:1; white text only on #178d6a and #3f90de",
+   "added": "2026-10-09 named style 'charon' (scripts/distill/style_exemplars/charon.json)",
+   "exemplars": [
+    {
+     "id": "mlsys26-charon_fig3",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig3",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    },
+    {
+     "id": "mlsys26-charon_fig5",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig5",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    },
+    {
+     "id": "mlsys26-charon_fig4",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig4",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    },
+    {
+     "id": "mlsys26-charon_fig1",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig1",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    },
+    {
+     "id": "mlsys26-charon_fig2",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig2",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    },
+    {
+     "id": "mlsys26-charon_fig6",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig6",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    },
+    {
+     "id": "mlsys26-charon_fig12",
+     "dir": "assets/exemplars/styles/charon/figures/mlsys26-charon_fig12",
+     "tool": "powerpoint",
+     "venue": "MLSys26"
+    }
+   ]
+  },
+  {
+   "id": "office-pastel",
+   "name": "Office tints, one mid accent",
+   "family": "ai",
+   "description": "The look of the slide tools that drew most AI-venue Figure 1s: pale Office tints for modules (blue, cream, green, peach), a light-grey ground or none, dark-grey outlines, one mid orange for the contribution and dark red for a verdict or a highlighted arrow.",
+   "when_to_use": "The default of the AI family: stage pipelines and model anatomy with three to five kinds of element. 39% of the deep records carry three or more Office theme values; PowerPoint drew 42% of the good figures.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#f2f2f2",
+    "lane": "#fff2cc",
+    "module": "#deebf7",
+    "module-alt": [
+     "#fff2cc",
+     "#e2f0d9",
+     "#fbe5d6"
+    ],
+    "accent": "#ed7d31",
+    "stroke": "#595959",
+    "text": "#000000",
+    "text-muted": "#7f7f7f",
+    "arrow": "#595959",
+    "arrow-accent": "#c00000",
+    "legend": "#ffffff"
+   },
+   "extra_fills": [
+    "#dae3f3",
+    "#f8cbad",
+    "#c5e0b4",
+    "#ffe699",
+    "#d9d2e9",
+    "#bdd7ee"
+   ],
+   "contrast_notes": "black text clears 4.5:1 on every pale fill; white text on #ed7d31 does not (3.0:1) -- keep black on the accent",
+   "stats": {
+    "n_figures": 131,
+    "share": 0.39,
+    "basis": "deep records with three or more exact Office theme colours or tints (palettes.md §8); shares are of the 336 records",
+    "hue_families": [
+     "blue",
+     "orange",
+     "green",
+     "red"
+    ]
+   },
+   "exemplars": [
+    {
+     "id": "acl23-0028_fig1",
+     "print": "assets/exemplars/ai/figures/acl23-0028_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl23-0028_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "acl25-0127_fig1",
+     "print": "assets/exemplars/ai/figures/acl25-0127_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl25-0127_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "acl25-0133_fig1",
+     "print": "assets/exemplars/ai/figures/acl25-0133_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl25-0133_fig1/source.svg",
+     "tier": 1
+    }
+   ]
+  },
+  {
+   "id": "tinted-regions",
+   "name": "Pale region fields, white or pale boxes",
+   "family": "ai",
+   "description": "Each stage, role or panel sits on its own pale field (peach, mint, pale blue, light grey; lightness about 0.9), boxes inside are white or a paler tint with thin grey outlines; one strong blue marks the contribution, dark red a verdict.",
+   "when_to_use": "Figures whose regions must be told apart at a glance: scope overviews, agent figures and contribution mosaics (tinted ground in about half of each), phase bands of a pipeline. Keep tints distinct and never darker than the boxes on them.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#fbe3d6",
+    "lane": "#d9f2d0",
+    "module": "#ffffff",
+    "module-alt": [
+     "#deebf7",
+     "#fff2cc",
+     "#e2f0d9"
+    ],
+    "accent": "#4472c4",
+    "stroke": "#7f7f7f",
+    "text": "#000000",
+    "text-muted": "#595959",
+    "arrow": "#595959",
+    "arrow-accent": "#c00000",
+    "legend": "#ffffff"
+   },
+   "extra_fills": [
+    "#f2f2f2",
+    "#dceaf7",
+    "#ffe699",
+    "#f2cfee",
+    "#e7e6e6"
+   ],
+   "contrast_notes": "white text on #4472c4 clears 4.5:1; black on every tint; a second region tint should differ in hue, not only in lightness",
+   "stats": {
+    "n_figures": 104,
+    "share": 0.31,
+    "basis": "deep records on a tinted-regions ground (grounds.md §1); 33% of all designed figures",
+    "hue_families": [
+     "orange",
+     "green",
+     "blue",
+     "grey"
+    ]
+   },
+   "exemplars": [
+    {
+     "id": "aaai26-0001_fig1",
+     "print": "assets/exemplars/ai/figures/aaai26-0001_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/aaai26-0001_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "acl23-0008_fig1",
+     "print": "assets/exemplars/ai/figures/acl23-0008_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl23-0008_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "acl24-0066_fig1",
+     "print": "assets/exemplars/ai/figures/acl24-0066_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl24-0066_fig1/source.svg",
+     "tier": 1
+    }
+   ]
+  },
+  {
+   "id": "role-colours",
+   "name": "One mid colour per actor, part or token type",
+   "family": "ai",
+   "description": "Identity colours at mid tone: blue, orange, green, yellow and purple from the Office mid row, each carried wherever its actor, module group or token type appears; grey containers; dark grey lines; red kept for a verdict.",
+   "when_to_use": "Actor interaction and agent figures (colour by actor in 64% of agent records), token strips and lanes per modality or per method -- wherever one colour names one thing across the figure. Needs a key or a direct label on the first instance.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#f2f2f2",
+    "lane": "#ffffff",
+    "module": "#9dc3e6",
+    "module-alt": [
+     "#f4b183",
+     "#a9d18e",
+     "#ffd966",
+     "#b4a7d6",
+     "#61cbf4"
+    ],
+    "accent": "#c00000",
+    "stroke": "#404040",
+    "text": "#000000",
+    "text-muted": "#595959",
+    "arrow": "#404040",
+    "arrow-accent": "#c00000",
+    "legend": "#ffffff"
+   },
+   "extra_fills": [
+    "#deebf7",
+    "#fbe5d6",
+    "#e2f0d9",
+    "#fff2cc",
+    "#d9d2e9"
+   ],
+   "contrast_notes": "black text clears 4.5:1 on all five mid fills; use the pale extra fills for large regions and the mid ones for the named parts",
+   "stats": {
+    "n_figures": 97,
+    "share": 0.29,
+    "basis": "deep records whose colour code is an identity (one colour per item, 29%) or an actor (21%); encoding.md Part A",
+    "hue_families": [
+     "blue",
+     "orange",
+     "green",
+     "yellow",
+     "purple"
+    ]
+   },
+   "exemplars": [
+    {
+     "id": "acl25-0048_fig1",
+     "print": "assets/exemplars/ai/figures/acl25-0048_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl25-0048_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "iclr23-0028_fig1",
+     "print": "assets/exemplars/ai/figures/iclr23-0028_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/iclr23-0028_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "aaai25-0083_fig1",
+     "print": "assets/exemplars/ai/figures/aaai25-0083_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/aaai25-0083_fig1/source.svg",
+     "tier": 1
+    }
+   ]
+  },
+  {
+   "id": "verdict-contrast",
+   "name": "Grey prior, blue ours, red and green verdicts",
+   "family": "ai",
+   "description": "For side-by-side contrasts: the prior or baseline lane in light grey, ours in pale blue with a strong blue outline or accent, red (#c00000) for wrong / failed with a cross, green (#70ad47) for right with a tick; white ground, panels outlined.",
+   "when_to_use": "Paired lanes, design families and problem-then-fix figures (19% of the records colour a verdict; red is \"wrong\" in 27 of 34 red verdict clauses, green \"right\" in 20 of 28). Always pair the colours with a tick / cross or a word.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": null,
+    "lane": "#f2f2f2",
+    "module": "#d9d9d9",
+    "module-alt": [
+     "#deebf7",
+     "#fbe5d6"
+    ],
+    "accent": "#4472c4",
+    "stroke": "#595959",
+    "text": "#000000",
+    "text-muted": "#7f7f7f",
+    "arrow": "#595959",
+    "arrow-accent": "#c00000",
+    "legend": "#ffffff"
+   },
+   "extra_fills": [
+    "#70ad47",
+    "#ff0000",
+    "#f8cecc",
+    "#e2f0d9",
+    "#ffffff"
+   ],
+   "contrast_notes": "#c00000 and #70ad47 are tellable in greyscale only with their glyphs; white text clears 4.5:1 on #c00000 and on #4472c4, not on #70ad47",
+   "stats": {
+    "n_figures": 64,
+    "share": 0.19,
+    "basis": "deep records whose colour code is a verdict (encoding.md Part A); ours-vs-prior in 12%",
+    "hue_families": [
+     "grey",
+     "blue",
+     "red",
+     "green"
+    ]
+   },
+   "exemplars": [
+    {
+     "id": "acl23-0022_fig1",
+     "print": "assets/exemplars/ai/figures/acl23-0022_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl23-0022_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "iclr25-0080_fig1",
+     "print": "assets/exemplars/ai/figures/iclr25-0080_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/iclr25-0080_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "icml24-0031_fig1",
+     "print": "assets/exemplars/ai/figures/icml24-0031_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/icml24-0031_fig1/source.svg",
+     "tier": 1
+    }
+   ]
+  },
+  {
+   "id": "frozen-trainable",
+   "name": "Blue trained, grey frozen, peach for the new block",
+   "family": "ai",
+   "description": "Model anatomy with training state: trainable modules pale blue with a blue outline, frozen ones light grey (with a snowflake), the proposed block peach with an orange outline; pale green for data and losses; white ground or a light-grey panel.",
+   "when_to_use": "Anatomy and adapter figures where what is trained and what is frozen is the point (frozen / trainable marks in 17% of anatomy figures, 27% of audio). The corpus splits blue and grey evenly between the two states: the key or the snowflake / fire glyphs must say which is which.",
+   "roles": {
+    "canvas": "#ffffff",
+    "container": "#ffffff",
+    "lane": "#f2f2f2",
+    "module": "#deebf7",
+    "module-alt": [
+     "#e7e6e6",
+     "#fbe5d6",
+     "#e2f0d9"
+    ],
+    "accent": "#ed7d31",
+    "stroke": "#595959",
+    "text": "#000000",
+    "text-muted": "#7f7f7f",
+    "arrow": "#595959",
+    "arrow-accent": "#c00000",
+    "legend": "#ffffff"
+   },
+   "extra_fills": [
+    "#4472c4",
+    "#9dc3e6",
+    "#d9d9d9",
+    "#f8cbad",
+    "#c5e0b4"
+   ],
+   "contrast_notes": "black text on every fill; the strong blue #4472c4 is an outline or a small fill, not a module fill",
+   "stats": {
+    "n_figures": 51,
+    "share": 0.15,
+    "basis": "deep records with a trainable / frozen colour code (9%) or a snowflake-fire state marker (6%); pre-screen: 9% of all figures carry the glyphs",
+    "hue_families": [
+     "blue",
+     "grey",
+     "orange",
+     "green"
+    ]
+   },
+   "exemplars": [
+    {
+     "id": "aaai25-0124_fig1",
+     "print": "assets/exemplars/ai/figures/aaai25-0124_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/aaai25-0124_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "acl25-0025_fig1",
+     "print": "assets/exemplars/ai/figures/acl25-0025_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl25-0025_fig1/source.svg",
+     "tier": 1
+    },
+    {
+     "id": "acl26-0047_fig1",
+     "print": "assets/exemplars/ai/figures/acl26-0047_fig1/print.webp",
+     "source_svg": "assets/exemplars/ai/figures/acl26-0047_fig1/source.svg",
+     "tier": 1
+    }
+   ]
+  }
+ ],
+ "mechanism": {
+  "note": "Mechanism figures (kind 2) use the same 21 families: each of the 154 good mechanism figures with a semantic record was matched to the family nearest to its module / accent / container / lane / alt hexes (CIELAB, roles compared pairwise, 20 for a filled ground against a transparent one): 42% sit within 15 and 81% within 25 of a family, and a clustering of the mechanism records on their own (palette_cluster.py --subtype mechanism, k=8) reproduces existing families rather than new ones. What differs is the ground -- most mechanism figures have no container fill at all -- and the STATE colours: a mechanism figure spends colour on what changed, what is wrong, what is current and what is old, not on component kinds. Frequencies, not rules: figures of this kind vary a great deal, so treat the table as the corpus habit to start from.",
+  "figures": 154,
+  "nearest_family": {
+   "blue-outline": 22,
+   "ink-outline": 18,
+   "blue-orange": 15,
+   "pastel-regions": 14,
+   "amber-highlight": 11,
+   "blue-mono": 10,
+   "pastel-outline": 9,
+   "green-outline": 8,
+   "greyscale": 7,
+   "green-ground": 6,
+   "grey-scaffold": 5,
+   "cool-grey-cyan": 5,
+   "high-contrast": 3,
+   "warm-bands": 3,
+   "greyscale-outline": 3,
+   "blue-ground": 3,
+   "categorical-outline": 3,
+   "cream-pastel": 3,
+   "cream-ground": 2,
+   "green-red": 2,
+   "multi-hue-categorical": 2
+  },
+  "ground": {
+   "flat-on-canvas": 84,
+   "outline-containers": 20,
+   "grey-container": 20,
+   "tinted-blue": 7,
+   "multi-tint": 7,
+   "tinted-orange": 5,
+   "tinted-yellow": 4,
+   "white-container": 3,
+   "tinted-red": 1,
+   "tinted-green": 1,
+   "tinted-teal": 1,
+   "tinted-pink": 1
+  },
+  "state_colours": {
+   "wrong / failed / removed": {
+    "records": 14,
+    "hue_families": {
+     "red": 11,
+     "grey": 5,
+     "blue": 2,
+     "green": 1,
+     "yellow": 1
+    },
+    "common_hexes": [
+     "#b85450",
+     "#ff7e79",
+     "#db6965",
+     "#b51700",
+     "#6c8ebf",
+     "#b85451"
+    ]
+   },
+   "correct / new / added": {
+    "records": 13,
+    "hue_families": {
+     "red": 5,
+     "green": 3,
+     "grey": 3,
+     "orange": 2,
+     "teal": 1,
+     "purple": 1,
+     "blue": 1
+    },
+    "common_hexes": [
+     "#ff0000",
+     "#006633",
+     "#d0d5da",
+     "#3399cc",
+     "#fac5c6",
+     "#ed1f24"
+    ]
+   },
+   "current / active / selected": {
+    "records": 30,
+    "hue_families": {
+     "red": 9,
+     "blue": 8,
+     "yellow": 8,
+     "green": 6,
+     "grey": 6,
+     "orange": 3,
+     "teal": 1
+    },
+    "common_hexes": [
+     "#ffc000",
+     "#cc2d1d",
+     "#dae8fc",
+     "#ffe699",
+     "#db6965",
+     "#006633"
+    ]
+   },
+   "old / inactive / ghost": {
+    "records": 28,
+    "hue_families": {
+     "grey": 22,
+     "orange": 7,
+     "blue": 4,
+     "green": 2,
+     "red": 1,
+     "teal": 1
+    },
+    "common_hexes": [
+     "#d9d9d9",
+     "#cccccc",
+     "#f2f2f2",
+     "#fff2cc",
+     "#7f7f7f",
+     "#595959"
+    ]
+   },
+   "trusted / safe": {
+    "records": 4,
+    "hue_families": {
+     "green": 2,
+     "red": 1,
+     "grey": 1
+    },
+    "common_hexes": [
+     "#ff0000",
+     "#cccccc",
+     "#70ad47",
+     "#395829"
+    ]
+   }
+  },
+  "state_colour_defaults": {
+   "wrong / failed / removed": {
+    "hex": "#b85450",
+    "alt": [
+     "#ff7e79",
+     "#c00000",
+     "#ff0000"
+    ],
+    "note": "red family in 11 of 19 uses; a crossed-out or struck element often adds a grey ghost"
+   },
+   "old / inactive / ghost / before": {
+    "hex": "#d9d9d9",
+    "alt": [
+     "#cccccc",
+     "#f2f2f2",
+     "#7f7f7f"
+    ],
+    "note": "grey in 22 of 35 uses; dashed outline when the element is gone rather than idle"
+   },
+   "current / active / selected / this step": {
+    "hex": "#ffc000",
+    "alt": [
+     "#ffe699",
+     "#dae8fc",
+     "#cc2d1d"
+    ],
+    "note": "yellow / amber, blue or red about equally (30 records); pick the one the palette does not already use for a component kind"
+   },
+   "correct / new / added / ours": {
+    "hex": "#70ad47",
+    "alt": [
+     "#006633",
+     "#3399cc",
+     "#ff0000"
+    ],
+    "note": "green when paired with a red wrong case, otherwise the accent of the palette; only 13 records name it"
+   }
+  },
+  "source": "lab/extracted/corpus_semantics.jsonl kind == mechanism (152 records, 2026-09-20); scripts/distill/palette_cluster.py --subtype mechanism, palette_grounds.py --subtype mechanism, and a keyword tally of style.palette[].used_for"
+ },
+ "ai": {
+  "note": "AI-venue figures (meta.family = ai) use the systems families plus the five families marked \"family\": \"ai\" above (office-pastel, tinted-regions, role-colours, verdict-contrast, frozen-trainable), built from the fills and tints of the 336 deep records and the painted area of 2,470 measured figures: references/ai/palettes.md. What colour MEANS in this family (per part, identity, actor, verdict, highlight, ours vs prior, trainable / frozen, modality) is in references/ai/encoding.md Part A.",
+  "records": 336,
+  "measured": 2470,
+  "tone_by_area": {
+   "pale": 0.52,
+   "mixed": 0.08,
+   "strong": 0.26,
+   "no colour field": 0.14
+  },
+  "hue_families_by_area": {
+   "0": 0.13,
+   "1": 0.15,
+   "2": 0.23,
+   "3": 0.25,
+   "4": 0.15,
+   "5+": 0.08
+  },
+  "largest_hue": {
+   "blue": 0.33,
+   "orange": 0.25,
+   "green": 0.16,
+   "teal": 0.09,
+   "red": 0.07,
+   "yellow": 0.06,
+   "purple": 0.03,
+   "pink": 0.02
+  },
+  "region_tints": {
+   "grey": 0.37,
+   "orange": 0.21,
+   "green": 0.13,
+   "blue": 0.12,
+   "teal": 0.06,
+   "red": 0.04,
+   "lightness_median": 0.91,
+   "saturation_median": 0.1,
+   "most_used": [
+    "#f2f2f2",
+    "#fff2cc",
+    "#fbe3d6",
+    "#d9f2d0",
+    "#dceaf7",
+    "#fbe5d6",
+    "#e2f0d9"
+   ]
+  },
+  "colour_meanings": {
+   "per-part": 0.75,
+   "identity": 0.29,
+   "element-type": 0.28,
+   "actor": 0.21,
+   "verdict": 0.19,
+   "highlight": 0.15,
+   "ours-vs-prior": 0.12,
+   "region-identity": 0.11,
+   "trainable-frozen": 0.09,
+   "modality": 0.08,
+   "phase": 0.06,
+   "scale": 0.05
+  },
+  "verdict_colours": {
+   "right": "green (20 of 28 clauses)",
+   "wrong": "red (27 of 34)",
+   "ours": "red 9, pink 4, purple 4, blue 4, orange 4",
+   "prior": "grey 15, blue 9",
+   "trained / frozen": "blue and grey split evenly: always key it"
+  },
+  "generator": "figgenie-paper-diagram/scripts/distill/ai_palettes.py, ai_grounds.py, ai_encoding.py (2026-10-10)"
+ }
+}
