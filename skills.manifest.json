@@ -39,6 +39,10 @@
     "repo": "https://github.com/addyosmani/agent-skills.git",
     "type": "git"
   },
+  "coding-standards": {
+    "commit": "7cd82ef2290caba9a4ab66a260668585abd19080",
+    "description": "Coding standards entry point: formatter handles formatting, semantic rules routed per language to references/ or alibaba-java-coding-guidelines."
+  },
   "context-engineering": {
     "commit": "13e43f2310224d5770a7fb0a8c24c02b73da69e9",
     "description": "Optimizes agent context setup. Use when starting a new session, when agent output quality degrades, when switching between tasks, or when you need to configure rules files and context for a project.",
@@ -240,6 +244,17 @@
         "type": "git"
       },
       "type": "git"
+    },
+    "alibaba-java-coding-guidelines": {
+      "description": "Enforce the Alibaba Java Development Manual (Huangshan v1.7.1, 327 rules) as the Java coding standard: naming, constants, OOP, collections, concurrency, exceptions, logging, unit tests, security, MySQL, engineering structure, design.",
+      "source": {
+        "last_checked_at": "2026-11-28T07:48:38Z",
+        "last_commit": "b990f84203afe63704398b138e15060b2547377e",
+        "path": ".",
+        "ref": "main",
+        "repo": "https://github.com/castlebin/alibaba-java-coding-guidelines.git",
+        "type": "git"
+      }
     },
     "api-and-interface-design": {
       "source": {
@@ -744,6 +759,17 @@
         "path": "skills/fsharp-testing",
         "ref": "main",
         "repo": "https://github.com/affaan-m/ECC.git",
+        "type": "git"
+      }
+    },
+    "generate-icons": {
+      "description": "Draws an original, design-system-matched icon library (SVG plus React/Vue/Svelte/React Native components) with 8 starter styles, side-by-side validation and a self-contained review catalog.",
+      "source": {
+        "last_checked_at": "2026-11-28T02:15:40Z",
+        "last_commit": "e407e6d28d8a6f4c4a81f31da6c7bc18380e7712",
+        "path": ".",
+        "ref": "main",
+        "repo": "https://github.com/sergiobanhos/generate-icons.git",
         "type": "git"
       }
     },

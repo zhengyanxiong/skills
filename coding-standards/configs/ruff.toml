@@ -1,0 +1,12 @@
+# Python 契约配置（Ruff format + lint 一把抓）
+line-length = 100
+target-version = "py311"
+
+[lint]
+# E=pycodestyle, F=Pyflakes, B=bugbear, UP=pyupgrade, SIM=flake8-simplify, I=isort
+select = ["E", "F", "B", "UP", "SIM", "I"]
+ignore = ["E501"]  # 行长交给 formatter（ruff format 默认 100）
+
+[format]
+quote-style = "double"
+indent-style = "space"
