@@ -39,6 +39,10 @@
     "repo": "https://github.com/addyosmani/agent-skills.git",
     "type": "git"
   },
+  "coding-standards": {
+    "commit": "7cd82ef2290caba9a4ab66a260668585abd19080",
+    "description": "Coding standards entry point: formatter handles formatting, semantic rules routed per language to references/ or alibaba-java-coding-guidelines."
+  },
   "context-engineering": {
     "commit": "13e43f2310224d5770a7fb0a8c24c02b73da69e9",
     "description": "Optimizes agent context setup. Use when starting a new session, when agent output quality degrades, when switching between tasks, or when you need to configure rules files and context for a project.",
