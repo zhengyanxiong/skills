@@ -241,6 +241,17 @@
       },
       "type": "git"
     },
+    "alibaba-java-coding-guidelines": {
+      "description": "Enforce the Alibaba Java Development Manual (Huangshan v1.7.1, 327 rules) as the Java coding standard: naming, constants, OOP, collections, concurrency, exceptions, logging, unit tests, security, MySQL, engineering structure, design.",
+      "source": {
+        "last_checked_at": "2026-11-28T07:48:38Z",
+        "last_commit": "b990f84203afe63704398b138e15060b2547377e",
+        "path": ".",
+        "ref": "main",
+        "repo": "https://github.com/castlebin/alibaba-java-coding-guidelines.git",
+        "type": "git"
+      }
+    },
     "api-and-interface-design": {
       "source": {
         "last_checked_at": "2026-11-01T14:09:41Z",
