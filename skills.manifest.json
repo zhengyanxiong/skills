@@ -747,6 +747,17 @@
         "type": "git"
       }
     },
+    "generate-icons": {
+      "description": "Draws an original, design-system-matched icon library (SVG plus React/Vue/Svelte/React Native components) with 8 starter styles, side-by-side validation and a self-contained review catalog.",
+      "source": {
+        "last_checked_at": "2026-11-28T02:15:40Z",
+        "last_commit": "e407e6d28d8a6f4c4a81f31da6c7bc18380e7712",
+        "path": ".",
+        "ref": "main",
+        "repo": "https://github.com/sergiobanhos/generate-icons.git",
+        "type": "git"
+      }
+    },
     "git-workflow-and-versioning": {
       "source": {
         "last_checked_at": "2026-11-01T14:09:41Z",
